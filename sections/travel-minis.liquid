@@ -1,0 +1,268 @@
+<div class="travel-minis section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    
+    <div class="travel-minis__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="travel-minis__title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <div class="travel-minis__subtitle">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+    </div>
+
+    <div class="travel-minis__grid">
+      {%- assign collection = section.settings.collection -%}
+      
+      {%- if collection != blank and collection.products_count > 0 -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          <a href="{{ product.url }}" class="travel-mini-card">
+            <div class="travel-mini-card__image-wrapper">
+              {%- if product.featured_image != blank -%}
+                {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'travel-mini-card__image' }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'travel-mini-card__image placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="travel-mini-card__info">
+              <h3 class="travel-mini-card__title">{{ product.title }}</h3>
+              <div class="travel-mini-card__price">
+                {% render 'price', product: product, price_class: '' %}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <a href="#" class="travel-mini-card">
+            <div class="travel-mini-card__image-wrapper">
+              {{ 'product-' | append: i | placeholder_svg_tag: 'travel-mini-card__image placeholder-svg' }}
+            </div>
+            <div class="travel-mini-card__info">
+              <h3 class="travel-mini-card__title">Travel Size Product</h3>
+              <div class="travel-mini-card__price">
+                <span class="price-item price-item--regular">$15.00</span>
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_view_all and collection != blank -%}
+      <div class="travel-minis__footer">
+        <a href="{{ collection.url }}" class="button button--secondary">
+          {{ 'sections.featured_collection.view_all' | t }}
+        </a>
+      </div>
+    {%- endif -%}
+    
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .travel-minis {
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .travel-minis__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .travel-minis__title {
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .travel-minis__subtitle {
+    font-size: 1.6rem;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+
+  .travel-minis__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .travel-minis__grid {
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 4rem;
+      row-gap: 3rem;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .travel-minis__grid {
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 5rem;
+    }
+  }
+
+  .travel-mini-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    gap: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  .travel-mini-card:hover {
+    background-color: rgba(var(--color-foreground), 0.03);
+  }
+
+  .travel-mini-card__image-wrapper {
+    flex-shrink: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: rgba(var(--color-foreground), 0.02);
+    border: 1px solid rgba(var(--color-foreground), 0.05);
+  }
+
+  .travel-mini-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .travel-mini-card__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .travel-mini-card__title {
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+    color: rgba(var(--color-foreground), 0.9);
+  }
+
+  .travel-mini-card__price {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.6);
+  }
+
+  .travel-minis__footer {
+    text-align: center;
+    margin-top: 5rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Travel Minis",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Rituals for every journey",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "default": "<p>Discover travel-friendly favourites for care on the go.</p>",
+      "label": "Subheading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 6,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": false,
+      "label": "Enable \"View all\" button if collection has more products than shown"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Travel Minis"
+    }
+  ]
+}
+{% endschema %}

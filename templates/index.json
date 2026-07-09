@@ -205,6 +205,19 @@
         "padding_bottom": 80
       }
     },
+    "travel_minis": {
+      "type": "travel-minis",
+      "settings": {
+        "title": "Rituals for every journey",
+        "heading_size": "h2",
+        "subtitle": "<p>Discover travel-friendly favourites for care on the go.</p>",
+        "products_to_show": 6,
+        "show_view_all": true,
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "editorial_slider": {
       "type": "editorial-slider",
       "blocks": {
@@ -246,6 +259,7 @@
     "hero_ingredients",
     "brand_story",
     "gift_sets",
+    "travel_minis",
     "editorial_slider"
   ]
 }
