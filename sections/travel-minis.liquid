@@ -1,64 +1,94 @@
-<div class="travel-minis section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+<div class="travel-edit section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
     
-    <div class="travel-minis__header">
-      {%- if section.settings.title != blank -%}
-        <h2 class="travel-minis__title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
-      {%- endif -%}
-      {%- if section.settings.subtitle != blank -%}
-        <div class="travel-minis__subtitle">{{ section.settings.subtitle }}</div>
-      {%- endif -%}
-    </div>
-
-    <div class="travel-minis__grid">
-      {%- assign collection = section.settings.collection -%}
+    <div class="travel-edit__grid {% if section.settings.image_position == 'right' %}travel-edit__grid--reverse{% endif %}">
       
-      {%- if collection != blank and collection.products_count > 0 -%}
-        {%- for product in collection.products limit: section.settings.products_to_show -%}
-          <a href="{{ product.url }}" class="travel-mini-card">
-            <div class="travel-mini-card__image-wrapper">
-              {%- if product.featured_image != blank -%}
-                {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'travel-mini-card__image' }}
-              {%- else -%}
-                <img src="{{ 'slide-1.png' | asset_url }}" alt="Travel Size Placeholder" class="travel-mini-card__image placeholder-svg" loading="lazy">
-              {%- endif -%}
-            </div>
-            <div class="travel-mini-card__info">
-              <h3 class="travel-mini-card__title">{{ product.title }}</h3>
-              <div class="travel-mini-card__price">
-                {% render 'price', product: product, price_class: '' %}
-              </div>
-            </div>
-          </a>
-        {%- endfor -%}
-      {%- else -%}
-        {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png,slide-4.png" | split: "," -%}
-        {%- for i in (1..section.settings.products_to_show) -%}
-          {%- assign mod_index = i | modulo: 4 -%}
-          {%- assign image_name = placeholder_images[mod_index] -%}
-          <a href="#" class="travel-mini-card">
-            <div class="travel-mini-card__image-wrapper">
-              <img src="{{ image_name | asset_url }}" alt="Travel Size Placeholder" class="travel-mini-card__image placeholder-svg" loading="lazy">
-            </div>
-            <div class="travel-mini-card__info">
-              <h3 class="travel-mini-card__title">Ayurvedic Travel Mini</h3>
-              <div class="travel-mini-card__price">
-                <span class="price-item price-item--regular">$15.00</span>
-              </div>
-            </div>
-          </a>
-        {%- endfor -%}
-      {%- endif -%}
-    </div>
-
-    {%- if section.settings.show_view_all and collection != blank -%}
-      <div class="travel-minis__footer">
-        <a href="{{ collection.url }}" class="button button--secondary">
-          {{ 'sections.featured_collection.view_all' | t }}
-        </a>
+      <!-- LIFESTYLE IMAGE -->
+      <div class="travel-edit__media-wrapper">
+        <div class="travel-edit__media">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'travel-edit__image' }}
+          {%- else -%}
+            <img src="{{ 'slide-4.png' | asset_url }}" alt="Travel Edit" class="travel-edit__image" loading="lazy">
+          {%- endif -%}
+        </div>
       </div>
-    {%- endif -%}
-    
+
+      <!-- CONTENT & SHOPPING LIST -->
+      <div class="travel-edit__content-wrapper">
+        <div class="travel-edit__content-box">
+          
+          <div class="travel-edit__header">
+            {%- if section.settings.title != blank -%}
+              <h2 class="travel-edit__heading {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+            {%- endif -%}
+            {%- if section.settings.subtitle != blank -%}
+              <div class="travel-edit__subtitle">{{ section.settings.subtitle }}</div>
+            {%- endif -%}
+          </div>
+
+          <div class="travel-edit__list">
+            {%- assign collection = section.settings.collection -%}
+            
+            {%- if collection != blank and collection.products_count > 0 -%}
+              {%- for product in collection.products limit: section.settings.products_to_show -%}
+                <a href="{{ product.url }}" class="travel-edit__product">
+                  <div class="travel-edit__product-image-wrapper">
+                    {%- if product.featured_image != blank -%}
+                      {{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'travel-edit__product-image' }}
+                    {%- else -%}
+                      <img src="{{ 'slide-1.png' | asset_url }}" alt="Travel Size" class="travel-edit__product-image" loading="lazy">
+                    {%- endif -%}
+                  </div>
+                  <div class="travel-edit__product-info">
+                    <h3 class="travel-edit__product-title">{{ product.title }}</h3>
+                    <div class="travel-edit__product-price">
+                      {% render 'price', product: product, price_class: '' %}
+                    </div>
+                  </div>
+                  <div class="travel-edit__product-action">
+                    <span class="travel-edit__add-icon">{% render 'icon-plus' %}</span>
+                  </div>
+                </a>
+              {%- endfor -%}
+            {%- else -%}
+              <!-- FALLBACK BLOCKS -->
+              {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png" | split: "," -%}
+              {%- for i in (1..3) -%}
+                {%- assign mod_index = i | modulo: 3 -%}
+                {%- assign image_name = placeholder_images[mod_index] -%}
+                <a href="#" class="travel-edit__product">
+                  <div class="travel-edit__product-image-wrapper">
+                    <img src="{{ image_name | asset_url }}" alt="Placeholder" class="travel-edit__product-image" loading="lazy">
+                  </div>
+                  <div class="travel-edit__product-info">
+                    <h3 class="travel-edit__product-title">Ayurvedic Travel Mini</h3>
+                    <div class="travel-edit__product-price">
+                      <span class="price-item price-item--regular">{{ 1500 | money }}</span>
+                    </div>
+                  </div>
+                  <div class="travel-edit__product-action">
+                    <span class="travel-edit__add-icon">
+                      <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12m-6-6h12"/></svg>
+                    </span>
+                  </div>
+                </a>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.show_view_all and collection != blank -%}
+            <div class="travel-edit__footer">
+              <a href="{{ collection.url }}" class="link">
+                {{ 'sections.featured_collection.view_all' | t }}
+              </a>
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+      
+    </div>
   </div>
 </div>
 
@@ -74,102 +104,167 @@
     }
   }
 
-  .travel-minis {
-    border-top: 1px solid rgba(var(--color-foreground), 0.08);
-  }
-
-  .travel-minis__header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .travel-minis__title {
-    margin-bottom: 1rem;
-    font-weight: 400;
-  }
-
-  .travel-minis__subtitle {
-    font-size: 1.6rem;
-    color: rgba(var(--color-foreground), 0.75);
-  }
-
-  .travel-minis__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .travel-edit__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
   
-  @media screen and (min-width: 750px) {
-    .travel-minis__grid {
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 4rem;
-      row-gap: 3rem;
-    }
-  }
-
   @media screen and (min-width: 990px) {
-    .travel-minis__grid {
-      grid-template-columns: repeat(3, 1fr);
-      column-gap: 5rem;
+    .travel-edit__grid {
+      flex-direction: row;
+      gap: 6rem;
+      align-items: center;
+    }
+    
+    .travel-edit__grid--reverse {
+      flex-direction: row-reverse;
+    }
+    
+    .travel-edit__media-wrapper {
+      width: 45%;
+    }
+
+    .travel-edit__content-wrapper {
+      width: 55%;
     }
   }
 
-  .travel-mini-card {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    gap: 2rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-    background: transparent;
-    transition: background-color 0.2s ease;
-  }
-
-  .travel-mini-card:hover {
-    background-color: rgba(var(--color-foreground), 0.03);
-  }
-
-  .travel-mini-card__image-wrapper {
-    flex-shrink: 0;
-    width: 90px;
-    height: 90px;
-    border-radius: 6px;
+  .travel-edit__media {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
     overflow: hidden;
-    background-color: rgba(var(--color-foreground), 0.02);
-    border: 1px solid rgba(var(--color-foreground), 0.05);
+  }
+  
+  .travel-edit__media::before {
+    content: '';
+    display: block;
+    padding-bottom: 125%; /* 4:5 aspect ratio */
   }
 
-  .travel-mini-card__image {
+  .travel-edit__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .travel-mini-card__info {
+  .travel-edit__content-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .travel-edit__header {
+    margin-bottom: 4rem;
+  }
+
+  .travel-edit__heading {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .travel-edit__subtitle {
+    font-size: 1.6rem;
+    color: rgba(var(--color-foreground), 0.75);
+    line-height: 1.6;
+  }
+
+  .travel-edit__list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .travel-edit__product {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+    transition: opacity 0.2s ease;
+  }
+
+  .travel-edit__product:hover {
+    opacity: 0.7;
+  }
+
+  .travel-edit__product-image-wrapper {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    margin-right: 2rem;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: rgba(var(--color-foreground), 0.02);
+  }
+
+  .travel-edit__product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .travel-edit__product-info {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-right: 2rem;
   }
 
-  .travel-mini-card__title {
+  .travel-edit__product-title {
     font-family: var(--font-body-family);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 500;
     letter-spacing: 0.05em;
     margin: 0 0 0.5rem 0;
     line-height: 1.3;
-    color: rgba(var(--color-foreground), 0.9);
+    color: rgba(var(--color-foreground), 1);
   }
 
-  .travel-mini-card__price {
-    font-size: 1.3rem;
+  .travel-edit__product-price {
+    font-size: 1.4rem;
     color: rgba(var(--color-foreground), 0.6);
   }
 
-  .travel-minis__footer {
-    text-align: center;
-    margin-top: 5rem;
+  .travel-edit__product-action {
+    flex-shrink: 0;
+  }
+
+  .travel-edit__add-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    color: rgba(var(--color-foreground), 0.8);
+    transition: all 0.2s ease;
+  }
+
+  .travel-edit__product:hover .travel-edit__add-icon {
+    border-color: rgba(var(--color-foreground), 1);
+    color: rgba(var(--color-foreground), 1);
+  }
+
+  .travel-edit__footer {
+    margin-top: 4rem;
+  }
+  
+  .travel-edit__footer .link {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+    color: rgba(var(--color-foreground), 0.75);
   }
 </style>
 
@@ -180,9 +275,30 @@
   "class": "section",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Lifestyle Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Desktop image placement"
+    },
+    {
       "type": "inline_richtext",
       "id": "title",
-      "default": "Rituals for every journey",
+      "default": "The Journey Essentials",
       "label": "Heading"
     },
     {
@@ -202,13 +318,13 @@
           "label": "Large"
         }
       ],
-      "default": "h2",
+      "default": "h1",
       "label": "Heading size"
     },
     {
       "type": "richtext",
       "id": "subtitle",
-      "default": "<p>Discover travel-friendly favourites for care on the go.</p>",
+      "default": "<p>Discover travel-friendly favourites curated for care on the go.</p>",
       "label": "Subheading"
     },
     {
@@ -220,16 +336,16 @@
       "type": "range",
       "id": "products_to_show",
       "min": 2,
-      "max": 12,
+      "max": 6,
       "step": 1,
-      "default": 6,
+      "default": 3,
       "label": "Maximum products to show"
     },
     {
       "type": "checkbox",
       "id": "show_view_all",
-      "default": false,
-      "label": "Enable \"View all\" button if collection has more products than shown"
+      "default": true,
+      "label": "Enable \"View all\" link"
     },
     {
       "type": "color",
@@ -249,7 +365,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 60
+      "default": 80
     },
     {
       "type": "range",
@@ -259,7 +375,7 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 60
+      "default": 80
     }
   ],
   "presets": [
