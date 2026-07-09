@@ -189,6 +189,22 @@
         "padding_bottom": 80
       }
     },
+    "gift_sets": {
+      "type": "gift-sets",
+      "settings": {
+        "image_position": "left",
+        "subheading": "THE ART OF GIFTING",
+        "title": "Gift a complete ritual",
+        "heading_size": "h1",
+        "text": "<p>Discover travel-friendly favourites and beautifully boxed self-care bundles. Perfect for care on the go or gifting a loved one.</p>",
+        "button_label": "Shop Gift Sets",
+        "button_link": "shopify:\/\/collections\/all",
+        "background_color": "#FFFFFF",
+        "text_box_background": "#FAF7F2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "editorial_slider": {
       "type": "editorial-slider",
       "blocks": {
@@ -229,6 +245,7 @@
     "featured_collection",
     "hero_ingredients",
     "brand_story",
+    "gift_sets",
     "editorial_slider"
   ]
 }

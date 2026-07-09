@@ -1,0 +1,266 @@
+<div class="gift-sets section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    <div class="gift-sets__grid {% if section.settings.image_position == 'right' %}gift-sets__grid--reverse{% endif %}">
+      
+      <div class="gift-sets__media-wrapper">
+        <div class="gift-sets__media">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'gift-sets__image' }}
+          {%- else -%}
+            <img src="{{ 'slide-3.png' | asset_url }}" alt="Gift Sets Placeholder" class="gift-sets__image" loading="lazy">
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="gift-sets__content-wrapper" style="background-color: {{ section.settings.text_box_background }};">
+        <div class="gift-sets__content-box">
+          {%- if section.settings.subheading != blank -%}
+            <p class="gift-sets__subheading">{{ section.settings.subheading }}</p>
+          {%- endif -%}
+          
+          {%- if section.settings.title != blank -%}
+            <h2 class="gift-sets__heading inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+          
+          {%- if section.settings.text != blank -%}
+            <div class="gift-sets__text rte">
+              {{ section.settings.text }}
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="button button--primary gift-sets__button">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .gift-sets__grid {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden; /* Seamless corners */
+  }
+  
+  @media screen and (min-width: 990px) {
+    .gift-sets__grid {
+      flex-direction: row;
+    }
+    
+    .gift-sets__grid--reverse {
+      flex-direction: row-reverse;
+    }
+    
+    .gift-sets__media-wrapper,
+    .gift-sets__content-wrapper {
+      width: 50%;
+    }
+  }
+
+  .gift-sets__media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px; /* For mobile */
+  }
+  
+  @media screen and (min-width: 990px) {
+    .gift-sets__media {
+      height: 0;
+      padding-bottom: 100%; /* Perfect square on desktop */
+    }
+  }
+
+  .gift-sets__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gift-sets__content-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .gift-sets__content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 6rem 4rem;
+    height: 100%;
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .gift-sets__content-box {
+      padding: 8rem 10rem;
+    }
+  }
+  
+  .gift-sets__subheading {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.6);
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .gift-sets__heading {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    line-height: 1.1;
+  }
+
+  .gift-sets__text {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: rgba(var(--color-foreground), 0.75);
+    margin-bottom: 4rem;
+  }
+  
+  .gift-sets__button {
+    margin-top: 1rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Gift Sets Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Desktop image placement"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "THE ART OF GIFTING",
+      "label": "Subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Gift a complete ritual",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>Discover travel-friendly favourites and beautifully boxed self-care bundles. Perfect for care on the go or gifting a loved one.</p>",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop Gift Sets",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_box_background",
+      "label": "Text box background color",
+      "default": "#FAF7F2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Sets Banner"
+    }
+  ]
+}
+{% endschema %}
