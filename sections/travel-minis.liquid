@@ -20,7 +20,7 @@
               {%- if product.featured_image != blank -%}
                 {{ product.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'travel-mini-card__image' }}
               {%- else -%}
-                {{ 'product-1' | placeholder_svg_tag: 'travel-mini-card__image placeholder-svg' }}
+                <img src="{{ 'slide-1.png' | asset_url }}" alt="Travel Size Placeholder" class="travel-mini-card__image placeholder-svg" loading="lazy">
               {%- endif -%}
             </div>
             <div class="travel-mini-card__info">
@@ -32,13 +32,16 @@
           </a>
         {%- endfor -%}
       {%- else -%}
+        {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png,slide-4.png" | split: "," -%}
         {%- for i in (1..section.settings.products_to_show) -%}
+          {%- assign mod_index = i | modulo: 4 -%}
+          {%- assign image_name = placeholder_images[mod_index] -%}
           <a href="#" class="travel-mini-card">
             <div class="travel-mini-card__image-wrapper">
-              {{ 'product-' | append: i | placeholder_svg_tag: 'travel-mini-card__image placeholder-svg' }}
+              <img src="{{ image_name | asset_url }}" alt="Travel Size Placeholder" class="travel-mini-card__image placeholder-svg" loading="lazy">
             </div>
             <div class="travel-mini-card__info">
-              <h3 class="travel-mini-card__title">Travel Size Product</h3>
+              <h3 class="travel-mini-card__title">Ayurvedic Travel Mini</h3>
               <div class="travel-mini-card__price">
                 <span class="price-item price-item--regular">$15.00</span>
               </div>
