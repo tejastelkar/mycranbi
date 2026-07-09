@@ -1,0 +1,307 @@
+<div class="editorial-slider section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    <div class="editorial-slider__inner">
+      
+      <div class="editorial-slider__text-side">
+        <div class="editorial-slider__content-sticky">
+          {%- if section.settings.subtitle != blank -%}
+            <div class="editorial-slider__subtitle">
+              {{ section.settings.subtitle }}
+            </div>
+            <div class="editorial-slider__divider"></div>
+          {%- endif -%}
+          
+          {%- if section.settings.title != blank -%}
+            <h2 class="editorial-slider__heading inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+          
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="button button--secondary editorial-slider__button">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="editorial-slider__media-side">
+        <div class="editorial-slider__scroller">
+          {%- for block in section.blocks -%}
+            <div class="editorial-slider__slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}" class="editorial-slider__link">
+              {%- endif -%}
+              
+              <div class="editorial-slider__image-wrapper">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'editorial-slider__image' }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg editorial-slider__image' }}
+                {%- endif -%}
+              </div>
+              
+              {%- if block.settings.link != blank -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .editorial-slider__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+  .editorial-slider__text-side {
+    position: relative;
+  }
+
+  .editorial-slider__content-sticky {
+    position: sticky;
+    top: 10rem; /* Creates the sticky effect on desktop */
+  }
+
+  .editorial-slider__subtitle {
+    font-family: 'Manrope', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: rgba(var(--color-foreground), 0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  .editorial-slider__divider {
+    height: 1px;
+    background-color: rgba(var(--color-foreground), 0.3);
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .editorial-slider__heading {
+    margin-top: 0;
+    margin-bottom: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+  
+  .editorial-slider__button {
+    /* Outline button styling overrides to match Caudalie */
+    background: transparent;
+    border: 1px solid rgba(var(--color-foreground), 0.3);
+    color: rgb(var(--color-foreground));
+    font-weight: 400;
+  }
+
+  .editorial-slider__scroller {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+  }
+  
+  .editorial-slider__scroller::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .editorial-slider__slide {
+    flex: 0 0 75%;
+    scroll-snap-align: start;
+  }
+
+  .editorial-slider__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .editorial-slider__image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 125%; /* 4:5 Aspect Ratio */
+    border-radius: 12px; /* Caudalie soft corners */
+    overflow: hidden;
+  }
+
+  .editorial-slider__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .editorial-slider__image-wrapper .placeholder-svg {
+    background-color: rgba(var(--color-foreground), 0.05);
+    fill: rgba(var(--color-foreground), 0.2);
+  }
+
+  @media screen and (min-width: 750px) {
+    .editorial-slider__inner {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 6rem;
+    }
+    
+    .editorial-slider__text-side {
+      width: 35%;
+      flex-shrink: 0;
+      padding-top: 5rem; /* Aligns text a bit down */
+    }
+    
+    .editorial-slider__media-side {
+      width: 65%;
+      /* Negative right margin to let slider bleed off edge if wanted, or just contain it. Containing it is safer. */
+    }
+    
+    .editorial-slider__slide {
+      flex: 0 0 calc(50% - 0.75rem);
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .editorial-slider__slide {
+      flex: 0 0 calc(33.333% - 1rem);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Editorial Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Discover our cults",
+      "label": "Subtitle"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "\"Powered by the grape. Patented, highly effective, natural formulas.\"",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Shop now",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Image Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Image link (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
