@@ -2,11 +2,11 @@
   <div class="page-width">
     {%- if section.settings.title != blank -%}
       <div class="hero-ingredients__title-wrapper center">
-        <h2 class="hero-ingredients__title inline-richtext {{ section.settings.heading_size }}" style="font-family: 'Cormorant Garamond', serif; color: #4A3427;">
+        <h2 class="hero-ingredients__title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.subtitle != blank -%}
-          <div class="hero-ingredients__subtitle rte" style="font-family: 'Manrope', sans-serif;">
+          <div class="hero-ingredients__subtitle rte">
             {{ section.settings.subtitle }}
           </div>
         {%- endif -%}
@@ -25,8 +25,8 @@
                   {{ 'image' | placeholder_svg_tag: 'placeholder-svg hero-ingredients__image' }}
                 {%- endif -%}
               </div>
-              <h3 class="hero-ingredients__name" style="font-family: 'Cormorant Garamond', serif;">{{ block.settings.title }}</h3>
-              <div class="hero-ingredients__purpose rte" style="font-family: 'Manrope', sans-serif;">{{ block.settings.purpose }}</div>
+              <h3 class="hero-ingredients__name">{{ block.settings.title }}</h3>
+              <div class="hero-ingredients__purpose rte">{{ block.settings.purpose }}</div>
             </div>
           </li>
         {%- endfor -%}
@@ -53,8 +53,6 @@
   
   .hero-ingredients__title {
     margin-bottom: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
   }
 
   .hero-ingredients__subtitle {
@@ -134,8 +132,6 @@
   .hero-ingredients__name {
     margin: 0 0 1rem 0;
     font-size: 2.6rem;
-    color: #4A3427;
-    font-weight: 500;
     letter-spacing: 0.02em;
   }
 
