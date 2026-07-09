@@ -266,6 +266,23 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "spotlight_carousel": {
+      "type": "spotlight-carousel",
+      "blocks": {
+        "video_1": { "type": "video_card" },
+        "video_2": { "type": "video_card" },
+        "video_3": { "type": "video_card" },
+        "video_4": { "type": "video_card" },
+        "video_5": { "type": "video_card" }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5"
+      ]
     }
   },
   "order": [
@@ -276,6 +293,7 @@
     "brand_story",
     "gift_sets",
     "travel_minis",
+    "spotlight_carousel",
     "editorial_slider"
   ]
 }

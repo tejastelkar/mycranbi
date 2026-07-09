@@ -1,0 +1,359 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<div class="spotlight-carousel section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    <div class="spotlight-carousel__header">
+      {%- if section.settings.title != blank -%}
+        <h2 class="spotlight-carousel__heading {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="spotlight-carousel__wrapper">
+    <!-- Swiper -->
+    <div class="swiper spotlightSwiper">
+      <div class="swiper-wrapper">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            <div class="swiper-slide spotlight-slide" {{ block.shopify_attributes }}>
+              <div class="spotlight-slide__inner">
+                {%- if block.settings.video != blank -%}
+                  {{ block.settings.video | video_tag: autoplay: false, loop: true, muted: true, controls: false, class: 'spotlight-slide__video', image_size: '600x' }}
+                {%- elsif block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'spotlight-slide__image' }}
+                {%- else -%}
+                  {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png,slide-4.png" | split: "," -%}
+                  {%- assign mod_index = forloop.index0 | modulo: 4 -%}
+                  {%- assign image_name = placeholder_images[mod_index] -%}
+                  <img src="{{ image_name | asset_url }}" alt="Placeholder" class="spotlight-slide__image" loading="lazy">
+                {%- endif -%}
+                
+                {%- if block.settings.title != blank -%}
+                  <div class="spotlight-slide__content">
+                    <h3 class="spotlight-slide__title">{{ block.settings.title }}</h3>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Placeholder Blocks if none exist -->
+          {%- for i in (1..5) -%}
+            <div class="swiper-slide spotlight-slide">
+              <div class="spotlight-slide__inner">
+                {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png,slide-4.png" | split: "," -%}
+                {%- assign mod_index = i | modulo: 4 -%}
+                {%- assign image_name = placeholder_images[mod_index] -%}
+                <img src="{{ image_name | asset_url }}" alt="Placeholder" class="spotlight-slide__image" loading="lazy">
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next spotlight-nav-btn"></div>
+      <div class="swiper-button-prev spotlight-nav-btn"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    overflow: hidden;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .spotlight-carousel__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .spotlight-carousel__heading {
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .spotlight-carousel__wrapper {
+    position: relative;
+    width: 100%;
+    /* Max width to contain the carousel so it doesn't stretch infinitely on ultrawide */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 0 4rem 0;
+  }
+
+  .spotlightSwiper {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .spotlight-slide {
+    background-position: center;
+    background-size: cover;
+    /* Aspect ratio for reels (9:16) roughly */
+    width: 280px;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    /* Smooth transition for active state */
+    transition: filter 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  @media screen and (min-width: 768px) {
+    .spotlight-slide {
+      width: 320px;
+      height: 570px;
+    }
+  }
+
+  .spotlight-slide__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .spotlight-slide__video,
+  .spotlight-slide__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Darken non-active slides */
+  .swiper-slide:not(.swiper-slide-active) {
+    filter: brightness(0.5);
+    opacity: 0.8;
+  }
+
+  .spotlight-slide__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 3rem 2rem 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    color: #fff;
+    pointer-events: none;
+  }
+
+  .spotlight-slide__title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-family: var(--font-body-family);
+    font-weight: 500;
+    color: #fff;
+  }
+
+  /* Navigation styling */
+  .spotlight-nav-btn {
+    color: rgba(var(--color-foreground), 1);
+    background: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .spotlight-nav-btn:after {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  .spotlight-carousel__wrapper:hover .spotlight-nav-btn {
+    opacity: 1;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initSpotlightSwiper();
+  });
+
+  // Support for Shopify theme editor events
+  document.addEventListener('shopify:section:load', function(event) {
+    if (event.target.querySelector('.spotlight-carousel')) {
+      initSpotlightSwiper();
+    }
+  });
+
+  function initSpotlightSwiper() {
+    const swiperContainer = document.querySelector('.spotlightSwiper');
+    if (!swiperContainer) return;
+    
+    // Check if swiper is already initialized on this container
+    if (swiperContainer.swiper) {
+      swiperContainer.swiper.destroy();
+    }
+
+    const swiper = new Swiper('.spotlightSwiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      initialSlide: 2, // Start in middle
+      loop: true,
+      coverflowEffect: {
+        rotate: 0, // No rotation, just scale and depth
+        stretch: 20, // Space between
+        depth: 200, // 3D depth
+        modifier: 1,
+        slideShadows: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      // Essential for clicking background tabs
+      slideToClickedSlide: true,
+      
+      on: {
+        // Video Autoplay logic
+        slideChangeTransitionEnd: function () {
+          // Pause all videos
+          document.querySelectorAll('.spotlight-slide__video').forEach(vid => {
+            if (vid.play) vid.pause();
+          });
+          
+          // Play active video
+          const activeSlide = this.slides[this.activeIndex];
+          if (activeSlide) {
+            const activeVid = activeSlide.querySelector('.spotlight-slide__video');
+            if (activeVid && activeVid.play) {
+              activeVid.play().catch(e => console.log("Autoplay prevented:", e));
+            }
+          }
+        },
+        init: function() {
+           // Play initial active video
+          const activeSlide = this.slides[this.activeIndex];
+          if (activeSlide) {
+            const activeVid = activeSlide.querySelector('.spotlight-slide__video');
+            if (activeVid && activeVid.play) {
+              activeVid.play().catch(e => console.log("Autoplay prevented:", e));
+            }
+          }
+        }
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Spotlight Carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "In the Spotlight",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video_card",
+      "name": "Video/Image Card",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video (Optional)",
+          "info": "Overrides image if provided. Hosted video file."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image Fallback",
+          "info": "Used if no video is provided."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Overlay Text (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spotlight Carousel",
+      "blocks": [
+        { "type": "video_card" },
+        { "type": "video_card" },
+        { "type": "video_card" },
+        { "type": "video_card" },
+        { "type": "video_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
