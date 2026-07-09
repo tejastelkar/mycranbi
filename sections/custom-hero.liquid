@@ -1,0 +1,335 @@
+<div class="custom-hero-section">
+  <div class="custom-hero__image-wrapper">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 2000 }}" 
+           alt="{{ section.settings.image.alt | escape }}" 
+           class="custom-hero__image desktop-only"
+           loading="lazy"
+           width="{{ section.settings.image.width }}"
+           height="{{ section.settings.image.height }}">
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg custom-hero__image desktop-only' }}
+    {%- endif -%}
+
+    {%- if section.settings.mobile_image != blank -%}
+      <img src="{{ section.settings.mobile_image | image_url: width: 1000 }}" 
+           alt="{{ section.settings.mobile_image.alt | escape }}" 
+           class="custom-hero__image mobile-only"
+           loading="lazy"
+           width="{{ section.settings.mobile_image.width }}"
+           height="{{ section.settings.mobile_image.height }}">
+    {%- else -%}
+      <div class="mobile-only custom-hero__image placeholder">
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="custom-hero__content-wrapper page-width">
+    {%- if section.settings.logo != blank -%}
+      <div class="custom-hero__logo">
+        <img src="{{ section.settings.logo | image_url: width: 150 }}" 
+             alt="Brand Logo" 
+             width="80" height="80">
+      </div>
+    {%- else -%}
+      <div class="custom-hero__logo placeholder-logo">
+        K
+      </div>
+    {%- endif -%}
+
+    <div class="custom-hero__text-box">
+      {%- if section.settings.subheading != blank -%}
+        <div class="custom-hero__subheading">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="custom-hero__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <p class="custom-hero__description">{{ section.settings.description }}</p>
+      {%- endif -%}
+
+      <div class="custom-hero__stats-grid">
+        {%- if section.settings.stat_1_number != blank -%}
+          <div class="custom-hero__stat">
+            <span class="custom-hero__stat-number">{{ section.settings.stat_1_number }}</span>
+            <span class="custom-hero__stat-text">{{ section.settings.stat_1_text }}</span>
+          </div>
+        {%- endif -%}
+        
+        {%- if section.settings.stat_2_number != blank -%}
+          <div class="custom-hero__stat">
+            <span class="custom-hero__stat-number">{{ section.settings.stat_2_number }}</span>
+            <span class="custom-hero__stat-text">{{ section.settings.stat_2_text }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="custom-hero__button">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+.custom-hero-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #2D4C3A; /* Fallback Kama green */
+}
+
+.custom-hero__image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.custom-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+.custom-hero__content-wrapper {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Right aligned text */
+}
+
+.custom-hero__logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.custom-hero__logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.placeholder-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading-family);
+  font-size: 36px;
+}
+
+.custom-hero__text-box {
+  width: 100%;
+  max-width: 480px;
+  color: #fff; /* White text on dark background */
+  padding: 40px 0;
+}
+
+.custom-hero__subheading {
+  font-family: var(--font-body-family);
+  font-size: 1.2rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.custom-hero__heading {
+  font-family: var(--font-heading-family);
+  font-size: 6rem;
+  line-height: 1.1;
+  font-weight: 400;
+  margin: 0 0 1.5rem 0;
+  color: #fff;
+}
+
+.custom-hero__description {
+  font-family: var(--font-heading-family);
+  font-size: 2.8rem;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0 0 3rem 0;
+}
+
+.custom-hero__stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.custom-hero__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-hero__stat-number {
+  font-family: var(--font-heading-family);
+  font-size: 5rem;
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.custom-hero__stat-text {
+  font-family: var(--font-heading-family);
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.custom-hero__button {
+  display: inline-block;
+  background-color: #CB4C46; /* Kama Red */
+  color: #ffffff;
+  font-family: var(--font-body-family);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  transition: background-color 0.3s ease;
+}
+
+.custom-hero__button:hover {
+  background-color: #a83d38;
+}
+
+@media screen and (max-width: 989px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: block; }
+  
+  .custom-hero__content-wrapper {
+    min-height: unset;
+    padding-top: 300px; /* Space for the background image on mobile */
+    justify-content: center;
+  }
+  
+  .custom-hero__logo {
+    top: 20px;
+    left: 20px;
+  }
+  
+  .custom-hero__text-box {
+    background-color: #2D4C3A;
+    padding: 30px 20px;
+    text-align: center;
+    max-width: 100%;
+  }
+  
+  .custom-hero__heading {
+    font-size: 4rem;
+  }
+  
+  .custom-hero__description {
+    font-size: 2.2rem;
+  }
+  
+  .custom-hero__stat-number {
+    font-size: 4rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Desktop Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Floating Logo"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "NEW",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "bringaras",
+      "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "Regenerating Haircare Ritual",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "default": "92%",
+      "label": "Stat 1 Number"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_text",
+      "default": "Repaired fibre",
+      "label": "Stat 1 Text"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "default": "84%",
+      "label": "Stat 2 Number"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_text",
+      "default": "Stronger hair",
+      "label": "Stat 2 Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "SHOP NOW",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

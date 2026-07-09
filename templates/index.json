@@ -1,0 +1,106 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero": {
+      "type": "custom-hero",
+      "settings": {
+        "subheading": "NEW",
+        "heading": "bringaras",
+        "description": "Regenerating Haircare Ritual",
+        "stat_1_number": "92%",
+        "stat_1_text": "Repaired fibre",
+        "stat_2_number": "84%",
+        "stat_2_text": "Stronger hair",
+        "button_label": "SHOP NOW",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "custom_collection_list": {
+      "type": "custom-collection-list",
+      "blocks": {
+        "block_1": {
+          "type": "card",
+          "settings": {
+            "title": "SKINCARE"
+          }
+        },
+        "block_2": {
+          "type": "card",
+          "settings": {
+            "title": "HAIRCARE"
+          }
+        },
+        "block_3": {
+          "type": "card",
+          "settings": {
+            "title": "SANDANYA COLLECTION"
+          }
+        },
+        "block_4": {
+          "type": "card",
+          "settings": {
+            "title": "BRINGARAS COLLECTION"
+          }
+        },
+        "block_5": {
+          "type": "card",
+          "settings": {
+            "title": "ELADHI COLLECTION"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4",
+        "block_5"
+      ],
+      "settings": {
+        "padding_top": 8,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Our Bestsellers",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "swipe_on_mobile": true,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "custom_hero",
+    "custom_collection_list",
+    "featured_collection"
+  ]
+}
