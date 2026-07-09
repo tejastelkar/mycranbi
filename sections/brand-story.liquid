@@ -81,7 +81,7 @@
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      gap: 0;
+      gap: 8rem; /* Clean gap instead of overlap */
     }
     
     .brand-story__container--reverse {
@@ -89,19 +89,11 @@
     }
     
     .brand-story__media-wrapper {
-      width: 48%;
-      z-index: 1;
+      width: 45%;
     }
     
     .brand-story__content-wrapper {
-      width: 58%;
-      z-index: 2;
-      margin-left: -6%;
-    }
-    
-    .brand-story__container--reverse .brand-story__content-wrapper {
-      margin-left: 0;
-      margin-right: -6%;
+      width: 50%;
     }
   }
 
@@ -109,9 +101,9 @@
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 130%; /* Taller portrait aspect ratio */
+    padding-bottom: 140%; /* Taller aspect ratio */
     overflow: hidden;
-    border-radius: 300px 300px 0 0; /* Arch shape */
+    border-radius: 500px; /* Full pill shape */
     box-shadow: 0 20px 40px rgba(0,0,0,0.06);
   }
 
@@ -125,15 +117,13 @@
   }
 
   .brand-story__content-box {
-    background-color: {{ section.settings.text_box_background }};
-    padding: 4rem 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    background-color: transparent;
+    padding: 0;
   }
   
   @media screen and (min-width: 990px) {
     .brand-story__content-box {
-      padding: 7rem 6rem;
+      padding: 2rem 0;
     }
   }
 
@@ -274,12 +264,6 @@
       "id": "background_color",
       "label": "Section background color",
       "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "text_box_background",
-      "label": "Text box background color",
-      "default": "#F9F6F0"
     },
     {
       "type": "range",
