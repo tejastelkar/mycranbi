@@ -66,7 +66,7 @@
       </div>
 
       {%- if section.settings.button_label != blank -%}
-        <a href="{{ section.settings.button_link }}" class="custom-hero__button">
+        <a href="{{ section.settings.button_link }}" class="button button--primary custom-hero__button">
           {{ section.settings.button_label }}
         </a>
       {%- endif -%}
@@ -196,20 +196,7 @@
 }
 
 .custom-hero__button {
-  display: inline-block;
-  background-color: #CB4C46; /* Kama Red */
-  color: #ffffff;
-  font-family: var(--font-body-family);
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  transition: background-color 0.3s ease;
-}
-
-.custom-hero__button:hover {
-  background-color: #a83d38;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 989px) {

@@ -18,7 +18,7 @@
           {%- endif -%}
           
           {%- if section.settings.button_label != blank -%}
-            <a href="{{ section.settings.button_link }}" class="button button--secondary editorial-slider__button">
+            <a href="{{ section.settings.button_link }}" class="button button--primary editorial-slider__button">
               {{ section.settings.button_label }}
             </a>
           {%- endif -%}
@@ -108,11 +108,7 @@
   }
   
   .editorial-slider__button {
-    /* Outline button styling overrides to match Caudalie */
-    background: transparent;
-    border: 1px solid rgba(var(--color-foreground), 0.3);
-    color: rgb(var(--color-foreground));
-    font-weight: 400;
+    margin-top: 1rem;
   }
 
   .editorial-slider__scroller {
