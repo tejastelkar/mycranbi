@@ -146,9 +146,9 @@
           </div>
         </div>
         <div class="card__content">
-          <div class="card__information" style="padding: 16px 0 0 0; background-color: transparent;">
+          <div class="card__information" style="padding: 24px 8px 12px 8px; background-color: transparent;">
             <!-- Tag and Rating Row -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
               <span>{{ custom_badge_text | default: 'NEW & IMPROVED' }}</span>
               {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
                 <span style="display: flex; align-items: center; gap: 4px; font-weight: 600; color: #333;">
@@ -160,7 +160,7 @@
             <!-- Title -->
             <h3
               class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-              style="font-family: var(--font-heading-family); font-size: 20px; margin: 0 0 12px 0; color: #333; line-height: 1.3; font-weight: 400;"
+              style="font-family: var(--font-heading-family); font-size: 20px; margin: 0 0 14px 0; color: #333; line-height: 1.3; font-weight: 400;"
               {% if card_product.featured_media or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
@@ -597,9 +597,9 @@
         </div>
       </div>
       <div class="card__content">
-        <div class="card__information" style="padding: 16px 0 0 0; background-color: transparent;">
+        <div class="card__information" style="padding: 24px 8px 12px 8px; background-color: transparent;">
           <!-- Tag Row (Placeholder) -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
             <span>{{ custom_badge_text | default: 'NEW & IMPROVED' }}</span>
             <span style="display: flex; align-items: center; gap: 4px; font-weight: 600; color: #333;">
               {{ placeholder_rating | default: '5.0 ★(44)' }}
@@ -607,7 +607,7 @@
           </div>
 
           <!-- Title -->
-          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}" style="font-family: var(--font-heading-family); font-size: 20px; margin: 0 0 12px 0; color: #333; line-height: 1.3; font-weight: 400;">
+          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}" style="font-family: var(--font-heading-family); font-size: 20px; margin: 0 0 14px 0; color: #333; line-height: 1.3; font-weight: 400;">
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               {{ placeholder_title | default: 'Example Product Title' }}
             </a>
