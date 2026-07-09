@@ -5,7 +5,7 @@ import time
 from io import BytesIO
 from PIL import Image
 
-API_KEY = "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"
+API_KEY = os.environ.get("GROQ_API_KEY", "your_api_key_here")
 DIR_PATH = "My cranbi final jpeg"
 MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 

@@ -2,7 +2,7 @@ import os
 import base64
 import requests
 
-api_key = "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"
+api_key = os.environ.get("GROQ_API_KEY", "your_api_key_here")
 
 def encode_image(image_path):
     with open(image_path, "rb") as image_file:
