@@ -16,7 +16,7 @@
 
       <!-- CONTENT & SHOPPING LIST -->
       <div class="travel-edit__content-wrapper">
-        <div class="travel-edit__content-box">
+        <div class="travel-edit__content-box" style="background-color: {{ section.settings.list_background_color }};">
           
           <div class="travel-edit__header">
             {%- if section.settings.title != blank -%}
@@ -28,60 +28,107 @@
           </div>
 
           <div class="travel-edit__list">
-            {%- assign collection = section.settings.collection -%}
-            
-            {%- if collection != blank and collection.products_count > 0 -%}
-              {%- for product in collection.products limit: section.settings.products_to_show -%}
-                <a href="{{ product.url }}" class="travel-edit__product">
-                  <div class="travel-edit__product-image-wrapper">
-                    {%- if product.featured_image != blank -%}
-                      {{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'travel-edit__product-image' }}
-                    {%- else -%}
-                      <img src="{{ 'slide-1.png' | asset_url }}" alt="Travel Size" class="travel-edit__product-image" loading="lazy">
-                    {%- endif -%}
-                  </div>
-                  <div class="travel-edit__product-info">
-                    <h3 class="travel-edit__product-title">{{ product.title }}</h3>
-                    <p class="travel-edit__product-purpose">{{ product.metafields.descriptors.subtitle.value | default: "Nourishing daily essential" }}</p>
-                    <div class="travel-edit__product-price">
-                      {% render 'price', product: product, price_class: '' %}
+            {%- if section.blocks.size > 0 -%}
+              {%- for block in section.blocks -%}
+                {%- assign product = block.settings.product -%}
+                
+                {%- if product != blank -%}
+                  <!-- REAL PRODUCT BLOCK -->
+                  <div class="travel-edit__product" {{ block.shopify_attributes }}>
+                    <a href="{{ product.url }}" class="travel-edit__product-link">
+                      <div class="travel-edit__product-image-wrapper">
+                        {%- if product.featured_image != blank -%}
+                          {{ product.featured_image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'travel-edit__product-image' }}
+                        {%- else -%}
+                          <img src="{{ 'slide-1.png' | asset_url }}" alt="Travel Size" class="travel-edit__product-image" loading="lazy">
+                        {%- endif -%}
+                      </div>
+                      <div class="travel-edit__product-info">
+                        <h3 class="travel-edit__product-title">{{ product.title }}</h3>
+                        <p class="travel-edit__product-purpose">{{ product.metafields.descriptors.subtitle.value | default: "Nourishing daily essential" }}</p>
+                        <div class="travel-edit__product-price">
+                          {% render 'price', product: product, price_class: '' %}
+                        </div>
+                      </div>
+                    </a>
+                    
+                    <div class="travel-edit__product-action">
+                      {%- if product.available -%}
+                        <product-form class="product-form">
+                          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+                            <button
+                              type="submit"
+                              name="add"
+                              class="travel-edit__add-icon"
+                              aria-haspopup="dialog"
+                              aria-labelledby="{{ product_form_id }}-submit title-{{ section.id }}-{{ product.id }}"
+                              aria-live="polite"
+                              data-sold-out-message="true"
+                              {% if product.selected_or_first_available_variant.available == false %}
+                                disabled
+                              {% endif %}
+                            >
+                              <span class="visually-hidden">{{ 'products.product.add_to_cart' | t }}</span>
+                              {% render 'icon-plus' %}
+                              <div class="loading-overlay__spinner hidden">
+                                <svg
+                                  aria-hidden="true"
+                                  focusable="false"
+                                  class="spinner"
+                                  viewBox="0 0 66 66"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                </svg>
+                              </div>
+                            </button>
+                          {%- endform -%}
+                        </product-form>
+                      {%- else -%}
+                         <button class="travel-edit__add-icon" disabled>
+                           <span class="visually-hidden">Sold Out</span>
+                           {% render 'icon-unavailable' %}
+                         </button>
+                      {%- endif -%}
                     </div>
                   </div>
-                  <div class="travel-edit__product-action">
-                    <span class="travel-edit__add-icon">{% render 'icon-plus' %}</span>
-                  </div>
-                </a>
-              {%- endfor -%}
-            {%- else -%}
-              <!-- FALLBACK BLOCKS -->
-              {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png" | split: "," -%}
-              {%- for i in (1..3) -%}
-                {%- assign mod_index = i | modulo: 3 -%}
-                {%- assign image_name = placeholder_images[mod_index] -%}
-                <a href="#" class="travel-edit__product">
-                  <div class="travel-edit__product-image-wrapper">
-                    <img src="{{ image_name | asset_url }}" alt="Placeholder" class="travel-edit__product-image" loading="lazy">
-                  </div>
-                  <div class="travel-edit__product-info">
-                    <h3 class="travel-edit__product-title">Ayurvedic Travel Mini</h3>
-                    <p class="travel-edit__product-purpose">Restorative and deeply hydrating</p>
-                    <div class="travel-edit__product-price">
-                      <span class="price-item price-item--regular">{{ 150000 | money }}</span>
+                  
+                {%- else -%}
+                  <!-- PLACEHOLDER BLOCK -->
+                  {%- assign placeholder_images = "slide-1.png,slide-2.png,slide-3.png" | split: "," -%}
+                  {%- assign mod_index = forloop.index0 | modulo: 3 -%}
+                  {%- assign image_name = placeholder_images[mod_index] -%}
+                  
+                  <div class="travel-edit__product" {{ block.shopify_attributes }}>
+                    <a href="#" class="travel-edit__product-link">
+                      <div class="travel-edit__product-image-wrapper">
+                        <img src="{{ image_name | asset_url }}" alt="Placeholder" class="travel-edit__product-image" loading="lazy">
+                      </div>
+                      <div class="travel-edit__product-info">
+                        <h3 class="travel-edit__product-title">Ayurvedic Travel Mini</h3>
+                        <p class="travel-edit__product-purpose">Restorative and deeply hydrating</p>
+                        <div class="travel-edit__product-price">
+                          <span class="price-item price-item--regular">{{ 150000 | money }}</span>
+                        </div>
+                      </div>
+                    </a>
+                    
+                    <div class="travel-edit__product-action">
+                      <button type="button" class="travel-edit__add-icon">
+                        <span class="visually-hidden">Add to cart</span>
+                        <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12m-6-6h12"/></svg>
+                      </button>
                     </div>
                   </div>
-                  <div class="travel-edit__product-action">
-                    <span class="travel-edit__add-icon">
-                      <svg viewBox="0 0 14 14" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 1v12m-6-6h12"/></svg>
-                    </span>
-                  </div>
-                </a>
+                {%- endif -%}
               {%- endfor -%}
             {%- endif -%}
           </div>
 
-          {%- if section.settings.show_view_all and collection != blank -%}
+          {%- if section.settings.show_view_all and section.settings.collection != blank -%}
             <div class="travel-edit__footer">
-              <a href="{{ collection.url }}" class="link">
+              <a href="{{ section.settings.collection.url }}" class="link">
                 {{ 'sections.featured_collection.view_all' | t }}
               </a>
             </div>
@@ -93,6 +140,8 @@
     </div>
   </div>
 </div>
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .section-{{ section.id }}-padding {
@@ -109,14 +158,13 @@
   .travel-edit__grid {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 0;
   }
   
   @media screen and (min-width: 990px) {
     .travel-edit__grid {
       flex-direction: row;
-      gap: 6rem;
-      align-items: center;
+      gap: 0; /* Flush together */
     }
     
     .travel-edit__grid--reverse {
@@ -124,25 +172,26 @@
     }
     
     .travel-edit__media-wrapper {
-      width: 45%;
+      width: 50%;
     }
 
     .travel-edit__content-wrapper {
-      width: 55%;
+      width: 50%;
     }
   }
 
   .travel-edit__media {
     position: relative;
     width: 100%;
-    border-radius: 4px;
-    overflow: hidden;
+    height: 100%;
+    min-height: 400px;
   }
   
-  .travel-edit__media::before {
-    content: '';
-    display: block;
-    padding-bottom: 125%; /* 4:5 aspect ratio */
+  @media screen and (min-width: 990px) {
+    .travel-edit__media {
+      height: 0;
+      padding-bottom: 125%; /* 4:5 aspect ratio */
+    }
   }
 
   .travel-edit__image {
@@ -157,6 +206,15 @@
   .travel-edit__content-box {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+    height: 100%;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .travel-edit__content-box {
+      padding: 6rem 8rem;
+    }
   }
 
   .travel-edit__header {
@@ -184,14 +242,20 @@
   .travel-edit__product {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    color: inherit;
     padding: 2rem 0;
     border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .travel-edit__product-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
     transition: opacity 0.2s ease;
   }
 
-  .travel-edit__product:hover {
+  .travel-edit__product-link:hover {
     opacity: 0.7;
   }
 
@@ -244,23 +308,51 @@
 
   .travel-edit__product-action {
     flex-shrink: 0;
+    padding-left: 1.5rem;
   }
-
+  
   .travel-edit__add-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 1px solid rgba(var(--color-foreground), 0.1);
+    background: transparent;
     color: rgba(var(--color-foreground), 0.8);
+    cursor: pointer;
     transition: all 0.2s ease;
+    padding: 0;
   }
 
-  .travel-edit__product:hover .travel-edit__add-icon {
+  .travel-edit__add-icon:hover {
     border-color: rgba(var(--color-foreground), 1);
     color: rgba(var(--color-foreground), 1);
+    background: rgba(var(--color-foreground), 0.03);
+  }
+  
+  .travel-edit__add-icon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .travel-edit__add-icon .icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  
+  /* Loading spinner for Quick Add */
+  .travel-edit__add-icon .loading-overlay__spinner {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  
+  .travel-edit__add-icon[aria-busy="true"] .icon-plus {
+    display: none;
+  }
+  .travel-edit__add-icon[aria-busy="true"] .loading-overlay__spinner {
+    display: block;
   }
 
   .travel-edit__footer {
@@ -308,7 +400,7 @@
     {
       "type": "inline_richtext",
       "id": "title",
-      "default": "The Journey Essentials",
+      "default": "Rituals for every journey",
       "label": "Heading"
     },
     {
@@ -334,22 +426,13 @@
     {
       "type": "richtext",
       "id": "subtitle",
-      "default": "<p>Discover travel-friendly favourites curated for care on the go.</p>",
+      "default": "<p>Discover travel-friendly favourites for care on the go.</p>",
       "label": "Subheading"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 2,
-      "max": 6,
-      "step": 1,
-      "default": 3,
-      "label": "Maximum products to show"
+      "label": "Collection for 'View All' link (optional)"
     },
     {
       "type": "checkbox",
@@ -360,7 +443,13 @@
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color",
+      "label": "Outer background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "list_background_color",
+      "label": "List container background color",
       "default": "#FAF7F2"
     },
     {
@@ -375,7 +464,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 80
+      "default": 0
     },
     {
       "type": "range",
@@ -388,9 +477,28 @@
       "default": 80
     }
   ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Travel Minis"
+      "name": "Travel Minis",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
     }
   ]
 }

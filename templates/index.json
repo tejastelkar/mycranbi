@@ -207,13 +207,29 @@
     },
     "travel_minis": {
       "type": "travel-minis",
+      "blocks": {
+        "product_1": {
+          "type": "product"
+        },
+        "product_2": {
+          "type": "product"
+        },
+        "product_3": {
+          "type": "product"
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2",
+        "product_3"
+      ],
       "settings": {
         "title": "Rituals for every journey",
         "heading_size": "h2",
         "subtitle": "<p>Discover travel-friendly favourites for care on the go.</p>",
-        "products_to_show": 6,
         "show_view_all": true,
-        "background_color": "#FAF7F2",
+        "background_color": "#FFFFFF",
+        "list_background_color": "#FAF7F2",
         "padding_top": 80,
         "padding_bottom": 80
       }
