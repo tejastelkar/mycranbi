@@ -57,8 +57,6 @@
   .gift-sets__grid {
     display: flex;
     flex-direction: column;
-    border-radius: 8px;
-    overflow: hidden; /* Seamless corners */
   }
   
   @media screen and (min-width: 990px) {
@@ -108,7 +106,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     padding: 6rem 4rem;
     height: 100%;
     width: 100%;
@@ -123,11 +122,11 @@
   .gift-sets__subheading {
     font-family: var(--font-body-family);
     font-size: 1.2rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(var(--color-foreground), 0.6);
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
   .gift-sets__heading {
@@ -141,6 +140,7 @@
     line-height: 1.7;
     color: rgba(var(--color-foreground), 0.75);
     margin-bottom: 4rem;
+    max-width: 450px;
   }
   
   .gift-sets__button {
