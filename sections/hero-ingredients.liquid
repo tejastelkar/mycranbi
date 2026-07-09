@@ -1,56 +1,41 @@
-<div class="hero-ingredients section-{{ section.id }}-padding">
+<div class="hero-ingredients section-{{ section.id }}-padding" style="background-color: #FFFFFF;">
   <div class="page-width">
     {%- if section.settings.title != blank -%}
       <div class="hero-ingredients__title-wrapper center">
-        <h2 class="hero-ingredients__title inline-richtext {{ section.settings.heading_size }}">
+        <h2 class="hero-ingredients__title inline-richtext {{ section.settings.heading_size }}" style="font-family: 'Cormorant Garamond', serif; color: #4A3427;">
           {{ section.settings.title }}
         </h2>
         {%- if section.settings.subtitle != blank -%}
-          <div class="hero-ingredients__subtitle rte">
+          <div class="hero-ingredients__subtitle rte" style="font-family: 'Manrope', sans-serif;">
             {{ section.settings.subtitle }}
           </div>
         {%- endif -%}
       </div>
     {%- endif -%}
 
-    <slider-component class="slider-mobile-gutter">
-      <ul class="hero-ingredients__list grid grid--1-col grid--2-col-tablet grid--4-col-desktop slider slider--tablet slider--desktop" id="Slider-{{ section.id }}" role="list">
+    <div class="hero-ingredients__scroller">
+      <ul class="hero-ingredients__list" role="list">
         {%- for block in section.blocks -%}
-          <li class="hero-ingredients__item grid__item slider__slide center" id="Slide-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <li class="hero-ingredients__item center" {{ block.shopify_attributes }}>
             <div class="hero-ingredients__card">
               <div class="hero-ingredients__media-wrapper">
                 {%- if block.settings.image != blank -%}
-                  {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', class: 'hero-ingredients__image' }}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'hero-ingredients__image' }}
                 {%- else -%}
                   {{ 'image' | placeholder_svg_tag: 'placeholder-svg hero-ingredients__image' }}
                 {%- endif -%}
               </div>
-              <h3 class="hero-ingredients__name">{{ block.settings.title }}</h3>
-              <div class="hero-ingredients__purpose rte">{{ block.settings.purpose }}</div>
+              <h3 class="hero-ingredients__name" style="font-family: 'Cormorant Garamond', serif;">{{ block.settings.title }}</h3>
+              <div class="hero-ingredients__purpose rte" style="font-family: 'Manrope', sans-serif;">{{ block.settings.purpose }}</div>
             </div>
           </li>
         {%- endfor -%}
       </ul>
-      <div class="slider-buttons no-js-hidden">
-        <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Previous">
-          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-          </svg>
-        </button>
-        <button type="button" class="slider-button slider-button--next" name="next" aria-label="Next">
-          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret" viewBox="0 0 10 6">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-          </svg>
-        </button>
-      </div>
-    </slider-component>
+    </div>
   </div>
 </div>
 
 <style>
-  .hero-ingredients {
-    background-color: {{ section.settings.background_color }};
-  }
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -63,84 +48,104 @@
   }
 
   .hero-ingredients__title-wrapper {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
   }
   
   .hero-ingredients__title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
   }
 
   .hero-ingredients__subtitle {
-    color: rgba(var(--color-foreground), 0.7);
+    color: rgba(var(--color-foreground), 0.6);
     font-size: 1.6rem;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  .hero-ingredients__scroller {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    padding-bottom: 2rem;
+  }
+  
+  .hero-ingredients__scroller::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 
   .hero-ingredients__list {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .hero-ingredients__item {
+    scroll-snap-align: start;
+    flex: 0 0 75%;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .hero-ingredients__item {
+      flex: 0 0 calc(33.333% - 2rem);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .hero-ingredients__item {
+      flex: 0 0 calc(25% - 2.25rem);
+    }
   }
 
   .hero-ingredients__card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
   }
 
+  /* Borderless, pure container */
   .hero-ingredients__media-wrapper {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     margin-bottom: 2.5rem;
-    background-color: #FAF7F2;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #E9DFD2;
   }
 
   .hero-ingredients__image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* allows transparent PNGs to sit beautifully without cropping */
   }
 
   .hero-ingredients__media-wrapper .placeholder-svg {
-    width: 50%;
-    height: 50%;
-    fill: #C9974D;
+    width: 100%;
+    height: 100%;
+    fill: rgba(var(--color-foreground), 0.05);
   }
 
   .hero-ingredients__name {
-    margin: 0 0 0.5rem 0;
-    font-size: 2.4rem;
+    margin: 0 0 1rem 0;
+    font-size: 2.6rem;
     color: #4A3427;
+    font-weight: 500;
+    letter-spacing: 0.02em;
   }
 
   .hero-ingredients__purpose {
     font-size: 1.4rem;
-    line-height: 1.5;
-    color: rgba(var(--color-foreground), 0.75);
-    max-width: 250px;
-  }
-
-  .hero-ingredients .slider-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 3rem;
-  }
-  
-  @media screen and (min-width: 990px) {
-    .hero-ingredients .slider-buttons {
-      display: none; /* Hide buttons on desktop if we want it to just be a grid, or we can keep them */
-    }
-    .hero-ingredients__media-wrapper {
-      width: 180px;
-      height: 180px;
-    }
+    line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.7);
+    max-width: 90%;
+    margin: 0 auto;
+    font-weight: 300;
   }
 </style>
 
@@ -183,12 +188,6 @@
       "default": "<p>Discover the rooted Ayurvedic ingredients inside every Cranbi bottle.</p>"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background color",
-      "default": "#FFFFFF"
-    },
-    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
@@ -196,7 +195,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 64
+      "default": 80
     },
     {
       "type": "range",
@@ -206,7 +205,7 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 64
+      "default": 80
     }
   ],
   "blocks": [
@@ -217,7 +216,7 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Image (Transparent PNG recommended)"
         },
         {
           "type": "text",
