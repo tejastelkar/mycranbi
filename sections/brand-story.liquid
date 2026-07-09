@@ -1,0 +1,320 @@
+<div class="brand-story section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    <div class="brand-story__grid {% if section.settings.image_position == 'right' %}brand-story__grid--reverse{% endif %}">
+      
+      <div class="brand-story__media-wrapper">
+        <div class="brand-story__media">
+          {%- if section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'brand-story__image' }}
+          {%- else -%}
+            {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg brand-story__image' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="brand-story__content-wrapper">
+        <div class="brand-story__content">
+          {%- if section.settings.title != blank -%}
+            <h2 class="brand-story__heading inline-richtext {{ section.settings.heading_size }}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+          
+          {%- if section.settings.text != blank -%}
+            <div class="brand-story__text rte">
+              {{ section.settings.text }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.blocks.size > 0 -%}
+            <div class="brand-story__values">
+              {%- for block in section.blocks -%}
+                <div class="brand-story__value-item" {{ block.shopify_attributes }}>
+                  <div class="brand-story__value-icon">
+                    {%- if block.settings.icon != blank -%}
+                      {{ block.settings.icon | image_url: width: 50 | image_tag: loading: 'lazy' }}
+                    {%- else -%}
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    {%- endif -%}
+                  </div>
+                  <span class="brand-story__value-text">{{ block.settings.title }}</span>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link }}" class="button button--primary brand-story__button">
+              {{ section.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .brand-story__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .brand-story__grid {
+      flex-direction: row;
+      align-items: center;
+      gap: 8rem;
+    }
+    
+    .brand-story__grid--reverse {
+      flex-direction: row-reverse;
+    }
+    
+    .brand-story__media-wrapper,
+    .brand-story__content-wrapper {
+      width: 50%;
+    }
+  }
+
+  .brand-story__media {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 120%; /* Portrait aspect ratio */
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .brand-story__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .brand-story__media .placeholder-svg {
+    background-color: rgba(var(--color-foreground), 0.05);
+    fill: rgba(var(--color-foreground), 0.2);
+  }
+
+  .brand-story__heading {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .brand-story__text {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.8);
+    margin-bottom: 4rem;
+  }
+
+  .brand-story__values {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .brand-story__value-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .brand-story__value-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C9974D; /* Gold accent from brief */
+  }
+
+  .brand-story__value-icon img,
+  .brand-story__value-icon svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .brand-story__value-text {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  
+  .brand-story__button {
+    margin-top: 1rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Desktop image placement"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "Rooted in care, made for modern rituals",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "default": "<p>My Cranbi draws inspiration from the rooted traditions of Ayurveda, refining them for your daily self-care rituals. Every formulation is crafted with nature-led ingredients to refresh, nourish, and restore.</p>",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Read Our Story",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value Point",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Sulphate-free",
+          "label": "Value text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "title": "Sulphate-free"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Paraben-free"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Crafted for daily care"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Ayurvedic roots"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

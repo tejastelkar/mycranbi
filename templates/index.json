@@ -143,12 +143,58 @@
         "padding_top": 64,
         "padding_bottom": 64
       }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "blocks": {
+        "value_1": {
+          "type": "value",
+          "settings": {
+            "title": "Sulphate-free"
+          }
+        },
+        "value_2": {
+          "type": "value",
+          "settings": {
+            "title": "Paraben-free"
+          }
+        },
+        "value_3": {
+          "type": "value",
+          "settings": {
+            "title": "Crafted for daily care"
+          }
+        },
+        "value_4": {
+          "type": "value",
+          "settings": {
+            "title": "Ayurvedic roots"
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3",
+        "value_4"
+      ],
+      "settings": {
+        "image_position": "left",
+        "title": "Rooted in care, made for modern rituals",
+        "heading_size": "h1",
+        "text": "<p>My Cranbi draws inspiration from the rooted traditions of Ayurveda, refining them for your daily self-care rituals. Every formulation is crafted with nature-led ingredients to refresh, nourish, and restore.</p>",
+        "button_label": "Read Our Story",
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "custom_hero",
     "custom_collection_list",
     "featured_collection",
-    "hero_ingredients"
+    "hero_ingredients",
+    "brand_story"
   ]
 }
