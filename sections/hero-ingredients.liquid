@@ -22,7 +22,10 @@
                 {%- if block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'hero-ingredients__image' }}
                 {%- else -%}
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg hero-ingredients__image' }}
+                  {%- assign slide_idx = forloop.index | modulo: 4 -%}
+                  {%- if slide_idx == 0 -%}{%- assign slide_idx = 4 -%}{%- endif -%}
+                  {%- capture placeholder_image -%}slide-{{ slide_idx }}.png{%- endcapture -%}
+                  <img src="{{ placeholder_image | asset_url }}" alt="Ingredient {{ forloop.index }}" class="hero-ingredients__image" loading="lazy">
                 {%- endif -%}
               </div>
               <h3 class="hero-ingredients__name">{{ block.settings.title }}</h3>

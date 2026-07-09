@@ -37,7 +37,10 @@
                 {%- if block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'editorial-slider__image' }}
                 {%- else -%}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg editorial-slider__image' }}
+                  {%- assign slide_idx = forloop.index | modulo: 4 -%}
+                  {%- if slide_idx == 0 -%}{%- assign slide_idx = 4 -%}{%- endif -%}
+                  {%- capture placeholder_image -%}slide-{{ slide_idx }}.png{%- endcapture -%}
+                  <img src="{{ placeholder_image | asset_url }}" alt="Slide {{ forloop.index }}" class="editorial-slider__image" loading="lazy">
                 {%- endif -%}
               </div>
               

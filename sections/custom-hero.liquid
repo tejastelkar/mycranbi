@@ -8,7 +8,7 @@
            width="{{ section.settings.image.width }}"
            height="{{ section.settings.image.height }}">
     {%- else -%}
-      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg custom-hero__image desktop-only' }}
+      <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image desktop-only" loading="lazy">
     {%- endif -%}
 
     {%- if section.settings.mobile_image != blank -%}
@@ -19,9 +19,7 @@
            width="{{ section.settings.mobile_image.width }}"
            height="{{ section.settings.mobile_image.height }}">
     {%- else -%}
-      <div class="mobile-only custom-hero__image placeholder">
-        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-      </div>
+      <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image mobile-only" loading="lazy">
     {%- endif -%}
   </div>
 

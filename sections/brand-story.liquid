@@ -7,7 +7,7 @@
           {%- if section.settings.image != blank -%}
             {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'brand-story__image' }}
           {%- else -%}
-            {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg brand-story__image' }}
+            <img src="{{ 'brand-story.png' | asset_url }}" alt="Brand Story Placeholder" class="brand-story__image" loading="lazy">
           {%- endif -%}
         </div>
       </div>
