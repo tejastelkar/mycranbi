@@ -96,11 +96,59 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "hero_ingredients": {
+      "type": "hero-ingredients",
+      "blocks": {
+        "ingredient_1": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Orange",
+            "purpose": "<p>Refreshes and brightens tired-looking skin.</p>"
+          }
+        },
+        "ingredient_2": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Amla",
+            "purpose": "<p>Rich in Vitamin C for a natural, healthy glow.</p>"
+          }
+        },
+        "ingredient_3": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Shikakai",
+            "purpose": "<p>Strengthens and nourishes hair from the roots.</p>"
+          }
+        },
+        "ingredient_4": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Lavender",
+            "purpose": "<p>Calms the mind and gently soothes irritated skin.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ingredient_1",
+        "ingredient_2",
+        "ingredient_3",
+        "ingredient_4"
+      ],
+      "settings": {
+        "title": "Hero Ingredients",
+        "heading_size": "h2",
+        "subtitle": "<p>Discover the rooted Ayurvedic ingredients inside every Cranbi bottle.</p>",
+        "background_color": "#FAF7F2",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     }
   },
   "order": [
     "custom_hero",
     "custom_collection_list",
-    "featured_collection"
+    "featured_collection",
+    "hero_ingredients"
   ]
 }
