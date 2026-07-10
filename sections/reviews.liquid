@@ -115,7 +115,7 @@
   }
 {%- endstyle -%}
 
-<div class="reviews-section section-{{ section.id }}-padding">
+<div class="reviews-section section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
       <div class="reviews-section__header">
@@ -200,6 +200,12 @@
       ],
       "default": "h1",
       "label": "Heading size"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
     },
     {
       "type": "range",
