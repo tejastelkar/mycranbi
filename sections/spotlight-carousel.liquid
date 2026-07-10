@@ -152,9 +152,7 @@
     display: block;
   }
 
-  /* Darken non-active slides (only once Swiper has actually initialized -
-     otherwise every slide would appear dark with no active slide to contrast) */
-  .swiper-initialized .swiper-slide:not(.swiper-slide-active) {
+  .spotlightSwiper.swiper-initialized .swiper-slide:not(.swiper-slide-active) {
     filter: brightness(0.5);
     opacity: 0.8;
   }
