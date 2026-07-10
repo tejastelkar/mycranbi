@@ -89,8 +89,8 @@
     font-size: 9px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1); white-space: nowrap;
   }
-  #shopify-section-{{ section.id }} .watch-shop__card__title { font-size: clamp(15px, 1.5vw, 20px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 6px; }
-  #shopify-section-{{ section.id }} .watch-shop__card__price { font-size: 13px; color: rgba(255,255,255,0.8); }
+  #shopify-section-{{ section.id }} .watch-shop__card__title { font-family: var(--font-heading-family); font-size: clamp(15px, 1.5vw, 20px); font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase; line-height: 1.2; margin-bottom: 6px; }
+  #shopify-section-{{ section.id }} .watch-shop__card__price { font-family: var(--font-body-family); font-size: 14px; color: rgba(255,255,255,0.9); }
 
   #shopify-section-{{ section.id }} .watch-shop__card__shop-btn {
     display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 8px 16px;
@@ -404,7 +404,7 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow Text",
-      "default": "Watch & Shop"
+      "default": ""
     },
     {
       "type": "text",
@@ -416,7 +416,7 @@
       "type": "text",
       "id": "subtext",
       "label": "Subtext",
-      "default": "Tap on any product to add it to your cart instantly."
+      "default": ""
     }
   ],
   "blocks": [

@@ -224,9 +224,9 @@
       ],
       "settings": {
         "bg_color": "#ffffff",
-        "eyebrow": "Watch & Shop",
+        "eyebrow": "",
         "heading": "Shop the Look",
-        "subtext": "Tap on any product to add it to your cart instantly."
+        "subtext": ""
       }
     },
     "brand_story": {
