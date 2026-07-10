@@ -60,6 +60,13 @@
               assign footer_grid_class = 'grid--3-col-tablet'
             endif
           -%}
+          <div class="footer__logo-placeholder" style="text-align: center; margin-bottom: 4rem;">
+            {%- if section.settings.logo != blank -%}
+              <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="150" height="auto" loading="lazy">
+            {%- else -%}
+              <div style="width: 180px; height: 60px; background: transparent; display: flex; align-items: center; justify-content: center; margin: 0 auto; color: currentColor; font-size: 1.4rem; border: 1px dashed currentColor; letter-spacing: 0.1em; text-transform: uppercase;">LOGO</div>
+            {%- endif -%}
+          </div>
           <div
             class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
@@ -86,6 +93,10 @@
                     <div class="footer-block__details-content rte">
                       {{ block.settings.subtext }}
                     </div>
+                    {%- if block.settings.show_social and has_social_icons -%}
+                      <h2 class="footer-block__heading inline-richtext" style="margin-top: 3rem; margin-bottom: 1.5rem;">FOLLOW</h2>
+                      {%- render 'social-icons', class: 'footer__list-social' -%}
+                    {%- endif -%}
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
                       <ul class="footer-block__details-content list-unstyled">
@@ -285,9 +296,11 @@
       <div class="footer__column footer__column--info">
         {%- if section.settings.payment_enable -%}
           <div class="footer__payment">
+            <h3 style="font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">PAYMENT METHODS</h3>
             <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
             <ul class="list list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
+              {% assign payment_methods = 'visa,master,american_express,rupay,paypal,netbanking,cash_on_delivery' | split: ',' %}
+              {%- for type in payment_methods -%}
                 <li class="list-payment__item">
                   {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
                 </li>
@@ -300,9 +313,8 @@
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
         <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
+          >&copy; {{ 'now' | date: '%Y' }} MyCranbi
         </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
         {%- if section.settings.show_policy -%}
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
@@ -378,6 +390,12 @@
           "id": "subtext",
           "default": "t:sections.footer.blocks.text.settings.subtext.default",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": false,
+          "label": "Show social icons below text"
         }
       ]
     },
@@ -429,6 +447,11 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
     },
     {
       "type": "header",

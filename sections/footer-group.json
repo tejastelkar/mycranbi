@@ -13,6 +13,43 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "shop_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "SHOP",
+            "menu": "main-menu"
+          }
+        },
+        "about_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "ABOUT",
+            "menu": "footer"
+          }
+        },
+        "quick_links": {
+          "type": "link_list",
+          "settings": {
+            "heading": "QUICK LINKS",
+            "menu": "footer"
+          }
+        },
+        "contact_info": {
+          "type": "text",
+          "settings": {
+            "heading": "CONTACT",
+            "subtext": "<p>Email:<br>service@mycranbi.com<\/p><p>Phone:<br>+91-8010200666<\/p><p><a href=\"\/pages\/contact\">Contact Us<\/a><\/p>",
+            "show_social": true
+          }
+        }
+      },
+      "block_order": [
+        "shop_links",
+        "about_links",
+        "quick_links",
+        "contact_info"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
