@@ -1,0 +1,213 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .benefits-strip {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .benefits-strip__heading {
+    text-align: center;
+    color: {{ section.settings.text_color }};
+    margin-top: 0;
+    margin-bottom: 4rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    font-size: 2.2rem;
+  }
+
+  .benefits-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .benefits-strip__grid {
+      grid-template-columns: repeat({{ section.blocks.size }}, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .benefit-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .benefit-item__icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .benefit-item__icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 0.5px;
+  }
+
+  .benefit-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .benefit-item__title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  .benefit-item__text {
+    font-size: 1.4rem;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .benefit-item__text p {
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<div class="benefits-strip section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="benefits-strip__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="benefits-strip__grid">
+      {%- for block in section.blocks -%}
+        <div class="benefit-item" {{ block.shopify_attributes }}>
+          <div class="benefit-item__icon">
+            {%- if block.settings.custom_svg != blank -%}
+              {{ block.settings.custom_svg }}
+            {%- else -%}
+              {%- render 'icon-accordion', icon: 'check_mark' -%}
+            {%- endif -%}
+          </div>
+          
+          <div class="benefit-item__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="benefit-item__title">{{ block.settings.title | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="benefit-item__text">{{ block.settings.text }}</div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefits Strip",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your permanent benefits"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#660033"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "html",
+          "id": "custom_svg",
+          "label": "Custom SVG Icon",
+          "info": "Paste SVG code here"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Free delivery"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>over €39*</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefits Strip",
+      "blocks": [
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        },
+        {
+          "type": "benefit"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -421,9 +421,59 @@
       "settings": {
         "heading": "Loved by our Community",
         "heading_size": "h2",
-        "background_color": "#D98B9B",
+        "background_color": "#FFFFFF",
         "padding_top": 80,
         "padding_bottom": 80
+      }
+    },
+    "benefits_strip": {
+      "type": "benefits-strip",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "title": "Free delivery",
+            "text": "<p>over €39*<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"><\/rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"><\/polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"><\/circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"><\/circle><\/svg>"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "title": "A FREE travel-size product",
+            "text": "<p>of your choice when you spend €49<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 21h10\"><\/path><path d=\"M12 21v-5\"><\/path><path d=\"M10 16h4\"><\/path><path d=\"M11 16V9\"><\/path><path d=\"M10 9h4\"><\/path><path d=\"M12 9V4\"><\/path><path d=\"M10 4h4\"><\/path><\/svg>"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "title": "MYCRANBI loyalty program",
+            "text": "<p>100 points = 1 gift<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"7\"><\/circle><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"><\/polyline><\/svg>"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "title": "Exclusive offers",
+            "text": "<p>all year round<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"8\" width=\"18\" height=\"14\" rx=\"2\" ry=\"2\"><\/rect><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"22\"><\/line><path d=\"M12 8H8a2 2 0 1 1 0-4h4v4z\"><\/path><path d=\"M12 8h4a2 2 0 1 0 0-4h-4v4z\"><\/path><line x1=\"3\" y1=\"14\" x2=\"21\" y2=\"14\"><\/line><\/svg>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
+      "settings": {
+        "heading": "Your permanent benefits",
+        "background_color": "#660033",
+        "text_color": "#FFFFFF",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },
@@ -436,8 +486,8 @@
     "brand_story",
     "gift_sets",
     "travel_minis",
-    "spotlight_carousel",
     "reviews",
+    "benefits_strip",
     "editorial_slider"
   ]
 }
