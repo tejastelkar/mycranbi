@@ -12,15 +12,15 @@
     "custom_hero": {
       "type": "custom-hero",
       "settings": {
-        "subheading": "NEW",
-        "heading": "bringaras",
-        "description": "Regenerating Haircare Ritual",
-        "stat_1_number": "92%",
-        "stat_1_text": "Repaired fibre",
-        "stat_2_number": "84%",
-        "stat_2_text": "Stronger hair",
-        "button_label": "SHOP NOW",
-        "button_link": "shopify://collections/all"
+        "subheading": "",
+        "heading": "",
+        "description": "",
+        "stat_1_number": "",
+        "stat_1_text": "",
+        "stat_2_number": "",
+        "stat_2_text": "",
+        "button_label": "",
+        "button_link": ""
       }
     },
     "custom_collection_list": {
