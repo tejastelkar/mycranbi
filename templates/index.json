@@ -448,9 +448,9 @@
         "benefit_3": {
           "type": "benefit",
           "settings": {
-            "title": "CRANBI REWARDS",
-            "text": "<p>Earn points for exclusive gifts<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3h12l4 6-10 12L2 9l4-6z\"><\/path><path d=\"M2 9h20\"><\/path><path d=\"M12 21l-5.6-12\"><\/path><path d=\"M12 21l5.6-12\"><\/path><path d=\"M6 3l1.8 6\"><\/path><path d=\"M18 3l-1.8 6\"><\/path><\/svg>"
+            "title": "100% CRUELTY FREE",
+            "text": "<p>Never tested on animals<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"><\/path><\/svg>"
           }
         },
         "benefit_4": {
