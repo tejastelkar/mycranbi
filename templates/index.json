@@ -357,6 +357,46 @@
         "title": "Spotlight",
         "heading_size": "h2"
       }
+    },
+    "reviews": {
+      "type": "reviews",
+      "blocks": {
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "review_text": "This has completely transformed my daily ritual. The scent is grounding and the results are visible instantly.",
+            "author": "Aisha K.",
+            "product_name": "Lumière Botanique Serum"
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "review_text": "A truly beautiful product. The texture and scent are wonderfully luxurious and it absorbs perfectly into the skin.",
+            "author": "Meera S.",
+            "product_name": "Radiance Face Wash"
+          }
+        },
+        "review_3": {
+          "type": "review",
+          "settings": {
+            "review_text": "I’ve been using this for two weeks and my skin feels deeply nourished. The botanical blend is exceptional.",
+            "author": "Priya R.",
+            "product_name": "Nourishing Night Cream"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "heading": "Loved by our Community",
+        "heading_size": "h2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
@@ -369,6 +409,7 @@
     "gift_sets",
     "travel_minis",
     "spotlight_carousel",
+    "reviews",
     "editorial_slider"
   ]
 }
