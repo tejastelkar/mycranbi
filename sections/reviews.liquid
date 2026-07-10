@@ -35,6 +35,7 @@
   }
 
   .review-card {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,23 +155,48 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (typeof Swiper !== 'undefined') {
-      new Swiper('.reviewsSwiper', {
-        slidesPerView: 1.2,
-        spaceBetween: 20,
-        loop: true,
-        autoplay: {
-          delay: 3000,
-          disableOnInteraction: false,
-        },
-        breakpoints: {
-          750: {
-            slidesPerView: 3,
-            spaceBetween: 40,
-          }
+  function initReviewsSwiper() {
+    const swiperContainer = document.querySelector('.reviewsSwiper');
+    if (!swiperContainer) return;
+    
+    if (swiperContainer.swiper) {
+      swiperContainer.swiper.destroy();
+    }
+
+    new Swiper('.reviewsSwiper', {
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        750: {
+          slidesPerView: 3,
+          spaceBetween: 40,
         }
-      });
+      }
+    });
+  }
+
+  function bootReviewsSwiper() {
+    if (typeof Swiper === 'undefined') {
+      window.addEventListener('load', initReviewsSwiper, { once: true });
+      return;
+    }
+    initReviewsSwiper();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootReviewsSwiper);
+  } else {
+    bootReviewsSwiper();
+  }
+
+  document.addEventListener('shopify:section:load', function(event) {
+    if (event.target.querySelector('.reviewsSwiper')) {
+      bootReviewsSwiper();
     }
   });
 </script>
