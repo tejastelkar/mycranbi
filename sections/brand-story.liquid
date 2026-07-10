@@ -1,9 +1,11 @@
 <div class="brand-story section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
     {%- if section.settings.title != blank -%}
-      <h2 class="brand-story__main-heading {{ section.settings.heading_size }}">
-        {{ section.settings.title }}
-      </h2>
+      <div class="brand-story__header">
+        <h2 class="brand-story__heading {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
     {%- endif -%}
 
     <div class="brand-story__grid">
@@ -44,21 +46,21 @@
     }
   }
 
-  .brand-story__main-heading {
-    text-align: left;
-    margin-top: 0;
+  .brand-story__header {
+    text-align: center;
     margin-bottom: 3rem;
-    font-size: 3rem;
-    font-family: var(--font-heading-family);
-    font-weight: 400;
+  }
+
+  .brand-story__heading {
+    margin: 0;
+    font-weight: 300;
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
 
   @media screen and (min-width: 750px) {
-    .brand-story__main-heading {
+    .brand-story__header {
       margin-bottom: 4rem;
-      font-size: 3.6rem;
     }
   }
 
