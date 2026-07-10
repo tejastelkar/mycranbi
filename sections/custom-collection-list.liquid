@@ -43,6 +43,7 @@
     background-color: transparent;
     width: 100%;
     margin-top: -60px;
+    margin-bottom: -60px;
     position: relative;
     z-index: 10;
   }
@@ -50,11 +51,12 @@
   .custom-collection-slider__track {
     display: flex;
     gap: 16px;
+    justify-content: center;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-bottom: 20px;
+    padding-bottom: 0;
   }
 
   .custom-collection-slider__track::-webkit-scrollbar {
@@ -62,8 +64,8 @@
   }
 
   .custom-collection-slider__card {
-    flex: 0 0 140px;
-    min-width: 140px;
+    flex: 0 0 130px;
+    min-width: 130px;
     position: relative;
     border-radius: 12px;
     overflow: hidden;
@@ -75,10 +77,16 @@
   @media screen and (max-width: 749px) {
     .custom-collection-slider {
       margin-top: -40px;
+      margin-bottom: -40px;
     }
     .custom-collection-slider__card {
-      flex: 0 0 120px;
-      min-width: 120px;
+      flex: 0 0 110px;
+      min-width: 110px;
+    }
+    .custom-collection-slider__track {
+      justify-content: flex-start;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
   }
 
@@ -125,10 +133,11 @@
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     z-index: 2;
-    padding: 20px;
+    padding: 15px;
+    padding-bottom: 20px;
   }
 
   .custom-collection-slider__title {
