@@ -36,8 +36,8 @@
 
 <style>
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.4 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.4 | round: 0 }}px;
   }
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -114,9 +114,9 @@
   }
 
   .brand-story__column-title {
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1rem 0;
     font-family: var(--font-heading-family);
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -124,10 +124,21 @@
   }
 
   .brand-story__column-text {
-    font-size: 1.4rem;
-    line-height: 1.6;
+    font-size: 1.2rem;
+    line-height: 1.5;
     color: rgba(var(--color-foreground), 0.8);
     margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .brand-story__column-title {
+      font-size: 1.8rem;
+      margin: 0 0 1.5rem 0;
+    }
+    .brand-story__column-text {
+      font-size: 1.4rem;
+      line-height: 1.6;
+    }
   }
 </style>
 

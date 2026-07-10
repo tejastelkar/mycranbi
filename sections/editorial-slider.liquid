@@ -71,7 +71,7 @@
   .editorial-slider__inner {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
   }
   
   .editorial-slider__text-side {
@@ -79,8 +79,7 @@
   }
 
   .editorial-slider__content-sticky {
-    position: sticky;
-    top: 10rem; /* Creates the sticky effect on desktop */
+    position: relative;
   }
 
   .editorial-slider__subtitle {
@@ -164,6 +163,11 @@
       flex-direction: row;
       align-items: stretch;
       gap: 6rem;
+    }
+
+    .editorial-slider__content-sticky {
+      position: sticky;
+      top: 10rem;
     }
     
     .editorial-slider__text-side {

@@ -200,23 +200,39 @@
 }
 
 @media screen and (max-width: 989px) {
+  .custom-hero-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #2D4C3A;
+  }
+
   .desktop-only { display: none; }
   .mobile-only { display: block; }
   
+  .custom-hero__image-wrapper {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+  }
+  
   .custom-hero__content-wrapper {
     min-height: unset;
-    padding-top: 300px; /* Space for the background image on mobile */
+    padding-top: 0;
     justify-content: center;
+    flex-direction: column;
   }
   
   .custom-hero__logo {
-    top: 20px;
-    left: 20px;
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: -80px auto 20px auto;
+    z-index: 10;
   }
   
   .custom-hero__text-box {
     background-color: #2D4C3A;
-    padding: 30px 20px;
+    padding: 40px 20px;
     text-align: center;
     max-width: 100%;
   }
