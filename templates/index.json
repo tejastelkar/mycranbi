@@ -80,7 +80,7 @@
         "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -148,7 +148,7 @@
       "settings": {
         "title": "Shop by concern",
         "heading_size": "h2",
-        "background_color": "#FFFFFF",
+        "background_color": "#FFF9F2",
         "padding_top": 64,
         "padding_bottom": 64
       }
@@ -195,7 +195,7 @@
         "title": "Hero Ingredients",
         "heading_size": "h2",
         "subtitle": "<p>Discover the rooted Ayurvedic ingredients inside every Cranbi bottle.</p>",
-        "background_color": "#FAF7F2",
+        "background_color": "#D98B9B",
         "padding_top": 64,
         "padding_bottom": 64
       }
@@ -240,7 +240,7 @@
         "heading_size": "h1",
         "text": "<p>My Cranbi draws inspiration from the rooted traditions of Ayurveda, refining them for your daily self-care rituals. Every formulation is crafted with nature-led ingredients to refresh, nourish, and restore.</p>",
         "button_label": "Read Our Story",
-        "background_color": "#FFFFFF",
+        "background_color": "#FFF9F2",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -285,7 +285,7 @@
         "subtitle": "<p>Discover travel-friendly favourites for care on the go.</p>",
         "show_view_all": true,
         "background_color": "#FFFFFF",
-        "list_background_color": "#FAF7F2",
+        "list_background_color": "#FFF9F2",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -318,7 +318,7 @@
         "heading_size": "h2",
         "button_label": "Shop now",
         "button_link": "shopify:\/\/collections\/all",
-        "background_color": "#FAF7F2",
+        "background_color": "#FFF9F2",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -421,6 +421,7 @@
       "settings": {
         "heading": "Loved by our Community",
         "heading_size": "h2",
+        "background_color": "#D98B9B",
         "padding_top": 80,
         "padding_bottom": 80
       }
