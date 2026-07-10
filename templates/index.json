@@ -72,20 +72,19 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "collection": "all",
+        "products_to_show": 8,
         "title": "Our Bestsellers",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -93,6 +92,7 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "1",
+        "swipe_on_mobile": true,
         "padding_top": 44,
         "padding_bottom": 36
       }
@@ -103,42 +103,36 @@
         "concern_1": {
           "type": "concern",
           "settings": {
-            "image": "shopify:\/\/shop_images\/concern_dandruff_1783697169617.png",
             "title": "Dandruff"
           }
         },
         "concern_2": {
           "type": "concern",
           "settings": {
-            "image": "shopify:\/\/shop_images\/concern_acne_1783697179599.png",
             "title": "Acne-prone skin"
           }
         },
         "concern_3": {
           "type": "concern",
           "settings": {
-            "image": "shopify:\/\/shop_images\/concern_dark_circles_1783697190177.png",
             "title": "Dark circles"
           }
         },
         "concern_4": {
           "type": "concern",
           "settings": {
-            "image": "shopify:\/\/shop_images\/concern_dull_skin_1783697199500.png",
             "title": "Dull, dry skin"
           }
         },
         "concern_5": {
           "type": "concern",
           "settings": {
-            "image": "shopify:\/\/shop_images\/concern_sun_protection_1783697211088.png",
             "title": "Sun protection"
           }
         },
         "concern_6": {
           "type": "concern",
           "settings": {
-            "image": "shopify:\/\/shop_images\/concern_anti_ageing_1783697222412.png",
             "title": "Anti-ageing"
           }
         }
@@ -201,43 +195,44 @@
         "title": "Hero Ingredients",
         "heading_size": "h2",
         "subtitle": "<p>Discover the rooted Ayurvedic ingredients inside every Cranbi bottle.</p>",
-        "background_color": "#FFF9F2",
         "padding_top": 64,
         "padding_bottom": 64
       }
     },
     "promo_banner": {
       "type": "image-banner",
-      "blocks": {},
-      "block_order": [],
       "settings": {
+        "make_page_width": true,
+        "banner_link": "shopify://collections/all",
         "image_overlay_opacity": 0,
         "image_height": "small",
         "desktop_content_position": "middle-right",
-        "show_text_box": false,
         "desktop_content_alignment": "left",
+        "show_text_box": false,
         "color_scheme": "scheme-4",
-        "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
-        "show_text_below": true,
-        "make_page_width": true,
-        "banner_link": "shopify:\/\/collections\/all"
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "watch_shop": {
       "type": "watch-shop",
       "blocks": {
         "video_1": {
-          "type": "video_item"
+          "type": "video_item",
+          "settings": {}
         },
         "video_2": {
-          "type": "video_item"
+          "type": "video_item",
+          "settings": {}
         },
         "video_3": {
-          "type": "video_item"
+          "type": "video_item",
+          "settings": {}
         },
         "video_4": {
-          "type": "video_item"
+          "type": "video_item",
+          "settings": {}
         }
       },
       "block_order": [
@@ -302,7 +297,7 @@
         "heading_size": "h1",
         "text": "<p>Discover travel-friendly favourites and beautifully boxed self-care bundles. Perfect for care on the go or gifting a loved one.</p>",
         "button_label": "Shop Gift Sets",
-        "button_link": "shopify:\/\/collections\/all",
+        "button_link": "shopify://collections/all",
         "background_color": "#FFFFFF",
         "text_box_background": "#FAF7F2",
         "padding_top": 80,
@@ -313,13 +308,16 @@
       "type": "travel-minis",
       "blocks": {
         "product_1": {
-          "type": "product"
+          "type": "product",
+          "settings": {}
         },
         "product_2": {
-          "type": "product"
+          "type": "product",
+          "settings": {}
         },
         "product_3": {
-          "type": "product"
+          "type": "product",
+          "settings": {}
         }
       },
       "block_order": [
@@ -342,16 +340,20 @@
       "type": "editorial-slider",
       "blocks": {
         "slide_1": {
-          "type": "slide"
+          "type": "slide",
+          "settings": {}
         },
         "slide_2": {
-          "type": "slide"
+          "type": "slide",
+          "settings": {}
         },
         "slide_3": {
-          "type": "slide"
+          "type": "slide",
+          "settings": {}
         },
         "slide_4": {
-          "type": "slide"
+          "type": "slide",
+          "settings": {}
         }
       },
       "block_order": [
@@ -365,7 +367,7 @@
         "title": "\"Powered by Ayurveda. Time-tested, highly effective, natural botanical formulas.\"",
         "heading_size": "h2",
         "button_label": "Shop now",
-        "button_link": "shopify:\/\/collections\/all",
+        "button_link": "shopify://collections/all",
         "background_color": "#FAF7F2",
         "padding_top": 80,
         "padding_bottom": 80
@@ -374,18 +376,54 @@
     "spotlight_carousel": {
       "type": "spotlight-carousel",
       "blocks": {
-        "video_1": { "type": "video_card" },
-        "video_2": { "type": "video_card" },
-        "video_3": { "type": "video_card" },
-        "video_4": { "type": "video_card" },
-        "video_5": { "type": "video_card" },
-        "video_6": { "type": "video_card" },
-        "video_7": { "type": "video_card" },
-        "video_8": { "type": "video_card" },
-        "video_9": { "type": "video_card" },
-        "video_10": { "type": "video_card" },
-        "video_11": { "type": "video_card" },
-        "video_12": { "type": "video_card" }
+        "video_1": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_2": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_3": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_4": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_5": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_6": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_7": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_8": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_9": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_10": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_11": {
+          "type": "video_card",
+          "settings": {}
+        },
+        "video_12": {
+          "type": "video_card",
+          "settings": {}
+        }
       },
       "block_order": [
         "video_1",
@@ -482,33 +520,33 @@
         "benefit_1": {
           "type": "benefit",
           "settings": {
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"></path><polyline points=\"3.27 6.96 12 12.01 20.73 6.96\"></polyline><line x1=\"12\" y1=\"22.08\" x2=\"12\" y2=\"12\"></line></svg>",
             "title": "FREE SHIPPING",
-            "text": "<p>on all orders over ₹999<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"><\/path><polyline points=\"3.27 6.96 12 12.01 20.73 6.96\"><\/polyline><line x1=\"12\" y1=\"22.08\" x2=\"12\" y2=\"12\"><\/line><\/svg>"
+            "text": "<p>on all orders over ₹999</p>"
           }
         },
         "benefit_2": {
           "type": "benefit",
           "settings": {
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 10h-12a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2z\"></path><path d=\"M7 10V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2\"></path><line x1=\"10\" y1=\"6\" x2=\"14\" y2=\"6\"></line></svg>",
             "title": "FREE DELUXE SAMPLE",
-            "text": "<p>on orders over ₹1999<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 10h-12a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2z\"><\/path><path d=\"M7 10V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2\"><\/path><line x1=\"10\" y1=\"6\" x2=\"14\" y2=\"6\"><\/line><\/svg>"
+            "text": "<p>on orders over ₹1999</p>"
           }
         },
         "benefit_3": {
           "type": "benefit",
           "settings": {
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"></path></svg>",
             "title": "100% CRUELTY FREE",
-            "text": "<p>Never tested on animals<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z\"><\/path><\/svg>"
+            "text": "<p>Never tested on animals</p>"
           }
         },
         "benefit_4": {
           "type": "benefit",
           "settings": {
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 8c0-2.21 3.58-4 8-4s8 1.79 8 4-3.58 4-8 4-8-1.79-8-4z\"></path><path d=\"M4 8v6c0 3.31 3.58 6 8 6s8-2.69 8-6V8\"></path><path d=\"M15 4l-3-4\"></path></svg>",
             "title": "AYURVEDIC ROOTS",
-            "text": "<p>100% natural, vegan ingredients<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 8c0-2.21 3.58-4 8-4s8 1.79 8 4-3.58 4-8 4-8-1.79-8-4z\"><\/path><path d=\"M4 8v6c0 3.31 3.58 6 8 6s8-2.69 8-6V8\"><\/path><path d=\"M15 4l-3-4\"><\/path><\/svg>"
+            "text": "<p>100% natural, vegan ingredients</p>"
           }
         }
       },

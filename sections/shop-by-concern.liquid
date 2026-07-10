@@ -16,10 +16,9 @@
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'shop-by-concern__image' }}
               {%- else -%}
-                {%- assign slide_idx = forloop.index | modulo: 6 -%}
-                {%- if slide_idx == 0 -%}{%- assign slide_idx = 6 -%}{%- endif -%}
-                {%- capture placeholder_image -%}collection-{{ slide_idx }}{%- endcapture -%}
-                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg shop-by-concern__image' }}
+                {%- assign handleized_title = block.settings.title | handleize -%}
+                {%- assign asset_name = 'concern_' | append: handleized_title | append: '.png' -%}
+                <img src="{{ asset_name | asset_url }}" alt="{{ block.settings.title }}" class="shop-by-concern__image" loading="lazy" width="600" height="600">
               {%- endif -%}
               
               <div class="shop-by-concern__arrow">
