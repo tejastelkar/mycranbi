@@ -1451,5 +1451,40 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Wishlist",
+    "settings": [
+      {
+        "type": "text",
+        "id": "wishlist_drawer_heading",
+        "label": "Drawer Heading",
+        "default": "Your Wishlist"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_drawer_empty_text",
+        "label": "Empty State Text",
+        "default": "Your Wishlist is Empty"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_loading_text",
+        "label": "Loading Text",
+        "default": "Loading..."
+      },
+      {
+        "type": "text",
+        "id": "wishlist_no_image_text",
+        "label": "No Image Text",
+        "default": "No image"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_failed_text",
+        "label": "Failed to Load Text",
+        "default": "Failed to load wishlist items."
+      }
+    ]
   }
 ]

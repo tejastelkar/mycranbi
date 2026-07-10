@@ -120,6 +120,7 @@ class Wishlist {
     const tbody = document.getElementById('WishlistDrawer-Items');
     const emptyState = document.getElementById('WishlistDrawer-Empty');
     const contentArea = document.getElementById('WishlistDrawer-Content');
+    const strings = window.wishlistStrings || { loading: "Loading...", noImage: "No image", failedToLoad: "Failed to load wishlist items." };
     
     if (this.items.length === 0) {
       contentArea.style.display = 'none';
@@ -130,7 +131,7 @@ class Wishlist {
     
     contentArea.style.display = 'block';
     emptyState.style.display = 'none';
-    tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 2rem;">Loading...</td></tr>';
+    tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; padding: 2rem;">${strings.loading}</td></tr>`;
 
     try {
       const productPromises = this.items.map(handle => 
@@ -157,7 +158,7 @@ class Wishlist {
       tbody.innerHTML = validProducts.map(product => {
         const image = product.featured_image 
           ? `<img src="${product.featured_image}" alt="${product.title.replace(/"/g, '&quot;')}" style="width: 80px; height: auto; display: block; border-radius: 4px;">` 
-          : `<div style="background:#f4f4f4; width:80px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; color:#999; border-radius: 4px;">No image</div>`;
+          : `<div style="background:#f4f4f4; width:80px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; color:#999; border-radius: 4px;">${strings.noImage}</div>`;
           
         return `
           <tr class="cart-item" style="border-bottom: 1px solid rgba(var(--color-foreground), 0.08);">
@@ -183,7 +184,7 @@ class Wishlist {
         `;
       }).join('');
     } catch (e) {
-      tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: red;">Failed to load wishlist items.</td></tr>';
+      tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: red;">${strings.failedToLoad}</td></tr>`;
       console.error(e);
     }
   }
