@@ -482,13 +482,13 @@
     "custom_collection_list",
     "featured_collection",
     "shop_by_concern",
-    "hero_ingredients",
-    "brand_story",
     "gift_sets",
     "travel_minis",
+    "hero_ingredients",
     "spotlight_carousel",
+    "editorial_slider",
+    "brand_story",
     "reviews",
-    "benefits_strip",
-    "editorial_slider"
+    "benefits_strip"
   ]
 }
