@@ -12,40 +12,25 @@
     "custom_hero": {
       "type": "custom-hero",
       "blocks": {
-        "slide_mNJHyg": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/banner1.png",
-            "subheading": "NEW",
-            "heading": "bringaras",
-            "description": "Regenerating Haircare Ritual",
-            "stat_1_number": "92%",
-            "stat_1_text": "Repaired fibre",
-            "stat_2_number": "84%",
-            "stat_2_text": "Stronger hair",
-            "button_label": "SHOP NOW",
-            "button_link": ""
-          }
-        },
         "slide_XfFtX4": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/banner1_5bb2eefc-2a2d-4fa8-bc94-bbd1eb374587.png",
-            "subheading": "NEW",
-            "heading": "bringaras",
-            "description": "Regenerating Haircare Ritual",
-            "stat_1_number": "92%",
-            "stat_1_text": "Repaired fibre",
-            "stat_2_number": "84%",
-            "stat_2_text": "Stronger hair",
-            "button_label": "SHOP NOW",
-            "button_link": ""
+            "link": ""
+          }
+        },
+        "slide_JBge4j": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner1_5bb2eefc-2a2d-4fa8-bc94-bbd1eb374587.png",
+            "mobile_image": "shopify://shop_images/banner-mobile_fa83b8f5-268d-48f6-9769-7f27836abb2f.png",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "slide_mNJHyg",
-        "slide_XfFtX4"
+        "slide_XfFtX4",
+        "slide_JBge4j"
       ],
       "settings": {}
     },
