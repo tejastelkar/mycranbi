@@ -26,30 +26,6 @@
     "custom_collection_list": {
       "type": "custom-collection-list",
       "blocks": {
-        "card_fPJbGh": {
-          "type": "card",
-          "settings": {
-            "collection": "",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_aUNfXe": {
-          "type": "card",
-          "settings": {
-            "collection": "",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_RkVW4d": {
-          "type": "card",
-          "settings": {
-            "collection": "",
-            "title": "",
-            "link": ""
-          }
-        },
         "block_1": {
           "type": "card",
           "settings": {
@@ -94,17 +70,41 @@
             "title": "ELADHI COLLECTION",
             "link": ""
           }
+        },
+        "card_fPJbGh": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_aUNfXe": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_RkVW4d": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "card_fPJbGh",
-        "card_aUNfXe",
-        "card_RkVW4d",
         "block_1",
         "block_2",
         "block_3",
         "block_4",
-        "block_5"
+        "block_5",
+        "card_fPJbGh",
+        "card_aUNfXe",
+        "card_RkVW4d"
       ],
       "settings": {
         "padding_top": 8,
