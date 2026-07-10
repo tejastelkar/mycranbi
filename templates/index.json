@@ -352,7 +352,11 @@
         "video_10",
         "video_11",
         "video_12"
-      ]
+      ],
+      "settings": {
+        "title": "Spotlight",
+        "heading_size": "h2"
+      }
     }
   },
   "order": [
