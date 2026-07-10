@@ -1,5 +1,3 @@
-{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-
 <div class="spotlight-carousel section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
     <div class="spotlight-carousel__header">
@@ -236,8 +234,6 @@
     }
   }
 </style>
-
-<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
 
 <script>
   // The Swiper bundle above loads with `defer`, so it (and this script) can
