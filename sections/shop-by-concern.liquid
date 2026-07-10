@@ -73,6 +73,7 @@
     padding-bottom: 2rem;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
+    justify-content: center;
   }
 
   .shop-by-concern__scroller::-webkit-scrollbar {
@@ -80,20 +81,26 @@
   }
 
   .shop-by-concern__item {
-    flex: 0 0 70%;
+    flex: 0 0 17.5%;
     scroll-snap-align: start;
     position: relative;
   }
 
   @media screen and (min-width: 750px) {
     .shop-by-concern__item {
-      flex: 0 0 calc(33.333% - 1rem);
+      flex: 0 0 calc(10% - 1.2rem);
     }
   }
   
   @media screen and (min-width: 990px) {
     .shop-by-concern__item {
-      flex: 0 0 calc(20% - 1.2rem);
+      flex: 0 0 calc(7% - 1.28rem);
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .shop-by-concern__item {
+      flex: 0 0 calc(6% - 1.3rem);
     }
   }
 
