@@ -234,43 +234,36 @@
     "brand_story": {
       "type": "brand-story",
       "blocks": {
-        "value_1": {
-          "type": "value",
+        "column_1": {
+          "type": "column",
           "settings": {
-            "title": "Sulphate-free"
+            "title": "ROOTED IN AYURVEDA",
+            "text": "<p>A pioneer in the beauty industry, we combine traditional Ayurvedic practices with modern aesthetics for a luxurious experience.</p>"
           }
         },
-        "value_2": {
-          "type": "value",
+        "column_2": {
+          "type": "column",
           "settings": {
-            "title": "Paraben-free"
+            "title": "A MULTI-SENSORIAL JOURNEY",
+            "text": "<p>Authentic in its roots and sophisticated in its presentation, My Cranbi takes you on an immersive, multi-sensorial journey.</p>"
           }
         },
-        "value_3": {
-          "type": "value",
+        "column_3": {
+          "type": "column",
           "settings": {
-            "title": "Crafted for daily care"
-          }
-        },
-        "value_4": {
-          "type": "value",
-          "settings": {
-            "title": "Ayurvedic roots"
+            "title": "FRESH. PURE. POTENT.",
+            "text": "<p>Our products are handcrafted using 100% natural ingredients, sourced from the vast Indian landscape, to ensure the highest standards.</p>"
           }
         }
       },
       "block_order": [
-        "value_1",
-        "value_2",
-        "value_3",
-        "value_4"
+        "column_1",
+        "column_2",
+        "column_3"
       ],
       "settings": {
-        "image_position": "left",
-        "title": "Rooted in care, made for modern rituals",
+        "title": "OUR STORY",
         "heading_size": "h1",
-        "text": "<p>My Cranbi draws inspiration from the rooted traditions of Ayurveda, refining them for your daily self-care rituals. Every formulation is crafted with nature-led ingredients to refresh, nourish, and restore.</p>",
-        "button_label": "Read Our Story",
         "background_color": "#FFFFFF",
         "padding_top": 80,
         "padding_bottom": 80

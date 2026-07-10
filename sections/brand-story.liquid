@@ -1,59 +1,33 @@
 <div class="brand-story section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
-    <div class="brand-story__container {% if section.settings.image_position == 'right' %}brand-story__container--reverse{% endif %}">
-      
-      <div class="brand-story__media-wrapper">
-        <div class="brand-story__media">
-          {%- if section.settings.image != blank -%}
-            {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'brand-story__image' }}
-          {%- else -%}
-            <img src="{{ 'brand-story.png' | asset_url }}" alt="Brand Story Placeholder" class="brand-story__image" loading="lazy">
-          {%- endif -%}
-        </div>
-      </div>
+    {%- if section.settings.title != blank -%}
+      <h2 class="brand-story__main-heading {{ section.settings.heading_size }}">
+        {{ section.settings.title }}
+      </h2>
+    {%- endif -%}
 
-      <div class="brand-story__content-wrapper">
-        <div class="brand-story__content-box">
-          {%- if section.settings.title != blank -%}
-            <h2 class="brand-story__heading inline-richtext {{ section.settings.heading_size }}">
-              {{ section.settings.title }}
-            </h2>
-          {%- endif -%}
-          
-          {%- if section.settings.text != blank -%}
-            <div class="brand-story__text rte">
-              {{ section.settings.text }}
-            </div>
-          {%- endif -%}
-
-          {%- if section.blocks.size > 0 -%}
-            <div class="brand-story__values">
-              {%- for block in section.blocks -%}
-                <div class="brand-story__value-item" {{ block.shopify_attributes }}>
-                  <div class="brand-story__value-icon">
-                    {%- if block.settings.icon != blank -%}
-                      {{ block.settings.icon | image_url: width: 50 | image_tag: loading: 'lazy' }}
-                    {%- else -%}
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    {%- endif -%}
-                  </div>
-                  <span class="brand-story__value-text">{{ block.settings.title }}</span>
-                </div>
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
-          
-          {%- if section.settings.button_label != blank -%}
-            <a href="{{ section.settings.button_link }}" class="button button--primary brand-story__button">
-              {{ section.settings.button_label }}
-            </a>
-          {%- endif -%}
+    <div class="brand-story__grid">
+      {%- for block in section.blocks -%}
+        <div class="brand-story__column" {{ block.shopify_attributes }}>
+          <div class="brand-story__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'brand-story__image' }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="brand-story__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="brand-story__column-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="brand-story__column-text rte">
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+          </div>
         </div>
-      </div>
-      
+      {%- endfor -%}
     </div>
   </div>
 </div>
@@ -70,41 +44,52 @@
     }
   }
 
-  .brand-story__container {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
+  .brand-story__main-heading {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    font-size: 3rem;
+    font-family: var(--font-heading-family);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
-  
-  @media screen and (min-width: 990px) {
-    .brand-story__container {
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 8rem; /* Clean gap instead of overlap */
-    }
-    
-    .brand-story__container--reverse {
-      flex-direction: row-reverse;
-    }
-    
-    .brand-story__media-wrapper {
-      width: 45%;
-    }
-    
-    .brand-story__content-wrapper {
-      width: 50%;
+
+  @media screen and (min-width: 750px) {
+    .brand-story__main-heading {
+      margin-bottom: 4rem;
+      font-size: 3.6rem;
     }
   }
 
+  .brand-story__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .brand-story__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .brand-story__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
   .brand-story__media {
-    position: relative;
     width: 100%;
-    height: 0;
-    padding-bottom: 140%; /* Taller aspect ratio */
+    position: relative;
+    padding-bottom: 66.66%; /* 3:2 aspect ratio */
+    border-radius: 12px;
     overflow: hidden;
-    border-radius: 500px; /* Full pill shape */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    margin-bottom: 2.5rem;
+    background-color: #f4f4f4;
   }
 
   .brand-story__image {
@@ -115,77 +100,32 @@
     height: 100%;
     object-fit: cover;
   }
-
-  .brand-story__content-box {
-    background-color: transparent;
-    padding: 0;
-  }
   
-  @media screen and (min-width: 990px) {
-    .brand-story__content-box {
-      padding: 2rem 0;
-    }
-  }
-
-  .brand-story__heading {
-    margin-top: 0;
-    margin-bottom: 2.5rem;
-    line-height: 1.1;
-  }
-
-  .brand-story__text {
-    font-size: 1.6rem;
-    line-height: 1.7;
-    color: rgba(var(--color-foreground), 0.75);
-    margin-bottom: 4rem;
-  }
-
-  .brand-story__values {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-  
-  @media screen and (min-width: 750px) {
-    .brand-story__values {
-      grid-template-columns: repeat(2, 1fr);
-      display: grid;
-    }
-  }
-
-  .brand-story__value-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .brand-story__value-icon {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #C9974D;
-    flex-shrink: 0;
-  }
-
-  .brand-story__value-icon img,
-  .brand-story__value-icon svg {
+  .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    background-color: #f4f4f4;
   }
 
-  .brand-story__value-text {
-    font-size: 1.3rem;
-    font-weight: 500;
+  .brand-story__column-title {
+    margin: 0 0 1.5rem 0;
+    font-family: var(--font-heading-family);
+    font-size: 1.8rem;
+    font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgb(var(--color-foreground));
   }
-  
-  .brand-story__button {
-    margin-top: 1rem;
+
+  .brand-story__column-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.8);
+    margin: 0;
   }
 </style>
 
@@ -196,30 +136,9 @@
   "class": "section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "select",
-      "id": "image_position",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "left",
-      "label": "Desktop image placement"
-    },
-    {
-      "type": "inline_richtext",
+      "type": "text",
       "id": "title",
-      "default": "Rooted in care, made for modern rituals",
+      "default": "OUR STORY",
       "label": "Heading"
     },
     {
@@ -241,23 +160,6 @@
       ],
       "default": "h1",
       "label": "Heading size"
-    },
-    {
-      "type": "richtext",
-      "id": "text",
-      "default": "<p>My Cranbi draws inspiration from the rooted traditions of Ayurveda, refining them for your daily self-care rituals. Every formulation is crafted with nature-led ingredients to refresh, nourish, and restore.</p>",
-      "label": "Text"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "Read Our Story",
-      "label": "Button label"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
     },
     {
       "type": "color",
@@ -288,20 +190,26 @@
   ],
   "blocks": [
     {
-      "type": "value",
-      "name": "Value Point",
-      "limit": 6,
+      "type": "column",
+      "name": "Story Column",
+      "limit": 3,
       "settings": [
         {
           "type": "image_picker",
-          "id": "icon",
-          "label": "Icon (Optional)"
+          "id": "image",
+          "label": "Image"
         },
         {
           "type": "text",
           "id": "title",
-          "default": "Sulphate-free",
-          "label": "Value text"
+          "default": "Column title",
+          "label": "Subtitle"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Write a short paragraph explaining the core values, history, or ingredients of your brand.</p>",
+          "label": "Text"
         }
       ]
     }
@@ -311,27 +219,21 @@
       "name": "Brand Story",
       "blocks": [
         {
-          "type": "value",
+          "type": "column",
           "settings": {
-            "title": "Sulphate-free"
+            "title": "ROOTED IN AYURVEDA"
           }
         },
         {
-          "type": "value",
+          "type": "column",
           "settings": {
-            "title": "Paraben-free"
+            "title": "A MULTI-SENSORIAL JOURNEY"
           }
         },
         {
-          "type": "value",
+          "type": "column",
           "settings": {
-            "title": "Crafted for daily care"
-          }
-        },
-        {
-          "type": "value",
-          "settings": {
-            "title": "Ayurvedic roots"
+            "title": "FRESH. PURE. POTENT."
           }
         }
       ]
