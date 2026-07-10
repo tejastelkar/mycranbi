@@ -220,9 +220,9 @@
       observeParents: true,
       coverflowEffect: {
         rotate: 0, // No rotation, just scale and depth
-        stretch: 0, // Space between
-        depth: 150, // 3D depth
-        modifier: 1.5,
+        stretch: 150, // Positive value pulls slides together to create overlap
+        depth: 250, // 3D depth to make background slides smaller
+        modifier: 1, // Base effect multiplier
         slideShadows: true,
       },
       navigation: {
