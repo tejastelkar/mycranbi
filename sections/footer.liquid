@@ -299,12 +299,18 @@
             <h3 style="font-size: 1.2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">PAYMENT METHODS</h3>
             <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
             <ul class="list list-payment" role="list">
-              {% assign payment_methods = 'visa,master,american_express,rupay,paypal,netbanking,cash_on_delivery' | split: ',' %}
+              {% assign payment_methods = 'visa,master,rupay,upi,netbanking,cash_on_delivery' | split: ',' %}
               {%- for type in payment_methods -%}
                 <li class="list-payment__item">
                   {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
                 </li>
               {%- endfor -%}
+              <li class="list-payment__item">
+                <svg class="icon icon--full-color" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" width="38" height="24" role="img">
+                  <rect width="38" height="24" rx="3" fill="#fff" stroke="#d2d5d9"/>
+                  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="7" fill="#3395FF">Razorpay</text>
+                </svg>
+              </li>
             </ul>
           </div>
         {%- endif -%}
