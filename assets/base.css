@@ -2942,9 +2942,14 @@ details-disclosure > details {
   line-height: 1;
   padding: 0.5rem 1.3rem 0.6rem 1.3rem;
   text-align: center;
-  background-color: rgb(var(--color-badge-background));
-  border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
-  color: rgb(var(--color-badge-foreground));
+  background-color: #660033 !important;
+  border-color: #660033 !important;
+  color: #FFFFFF !important;
+  border-radius: 20px !important;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
   word-break: break-word;
 }
 
