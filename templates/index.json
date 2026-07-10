@@ -103,37 +103,43 @@
         "concern_1": {
           "type": "concern",
           "settings": {
-            "title": "Acne-prone skin"
+            "image": "shopify:\/\/shop_images\/concern_dandruff_1783697169617.png",
+            "title": "Dandruff"
           }
         },
         "concern_2": {
           "type": "concern",
           "settings": {
-            "title": "Dark circles"
+            "image": "shopify:\/\/shop_images\/concern_acne_1783697179599.png",
+            "title": "Acne-prone skin"
           }
         },
         "concern_3": {
           "type": "concern",
           "settings": {
-            "title": "Dull, dry skin"
+            "image": "shopify:\/\/shop_images\/concern_dark_circles_1783697190177.png",
+            "title": "Dark circles"
           }
         },
         "concern_4": {
           "type": "concern",
           "settings": {
-            "title": "Sun protection"
+            "image": "shopify:\/\/shop_images\/concern_dull_skin_1783697199500.png",
+            "title": "Dull, dry skin"
           }
         },
         "concern_5": {
           "type": "concern",
           "settings": {
-            "title": "Anti-ageing"
+            "image": "shopify:\/\/shop_images\/concern_sun_protection_1783697211088.png",
+            "title": "Sun protection"
           }
         },
         "concern_6": {
           "type": "concern",
           "settings": {
-            "title": "Hair thinning/loss"
+            "image": "shopify:\/\/shop_images\/concern_anti_ageing_1783697222412.png",
+            "title": "Anti-ageing"
           }
         }
       },
