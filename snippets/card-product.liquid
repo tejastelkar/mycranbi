@@ -145,7 +145,7 @@
           <div class="card__information" style="padding: 24px 8px 12px 8px; background-color: transparent;">
             <!-- Tag and Rating Row -->
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
-              <span>{{ custom_badge_text | default: 'NEW & IMPROVED' }}</span>
+              <!-- Removed hardcoded tag -->
               {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
                 <span style="display: flex; align-items: center; gap: 4px; font-weight: 600; color: #333;">
                   {{ card_product.metafields.reviews.rating.value | round: 1 }} ★({{ card_product.metafields.reviews.rating_count }})
@@ -596,7 +596,7 @@
         <div class="card__information" style="padding: 24px 8px 12px 8px; background-color: transparent;">
           <!-- Tag Row (Placeholder) -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
-            <span>{{ custom_badge_text | default: 'NEW & IMPROVED' }}</span>
+            <!-- Removed hardcoded tag -->
             <span style="display: flex; align-items: center; gap: 4px; font-weight: 600; color: #333;">
               {{ placeholder_rating | default: '5.0 ★(44)' }}
             </span>
