@@ -506,6 +506,7 @@
   "order": [
     "custom_hero",
     "custom_collection_list",
+    "brand_story",
     "featured_collection",
     "gift_sets",
     "shop_by_concern",
@@ -514,7 +515,6 @@
     "hero_ingredients",
     "editorial_slider",
     "watch_shop",
-    "brand_story",
     "reviews",
     "benefits_strip"
   ]
