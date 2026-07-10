@@ -241,7 +241,8 @@
         "color_scheme": "scheme-4",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
-        "show_text_below": true
+        "show_text_below": true,
+        "make_page_width": true
       }
     },
     "watch_shop": {
