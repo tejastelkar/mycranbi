@@ -1,0 +1,298 @@
+<div class="shop-by-concern section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="shop-by-concern__header">
+        <h2 class="shop-by-concern__title {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    <div class="shop-by-concern__scroller">
+      {%- for block in section.blocks -%}
+        <div class="shop-by-concern__item" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}" class="shop-by-concern__link">
+            <div class="shop-by-concern__image-wrapper">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'shop-by-concern__image' }}
+              {%- else -%}
+                {%- assign slide_idx = forloop.index | modulo: 6 -%}
+                {%- if slide_idx == 0 -%}{%- assign slide_idx = 6 -%}{%- endif -%}
+                {%- capture placeholder_image -%}collection-{{ slide_idx }}{%- endcapture -%}
+                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg shop-by-concern__image' }}
+              {%- endif -%}
+              
+              <div class="shop-by-concern__arrow">
+                <svg viewBox="0 0 14 10" fill="none" class="icon icon-arrow" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"></path>
+                </svg>
+              </div>
+            </div>
+            {%- if block.settings.title != blank -%}
+              <h3 class="shop-by-concern__item-title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .shop-by-concern {
+    overflow: hidden;
+  }
+
+  .shop-by-concern__header {
+    margin-bottom: 3rem;
+  }
+
+  .shop-by-concern__title {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .shop-by-concern__scroller {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .shop-by-concern__scroller::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .shop-by-concern__item {
+    flex: 0 0 70%;
+    scroll-snap-align: start;
+    position: relative;
+  }
+
+  @media screen and (min-width: 750px) {
+    .shop-by-concern__item {
+      flex: 0 0 calc(33.333% - 1rem);
+    }
+  }
+  
+  @media screen and (min-width: 990px) {
+    .shop-by-concern__item {
+      flex: 0 0 calc(20% - 1.2rem);
+    }
+  }
+
+  .shop-by-concern__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+
+  .shop-by-concern__link:hover .shop-by-concern__arrow {
+    transform: scale(1.1);
+  }
+
+  .shop-by-concern__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .shop-by-concern__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .shop-by-concern__link:hover .shop-by-concern__image {
+    transform: scale(1.03);
+  }
+
+  .shop-by-concern__image-wrapper .placeholder-svg {
+    background-color: rgba(var(--color-foreground), 0.05);
+    fill: rgba(var(--color-foreground), 0.2);
+  }
+
+  .shop-by-concern__arrow {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    color: #000000;
+  }
+
+  .shop-by-concern__arrow svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .shop-by-concern__item-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Shop by Concern",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Shop by concern",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "concern",
+      "name": "Concern",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Acne-prone skin",
+          "label": "Concern Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Collection link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop by Concern",
+      "blocks": [
+        {
+          "type": "concern",
+          "settings": {
+            "title": "Acne-prone skin"
+          }
+        },
+        {
+          "type": "concern",
+          "settings": {
+            "title": "Dark circles"
+          }
+        },
+        {
+          "type": "concern",
+          "settings": {
+            "title": "Dull, dry skin"
+          }
+        },
+        {
+          "type": "concern",
+          "settings": {
+            "title": "Sun protection"
+          }
+        },
+        {
+          "type": "concern",
+          "settings": {
+            "title": "Anti-ageing"
+          }
+        },
+        {
+          "type": "concern",
+          "settings": {
+            "title": "Hair thinning/loss"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

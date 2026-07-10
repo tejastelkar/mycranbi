@@ -97,6 +97,62 @@
         "padding_bottom": 36
       }
     },
+    "shop_by_concern": {
+      "type": "shop-by-concern",
+      "blocks": {
+        "concern_1": {
+          "type": "concern",
+          "settings": {
+            "title": "Acne-prone skin"
+          }
+        },
+        "concern_2": {
+          "type": "concern",
+          "settings": {
+            "title": "Dark circles"
+          }
+        },
+        "concern_3": {
+          "type": "concern",
+          "settings": {
+            "title": "Dull, dry skin"
+          }
+        },
+        "concern_4": {
+          "type": "concern",
+          "settings": {
+            "title": "Sun protection"
+          }
+        },
+        "concern_5": {
+          "type": "concern",
+          "settings": {
+            "title": "Anti-ageing"
+          }
+        },
+        "concern_6": {
+          "type": "concern",
+          "settings": {
+            "title": "Hair thinning/loss"
+          }
+        }
+      },
+      "block_order": [
+        "concern_1",
+        "concern_2",
+        "concern_3",
+        "concern_4",
+        "concern_5",
+        "concern_6"
+      ],
+      "settings": {
+        "title": "Shop by concern",
+        "heading_size": "h2",
+        "background_color": "#FFFFFF",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
     "hero_ingredients": {
       "type": "hero-ingredients",
       "blocks": {
@@ -303,6 +359,7 @@
     "custom_hero",
     "custom_collection_list",
     "featured_collection",
+    "shop_by_concern",
     "hero_ingredients",
     "brand_story",
     "gift_sets",
