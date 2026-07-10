@@ -2349,6 +2349,8 @@ input[type='checkbox'] {
 
 .shopify-section-group-header-group {
   z-index: 4;
+  position: sticky;
+  top: 0;
 }
 
 .section-header ~ .shopify-section-group-header-group {
@@ -3614,5 +3616,5 @@ details-disclosure > details {
 
 /* Mobile Horizontal Scroll Fix */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
