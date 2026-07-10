@@ -432,33 +432,33 @@
         "benefit_1": {
           "type": "benefit",
           "settings": {
-            "title": "Free delivery",
-            "text": "<p>over €39*<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1\" y=\"3\" width=\"15\" height=\"13\"><\/rect><polygon points=\"16 8 20 8 23 11 23 16 16 16 16 8\"><\/polygon><circle cx=\"5.5\" cy=\"18.5\" r=\"2.5\"><\/circle><circle cx=\"18.5\" cy=\"18.5\" r=\"2.5\"><\/circle><\/svg>"
+            "title": "FREE SHIPPING",
+            "text": "<p>on all orders over $50<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"><\/path><polyline points=\"3.27 6.96 12 12.01 20.73 6.96\"><\/polyline><line x1=\"12\" y1=\"22.08\" x2=\"12\" y2=\"12\"><\/line><\/svg>"
           }
         },
         "benefit_2": {
           "type": "benefit",
           "settings": {
-            "title": "A FREE travel-size product",
-            "text": "<p>of your choice when you spend €49<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 21h10\"><\/path><path d=\"M12 21v-5\"><\/path><path d=\"M10 16h4\"><\/path><path d=\"M11 16V9\"><\/path><path d=\"M10 9h4\"><\/path><path d=\"M12 9V4\"><\/path><path d=\"M10 4h4\"><\/path><\/svg>"
+            "title": "FREE DELUXE SAMPLE",
+            "text": "<p>with every purchase<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"7\" y=\"10\" width=\"10\" height=\"12\" rx=\"2\"><\/rect><path d=\"M9 10V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4\"><\/path><line x1=\"10\" y1=\"2\" x2=\"14\" y2=\"2\"><\/line><\/svg>"
           }
         },
         "benefit_3": {
           "type": "benefit",
           "settings": {
-            "title": "MYCRANBI loyalty program",
-            "text": "<p>100 points = 1 gift<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"7\"><\/circle><polyline points=\"8.21 13.89 7 23 12 20 17 23 15.79 13.88\"><\/polyline><\/svg>"
+            "title": "CRANBI REWARDS",
+            "text": "<p>Earn points for exclusive gifts<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"><\/polygon><\/svg>"
           }
         },
         "benefit_4": {
           "type": "benefit",
           "settings": {
-            "title": "Exclusive offers",
-            "text": "<p>all year round<\/p>",
-            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"8\" width=\"18\" height=\"14\" rx=\"2\" ry=\"2\"><\/rect><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"22\"><\/line><path d=\"M12 8H8a2 2 0 1 1 0-4h4v4z\"><\/path><path d=\"M12 8h4a2 2 0 1 0 0-4h-4v4z\"><\/path><line x1=\"3\" y1=\"14\" x2=\"21\" y2=\"14\"><\/line><\/svg>"
+            "title": "AYURVEDIC ROOTS",
+            "text": "<p>100% natural, vegan ingredients<\/p>",
+            "custom_svg": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\"><\/path><line x1=\"2\" y1=\"22\" x2=\"11\" y2=\"20\"><\/line><\/svg>"
           }
         }
       },
