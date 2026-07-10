@@ -1,0 +1,65 @@
+{% comment %}
+  Renders wishlist drawer
+
+  Usage:
+  {% render 'wishlist-drawer' %}
+{% endcomment %}
+
+<style>
+  .drawer {
+    visibility: hidden;
+  }
+</style>
+
+<div id="WishlistDrawer" class="drawer">
+  <div id="WishlistDrawer-Overlay" class="cart-drawer__overlay" onclick="window.wishlistManager.closeDrawer()"></div>
+  <div
+    class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Wishlist"
+    tabindex="-1"
+  >
+    <div class="drawer__header">
+      <h2 class="drawer__heading">Your Wishlist</h2>
+      <button
+        class="drawer__close"
+        type="button"
+        onclick="window.wishlistManager.closeDrawer()"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </button>
+    </div>
+
+    <div class="drawer__inner-empty" id="WishlistDrawer-Empty" style="display: none;">
+      <div class="cart-drawer__warnings center">
+        <div class="cart-drawer__empty-content">
+          <svg class="icon-heart-empty" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #000; margin: 0 auto 2rem;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <h2 class="cart__empty-text" style="font-size: 1.5rem;">Your Wishlist is Empty</h2>
+          <button
+            class="button"
+            type="button"
+            onclick="window.wishlistManager.closeDrawer()"
+          >
+            {{ 'general.continue_shopping' | t }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart__contents cart-drawer__form" id="WishlistDrawer-Content">
+      <div class="drawer__contents js-contents">
+        <div class="drawer__cart-items-wrapper">
+          <table class="cart-items" role="table">
+            <tbody role="rowgroup" id="WishlistDrawer-Items">
+              <!-- Wishlist items will be injected here by wishlist.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

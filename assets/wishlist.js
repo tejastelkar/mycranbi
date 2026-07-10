@@ -6,9 +6,10 @@ class Wishlist {
     this.initButtons();
     this.updateHeaderBadge();
     
-    // If on the wishlist page, render the grid
-    if (document.getElementById('wishlist-grid')) {
-      this.renderWishlistPage();
+    // Bind drawer events
+    const overlay = document.getElementById('WishlistDrawer-Overlay');
+    if (overlay) {
+      overlay.addEventListener('click', () => this.closeDrawer());
     }
   }
 
@@ -43,9 +44,10 @@ class Wishlist {
     }
     this.setItems(items);
     
-    // If on wishlist page, re-render
-    if (document.getElementById('wishlist-grid')) {
-      this.renderWishlistPage();
+    // If drawer is open, re-render its contents
+    const drawer = document.getElementById('WishlistDrawer');
+    if (drawer && drawer.classList.contains('active')) {
+      this.renderDrawerContents();
     }
   }
 
@@ -97,20 +99,38 @@ class Wishlist {
     });
   }
 
-  async renderWishlistPage() {
-    const grid = document.getElementById('wishlist-grid');
-    const emptyState = document.getElementById('wishlist-empty-state');
+  openDrawer() {
+    const drawer = document.getElementById('WishlistDrawer');
+    if (drawer) {
+      this.renderDrawerContents();
+      drawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  closeDrawer() {
+    const drawer = document.getElementById('WishlistDrawer');
+    if (drawer) {
+      drawer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  async renderDrawerContents() {
+    const tbody = document.getElementById('WishlistDrawer-Items');
+    const emptyState = document.getElementById('WishlistDrawer-Empty');
+    const contentArea = document.getElementById('WishlistDrawer-Content');
     
     if (this.items.length === 0) {
-      grid.style.display = 'none';
+      contentArea.style.display = 'none';
       emptyState.style.display = 'block';
-      grid.innerHTML = '';
+      tbody.innerHTML = '';
       return;
     }
     
-    grid.style.display = 'grid';
+    contentArea.style.display = 'block';
     emptyState.style.display = 'none';
-    grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 4rem;">Loading...</div>';
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 2rem;">Loading...</td></tr>';
 
     try {
       const productPromises = this.items.map(handle => 
@@ -124,9 +144,9 @@ class Wishlist {
       const validProducts = products.filter(p => p !== null);
 
       if (validProducts.length === 0) {
-        grid.style.display = 'none';
+        contentArea.style.display = 'none';
         emptyState.style.display = 'block';
-        grid.innerHTML = '';
+        tbody.innerHTML = '';
         return;
       }
 
@@ -134,34 +154,36 @@ class Wishlist {
         return 'Rs. ' + (cents / 100).toFixed(2).replace(/\.00$/, '');
       };
 
-      grid.innerHTML = validProducts.map(product => {
+      tbody.innerHTML = validProducts.map(product => {
         const image = product.featured_image 
-          ? `<img src="${product.featured_image}" alt="${product.title.replace(/"/g, '&quot;')}" style="width:100%; height:auto; object-fit:cover; display:block;">` 
-          : `<div style="background:#f4f4f4; width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; color:#999;">No image</div>`;
+          ? `<img src="${product.featured_image}" alt="${product.title.replace(/"/g, '&quot;')}" style="width: 80px; height: auto; display: block; border-radius: 4px;">` 
+          : `<div style="background:#f4f4f4; width:80px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; color:#999; border-radius: 4px;">No image</div>`;
           
         return `
-          <div class="wishlist-product-card" style="position:relative; background:#fff; border-radius:0; box-shadow:0 2px 8px rgba(0,0,0,0.05); overflow:hidden; transition:transform 0.2s;">
-            <a href="${product.url}" style="display:block; text-decoration:none;">
-              <div style="position:relative; overflow:hidden; aspect-ratio: 0.8;">
-                ${image}
+          <tr class="cart-item" style="border-bottom: 1px solid rgba(var(--color-foreground), 0.08);">
+            <td class="cart-item__media" style="padding-top: 1.5rem; padding-bottom: 1.5rem; width: 90px; vertical-align: top;">
+              <a href="${product.url}" class="cart-item__link" tabindex="-1" aria-hidden="true"></a>
+              ${image}
+            </td>
+            <td class="cart-item__details" style="padding-top: 1.5rem; padding-bottom: 1.5rem; padding-left: 1.5rem; vertical-align: top;">
+              <a href="${product.url}" class="cart-item__name h4 break" style="text-decoration: none; font-size: 1.6rem; color: rgb(var(--color-foreground)); display: block; margin-bottom: 0.5rem; font-family: var(--font-heading-family);">${product.title}</a>
+              <div class="cart-item__price-wrapper">
+                <span class="price price--end" style="font-size: 1.4rem;">${formatMoney(product.price)}</span>
               </div>
-              <div style="padding: 1.5rem; text-align:center;">
-                <h3 style="margin:0 0 0.5rem 0; font-size:1.6rem; font-weight:400; color:#333; font-family: var(--font-heading-family);">${product.title}</h3>
-                <div style="font-size:1.4rem; color:#555; margin-bottom:1rem;">${formatMoney(product.price)}</div>
-              </div>
-            </a>
-            <button class="wishlist-btn in-wishlist" data-product-handle="${product.handle}" style="position:absolute; top:1rem; right:1rem; background:#fff; border:none; border-radius:50%; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 4px rgba(0,0,0,0.1); z-index:2;">
-              <svg class="icon-heart-solid" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #000;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-              <svg class="icon-heart-empty hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #000;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            </button>
-            <div style="padding: 0 1.5rem 1.5rem;">
-               <a href="${product.url}" style="display:block; text-align:center; padding: 1rem; background: #000; color: #fff; text-decoration:none; text-transform:uppercase; font-size:1.2rem; letter-spacing:1px; font-weight:600; border-radius: 2px;">View Product</a>
-            </div>
-          </div>
+            </td>
+            <td class="cart-item__totals right" style="padding-top: 1.5rem; padding-bottom: 1.5rem; vertical-align: middle;">
+              <button class="wishlist-btn" data-product-handle="${product.handle}" style="background: none; border: none; cursor: pointer; padding: 0.5rem;" aria-label="Remove from wishlist">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.66699 2.66667L13.3337 13.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M13.3337 2.66667L2.66699 13.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
         `;
       }).join('');
     } catch (e) {
-      grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: red;">Failed to load wishlist items. Please try again.</div>';
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: red;">Failed to load wishlist items.</td></tr>';
       console.error(e);
     }
   }
