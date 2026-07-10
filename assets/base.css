@@ -3622,3 +3622,15 @@ details-disclosure > details {
 html, body {
   overflow-x: clip;
 }
+
+/* Custom Primary Button Brand Color */
+.button--primary {
+  background-color: #660033 !important;
+  color: #ffffff !important;
+  border-color: #660033 !important;
+}
+
+.button--primary:hover {
+  background-color: #4d0026 !important;
+  border-color: #4d0026 !important;
+}
