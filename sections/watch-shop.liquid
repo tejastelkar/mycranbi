@@ -187,7 +187,7 @@
       {%- assign ws_product = block.settings.product -%}
       
       <!-- Grid Card -->
-      <button type="button" class="watch-shop__card js-open-video-modal" data-modal="modal-{{ block.id }}" {{ block.shopify_attributes }}>
+      <div role="button" tabindex="0" class="watch-shop__card js-open-video-modal" data-modal="modal-{{ block.id }}" {{ block.shopify_attributes }}>
         {%- if block.settings.video != blank -%}
           {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'watch-shop__card__video' }}
         {%- elsif block.settings.image != blank -%}
@@ -227,7 +227,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
-      </button>
+      </div>
 
       <!-- Associated Modal -->
       <div class="watch-shop-modal" id="modal-{{ block.id }}" aria-hidden="true">
@@ -403,8 +403,7 @@
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow Text",
-      "default": ""
+      "label": "Eyebrow Text"
     },
     {
       "type": "text",
@@ -415,8 +414,7 @@
     {
       "type": "text",
       "id": "subtext",
-      "label": "Subtext",
-      "default": ""
+      "label": "Subtext"
     }
   ],
   "blocks": [
