@@ -157,30 +157,31 @@ class Wishlist {
 
       tbody.innerHTML = validProducts.map(product => {
         const image = product.featured_image 
-          ? `<img src="${product.featured_image}" alt="${product.title.replace(/"/g, '&quot;')}" style="width: 80px; height: auto; display: block; border-radius: 4px;">` 
-          : `<div style="background:#f4f4f4; width:80px; aspect-ratio:1; display:flex; align-items:center; justify-content:center; color:#999; border-radius: 4px;">${strings.noImage}</div>`;
+          ? `<img src="${product.featured_image}" alt="${product.title.replace(/"/g, '&quot;')}" style="width: 100%; height: 100%; object-fit: contain; display: block;">` 
+          : `<div style="width: 100%; height: 100%; display:flex; align-items:center; justify-content:center; color:#999;">${strings.noImage}</div>`;
           
         return `
-          <tr class="cart-item" style="border-bottom: 1px solid rgba(var(--color-foreground), 0.08);">
-            <td class="cart-item__media" style="padding-top: 1.5rem; padding-bottom: 1.5rem; width: 90px; vertical-align: top;">
-              <a href="${product.url}" class="cart-item__link" tabindex="-1" aria-hidden="true"></a>
-              ${image}
-            </td>
-            <td class="cart-item__details" style="padding-top: 1.5rem; padding-bottom: 1.5rem; padding-left: 1.5rem; vertical-align: top;">
-              <a href="${product.url}" class="cart-item__name h4 break" style="text-decoration: none; font-size: 1.6rem; color: rgb(var(--color-foreground)); display: block; margin-bottom: 0.5rem; font-family: var(--font-heading-family);">${product.title}</a>
+          <div class="cart-item" style="border-bottom: 1px solid rgba(var(--color-foreground), 0.08); display: flex; align-items: center; padding: 1.5rem 0; width: 100%;">
+            <div class="cart-item__media" style="width: 80px; height: 80px; min-width: 80px; margin-right: 1.5rem; flex-shrink: 0; background: #f9f9f9; border-radius: 8px; overflow: hidden; padding: 0.5rem; border: 1px solid rgba(var(--color-foreground), 0.05);">
+              <a href="${product.url}" class="cart-item__link" tabindex="-1" aria-hidden="true" style="display: block; width: 100%; height: 100%;">
+                ${image}
+              </a>
+            </div>
+            <div class="cart-item__details" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
+              <a href="${product.url}" class="cart-item__name break" style="text-decoration: none; font-size: 1.2rem; letter-spacing: 0.1rem; text-transform: uppercase; color: rgb(var(--color-foreground)); display: block; margin-bottom: 0.6rem; font-weight: 500; line-height: 1.4;">${product.title}</a>
               <div class="cart-item__price-wrapper">
-                <span class="price price--end" style="font-size: 1.4rem;">${formatMoney(product.price)}</span>
+                <span class="price" style="font-size: 1.4rem; color: #333; font-weight: 500;">${formatMoney(product.price)}</span>
               </div>
-            </td>
-            <td class="cart-item__totals right" style="padding-top: 1.5rem; padding-bottom: 1.5rem; vertical-align: middle;">
-              <button class="wishlist-btn" data-product-handle="${product.handle}" style="background: none; border: none; cursor: pointer; padding: 0.5rem;" aria-label="Remove from wishlist">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            </div>
+            <div class="cart-item__totals right" style="margin-left: auto; display: flex; align-items: center; justify-content: flex-end; flex-shrink: 0; min-width: 32px;">
+              <button class="wishlist-btn" data-product-handle="${product.handle}" style="background: none; border: none; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #999; transition: all 0.2s ease; padding: 0;" aria-label="Remove from wishlist" onmouseover="this.style.color='#000'; this.style.backgroundColor='#f4f4f4';" onmouseout="this.style.color='#999'; this.style.backgroundColor='transparent';">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2.66699 2.66667L13.3337 13.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                   <path d="M13.3337 2.66667L2.66699 13.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
               </button>
-            </td>
-          </tr>
+            </div>
+          </div>
         `;
       }).join('');
     } catch (e) {
