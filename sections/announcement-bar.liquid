@@ -67,81 +67,56 @@
         {%- endif -%}
       </div>
     {%- elsif section.blocks.size > 1 -%}
-      <slideshow-component
-        class="announcement-bar"
-        role="region"
-        aria-roledescription="{{ 'sections.announcements.carousel' | t }}"
-        aria-label="{{ 'sections.announcements.announcement_bar' | t }}"
-      >
-        <div class="announcement-bar-slider slider-buttons">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'sections.announcements.previous_announcement' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
+      <div class="announcement-bar flip-container" role="region" aria-label="{{ 'sections.announcements.announcement_bar' | t }}">
+        {%- for block in section.blocks -%}
           <div
-            class="grid grid--1-col slider slider--everywhere"
-            id="Slider-{{ section.id }}"
-            aria-live="polite"
-            aria-atomic="true"
-            data-autoplay="{{ section.settings.auto_rotate }}"
-            data-speed="{{ section.settings.change_slides_speed }}"
+            class="announcement-bar__announcement flip-slide"
+            id="Slide-{{ section.id }}-{{ forloop.index }}"
+            {{ block.shopify_attributes }}
+            role="group"
+            style="animation-delay: {{ forloop.index0 | times: section.settings.change_slides_speed }}s;"
           >
-            {%- for block in section.blocks -%}
-              <div
-                class="slideshow__slide slider__slide grid__item grid--1-col"
-                id="Slide-{{ section.id }}-{{ forloop.index }}"
-                {{ block.shopify_attributes }}
-                role="group"
-                aria-roledescription="{{ 'sections.announcements.announcement' | t }}"
-                aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-                tabindex="-1"
-              >
-                <div
-                  class="announcement-bar__announcement"
-                  role="region"
-                  aria-label="{{ 'sections.header.announcement' | t }}"
-                >
-                  {%- if block.settings.text != blank -%}
-                    {%- if block.settings.link != blank -%}
-                      <a
-                        href="{{ block.settings.link }}"
-                        class="announcement-bar__link link link--text focus-inset animate-arrow"
-                      >
-                    {%- endif -%}
-                    <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
-                      {%- if block.settings.link != blank -%}
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      {%- endif -%}
-                    </p>
-                    {%- if block.settings.link != blank -%}
-                      </a>
-                    {%- endif -%}
-                  {%- endif -%}
-                </div>
-              </div>
-            {%- endfor -%}
+            {%- if block.settings.text != blank -%}
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}" class="announcement-bar__link link link--text focus-inset animate-arrow">
+              {%- endif -%}
+              <p class="announcement-bar__message h5">
+                <span>{{ block.settings.text | escape }}</span>
+                {%- if block.settings.link != blank -%}
+                  {{- 'icon-arrow.svg' | inline_asset_content -}}
+                {%- endif -%}
+              </p>
+              {%- if block.settings.link != blank -%}
+                </a>
+              {%- endif -%}
+            {%- endif -%}
           </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'sections.announcements.next_announcement' | t }}"
-            aria-controls="Slider-{{ section.id }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
-        </div>
-      </slideshow-component>
+        {%- endfor -%}
+      </div>
+      <style>
+        .flip-container {
+          position: relative;
+          height: 40px; /* Adjust based on content */
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .flip-slide {
+          position: absolute;
+          width: 100%;
+          opacity: 0;
+          transform: rotateX(-90deg);
+          animation: flipAnimation {{ section.blocks.size | times: section.settings.change_slides_speed }}s infinite;
+        }
+        @keyframes flipAnimation {
+          0% { opacity: 0; transform: rotateX(90deg); }
+          5% { opacity: 1; transform: rotateX(0deg); }
+          {{ 100 | divided_by: section.blocks.size | minus: 5 }}% { opacity: 1; transform: rotateX(0deg); }
+          {{ 100 | divided_by: section.blocks.size }}% { opacity: 0; transform: rotateX(-90deg); }
+          100% { opacity: 0; transform: rotateX(-90deg); }
+        }
+      </style>
       {%- if request.design_mode -%}
         <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
         <style>
