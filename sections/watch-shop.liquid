@@ -9,8 +9,16 @@
     --color-text: rgb(var(--color-foreground));
     --color-brand: rgb(var(--color-button));
     
-    padding-block: clamp(24px, 4vw, 40px);
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     background: {{ section.settings.bg_color }};
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
   }
 
   #shopify-section-{{ section.id }} .watch-shop-container {
@@ -415,6 +423,30 @@
       "type": "text",
       "id": "subtext",
       "label": "Subtext"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
     }
   ],
   "blocks": [

@@ -226,7 +226,9 @@
         "bg_color": "#ffffff",
         "eyebrow": "",
         "heading": "Shop the Look",
-        "subtext": ""
+        "subtext": "",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "brand_story": {
@@ -383,8 +385,10 @@
         "video_12"
       ],
       "settings": {
-        "title": "Spotlight",
-        "heading_size": "h2"
+        "title": "Into the Spotlight",
+        "heading_size": "h2",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "reviews": {
