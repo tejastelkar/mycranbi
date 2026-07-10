@@ -3611,3 +3611,8 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Mobile Horizontal Scroll Fix */
+html, body {
+  overflow-x: hidden;
+}

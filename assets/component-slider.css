@@ -70,6 +70,13 @@ slider-component.slider-component-full-width {
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 749px) {
+  .collection .slider-buttons {
+    display: none;
+  }
+}
+
 .collection .slider-button {
   pointer-events: auto;
   background-color: #777 !important;
