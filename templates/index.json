@@ -257,12 +257,12 @@
         "slide_4"
       ],
       "settings": {
-        "subtitle": "Discover our cults",
-        "title": "\"Powered by the grape. Patented, highly effective, natural formulas.\"",
+        "subtitle": "Discover our rituals",
+        "title": "\"Powered by Ayurveda. Time-tested, highly effective, natural botanical formulas.\"",
         "heading_size": "h1",
         "button_label": "Shop now",
         "button_link": "shopify:\/\/collections\/all",
-        "background_color": "#FFFFFF",
+        "background_color": "#FAF7F2",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -274,14 +274,28 @@
         "video_2": { "type": "video_card" },
         "video_3": { "type": "video_card" },
         "video_4": { "type": "video_card" },
-        "video_5": { "type": "video_card" }
+        "video_5": { "type": "video_card" },
+        "video_6": { "type": "video_card" },
+        "video_7": { "type": "video_card" },
+        "video_8": { "type": "video_card" },
+        "video_9": { "type": "video_card" },
+        "video_10": { "type": "video_card" },
+        "video_11": { "type": "video_card" },
+        "video_12": { "type": "video_card" }
       },
       "block_order": [
         "video_1",
         "video_2",
         "video_3",
         "video_4",
-        "video_5"
+        "video_5",
+        "video_6",
+        "video_7",
+        "video_8",
+        "video_9",
+        "video_10",
+        "video_11",
+        "video_12"
       ]
     }
   },
