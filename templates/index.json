@@ -200,6 +200,35 @@
         "padding_bottom": 64
       }
     },
+    "watch_shop": {
+      "type": "watch-shop",
+      "blocks": {
+        "video_1": {
+          "type": "video_item"
+        },
+        "video_2": {
+          "type": "video_item"
+        },
+        "video_3": {
+          "type": "video_item"
+        },
+        "video_4": {
+          "type": "video_item"
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "eyebrow": "Watch & Shop",
+        "heading": "Shop the Look",
+        "subtext": "Tap on any product to add it to your cart instantly."
+      }
+    },
     "brand_story": {
       "type": "brand-story",
       "blocks": {
@@ -487,6 +516,7 @@
     "travel_minis",
     "hero_ingredients",
     "editorial_slider",
+    "watch_shop",
     "brand_story",
     "reviews",
     "benefits_strip"
