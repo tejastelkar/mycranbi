@@ -12,6 +12,7 @@
     "custom_hero": {
       "type": "custom-hero",
       "settings": {
+        "image": "shopify://shop_images/banner1.png",
         "subheading": "",
         "heading": "",
         "description": "",
