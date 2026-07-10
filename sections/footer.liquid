@@ -60,13 +60,6 @@
               assign footer_grid_class = 'grid--3-col-tablet'
             endif
           -%}
-          <div class="footer__logo-placeholder" style="text-align: center; margin-bottom: 4rem;">
-            {%- if section.settings.logo != blank -%}
-              <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" width="150" height="auto" loading="lazy">
-            {%- else -%}
-              <div style="width: 180px; height: 60px; background: transparent; display: flex; align-items: center; justify-content: center; margin: 0 auto; color: currentColor; font-size: 1.4rem; border: 1px dashed currentColor; letter-spacing: 0.1em; text-transform: uppercase;">LOGO</div>
-            {%- endif -%}
-          </div>
           <div
             class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
