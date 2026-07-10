@@ -384,12 +384,39 @@
             "author": "Priya R.",
             "product_name": "Nourishing Night Cream"
           }
+        },
+        "review_4": {
+          "type": "review",
+          "settings": {
+            "review_text": "Such an elegant experience. The packaging is stunning and the product inside is pure magic for my hair.",
+            "author": "Neha M.",
+            "product_name": "Revitalizing Shampoo"
+          }
+        },
+        "review_5": {
+          "type": "review",
+          "settings": {
+            "review_text": "The travel minis are perfect! I took them on my weekend getaway and my skin has never felt better.",
+            "author": "Sarah J.",
+            "product_name": "Discovery Kit"
+          }
+        },
+        "review_6": {
+          "type": "review",
+          "settings": {
+            "review_text": "A beautiful blend of modern luxury and ancient wisdom. Every product I've tried has exceeded expectations.",
+            "author": "Tara B.",
+            "product_name": "Gift of Glow Set"
+          }
         }
       },
       "block_order": [
         "review_1",
         "review_2",
-        "review_3"
+        "review_3",
+        "review_4",
+        "review_5",
+        "review_6"
       ],
       "settings": {
         "heading": "Loved by our Community",
