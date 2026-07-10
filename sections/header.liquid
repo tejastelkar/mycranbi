@@ -333,7 +333,7 @@
     }
 
     connectedCallback() {
-      this.header = document.querySelector('.section-header');
+      this.header = this;
       this.headerIsAlwaysSticky =
         this.getAttribute('data-sticky-type') === 'always' ||
         this.getAttribute('data-sticky-type') === 'reduce-logo-size';

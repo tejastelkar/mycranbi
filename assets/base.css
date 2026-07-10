@@ -2331,9 +2331,9 @@ input[type='checkbox'] {
 }
 
 .shopify-section-header-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 4;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 4 !important;
 }
 
 .shopify-section-header-hidden {
