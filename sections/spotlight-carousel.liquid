@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
 <div class="spotlight-carousel section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
@@ -71,20 +71,22 @@
   }
 
   .spotlight-carousel__header {
-    text-align: center;
-    margin-bottom: 4rem;
+    text-align: left;
+    margin-bottom: 3rem;
   }
 
   .spotlight-carousel__heading {
     margin: 0;
-    font-weight: 400;
   }
 
   .spotlight-carousel__wrapper {
     position: relative;
     width: 100%;
-    /* Max width to contain the carousel so it doesn't stretch infinitely on ultrawide */
-    max-width: 1400px;
+    /* Narrow enough that, combined with the coverflow settings below, only
+       2 neighboring slides show on each side of center (matching the
+       reference) - the 3rd+ slide's position falls outside this width and
+       gets clipped by .spotlightSwiper's overflow:hidden. */
+    max-width: 1080px;
     margin: 0 auto;
     padding: 2rem 0 4rem 0;
   }
@@ -99,6 +101,16 @@
   .spotlightSwiper .swiper-wrapper {
     display: flex;
     box-sizing: content-box;
+  }
+
+  /* Fallback spacing only for when Swiper's JS hasn't initialized yet (or
+     fails), so slides don't render edge-to-edge with no gap. Once Swiper
+     initializes it positions every slide with its own transform, so a flex
+     `gap` here would fight that math and create dead click zones between
+     slides. */
+  .spotlightSwiper:not(.swiper-initialized) .swiper-wrapper {
+    gap: 1.5rem;
+    justify-content: center;
   }
 
   .spotlight-slide {
@@ -139,8 +151,9 @@
     display: block;
   }
 
-  /* Darken non-active slides */
-  .swiper-slide:not(.swiper-slide-active) {
+  /* Darken non-active slides (only once Swiper has actually initialized -
+     otherwise every slide would appear dark with no active slide to contrast) */
+  .swiper-initialized .swiper-slide:not(.swiper-slide-active) {
     filter: brightness(0.5);
     opacity: 0.8;
   }
@@ -165,38 +178,88 @@
   }
 
   /* Navigation styling */
-  .spotlight-nav-btn {
+  /* The theme's global `div:empty { display: none; }` reset (base.css)
+     otherwise hides these buttons entirely - Swiper leaves them empty and
+     draws the arrow glyph via ::after, so display:none on the div also
+     suppresses its pseudo-element. Two classes beats that rule's specificity
+     without needing !important. */
+  .spotlightSwiper .spotlight-nav-btn {
+    display: flex;
     color: rgba(var(--color-foreground), 1);
     background: #fff;
     width: 48px;
     height: 48px;
     border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   .spotlight-nav-btn:after {
     font-size: 1.6rem;
     font-weight: bold;
   }
 
-  .spotlight-carousel__wrapper:hover .spotlight-nav-btn {
-    opacity: 1;
+  .spotlight-nav-btn.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  /* Only fade arrows in/out on hover for pointers that actually support hover
+     (mouse/trackpad). Touch devices have no hover, so arrows must stay
+     visible there or they'd be permanently unreachable on mobile. */
+  @media (hover: hover) {
+    .spotlight-nav-btn {
+      opacity: 0;
+    }
+
+    .spotlight-carousel__wrapper:hover .spotlight-nav-btn {
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .spotlight-slide {
+      width: 190px;
+      height: 340px;
+    }
+
+    .spotlight-nav-btn {
+      width: 36px;
+      height: 36px;
+    }
+
+    .spotlight-nav-btn:after {
+      font-size: 1.1rem;
+    }
   }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  // The Swiper bundle above loads with `defer`, so it (and this script) can
+  // execute after DOMContentLoaded has already fired. Guard against that
+  // instead of relying solely on the event, or the carousel silently never
+  // initializes and falls back to a plain, unstyled row of slides.
+  function bootSpotlightSwiper() {
+    if (typeof Swiper === 'undefined') {
+      // Bundle hasn't executed yet (still loading) - wait for it.
+      window.addEventListener('load', initSpotlightSwiper, { once: true });
+      return;
+    }
     initSpotlightSwiper();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootSpotlightSwiper);
+  } else {
+    bootSpotlightSwiper();
+  }
 
   // Support for Shopify theme editor events
   document.addEventListener('shopify:section:load', function(event) {
     if (event.target.querySelector('.spotlight-carousel')) {
-      initSpotlightSwiper();
+      bootSpotlightSwiper();
     }
   });
 
@@ -209,19 +272,31 @@
       swiperContainer.swiper.destroy();
     }
 
+    // With slidesPerView: 'auto', too few slides means every slide is
+    // already visible on screen at once - there's no offscreen pool left to
+    // loop through, so Swiper's loop mode can't function (it warns and
+    // effectively breaks). Only enable it once there are enough slides to
+    // loop smoothly; otherwise fall back to a plain (non-looping) carousel.
+    const slideCount = swiperContainer.querySelectorAll('.swiper-slide').length;
+    const canLoop = slideCount >= 8;
+
     const swiper = new Swiper('.spotlightSwiper', {
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
       slidesPerView: 'auto',
-      initialSlide: 2, // Start in middle
-      loop: false, // Disabled loop for stability with few slides
+      // Infinite cycling: clicking prev/next (or a side slide) past either
+      // end wraps back around instead of stopping at the first/last slide.
+      loop: canLoop,
+      loopAdditionalSlides: 2,
       observer: true,
       observeParents: true,
       coverflowEffect: {
         rotate: 0, // No rotation, just scale and depth
-        stretch: 150, // Positive value pulls slides together to create overlap
-        depth: 250, // 3D depth to make background slides smaller
+        // Lower stretch than before - at 150 the neighboring slide covered
+        // ~65% of each side slide, leaving too little of it exposed to click.
+        stretch: 40,
+        depth: 200, // 3D depth to make background slides smaller
         modifier: 1, // Base effect multiplier
         slideShadows: true,
       },
@@ -231,7 +306,18 @@
       },
       // Essential for clicking background tabs
       slideToClickedSlide: true,
-      
+      breakpoints: {
+        // Smaller cards + less overlap on phones so every slide keeps a
+        // large-enough exposed area to be tappable, and less of the
+        // carousel spills past the viewport.
+        0: {
+          coverflowEffect: { stretch: 10, depth: 120, modifier: 1 },
+        },
+        768: {
+          coverflowEffect: { stretch: 40, depth: 200, modifier: 1 },
+        },
+      },
+
       on: {
         // Video Autoplay logic
         slideChangeTransitionEnd: function () {
@@ -356,6 +442,9 @@
     {
       "name": "Spotlight Carousel",
       "blocks": [
+        { "type": "video_card" },
+        { "type": "video_card" },
+        { "type": "video_card" },
         { "type": "video_card" },
         { "type": "video_card" },
         { "type": "video_card" },

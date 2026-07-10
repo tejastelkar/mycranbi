@@ -1,15 +1,10 @@
 <div class="hero-ingredients section-{{ section.id }}-padding" style="background-color: #FFFFFF;">
   <div class="page-width">
     {%- if section.settings.title != blank -%}
-      <div class="hero-ingredients__title-wrapper center">
+      <div class="hero-ingredients__title-wrapper" style="margin-bottom: 3rem;">
         <h2 class="hero-ingredients__title inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.title }}
         </h2>
-        {%- if section.settings.subtitle != blank -%}
-          <div class="hero-ingredients__subtitle rte">
-            {{ section.settings.subtitle }}
-          </div>
-        {%- endif -%}
       </div>
     {%- endif -%}
 
