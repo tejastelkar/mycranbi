@@ -17,44 +17,44 @@
           "settings": {
             "background": "#ffffff",
             "background_gradient": "",
-            "text": "#1A1A1A",
-            "button": "#660033",
+            "text": "#3D3935",
+            "button": "#7B2933",
             "button_label": "#FFFFFF",
-            "secondary_button_label": "#660033",
-            "shadow": "#1A1A1A"
+            "secondary_button_label": "#3D3935",
+            "shadow": "#3D3935"
           }
         },
         "scheme-2": {
           "settings": {
-            "background": "#FFF9F2",
+            "background": "#F3F3F3",
             "background_gradient": "",
-            "text": "#1A1A1A",
-            "button": "#660033",
-            "button_label": "#FFFFFF",
-            "secondary_button_label": "#660033",
-            "shadow": "#1A1A1A"
+            "text": "#121212",
+            "button": "#121212",
+            "button_label": "#F3F3F3",
+            "secondary_button_label": "#121212",
+            "shadow": "#121212"
           }
         },
         "scheme-3": {
           "settings": {
-            "background": "#D98B9B",
+            "background": "#242833",
             "background_gradient": "",
-            "text": "#1A1A1A",
-            "button": "#660033",
-            "button_label": "#FFFFFF",
-            "secondary_button_label": "#660033",
-            "shadow": "#1A1A1A"
+            "text": "#FFFFFF",
+            "button": "#FFFFFF",
+            "button_label": "#000000",
+            "secondary_button_label": "#FFFFFF",
+            "shadow": "#121212"
           }
         },
         "scheme-4": {
           "settings": {
-            "background": "#660033",
+            "background": "#121212",
             "background_gradient": "",
             "text": "#FFFFFF",
-            "button": "#D98B9B",
-            "button_label": "#1A1A1A",
+            "button": "#FFFFFF",
+            "button_label": "#121212",
             "secondary_button_label": "#FFFFFF",
-            "shadow": "#1A1A1A"
+            "shadow": "#121212"
           }
         },
         "scheme-5": {
