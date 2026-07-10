@@ -64,6 +64,12 @@
     text-align: left;
     width: 100%;
     aspect-ratio: 9/16;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform var(--dur-long) var(--ease), box-shadow var(--dur-long) var(--ease);
+  }
+
+  #shopify-section-{{ section.id }} .watch-shop__card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
   }
 
   #shopify-section-{{ section.id }} .watch-shop__card__img,
