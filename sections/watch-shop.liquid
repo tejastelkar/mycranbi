@@ -171,11 +171,15 @@
   }
 </style>
 
-<div class="watch-shop-container">
-  <div class="section-header">
-    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
-    <h2 class="section-header__title">{{ section.settings.heading }}</h2>
-    <p class="section-header__sub">{{ section.settings.subtext }}</p>
+<div class="page-width">
+  <div class="title-wrapper title-wrapper--no-top-margin" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; margin-bottom: 4rem;">
+    {%- if section.settings.eyebrow != blank -%}
+      <span style="font-size: 1.2rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(var(--color-button));">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    <h2 class="title inline-richtext h2" style="margin: 0; font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase;">{{ section.settings.heading }}</h2>
+    {%- if section.settings.subtext != blank -%}
+      <p style="margin: 0; color: rgba(var(--color-foreground), 0.75);">{{ section.settings.subtext }}</p>
+    {%- endif -%}
   </div>
 
   <div class="watch-shop__grid">
@@ -218,7 +222,7 @@
           <div class="watch-shop__card__price">
             {%- if ws_product != blank -%}From {{ ws_product.price | money }}{%- else -%}From Rs. 999{%- endif -%}
           </div>
-          <div class="watch-shop__card__shop-btn">
+          <div class="button button--secondary" style="margin-top: 1rem; width: 100%; border: none; min-height: 3.5rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; font-size: 1.3rem;">
             Shop Now
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 14px; height: 14px;"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
@@ -290,10 +294,10 @@
               {%- if ws_product != blank -%}
                 {%- form 'product', ws_product -%}
                   <input type="hidden" name="id" value="{{ ws_product.selected_or_first_available_variant.id }}">
-                  <button type="submit" class="watch-shop-modal__btn">Add to Cart</button>
+                  <button type="submit" class="button button--primary" style="width: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">Add to Cart</button>
                 {%- endform -%}
               {%- else -%}
-                <button class="watch-shop-modal__btn">Add to Cart</button>
+                <button class="button button--primary" style="width: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">Add to Cart</button>
               {%- endif -%}
 
               {%- if ws_product != blank -%}
