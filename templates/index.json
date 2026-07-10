@@ -206,7 +206,7 @@
       "block_order": [],
       "settings": {
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "small",
         "desktop_content_position": "middle-right",
         "show_text_box": false,
         "desktop_content_alignment": "left",
