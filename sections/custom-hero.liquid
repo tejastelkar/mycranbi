@@ -3,6 +3,10 @@
     <div class="custom-hero-slides">
       {%- for block in section.blocks -%}
         <div class="custom-hero-slide" id="Slide-{{ section.id }}-{{ forloop.index }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="custom-hero-link" aria-label="Go to banner link">
+          {%- endif -%}
+          
           <div class="custom-hero__image-wrapper">
             {%- if block.settings.image != blank -%}
               <img src="{{ block.settings.image | image_url: width: 2000 }}" 
@@ -27,53 +31,9 @@
             {%- endif -%}
           </div>
 
-          <div class="custom-hero__content-wrapper page-width">
-            {%- if block.settings.logo != blank -%}
-              <div class="custom-hero__logo">
-                <img src="{{ block.settings.logo | image_url: width: 150 }}" 
-                     alt="Brand Logo" 
-                     width="80" height="80">
-              </div>
-            {%- endif -%}
-
-            {%- if block.settings.subheading != blank or block.settings.heading != blank or block.settings.description != blank or block.settings.stat_1_number != blank or block.settings.stat_2_number != blank or block.settings.button_label != blank -%}
-              <div class="custom-hero__text-box">
-                {%- if block.settings.subheading != blank -%}
-                  <div class="custom-hero__subheading">{{ block.settings.subheading }}</div>
-                {%- endif -%}
-
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="custom-hero__heading">{{ block.settings.heading }}</h2>
-                {%- endif -%}
-
-                {%- if block.settings.description != blank -%}
-                  <p class="custom-hero__description">{{ block.settings.description }}</p>
-                {%- endif -%}
-
-                <div class="custom-hero__stats-grid">
-                  {%- if block.settings.stat_1_number != blank -%}
-                    <div class="custom-hero__stat">
-                      <span class="custom-hero__stat-number">{{ block.settings.stat_1_number }}</span>
-                      <span class="custom-hero__stat-text">{{ block.settings.stat_1_text }}</span>
-                    </div>
-                  {%- endif -%}
-                  
-                  {%- if block.settings.stat_2_number != blank -%}
-                    <div class="custom-hero__stat">
-                      <span class="custom-hero__stat-number">{{ block.settings.stat_2_number }}</span>
-                      <span class="custom-hero__stat-text">{{ block.settings.stat_2_text }}</span>
-                    </div>
-                  {%- endif -%}
-                </div>
-
-                {%- if block.settings.button_label != blank -%}
-                  <a href="{{ block.settings.button_link }}" class="button button--primary custom-hero__button">
-                    {{ block.settings.button_label }}
-                  </a>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
-          </div>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
@@ -126,6 +86,16 @@
   overflow: hidden;
 }
 
+.custom-hero-link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
 .custom-hero__image-wrapper {
   position: absolute;
   top: 0;
@@ -144,90 +114,6 @@
 
 .desktop-only { display: block; }
 .mobile-only { display: none; }
-
-.custom-hero__content-wrapper {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Right aligned text */
-}
-
-.custom-hero__logo {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-}
-
-.custom-hero__logo img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-}
-
-.custom-hero__text-box {
-  width: 100%;
-  max-width: 480px;
-  color: #fff; /* White text on dark background */
-  padding: 40px 0;
-}
-
-.custom-hero__subheading {
-  font-family: var(--font-body-family);
-  font-size: 1.2rem;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.custom-hero__heading {
-  font-family: var(--font-heading-family);
-  font-size: 6rem;
-  line-height: 1.1;
-  font-weight: 400;
-  margin: 0 0 1.5rem 0;
-  color: #fff;
-}
-
-.custom-hero__description {
-  font-family: var(--font-heading-family);
-  font-size: 2.8rem;
-  line-height: 1.2;
-  font-weight: 400;
-  margin: 0 0 3rem 0;
-}
-
-.custom-hero__stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-
-.custom-hero__stat {
-  display: flex;
-  flex-direction: column;
-}
-
-.custom-hero__stat-number {
-  font-family: var(--font-heading-family);
-  font-size: 5rem;
-  line-height: 1;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-.custom-hero__stat-text {
-  font-family: var(--font-heading-family);
-  font-size: 2rem;
-  line-height: 1.2;
-}
-
-.custom-hero__button {
-  margin-top: 1rem;
-}
 
 .custom-hero-dots {
   position: absolute;
@@ -270,45 +156,6 @@
     position: relative;
     height: 60vh;
     min-height: 400px;
-  }
-  
-  .custom-hero__content-wrapper {
-    min-height: unset;
-    padding-top: 0;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .custom-hero__logo {
-    position: relative;
-    top: auto;
-    left: auto;
-    margin: -80px auto 20px auto;
-    z-index: 10;
-  }
-  
-  .custom-hero__text-box {
-    background-color: #2D4C3A;
-    padding: 40px 20px;
-    text-align: center;
-    max-width: 100%;
-  }
-  
-  .custom-hero__heading {
-    font-size: 4rem;
-  }
-  
-  .custom-hero__description {
-    font-size: 2.2rem;
-  }
-  
-  .custom-hero__stat-number {
-    font-size: 4rem;
-  }
-  
-  .custom-hero-dots {
-    bottom: unset;
-    top: 55vh; /* Just below image on mobile before text */
   }
 }
 </style>
@@ -367,62 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
           "label": "Mobile Image"
         },
         {
-          "type": "image_picker",
-          "id": "logo",
-          "label": "Floating Logo"
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "default": "NEW",
-          "label": "Subheading"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "default": "bringaras",
-          "label": "Heading"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "default": "Regenerating Haircare Ritual",
-          "label": "Description"
-        },
-        {
-          "type": "text",
-          "id": "stat_1_number",
-          "default": "92%",
-          "label": "Stat 1 Number"
-        },
-        {
-          "type": "text",
-          "id": "stat_1_text",
-          "default": "Repaired fibre",
-          "label": "Stat 1 Text"
-        },
-        {
-          "type": "text",
-          "id": "stat_2_number",
-          "default": "84%",
-          "label": "Stat 2 Number"
-        },
-        {
-          "type": "text",
-          "id": "stat_2_text",
-          "default": "Stronger hair",
-          "label": "Stat 2 Text"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "default": "SHOP NOW",
-          "label": "Button Label"
-        },
-        {
           "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
+          "id": "link",
+          "label": "Banner Link"
         }
       ]
     }
