@@ -174,199 +174,201 @@
     "faq": {
       "type": "product-faq",
       "blocks": {
-        "faq_7db72ef8": {
+        "faq_c18613d8": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "WHAT MAKES IT SPECIAL?",
-            "answer": "<p>This is a premium handcrafted product made with the finest natural ingredients to nourish your skin.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "WHAT IS MYCRANBI?",
+            "answer": "<p>MyCranbi is a premium personal care brand focused on clean, effective, and sustainable skincare and haircare solutions.</p>"
           }
         },
-        "faq_4b06a3e3": {
+        "faq_c39bddfb": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "WHAT IS THE KEY INGREDIENT?",
-            "answer": "<p>We use nourishing elements like Ceramide Complex, Panthenol, and Hyaluronic Acid to repair your skin barrier.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "ARE YOUR PRODUCTS CRUELTY-FREE?",
+            "answer": "<p>Yes! We absolutely love animals. None of our products or raw ingredients are ever tested on animals.</p>"
           }
         },
-        "faq_1013593a": {
+        "faq_82517578": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "IS IT SUITABLE FOR SENSITIVE SKIN?",
-            "answer": "<p>Yes, our formulations are incredibly gentle, toxin-free, and designed specifically to soothe and protect sensitive skin.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "WHERE ARE YOUR PRODUCTS MADE?",
+            "answer": "<p>All our products are thoughtfully formulated and proudly manufactured locally with strict quality control.</p>"
           }
         },
-        "faq_f95acdfc": {
+        "faq_659339ae": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "DOES IT CONTAIN TOXINS?",
-            "answer": "<p>No, we are strictly toxin-free. Our products contain no parabens, sulfates, or harsh chemicals.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "ARE YOUR PRODUCTS SUITABLE FOR SENSITIVE SKIN?",
+            "answer": "<p>Yes, our formulations are designed to be extremely gentle, toxin-free, and effective for most skin and hair types, including sensitive profiles.</p>"
           }
         },
-        "faq_961677c2": {
+        "faq_69ed05cf": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "HOW LONG DOES A BOTTLE LAST?",
-            "answer": "<p>Depending on your daily usage, a single bottle typically lasts between 1 to 2 months.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "DO YOU OFFER SAMPLES?",
+            "answer": "<p>While we don't currently sell sample sizes, we occasionally include complimentary minis with larger orders!</p>"
           }
         },
-        "faq_37fbb998": {
+        "faq_18ed0fd5": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "IS IT CRUELTY-FREE?",
-            "answer": "<p>Absolutely! We love animals and guarantee that none of our products or ingredients are tested on animals.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "HOW CAN I CONTACT CUSTOMER SUPPORT?",
+            "answer": "<p>You can reach out to us via the Contact page or directly email us at service@mycranbi.com.</p>"
           }
         },
-        "faq_b3605c28": {
+        "faq_2bb09516": {
           "type": "faq_item",
           "settings": {
-            "category": "ABOUT THE BAR",
-            "question": "WHERE IS IT MANUFACTURED?",
-            "answer": "<p>Our products are thoughtfully crafted and manufactured with the highest quality standards.</p>"
+            "category": "ABOUT MYCRANBI",
+            "question": "CAN I FIND MYCRANBI IN STORES?",
+            "answer": "<p>Currently, we are exclusively direct-to-consumer online to ensure the best prices and freshest products for you.</p>"
           }
         },
-        "faq_2d94b8c5": {
+        "faq_240c4d3c": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "HOW DO I USE IT?",
-            "answer": "<p>Apply generously to clean, dry skin. Massage gently in circular motions until fully absorbed.</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "HOW LONG DOES SHIPPING TAKE?",
+            "answer": "<p>Orders are typically processed within 1-2 business days. Delivery usually takes 3-5 business days depending on your location.</p>"
           }
         },
-        "faq_e5d17fd9": {
+        "faq_df12f87a": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "CAN I USE IT DAILY?",
-            "answer": "<p>Yes, it is perfectly safe and highly recommended for daily use to maintain optimal hydration.</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "DO YOU OFFER FREE SHIPPING?",
+            "answer": "<p>Yes, we offer free shipping on all orders over \u20b9999.</p>"
           }
         },
-        "faq_c42cbc7c": {
+        "faq_52bd2707": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "HOW MUCH SHOULD I APPLY?",
-            "answer": "<p>A small coin-sized amount is usually enough for each section of your body. A little goes a long way!</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "HOW CAN I TRACK MY ORDER?",
+            "answer": "<p>Once your order ships, you will receive a tracking link via email and SMS to follow its journey.</p>"
           }
         },
-        "faq_a65a82b7": {
+        "faq_cb397c49": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "DOES IT LEAVE A GREASY RESIDUE?",
-            "answer": "<p>Not at all. Our lightweight formula absorbs quickly into the skin leaving a soft, non-greasy finish.</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "WHAT IS YOUR RETURN POLICY?",
+            "answer": "<p>We accept returns on unused, unopened products within 7 days of delivery. Please contact support to initiate a return.</p>"
           }
         },
-        "faq_611fe36b": {
+        "faq_61d7cac1": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "CAN I USE IT ON MY FACE?",
-            "answer": "<p>While it is primarily formulated for the body, its clean ingredients make it gentle enough for facial use as well.</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "MY PRODUCT ARRIVED DAMAGED. WHAT DO I DO?",
+            "answer": "<p>We apologize for the inconvenience! Please email us a photo of the damaged item within 48 hours, and we will send a replacement immediately.</p>"
           }
         },
-        "faq_62433f16": {
+        "faq_514315ce": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "WHEN IS THE BEST TIME TO APPLY?",
-            "answer": "<p>For best results, apply immediately after showering while your skin is still slightly damp to lock in moisture.</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "CAN I CANCEL OR CHANGE MY ORDER?",
+            "answer": "<p>If your order hasn't shipped yet, we can usually accommodate changes or cancellations. Reach out to us ASAP!</p>"
           }
         },
-        "faq_4045cce3": {
+        "faq_d82ab1de": {
           "type": "faq_item",
           "settings": {
-            "category": "USING IT",
-            "question": "HOW SHOULD I STORE IT?",
-            "answer": "<p>Store in a cool, dry place away from direct sunlight to preserve the integrity of the natural ingredients.</p>"
+            "category": "SHIPPING & RETURNS",
+            "question": "DO YOU SHIP INTERNATIONALLY?",
+            "answer": "<p>Currently, we ship exclusively within India, but we hope to expand internationally soon!</p>"
           }
         },
-        "faq_7e61074e": {
+        "faq_45779aed": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "IS THE PACKAGING ZERO WASTE?",
-            "answer": "<p>Yes, all our packaging is 100% biodegradable and completely plastic-free.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "ARE YOUR PRODUCTS TOXIN-FREE?",
+            "answer": "<p>Absolutely. We say no to parabens, sulfates, phthalates, and other harsh chemicals.</p>"
           }
         },
-        "faq_be433666": {
+        "faq_1515fe71": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "CAN I RECYCLE THE BOTTLE?",
-            "answer": "<p>Yes, the materials are fully recyclable. Please check your local recycling guidelines for proper disposal.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "WHAT DOES 'CLEAN & EFFECTIVE' MEAN?",
+            "answer": "<p>It means we use safe, non-toxic ingredients (both natural and scientifically proven synthetic ones) that deliver visible results without harming your body.</p>"
           }
         },
-        "faq_909a8f7f": {
+        "faq_10c041c9": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "DO YOU OFFER GIFT WRAPPING?",
-            "answer": "<p>We offer beautiful, eco-friendly gift wrapping options at checkout for that perfect present.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "IS YOUR PACKAGING ECO-FRIENDLY?",
+            "answer": "<p>Sustainability is at our core. We strive to use recyclable materials and minimize plastic across our entire product line.</p>"
           }
         },
-        "faq_cc9c803f": {
+        "faq_97b41a51": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "CAN I SEND THIS DIRECTLY TO A FRIEND?",
-            "answer": "<p>Yes, simply enter their shipping address at checkout. We won't include the price invoice in the box.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "ARE YOUR FORMULAS VEGAN?",
+            "answer": "<p>The majority of our products are 100% vegan. Please check individual product pages for specific ingredient lists.</p>"
           }
         },
-        "faq_9252092a": {
+        "faq_83c47d79": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "ARE YOUR INGREDIENTS SUSTAINABLY SOURCED?",
-            "answer": "<p>We prioritize sustainable and ethical sourcing for all our raw materials to minimize environmental impact.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "DO YOUR PRODUCTS HAVE ARTIFICIAL FRAGRANCES?",
+            "answer": "<p>We use minimal, allergen-free fragrances or natural essential oils to create a pleasant experience without irritating sensitive skin.</p>"
           }
         },
-        "faq_c8346f0e": {
+        "faq_71a6e0ea": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "WHAT IS YOUR CARBON FOOTPRINT?",
-            "answer": "<p>We are committed to reducing our footprint and actively offset our carbon emissions for every delivery.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "WHAT IS YOUR STAND ON PALM OIL?",
+            "answer": "<p>We avoid palm oil wherever possible. If used, we strictly ensure it is RSPO-certified sustainable.</p>"
           }
         },
-        "faq_9b8f8f11": {
+        "faq_dbf04f32": {
           "type": "faq_item",
           "settings": {
-            "category": "ZERO WASTE PLANET & GIFTING",
-            "question": "CAN I BUY IN BULK FOR EVENTS?",
-            "answer": "<p>Yes! We cater to bulk orders for corporate events, weddings, and parties. Please contact us for details.</p>"
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "HOW LONG DO YOUR PRODUCTS LAST AFTER OPENING?",
+            "answer": "<p>Most of our products have a shelf life of 12-24 months unopened, and 6-12 months after opening. Look for the open-jar symbol on the packaging!</p>"
           }
         }
       },
       "block_order": [
-        "faq_7db72ef8",
-        "faq_4b06a3e3",
-        "faq_1013593a",
-        "faq_f95acdfc",
-        "faq_961677c2",
-        "faq_37fbb998",
-        "faq_b3605c28",
-        "faq_2d94b8c5",
-        "faq_e5d17fd9",
-        "faq_c42cbc7c",
-        "faq_a65a82b7",
-        "faq_611fe36b",
-        "faq_62433f16",
-        "faq_4045cce3",
-        "faq_7e61074e",
-        "faq_be433666",
-        "faq_909a8f7f",
-        "faq_cc9c803f",
-        "faq_9252092a",
-        "faq_c8346f0e",
-        "faq_9b8f8f11"
+        "faq_c18613d8",
+        "faq_c39bddfb",
+        "faq_82517578",
+        "faq_659339ae",
+        "faq_69ed05cf",
+        "faq_18ed0fd5",
+        "faq_2bb09516",
+        "faq_240c4d3c",
+        "faq_df12f87a",
+        "faq_52bd2707",
+        "faq_cb397c49",
+        "faq_61d7cac1",
+        "faq_514315ce",
+        "faq_d82ab1de",
+        "faq_45779aed",
+        "faq_1515fe71",
+        "faq_10c041c9",
+        "faq_97b41a51",
+        "faq_83c47d79",
+        "faq_71a6e0ea",
+        "faq_dbf04f32"
       ],
-      "settings": {}
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
     },
     "reviews": {
       "type": "reviews",
