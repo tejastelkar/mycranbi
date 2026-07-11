@@ -1,0 +1,258 @@
+<style>
+  .sticky-add-to-cart {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+    z-index: 999;
+    transition: bottom 0.3s ease-in-out;
+    padding: 10px 0;
+  }
+  
+  .sticky-add-to-cart.is-visible {
+    bottom: 0;
+  }
+
+  .sticky-atc-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 5%;
+    margin: 0 auto;
+  }
+
+  .sticky-atc-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .sticky-atc-image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #eee;
+  }
+
+  .sticky-atc-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sticky-atc-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+
+  .sticky-atc-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+  }
+
+  .sticky-atc-price .compare-price {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  .sticky-atc-price .regular-price {
+    font-weight: 500;
+    color: #000;
+  }
+
+  .sticky-atc-price .sale-badge {
+    background: #000;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .sticky-atc-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sticky-atc-quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 44px;
+  }
+
+  .sticky-atc-qty-btn {
+    background: none;
+    border: none;
+    width: 35px;
+    height: 100%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sticky-atc-qty-input {
+    width: 40px;
+    height: 100%;
+    text-align: center;
+    border: none;
+    font-size: 1.4rem;
+    -moz-appearance: textfield;
+  }
+  
+  .sticky-atc-qty-input::-webkit-outer-spin-button,
+  .sticky-atc-qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .sticky-atc-button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 0 40px;
+    height: 44px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background 0.2s ease;
+  }
+
+  .sticky-atc-button:hover {
+    background: #333;
+  }
+
+  @media screen and (max-width: 749px) {
+    .sticky-atc-left {
+      display: none;
+    }
+    .sticky-atc-right {
+      width: 100%;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .sticky-atc-button {
+      flex-grow: 1;
+      padding: 0 20px;
+    }
+  }
+</style>
+
+<div class="sticky-add-to-cart" id="StickyAddToCart">
+  <div class="sticky-atc-container">
+    <div class="sticky-atc-left">
+      {%- if product.featured_media -%}
+        <div class="sticky-atc-image">
+          <img src="{{ product.featured_media | image_url: width: 100 }}" alt="{{ product.title | escape }}" width="50" height="50" loading="lazy">
+        </div>
+      {%- endif -%}
+      <div class="sticky-atc-details">
+        <h3 class="sticky-atc-title">{{ product.title }}</h3>
+        <div class="sticky-atc-price">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="compare-price">{{ product.compare_at_price | money }}</span>
+            <span class="regular-price">{{ product.price | money }}</span>
+            <span class="sale-badge">SALE</span>
+          {%- else -%}
+            <span class="regular-price">{{ product.price | money }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="sticky-atc-right">
+      <div class="sticky-atc-quantity">
+        <button type="button" class="sticky-atc-qty-btn" id="StickyQtyMinus">&minus;</button>
+        <input type="number" class="sticky-atc-qty-input" id="StickyQtyInput" value="1" min="1">
+        <button type="button" class="sticky-atc-qty-btn" id="StickyQtyPlus">+</button>
+      </div>
+      <button type="button" class="sticky-atc-button" id="StickyAddToCartBtn">
+        {%- if product.selected_or_first_available_variant.available -%}
+          ADD TO CART
+        {%- else -%}
+          SOLD OUT
+        {%- endif -%}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const stickyBar = document.getElementById('StickyAddToCart');
+    const mainAddToCart = document.querySelector('.product-form__submit');
+    const stickyBtn = document.getElementById('StickyAddToCartBtn');
+    const stickyMinus = document.getElementById('StickyQtyMinus');
+    const stickyPlus = document.getElementById('StickyQtyPlus');
+    const stickyInput = document.getElementById('StickyQtyInput');
+    const mainQtyInput = document.querySelector('.quantity__input');
+
+    if (!stickyBar || !mainAddToCart || !stickyBtn) return;
+
+    // Intersection Observer to show/hide sticky bar
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          // Main button has scrolled past the top of the screen
+          stickyBar.classList.add('is-visible');
+        } else {
+          stickyBar.classList.remove('is-visible');
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0,
+      rootMargin: "0px"
+    });
+
+    observer.observe(mainAddToCart);
+
+    // Sync quantities
+    stickyMinus.addEventListener('click', () => {
+      let currentVal = parseInt(stickyInput.value);
+      if (currentVal > 1) {
+        stickyInput.value = currentVal - 1;
+        if(mainQtyInput) mainQtyInput.value = currentVal - 1;
+      }
+    });
+
+    stickyPlus.addEventListener('click', () => {
+      let currentVal = parseInt(stickyInput.value);
+      stickyInput.value = currentVal + 1;
+      if(mainQtyInput) mainQtyInput.value = currentVal + 1;
+    });
+
+    stickyInput.addEventListener('change', () => {
+      let currentVal = parseInt(stickyInput.value);
+      if (currentVal < 1 || isNaN(currentVal)) {
+        stickyInput.value = 1;
+        currentVal = 1;
+      }
+      if(mainQtyInput) mainQtyInput.value = currentVal;
+    });
+
+    // Handle add to cart click
+    stickyBtn.addEventListener('click', () => {
+      // Sync quantity one last time just in case
+      if(mainQtyInput) mainQtyInput.value = stickyInput.value;
+      
+      // Click the main add to cart button to trigger standard theme behavior (drawer/toast)
+      mainAddToCart.click();
+    });
+  });
+</script>
