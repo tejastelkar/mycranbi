@@ -1801,3 +1801,37 @@ product-form .product-form__buttons .button {
   margin-bottom: 0 !important;
   display: none !important;
 }
+
+/* ── Cranbi: Dynamic checkout (Buy It Now) button styling ── */
+.cranbi-buynow-wrap .shopify-payment-button {
+  margin-bottom: 20px;
+}
+.cranbi-buynow-wrap .shopify-payment-button__button {
+  border-radius: 50px !important;
+  min-height: 5rem !important;
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+.cranbi-buynow-wrap .shopify-payment-button__button--unbranded {
+  background: #5c0f2b !important;
+}
+
+/* ── Remove the Shopify theme's own quantity block when our snippet is active ── */
+.product-form-wrapper .product__info-container .product-form__quantity {
+  display: none !important;
+}
+
+/* ── Full width fix for cranbi form ── */
+.product-form-wrapper .product-form,
+.product-form-wrapper .product-form .form,
+.product-form-wrapper .cranbi-buy-wrap,
+.product-form-wrapper product-form {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.product-form-wrapper .cranbi-buy-now-btn {
+  width: 100% !important;
+}

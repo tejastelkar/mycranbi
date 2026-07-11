@@ -11,17 +11,20 @@
   }
 
   .marquee-wrapper-{{ section.id }} {
+    margin-top: 4rem;
     background-color: {{ section.settings.bg_color }};
     overflow: hidden;
     position: relative;
     display: flex;
     white-space: nowrap;
     width: 100%;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
   }
 
   .marquee-track-{{ section.id }} {
     display: flex;
-    animation: marquee-scroll-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+    width: max-content;
   }
 
   .marquee-content-{{ section.id }} {
@@ -29,24 +32,27 @@
     align-items: center;
     gap: 2rem;
     padding-right: 2rem;
+    animation: marquee-scroll-{{ section.id }} {{ section.settings.speed }}s linear infinite;
   }
 
   .marquee-item-{{ section.id }} {
     color: {{ section.settings.text_color }};
     font-size: {{ section.settings.font_size }}px;
-    font-weight: 400;
-    letter-spacing: 0.05em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     display: flex;
     align-items: center;
     gap: 2rem;
   }
 
   .marquee-dot-{{ section.id }} {
-    height: 5px;
-    width: 5px;
+    height: 4px;
+    width: 4px;
     border-radius: 50%;
     background-color: {{ section.settings.text_color }};
     display: inline-block;
+    opacity: 0.5;
   }
 
   @keyframes marquee-scroll-{{ section.id }} {
@@ -56,7 +62,7 @@
 
   /* Pause on hover */
   {% if section.settings.pause_on_hover %}
-  .marquee-wrapper-{{ section.id }}:hover .marquee-track-{{ section.id }} {
+  .marquee-wrapper-{{ section.id }}:hover .marquee-content-{{ section.id }} {
     animation-play-state: paused;
   }
   {% endif %}

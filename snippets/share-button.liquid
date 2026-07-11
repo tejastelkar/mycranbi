@@ -1,53 +1,110 @@
 {% comment %}
-  Renders share button.
+  Renders custom social share buttons (Facebook, WhatsApp, Email, Copy Link).
   Accepts:
-  - block: {Object} passes in the block information.
-  - share_link: {String} url to be added to the input the user will get/copy.
-
-  Usage:
-  {% render 'share-button',
-    block: block,
-    share_link: share_url
-  %}
+  - share_link: {String} url to be shared.
 {% endcomment %}
-<script src="{{ 'share.js' | asset_url }}" defer="defer"></script>
 
-<share-button id="Share-{{ section.id }}" class="share-button quick-add-hidden" {{ block.shopify_attributes }}>
-  <button class="share-button__button hidden">
-    <span class="svg-wrapper">{{ 'icon-share.svg' | inline_asset_content }}</span>
-    {{ block.settings.share_label | escape }}
+{% assign share_url_encoded = share_link | url_encode %}
+{% assign share_title_encoded = product.title | url_encode %}
+
+<style>
+  .cranbi-share-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .cranbi-share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 1.5px solid #4a4a4a;
+    border-radius: 50%;
+    color: #4a4a4a;
+    background: transparent;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+  }
+  .cranbi-share-btn:hover {
+    background: #4a4a4a;
+    color: #fff;
+    border-color: #4a4a4a;
+  }
+  .cranbi-share-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 0;
+  }
+  .cranbi-share-btn.outline-icon svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  /* Tooltip for copy link */
+  .cranbi-share-copied {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .cranbi-share-copied.show {
+    opacity: 1;
+  }
+</style>
+
+<div class="cranbi-share-icons" {{ block.shopify_attributes }}>
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/sharer.php?u={{ share_url_encoded }}" target="_blank" rel="noopener noreferrer" class="cranbi-share-btn" aria-label="Share on Facebook">
+    <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+  </a>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/?text={{ share_url_encoded }}" target="_blank" rel="noopener noreferrer" class="cranbi-share-btn" aria-label="Share on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+
+  <!-- Email -->
+  <a href="mailto:?subject={{ share_title_encoded }}&body={{ share_url_encoded }}" class="cranbi-share-btn" aria-label="Share via Email">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
+
+  <!-- Copy Link -->
+  <button type="button" class="cranbi-share-btn outline-icon" aria-label="Copy Link" onclick="copyShareLink('{{ share_link }}', this)">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path>
+      <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path>
+    </svg>
+    <span class="cranbi-share-copied">Copied!</span>
   </button>
-  <details id="Details-{{ block.id }}-{{ section.id }}">
-    <summary class="share-button__button">
-      <span class="svg-wrapper">{{ 'icon-share.svg' | inline_asset_content }}</span>
-      {{ block.settings.share_label | escape }}
-    </summary>
-    <div class="share-button__fallback motion-reduce">
-      <div class="field">
-        <span id="ShareMessage-{{ section.id }}" class="share-button__message hidden" role="status"> </span>
-        <input
-          type="text"
-          class="field__input"
-          id="ShareUrl-{{ section.id }}"
-          value="{{ share_link }}"
-          placeholder="{{ 'general.share.share_url' | t }}"
-          onclick="this.select();"
-          readonly
-        >
-        <label class="field__label" for="ShareUrl-{{ section.id }}">{{ 'general.share.share_url' | t }}</label>
-      </div>
-      <button class="share-button__close hidden">
-        <span class="svg-wrapper">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </span>
-        <span class="visually-hidden">{{ 'general.share.close' | t }}</span>
-      </button>
-      <button class="share-button__copy">
-        <span class="svg-wrapper">
-          {{- 'icon-copy.svg' | inline_asset_content -}}
-        </span>
-        <span class="visually-hidden">{{ 'general.share.copy_to_clipboard' | t }}</span>
-      </button>
-    </div>
-  </details>
-</share-button>
+</div>
+
+<script>
+  function copyShareLink(url, btnElement) {
+    navigator.clipboard.writeText(url).then(() => {
+      const tooltip = btnElement.querySelector('.cranbi-share-copied');
+      tooltip.classList.add('show');
+      setTimeout(() => {
+        tooltip.classList.remove('show');
+      }, 2000);
+    });
+  }
+</script>

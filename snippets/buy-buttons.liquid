@@ -10,6 +10,209 @@
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% endcomment %}
+
+<style>
+  /* ── Buy-buttons layout ─────────────────────────── */
+  .cranbi-buy-wrap {
+    width: 100%;
+  }
+
+  /* Row 1: Quantity + ATC */
+  .cranbi-atc-row {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  /* Quantity stepper */
+  .cranbi-qty {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #5c0f2b;
+    border-radius: 50px;
+    overflow: hidden;
+    flex-shrink: 0;
+    min-width: 120px;
+    height: 5rem;
+    max-height: 5rem;
+    box-sizing: border-box;
+  }
+  .cranbi-qty__btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 14px;
+    font-size: 1.8rem;
+    color: #5c0f2b;
+    line-height: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .cranbi-qty__btn:hover { background: rgba(92,15,43,0.07); }
+  .cranbi-qty__input {
+    border: none;
+    background: none;
+    text-align: center;
+    width: 40px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    -moz-appearance: textfield;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .cranbi-qty__input::-webkit-outer-spin-button,
+  .cranbi-qty__input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  /* ATC button */
+  .cranbi-atc-btn {
+    flex: 1;
+    height: 5rem;
+    max-height: 5rem;
+    box-sizing: border-box;
+    border: 1.5px solid #5c0f2b;
+    background: transparent;
+    color: #5c0f2b;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 0 18px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cranbi-atc-btn:hover {
+    background: rgba(92,15,43,0.06);
+  }
+  .cranbi-atc-btn .cranbi-atc-price {
+    font-size: 1.3rem;
+    opacity: 0.8;
+  }
+  .cranbi-atc-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .cranbi-atc-btn .loading-overlay__spinner {
+    display: none;
+  }
+  .cranbi-atc-btn.loading .cranbi-atc-btn-text { display: none; }
+  .cranbi-atc-btn.loading .loading-overlay__spinner { display: block; }
+
+  /* Buy Now button */
+  .cranbi-buy-now-btn {
+    display: block;
+    width: 100%;
+    height: 5rem;
+    max-height: 5rem;
+    background: #5c0f2b;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    transition: background 0.2s, transform 0.15s;
+    text-align: center;
+    text-decoration: none;
+    line-height: 5rem;
+    box-sizing: border-box;
+  }
+  .cranbi-buy-now-btn:hover {
+    background: #741133;
+    transform: translateY(-1px);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Guaranteed checkout box */
+  .cranbi-secure-checkout {
+    border: 1px solid #e8ddd5;
+    border-radius: 10px;
+    padding: 14px 16px 12px;
+    position: relative;
+    margin-top: 8px;
+  }
+  .cranbi-secure-checkout__title {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 0 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #5c0f2b;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cranbi-secure-checkout__title svg {
+    width: 13px;
+    height: 13px;
+    fill: #5c0f2b;
+  }
+  .cranbi-payment-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-top: 4px;
+  }
+  .cranbi-payment-logos img,
+  .cranbi-payment-logos svg {
+    height: 24px;
+    width: auto;
+  }
+  .cranbi-logo-item svg {
+    display: block;
+  }
+  .cranbi-payment-logos img {
+    object-fit: contain;
+    filter: none;
+  }
+  .cranbi-payment-logos .cranbi-logo-rupay svg {
+    height: 28px !important;
+    transform: scale(1.1);
+  }
+
+  /* Mobile responsive */
+  @media screen and (max-width: 749px) {
+    .cranbi-atc-row { gap: 8px; }
+    .cranbi-qty { min-width: 105px; }
+    .cranbi-atc-btn { font-size: 1.3rem; padding: 0 12px; }
+    .cranbi-buy-now-btn { font-size: 1.3rem; }
+    .cranbi-payment-logos img { height: 18px; }
+    .cranbi-payment-logos { gap: 10px; }
+    .cranbi-secure-checkout__title { font-size: 0.95rem; }
+  }
+
+  @media screen and (max-width: 400px) {
+    .cranbi-atc-row { flex-wrap: wrap; }
+    .cranbi-qty { min-width: unset; width: 100%; justify-content: center; height: 4.5rem; }
+    .cranbi-atc-btn { width: 100%; height: 4.5rem; }
+    .cranbi-buy-now-btn { height: 4.5rem; }
+  }
+</style>
+
 <div {{ block.shopify_attributes }}>
   {%- if product != blank -%}
     {%- liquid
@@ -22,90 +225,232 @@
       if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
       endif
+
+      assign current_price = product.selected_or_first_available_variant.price | money
     -%}
 
-    <product-form
-      class="product-form"
-      data-hide-errors="{{ gift_card_recipient_feature_active }}"
-      data-section-id="{{ section.id }}"
-    >
-      <div class="product-form__error-message-wrapper" role="alert" hidden>
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        <span class="product-form__error-message"></span>
+    <style>
+      .cranbi-social-proof {
+        background: #fcf9f5;
+        border: 1px solid #e8ddd5;
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      }
+      .cranbi-social-proof__item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.3rem;
+        color: #4a4a4a;
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+      }
+      .cranbi-social-proof__item:not(:last-child) {
+        border-bottom: 1px solid rgba(232, 221, 213, 0.6);
+        padding-bottom: 12px;
+      }
+      .cranbi-social-proof__item strong {
+        color: #5c0f2b;
+        font-weight: 700;
+        font-size: 1.35rem;
+      }
+      .cranbi-icon-wrapper {
+        width: 28px;
+        height: 28px;
+        background: rgba(92, 15, 43, 0.06);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .cranbi-icon-wrapper svg {
+        width: 15px;
+        height: 15px;
+        stroke: #5c0f2b;
+      }
+      @keyframes pulseFire {
+        0% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.15); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.8; }
+      }
+      .cranbi-icon-fire {
+        animation: pulseFire 2s infinite ease-in-out;
+      }
+      @keyframes blinkEye {
+        0%, 96%, 100% { transform: scaleY(1); }
+        98% { transform: scaleY(0.1); }
+      }
+      .cranbi-icon-eye {
+        animation: blinkEye 4s infinite;
+        transform-origin: center;
+      }
+    </style>
+
+    <div class="cranbi-social-proof">
+      <div class="cranbi-social-proof__item">
+        <div class="cranbi-icon-wrapper">
+          <svg class="cranbi-icon-eye" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <span><strong>15+</strong> people are watching this product</span>
       </div>
+      <div class="cranbi-social-proof__item">
+        <div class="cranbi-icon-wrapper">
+          <svg class="cranbi-icon-fire" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 002.5 2.5z"></path>
+          </svg>
+        </div>
+        <span><strong>100+</strong> products sold in last 10 days</span>
+      </div>
+    </div>
 
-      {%- form 'product',
-        product,
-        id: product_form_id,
-        class: 'form',
-        novalidate: 'novalidate',
-        data-type: 'add-to-cart-form'
-      -%}
-        <input
-          type="hidden"
-          name="id"
-          value="{{ product.selected_or_first_available_variant.id }}"
-          {% if product.selected_or_first_available_variant.available == false
-            or quantity_rule_soldout
-            or product.selected_or_first_available_variant == null
-          %}
-            disabled
-          {% endif %}
-          class="product-variant-id"
-        >
+    <div class="cranbi-buy-wrap">
+      <product-form
+        class="product-form"
+        data-hide-errors="{{ gift_card_recipient_feature_active }}"
+        data-section-id="{{ section.id }}"
+      >
+        <div class="product-form__error-message-wrapper" role="alert" hidden>
+          <span class="svg-wrapper">
+            {{- 'icon-error.svg' | inline_asset_content -}}
+          </span>
+          <span class="product-form__error-message"></span>
+        </div>
 
-        {%- if gift_card_recipient_feature_active -%}
-          {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
-        {%- endif -%}
-
-        <div class="product-form__buttons">
-          {%- liquid
-            assign check_against_inventory = true
-            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-              assign check_against_inventory = false
-            endif
-            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-              assign quantity_rule_soldout = true
-            endif
-          -%}
-          <button
-            id="ProductSubmitButton-{{ section_id }}"
-            type="submit"
-            name="add"
-            class="product-form__submit button button--full-width button--primary"
+        {%- form 'product',
+          product,
+          id: product_form_id,
+          class: 'form',
+          novalidate: 'novalidate',
+          data-type: 'add-to-cart-form'
+        -%}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
             %}
               disabled
             {% endif %}
+            class="product-variant-id"
           >
-            <span>
-              {%- if product.selected_or_first_available_variant == null -%}
-                {{ 'products.product.unavailable' | t }}
-              {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
-              {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
-              {%- endif -%}
-            </span>
-            {%- render 'loading-spinner' -%}
-          </button>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
+
+          {%- if gift_card_recipient_feature_active -%}
+            {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
           {%- endif -%}
+
+          <!-- Row 1: Quantity stepper + ATC button -->
+          <div class="cranbi-atc-row">
+            <div class="cranbi-qty">
+              <button type="button" class="cranbi-qty__btn cranbi-qty__minus" aria-label="Decrease quantity">−</button>
+              <input
+                class="cranbi-qty__input"
+                type="number"
+                name="quantity"
+                id="Quantity-{{ section.id }}"
+                min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+                value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                aria-label="{{ 'products.product.quantity.input_label' | t: product: product.title | escape }}"
+              >
+              <button type="button" class="cranbi-qty__btn cranbi-qty__plus" aria-label="Increase quantity">+</button>
+            </div>
+
+            <div class="product-form__buttons" style="flex:1;display:flex;">
+              {%- liquid
+                assign check_against_inventory = true
+                if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
+                  assign check_against_inventory = false
+                endif
+                if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
+                  assign quantity_rule_soldout = true
+                endif
+              -%}
+              <button
+                id="ProductSubmitButton-{{ section_id }}"
+                type="submit"
+                name="add"
+                class="cranbi-atc-btn product-form__submit"
+                {% if product.selected_or_first_available_variant.available == false
+                  or quantity_rule_soldout
+                  or product.selected_or_first_available_variant == null
+                %}
+                  disabled
+                {% endif %}
+              >
+                <span class="cranbi-atc-btn-text">
+                  {%- if product.selected_or_first_available_variant == null -%}
+                    {{ 'products.product.unavailable' | t }}
+                  {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                    {{ 'products.product.sold_out' | t }}
+                  {%- else -%}
+                    Add to Cart &nbsp;·&nbsp; <span class="cranbi-atc-price">{{ current_price }}</span>
+                  {%- endif -%}
+                </span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            </div>
+          </div>
+
+          <!-- Row 2: Buy It Now (dynamic checkout) -->
+          {%- if show_dynamic_checkout -%}
+            <div class="cranbi-buynow-wrap">
+              {{ form | payment_button }}
+            </div>
+          {%- else -%}
+            <!-- Fallback Buy Now button that goes to checkout -->
+            <a
+              href="/cart/add?id={{ product.selected_or_first_available_variant.id }}&quantity=1&return_to=/checkout"
+              class="cranbi-buy-now-btn"
+              {% if product.selected_or_first_available_variant.available == false %}style="opacity:0.5;pointer-events:none;"{% endif %}
+            >
+              Buy It Now
+            </a>
+          {%- endif -%}
+        {%- endform -%}
+      </product-form>
+
+      <!-- Guaranteed Safe & Secure Checkout -->
+      <div class="cranbi-secure-checkout">
+        <div class="cranbi-secure-checkout__title">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 14l-3-3 1.41-1.41L11 12.17l4.59-4.58L17 9l-6 6z"/></svg>
+          Guaranteed Safe &amp; Secure Checkout
         </div>
-      {%- endform -%}
-    </product-form>
+        <div class="cranbi-payment-logos">
+          <!-- Visa -->
+          <span class="cranbi-logo-item">{{ 'visa' | payment_type_svg_tag }}</span>
+          <!-- Mastercard -->
+          <span class="cranbi-logo-item">{{ 'master' | payment_type_svg_tag }}</span>
+          <!-- Google Pay -->
+          <img src="{{ 'gpay_logo.svg' | asset_url }}" alt="Google Pay" loading="lazy">
+          <!-- Paytm -->
+          <img src="{{ 'paytm_logo.svg' | asset_url }}" alt="Paytm" loading="lazy">
+          <!-- PhonePe -->
+          <img src="{{ 'phonepe_logo.svg' | asset_url }}" alt="PhonePe" loading="lazy">
+          <!-- RuPay / UPI -->
+          <span class="cranbi-logo-item cranbi-logo-rupay">{{ 'rupay' | payment_type_svg_tag }}</span>
+        </div>
+      </div>
+    </div>
+
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">
         <button
           type="submit"
           name="add"
-          class="product-form__submit button button--full-width button--primary"
+          class="cranbi-atc-btn product-form__submit"
           disabled
         >
           {{ 'products.product.sold_out' | t }}
@@ -149,3 +494,49 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
+
+<script>
+  (function() {
+    // Wire up custom quantity stepper to Shopify's hidden quantity input
+    document.querySelectorAll('.cranbi-qty').forEach(function(wrap) {
+      var minus = wrap.querySelector('.cranbi-qty__minus');
+      var plus  = wrap.querySelector('.cranbi-qty__plus');
+      var input = wrap.querySelector('.cranbi-qty__input');
+
+      function sync(val) {
+        var min  = parseInt(input.min) || 1;
+        var max  = parseInt(input.max) || 9999;
+        val = Math.max(min, Math.min(max, val));
+        input.value = val;
+        
+        // Sync to ALL other quantity inputs so the cart form picks it up
+        document.querySelectorAll('input[name="quantity"]').forEach(function(themeInput) {
+          if (themeInput !== input) {
+            themeInput.value = val;
+          }
+        });
+      }
+
+      minus.addEventListener('click', function() { sync(parseInt(input.value) - 1); });
+      plus.addEventListener('click',  function() { sync(parseInt(input.value) + 1); });
+      input.addEventListener('change', function() { sync(parseInt(input.value)); });
+    });
+
+    // Style the Shopify dynamic checkout button (Buy It Now)
+    function styleDynamicBtn() {
+      document.querySelectorAll('.cranbi-buynow-wrap .shopify-payment-button__button').forEach(function(btn) {
+        btn.style.borderRadius = '50px';
+        btn.style.minHeight    = '5rem';
+        btn.style.fontWeight   = '700';
+        btn.style.fontSize     = '1.4rem';
+        btn.style.letterSpacing = '0.06em';
+        btn.style.textTransform = 'uppercase';
+        btn.style.marginBottom  = '20px';
+      });
+    }
+    styleDynamicBtn();
+    // Re-apply after Shopify injects the button (it's async)
+    setTimeout(styleDynamicBtn, 800);
+    setTimeout(styleDynamicBtn, 1800);
+  })();
+</script>
