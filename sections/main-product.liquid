@@ -49,8 +49,60 @@
       }
       
       #MainProduct-{{ section.id }} .product__info-container {
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: flex-end;
         max-width: none !important;
       }
+      #MainProduct-{{ section.id }} .product__info-container > * {
+        width: 100%;
+      }
+      
+      /* Force side-by-side layout for ATC */
+      #MainProduct-{{ section.id }} .product-form__quantity {
+        width: 140px !important;
+        margin-right: 15px !important;
+        margin-top: 20px !important;
+      }
+      #MainProduct-{{ section.id }} .product-form-wrapper {
+        flex: 1 !important;
+        width: auto !important;
+        margin-top: 20px !important;
+      }
+      #MainProduct-{{ section.id }} .product-form__buttons {
+        display: flex !important;
+        margin-top: 0 !important;
+      }
+      #MainProduct-{{ section.id }} .product-form__buttons .button {
+        flex-grow: 1 !important;
+        min-height: 4.6rem !important;
+        border-radius: 40px !important;
+        margin-bottom: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        background-color: #5c0f2b !important;
+        color: #fff !important;
+      }
+      #MainProduct-{{ section.id }} .product-form__buttons .button::after,
+      #MainProduct-{{ section.id }} .product-form__buttons .button::before {
+        display: none !important;
+      }
+      #MainProduct-{{ section.id }} .quantity {
+        min-height: 4.6rem !important;
+        border-radius: 40px !important;
+        width: 100% !important;
+      }
+      #MainProduct-{{ section.id }} .product-form__quantity .form__label {
+        display: none !important;
+      }
+    }
+    
+    /* Make image rounded and crop nicely */
+    #MainProduct-{{ section.id }} .product__media-item img {
+      border-radius: 16px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      width: 100%;
     }
   {%- endstyle -%}
 
@@ -247,6 +299,7 @@
                     </details>
                   </div>
                 {%- when 'quantity_selector' -%}
+
                   <div
                     id="Quantity-Form-{{ section.id }}"
                     class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
@@ -510,6 +563,7 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
+                  <div class="product-form-wrapper">
                   {%- render 'buy-buttons',
                     block: block,
                     product: product,
@@ -517,6 +571,7 @@
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+                  </div>
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">

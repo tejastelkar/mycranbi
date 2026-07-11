@@ -1701,3 +1701,95 @@ a.product__text {
     border-radius: 4px;
   }
 }
+
+/* Make image rounded and crop nicely */
+.product__media img {
+  border-radius: 16px;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Fix spacing in quantity */
+.product-form__quantity .form__label {
+  display: none; /* hide "Quantity" text to match ref */
+}
+.product-form__quantity {
+  margin-right: 15px !important;
+  display: flex !important;
+  align-items: center;
+  max-width: 130px;
+}
+.product-form {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2rem;
+}
+.product-form__buttons {
+  flex-grow: 1;
+}
+.product-form__buttons .button {
+  min-height: 4.5rem;
+  border-radius: 40px !important;
+  margin-bottom: 0 !important;
+}
+.quantity {
+  min-height: 4.5rem;
+  border-radius: 40px !important;
+}
+
+  
+
+/* Side-by-side inline-block container for adjacent blocks */
+.product-form__quantity {
+  display: inline-flex !important;
+  vertical-align: top;
+  margin-right: 15px;
+  width: 140px;
+  margin-top: 10px;
+}
+.product-form__quantity .quantity {
+  min-height: 4.6rem;
+  height: 4.6rem;
+  border-radius: 40px !important;
+  width: 100%;
+}
+.product-form__quantity .form__label {
+  display: none !important;
+}
+product-form {
+  display: inline-block !important;
+  vertical-align: top;
+  width: calc(100% - 160px);
+  margin-top: 10px;
+}
+product-form .product-form__buttons {
+  margin-top: 0 !important;
+  display: flex;
+}
+product-form .product-form__buttons .button {
+  min-height: 4.6rem;
+  height: 4.6rem;
+  border-radius: 40px !important;
+  flex-grow: 1;
+}
+/* Ensure the accordion below clears the inline blocks */
+.product__accordion {
+  clear: both;
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+/* Make image rounded and crop nicely - target the global media container */
+.product__media-item .global-media-settings {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+.product__media-item img {
+  border-radius: 16px !important;
+  object-fit: cover !important;
+  aspect-ratio: 1 / 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
