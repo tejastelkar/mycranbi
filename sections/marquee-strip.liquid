@@ -1,0 +1,205 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .marquee-wrapper-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .marquee-track-{{ section.id }} {
+    display: flex;
+    animation: marquee-scroll-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+  }
+
+  .marquee-content-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 2rem;
+  }
+
+  .marquee-item-{{ section.id }} {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .marquee-dot-{{ section.id }} {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: {{ section.settings.text_color }};
+    display: inline-block;
+  }
+
+  @keyframes marquee-scroll-{{ section.id }} {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Pause on hover */
+  {% if section.settings.pause_on_hover %}
+  .marquee-wrapper-{{ section.id }}:hover .marquee-track-{{ section.id }} {
+    animation-play-state: paused;
+  }
+  {% endif %}
+{%- endstyle -%}
+
+<div class="marquee-wrapper-{{ section.id }} section-{{ section.id }}-padding">
+  {%- capture marquee_items -%}
+    <div class="marquee-content-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        <div class="marquee-item-{{ section.id }}" {{ block.shopify_attributes }}>
+          {{ block.settings.text | escape }}
+          <span class="marquee-dot-{{ section.id }}"></span>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endcapture -%}
+
+  <div class="marquee-track-{{ section.id }}">
+    {{ marquee_items }}
+    {{ marquee_items }}
+    {{ marquee_items }}
+    {{ marquee_items }}
+    {{ marquee_items }}
+    {{ marquee_items }}
+    {{ marquee_items }}
+    {{ marquee_items }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Strip",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 5,
+      "max": 100,
+      "step": 1,
+      "unit": "s",
+      "label": "Scroll Speed",
+      "default": 20,
+      "info": "Time taken for one full scroll. Lower is faster."
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Clean & Effective Formulations"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Strip",
+      "blocks": [
+        {
+          "type": "text_block",
+          "settings": {
+            "text": "Clean & Effective Formulations"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "text": "Toxin-free"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "text": "Plastic Free"
+          }
+        },
+        {
+          "type": "text_block",
+          "settings": {
+            "text": "Simplified Personal Care"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

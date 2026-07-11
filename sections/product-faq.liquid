@@ -1,0 +1,373 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .faq-section-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .faq-heading-{{ section.id }} {
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: 3.6rem;
+    margin-bottom: 4rem;
+    color: {{ section.settings.text_color }};
+    letter-spacing: 0.05em;
+  }
+
+  .faq-heading-{{ section.id }} em {
+    font-style: italic;
+  }
+
+  .faq-tabs-{{ section.id }} {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+
+  .faq-tabs-{{ section.id }}::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    background-color: {{ section.settings.border_color }};
+    opacity: 0.5;
+  }
+
+  .faq-tab-{{ section.id }} {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    color: {{ section.settings.text_color }};
+    opacity: 0.6;
+    cursor: pointer;
+    padding: 0 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .faq-tab-{{ section.id }}:hover,
+  .faq-tab-{{ section.id }}.active {
+    opacity: 1;
+  }
+
+  .faq-tab-{{ section.id }}.active::before {
+    content: "•";
+    color: {{ section.settings.accent_color }};
+    position: absolute;
+    left: -1rem;
+    font-size: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .faq-content-{{ section.id }} {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .faq-category-content-{{ section.id }} {
+    display: none;
+  }
+
+  .faq-category-content-{{ section.id }}.active {
+    display: block;
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .faq-accordion-{{ section.id }} {
+    border-bottom: 1px solid {{ section.settings.border_color }};
+  }
+
+  .faq-accordion-{{ section.id }}:first-child {
+    border-top: 1px solid {{ section.settings.border_color }};
+  }
+
+  .faq-accordion-header-{{ section.id }} {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 2.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: {{ section.settings.text_color }};
+  }
+
+  .faq-accordion-icon-{{ section.id }} {
+    transition: transform 0.3s ease;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .faq-accordion-{{ section.id }}.open .faq-accordion-icon-{{ section.id }} {
+    transform: rotate(180deg);
+  }
+
+  .faq-accordion-content-{{ section.id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0;
+  }
+
+  .faq-accordion-{{ section.id }}.open .faq-accordion-content-{{ section.id }} {
+    max-height: 1000px; /* large arbitrary height */
+    padding-bottom: 2.5rem;
+  }
+
+  .faq-accordion-content-inner-{{ section.id }} {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+  }
+  
+  .faq-accordion-content-inner-{{ section.id }} p {
+    margin: 0;
+  }
+{%- endstyle -%}
+
+{%- assign categories = "" -%}
+{%- for block in section.blocks -%}
+  {%- assign current_category = block.settings.category | strip -%}
+  {%- unless categories contains current_category -%}
+    {%- assign categories = categories | append: current_category | append: "|||" -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign categories_array = categories | split: "|||" -%}
+
+<div class="faq-section-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="faq-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="faq-tabs-{{ section.id }}">
+      {%- for category in categories_array -%}
+        {%- if category != blank -%}
+          <button class="faq-tab-{{ section.id }} {% if forloop.first %}active{% endif %}" data-target="category-{{ section.id }}-{{ forloop.index }}">
+            {{ category }}
+          </button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="faq-content-{{ section.id }}">
+      {%- for category in categories_array -%}
+        {%- if category != blank -%}
+          <div class="faq-category-content-{{ section.id }} {% if forloop.first %}active{% endif %}" id="category-{{ section.id }}-{{ forloop.index }}">
+            {%- for block in section.blocks -%}
+              {%- assign block_cat = block.settings.category | strip -%}
+              {%- if block_cat == category -%}
+                <div class="faq-accordion-{{ section.id }}" {{ block.shopify_attributes }}>
+                  <button class="faq-accordion-header-{{ section.id }}">
+                    {{ block.settings.question | escape }}
+                    <span class="faq-accordion-icon-{{ section.id }}">
+                      <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L7 7L13 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="faq-accordion-content-{{ section.id }}">
+                    <div class="faq-accordion-content-inner-{{ section.id }}">
+                      {{ block.settings.answer }}
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.faq-section-{{ section.id }}');
+    if (!section) return;
+
+    // Tabs logic
+    const tabs = section.querySelectorAll('.faq-tab-{{ section.id }}');
+    const contents = section.querySelectorAll('.faq-category-content-{{ section.id }}');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        this.classList.add('active');
+        const targetContent = document.getElementById(this.dataset.target);
+        if (targetContent) targetContent.classList.add('active');
+      });
+    });
+
+    // Accordion logic
+    const accordions = section.querySelectorAll('.faq-accordion-header-{{ section.id }}');
+    accordions.forEach(acc => {
+      acc.addEventListener('click', function() {
+        const parent = this.parentElement;
+        const isOpen = parent.classList.contains('open');
+        
+        const allAccordions = this.closest('.faq-category-content-{{ section.id }}').querySelectorAll('.faq-accordion-{{ section.id }}');
+        allAccordions.forEach(a => a.classList.remove('open'));
+
+        if (!isOpen) {
+          parent.classList.add('open');
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions",
+      "info": "Use <em> tags to italicize words, e.g., Frequently Asked <em>Questions</em>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#EBEBEB"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color (Dot & Arrows)",
+      "default": "#d8b8a5"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category Tab Name",
+          "default": "ABOUT THE BAR",
+          "info": "Items with the same category name will be grouped together."
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "WHAT MAKES IT SPECIAL?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Provide a detailed answer here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT THE BAR",
+            "question": "WHAT MAKES THIS PRODUCT A PREMIUM BAR?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "USING IT",
+            "question": "HOW DO I USE THIS PRODUCT?"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "category": "ZERO WASTE PLANET & GIFTING",
+            "question": "IS THE PACKAGING ZERO WASTE?"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
