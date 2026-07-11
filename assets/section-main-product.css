@@ -1793,3 +1793,11 @@ product-form .product-form__buttons .button {
   width: 100% !important;
   height: 100% !important;
 }
+
+/* Remove spacing around installment/spacer empty divs on product page */
+.product__tax + div:empty,
+.product__tax ~ div:not([class]) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  display: none !important;
+}
