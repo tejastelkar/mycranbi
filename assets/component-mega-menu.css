@@ -125,7 +125,7 @@
 
 .mega-menu__gallery {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 2rem;
   justify-content: center;
 }
@@ -133,9 +133,10 @@
 .mega-menu__gallery-card {
   color: rgb(var(--color-foreground));
   display: flex;
+  flex: 0 1 220px;
   flex-direction: column;
+  min-width: 0;
   text-decoration: none;
-  width: 220px;
 }
 
 .mega-menu__gallery-image-wrapper {
@@ -165,6 +166,7 @@
   letter-spacing: 0.02em;
   line-height: 1.25;
   margin-top: 1rem;
+  overflow-wrap: break-word;
   text-align: center;
   transition: color 0.15s ease;
 }
