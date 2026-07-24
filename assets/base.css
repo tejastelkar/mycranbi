@@ -11,6 +11,7 @@ collection-component {
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+  --color-error: #EB001B;
 }
 
 .product-card-wrapper .card,
@@ -1729,6 +1730,12 @@ details[open] > .share-button__fallback {
   flex-wrap: wrap;
 }
 
+.field--with-error .field__input,
+.customer .field--with-error input {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 0.1rem var(--color-error);
+}
+
 .field__input,
 .customer .field input {
   flex-grow: 1;
@@ -1841,6 +1848,11 @@ input[type='checkbox'] {
   font-size: 1.4rem;
   line-height: 1;
   margin-top: 1rem;
+}
+
+.form__message:has(.icon-error),
+.error-message {
+  color: var(--color-error);
 }
 
 .form__message--large {

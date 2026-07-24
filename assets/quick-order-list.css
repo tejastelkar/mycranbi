@@ -354,6 +354,7 @@ quick-order-list .pagination-wrapper {
   font-size: 1.2rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   order: 1;
+  color: var(--color-error);
 }
 
 .variant-item__error-text + .svg-wrapper {

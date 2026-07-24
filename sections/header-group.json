@@ -45,6 +45,57 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "mega_menu_jJJfkC": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_handle": "Pure Haircare",
+            "style": "gallery",
+            "button_label": "Discover all haircare",
+            "button_link": "shopify://collections/pure-haircare",
+            "image_1": "shopify://shop_images/collection_haircare.png",
+            "image_1_caption": "Wheat Protein Shampoo",
+            "image_1_link": "shopify://products/wheat-protein-shampoo",
+            "image_2": "shopify://shop_images/collection_skincare.png",
+            "image_2_caption": "Ceramide Light Lotion",
+            "image_2_link": "shopify://products/ceramide-light-lotion",
+            "image_3": "shopify://shop_images/collection_sandanya.png",
+            "image_3_caption": "Saffron Moisturising Cream",
+            "image_3_link": "shopify://products/saffron-moisturising-cream",
+            "image_4_caption": "",
+            "image_4_link": "",
+            "image_5_caption": "",
+            "image_5_link": "",
+            "image_6_caption": "",
+            "image_6_link": ""
+          }
+        },
+        "mega_menu_YFQyez": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_handle": "The Skincare Routine",
+            "style": "columns",
+            "button_label": "Discover all skincare",
+            "button_link": "shopify://collections/the-skincare-routine",
+            "image_1_caption": "",
+            "image_1_link": "",
+            "image_2_caption": "",
+            "image_2_link": "",
+            "image_3_caption": "",
+            "image_3_link": "",
+            "image_4_caption": "",
+            "image_4_link": "",
+            "image_5_caption": "",
+            "image_5_link": "",
+            "image_6_caption": "",
+            "image_6_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_jJJfkC",
+        "mega_menu_YFQyez"
+      ],
       "settings": {
         "logo_position": "top-center",
         "mobile_logo_position": "center",

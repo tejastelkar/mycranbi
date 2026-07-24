@@ -453,6 +453,7 @@ cart-remove-button .icon-remove {
   line-height: 1.4;
   letter-spacing: 0.04rem;
   order: 1;
+  color: var(--color-error);
 }
 
 .cart-item__error-text + .svg-wrapper {
