@@ -52,15 +52,16 @@
    rule below, regardless of source order — both classes are always
    present together on this element. */
 .mega-menu__link.mega-menu__link--level-2 {
-  font-weight: 700;
-  font-size: 0.875rem;
+  font-family: var(--font-body-family);
+  font-weight: 600;
+  font-size: 1.05rem;
   color: rgb(var(--color-foreground));
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
   padding-top: 0;
-  padding-bottom: 1rem;
-  margin-bottom: 0.6rem;
-  border-bottom: 1.5px solid rgba(var(--color-foreground), 0.15);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.15);
   text-decoration: none;
   display: block;
 }
@@ -75,11 +76,12 @@
 .mega-menu__link {
   color: rgba(var(--color-foreground), 0.65);
   display: block;
-  font-size: 0.875rem;
+  font-family: var(--font-body-family);
+  font-size: 0.95rem;
   font-weight: 400;
-  line-height: 1.5;
-  padding-bottom: 0.45rem;
-  padding-top: 0.45rem;
+  line-height: 1.6;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
   text-decoration: none;
   transition: color 0.15s ease;
   word-wrap: break-word;
