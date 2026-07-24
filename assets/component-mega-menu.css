@@ -76,7 +76,7 @@
 
 /* Sub-links under each column */
 .mega-menu__link {
-  color: rgba(var(--color-foreground), 0.8);
+  color: rgb(var(--color-foreground));
   display: block;
   font-family: var(--font-body-family);
   font-size: 1.4rem;
