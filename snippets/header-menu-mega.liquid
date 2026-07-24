@@ -42,7 +42,7 @@
     >
       {%- if mega_style == 'gallery' -%}
         <div class="mega-menu__gallery page-width">
-          {%- for i in (1..6) -%}
+          {%- for i in (1..5) -%}
             {%- liquid
               assign image_key = 'image_' | append: i
               assign caption_key = image_key | append: '_caption'
