@@ -1,0 +1,129 @@
+{% comment %}
+  Renders a single top-level menu item as a mega-menu: either a multi-column
+  link layout ("columns") or a row of merchant-configured image cards
+  ("gallery"), each optionally followed by a CTA button.
+
+  Accepts:
+  - link: {Object} the top-level menu link (must have link.links present)
+  - index: {Number} unique index for this link, used to build element ids
+  - block: {Object|nil} a matching `mega_menu` section block, or nil to fall
+    back to the plain columns layout with no CTA button
+
+  Usage:
+  {% render 'header-menu-mega', link: link, index: index, block: mega_block %}
+{% endcomment %}
+
+{%- liquid
+  assign mega_style = 'columns'
+  if block != nil and block.settings.style == 'gallery'
+    assign mega_style = 'gallery'
+  endif
+-%}
+
+<header-menu>
+  <details id="Details-HeaderMenu-{{ index }}" class="mega-menu">
+    <summary
+      id="HeaderMenu-{{ link.handle }}"
+      class="header__menu-item list-menu__item link focus-inset"
+    >
+      <span
+        {%- if link.child_active %}
+          class="header__active-menu-item"
+        {% endif %}
+      >
+        {{- link.title | escape -}}
+      </span>
+      {{- 'icon-caret.svg' | inline_asset_content -}}
+    </summary>
+    <div
+      id="MegaMenu-Content-{{ index }}"
+      class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+      tabindex="-1"
+    >
+      {%- if mega_style == 'gallery' -%}
+        <div class="mega-menu__gallery page-width">
+          {%- for i in (1..6) -%}
+            {%- liquid
+              assign image_key = 'image_' | append: i
+              assign caption_key = image_key | append: '_caption'
+              assign link_key = image_key | append: '_link'
+              assign card_image = block.settings[image_key]
+              assign card_caption = block.settings[caption_key]
+              assign card_link = block.settings[link_key]
+              assign card_tag = 'div'
+              if card_link != blank
+                assign card_tag = 'a'
+              endif
+            -%}
+            {%- if card_image != blank -%}
+              <{{ card_tag }}
+                {% if card_tag == 'a' %}
+                  href="{{ card_link }}"
+                {% endif %}
+                class="mega-menu__gallery-card"
+                style="--mega-menu-card-index: {{ forloop.index0 }};"
+              >
+                <span class="mega-menu__gallery-image-wrapper">
+                  {{
+                    card_image
+                    | image_url: width: 400
+                    | image_tag: loading: 'lazy', widths: '200, 300, 400', alt: card_caption
+                  }}
+                </span>
+                {%- if card_caption != blank -%}
+                  <span class="mega-menu__gallery-caption">{{ card_caption | escape }}</span>
+                {%- endif -%}
+              </{{ card_tag }}>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <ul
+          class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
+          role="list"
+        >
+          {%- for childlink in link.links -%}
+            <li>
+              <a
+                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                href="{{ childlink.url }}"
+                class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                {% if childlink.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{ childlink.title | escape }}
+              </a>
+              {%- if childlink.links != blank -%}
+                <ul class="list-unstyled" role="list">
+                  {%- for grandchildlink in childlink.links -%}
+                    <li>
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                        href="{{ grandchildlink.url }}"
+                        class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                        {% if grandchildlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ grandchildlink.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if block != nil and block.settings.button_link != blank -%}
+        <div class="mega-menu__cta">
+          <a href="{{ block.settings.button_link }}" class="button button--secondary">
+            {{ block.settings.button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </details>
+</header-menu>
