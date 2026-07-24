@@ -195,20 +195,21 @@
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const stickyBar = document.getElementById('StickyAddToCart');
-    const mainAddToCart = document.querySelector('.product-form__submit');
+    const mainBuySection = document.querySelector('.cranbi-buy-wrap');
     const stickyBtn = document.getElementById('StickyAddToCartBtn');
     const stickyMinus = document.getElementById('StickyQtyMinus');
     const stickyPlus = document.getElementById('StickyQtyPlus');
     const stickyInput = document.getElementById('StickyQtyInput');
-    const mainQtyInput = document.querySelector('.quantity__input');
+    const mainQtyInput = document.querySelector('.cranbi-qty__input');
+    const mainAddToCart = document.querySelector('.cranbi-atc-btn');
 
-    if (!stickyBar || !mainAddToCart || !stickyBtn) return;
+    if (!stickyBar || !mainBuySection || !stickyBtn) return;
 
     // Intersection Observer to show/hide sticky bar
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-          // Main button has scrolled past the top of the screen
+          // Main button section has scrolled past the top of the screen
           stickyBar.classList.add('is-visible');
         } else {
           stickyBar.classList.remove('is-visible');
@@ -220,7 +221,7 @@
       rootMargin: "0px"
     });
 
-    observer.observe(mainAddToCart);
+    observer.observe(mainBuySection);
 
     // Sync quantities
     stickyMinus.addEventListener('click', () => {
