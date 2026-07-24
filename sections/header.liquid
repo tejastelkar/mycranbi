@@ -12,9 +12,7 @@
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
-{%- if section.settings.menu_type_desktop == 'mega' -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
+<link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <style>
   header-drawer {
@@ -183,12 +181,8 @@
     {%- endif -%}
 
     {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
+      if section.settings.menu != blank and section.settings.menu_type_desktop != 'drawer'
+        render 'header-inline-menu'
       endif
     %}
 
@@ -484,7 +478,7 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
+  "max_blocks": 10,
   "settings": [
     {
       "type": "select",
@@ -666,6 +660,143 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "mega_menu",
+      "name": "Mega menu item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_handle",
+          "label": "Menu item title",
+          "info": "Must exactly match the title of a top-level menu item that has sub-links (e.g. \"Pure Haircare\"). Case-insensitive."
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            {
+              "value": "columns",
+              "label": "Columns"
+            },
+            {
+              "value": "gallery",
+              "label": "Gallery"
+            }
+          ],
+          "default": "columns"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Discover all products"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "header",
+          "content": "Gallery images"
+        },
+        {
+          "type": "paragraph",
+          "content": "Used only when Style is set to Gallery. Leave an image blank to skip that slot (up to 6)."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "text",
+          "id": "image_1_caption",
+          "label": "Image 1 caption"
+        },
+        {
+          "type": "url",
+          "id": "image_1_link",
+          "label": "Image 1 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "text",
+          "id": "image_2_caption",
+          "label": "Image 2 caption"
+        },
+        {
+          "type": "url",
+          "id": "image_2_link",
+          "label": "Image 2 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "text",
+          "id": "image_3_caption",
+          "label": "Image 3 caption"
+        },
+        {
+          "type": "url",
+          "id": "image_3_link",
+          "label": "Image 3 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "text",
+          "id": "image_4_caption",
+          "label": "Image 4 caption"
+        },
+        {
+          "type": "url",
+          "id": "image_4_link",
+          "label": "Image 4 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "text",
+          "id": "image_5_caption",
+          "label": "Image 5 caption"
+        },
+        {
+          "type": "url",
+          "id": "image_5_link",
+          "label": "Image 5 link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image 6"
+        },
+        {
+          "type": "text",
+          "id": "image_6_caption",
+          "label": "Image 6 caption"
+        },
+        {
+          "type": "url",
+          "id": "image_6_link",
+          "label": "Image 6 link"
+        }
+      ]
     }
   ]
 }

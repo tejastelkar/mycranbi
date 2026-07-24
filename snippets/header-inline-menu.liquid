@@ -1,0 +1,60 @@
+{% comment %}
+  Renders the header's inline desktop menu. Each top-level link renders as:
+  - a plain link, if it has no children
+  - a mega-menu (columns or gallery), if a `mega_menu` block's menu_handle
+    matches the link's title (case-insensitive)
+  - otherwise, a plain mega-menu columns layout if
+    section.settings.menu_type_desktop is 'mega', or a simple dropdown
+    flyout if it's 'dropdown'
+
+  Usage:
+  {% render 'header-inline-menu' %}
+{% endcomment %}
+
+<nav class="header__inline-menu">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+          {%- liquid
+            assign mega_block = nil
+            assign link_title_downcase = link.title | downcase
+            for block in section.blocks
+              if block.type == 'mega_menu' and block.settings.menu_handle != blank
+                assign menu_handle_downcase = block.settings.menu_handle | downcase
+                if menu_handle_downcase == link_title_downcase
+                  assign mega_block = block
+                endif
+              endif
+            endfor
+          -%}
+
+          {%- if mega_block != nil -%}
+            {%- render 'header-menu-mega', link: link, index: forloop.index, block: mega_block -%}
+          {%- elsif section.settings.menu_type_desktop == 'dropdown' -%}
+            {%- render 'header-menu-dropdown', link: link, index: forloop.index -%}
+          {%- else -%}
+            {%- render 'header-menu-mega', link: link, index: forloop.index, block: nil -%}
+          {%- endif -%}
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
