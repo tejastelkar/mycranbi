@@ -14,27 +14,31 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
-      <li>
-        {%- if link.links != blank -%}
-          {%- liquid
-            assign mega_block = nil
-            assign link_title_downcase = link.title | downcase
-            for block in section.blocks
-              if block.type == 'mega_menu' and block.settings.menu_handle != blank
-                assign menu_handle_downcase = block.settings.menu_handle | downcase
-                if menu_handle_downcase == link_title_downcase
-                  assign mega_block = block
-                endif
+      {%- liquid
+        assign mega_block = nil
+        assign use_dropdown = false
+        if link.links != blank
+          assign link_title_downcase = link.title | downcase
+          for block in section.blocks
+            if block.type == 'mega_menu' and block.settings.menu_handle != blank
+              assign menu_handle_downcase = block.settings.menu_handle | downcase
+              if menu_handle_downcase == link_title_downcase
+                assign mega_block = block
               endif
-            endfor
-          -%}
+            endif
+          endfor
 
-          {%- if mega_block != nil -%}
-            {%- render 'header-menu-mega', link: link, index: forloop.index, block: mega_block -%}
-          {%- elsif section.settings.menu_type_desktop == 'dropdown' -%}
+          if mega_block == nil and section.settings.menu_type_desktop == 'dropdown'
+            assign use_dropdown = true
+          endif
+        endif
+      -%}
+      <li{% if link.links != blank and use_dropdown == false %} class="header__inline-menu-item--mega"{% endif %}>
+        {%- if link.links != blank -%}
+          {%- if use_dropdown -%}
             {%- render 'header-menu-dropdown', link: link, index: forloop.index -%}
           {%- else -%}
-            {%- render 'header-menu-mega', link: link, index: forloop.index, block: nil -%}
+            {%- render 'header-menu-mega', link: link, index: forloop.index, block: mega_block -%}
           {%- endif -%}
         {%- else -%}
           <a

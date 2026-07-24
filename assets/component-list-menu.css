@@ -35,6 +35,12 @@
   align-items: center;
 }
 
+/* Mega-menu flyouts need to escape the li's positioning context to span
+   the full header width instead of anchoring to the trigger item's width. */
+.header--top-center .list-menu--inline > li.header__inline-menu-item--mega {
+  position: static;
+}
+
 .header--top-center .list-menu--inline > li:not(:last-child)::after {
   content: "•";
   color: #7b2933;
