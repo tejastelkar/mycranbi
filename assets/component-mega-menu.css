@@ -52,11 +52,12 @@
    rule below, regardless of source order — both classes are always
    present together on this element. */
 .mega-menu__link.mega-menu__link--level-2 {
-  font-family: var(--font-body-family);
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   color: rgb(var(--color-foreground));
-  letter-spacing: normal;
+  letter-spacing: 0.01em;
   text-transform: none;
   padding-top: 0;
   padding-bottom: 1.2rem;
@@ -64,24 +65,25 @@
   border-bottom: 1px solid rgba(var(--color-foreground), 0.15);
   text-decoration: none;
   display: block;
+  transition: color 0.15s ease;
 }
 
 .mega-menu__link--level-2:hover {
   text-decoration: none;
-  color: rgb(var(--color-foreground));
-  opacity: 0.75;
+  color: rgb(var(--color-button));
+  opacity: 1;
 }
 
 /* Sub-links under each column */
 .mega-menu__link {
-  color: rgba(var(--color-foreground), 0.65);
+  color: rgba(var(--color-foreground), 0.7);
   display: block;
   font-family: var(--font-body-family);
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-weight: 400;
   line-height: 1.6;
-  padding-bottom: 0.5rem;
-  padding-top: 0.5rem;
+  padding-bottom: 0.6rem;
+  padding-top: 0.6rem;
   text-decoration: none;
   transition: color 0.15s ease;
   word-wrap: break-word;
@@ -89,7 +91,7 @@
 
 .mega-menu__link:hover,
 .mega-menu__link--active {
-  color: rgb(var(--color-foreground));
+  color: rgb(var(--color-button));
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -107,7 +109,7 @@
 }
 
 .header--top-center .mega-menu__list > li {
-  min-width: 160px;
+  min-width: 220px;
   padding-right: 3rem;
 }
 
