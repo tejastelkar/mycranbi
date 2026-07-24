@@ -135,7 +135,7 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  width: 180px;
+  width: 220px;
 }
 
 .mega-menu__gallery-image-wrapper {
@@ -157,11 +157,20 @@
 }
 
 .mega-menu__gallery-caption {
-  font-family: var(--font-body-family);
-  font-size: 0.875rem;
-  line-height: 1.4;
-  margin-top: 0.75rem;
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin-top: 1rem;
   text-align: center;
+  transition: color 0.15s ease;
+}
+
+.mega-menu__gallery-card:hover .mega-menu__gallery-caption {
+  color: rgb(var(--color-button));
 }
 
 .js .mega-menu__gallery-card {
