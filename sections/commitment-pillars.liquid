@@ -1,0 +1,235 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .commitment-pillars {
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .commitment-pillars__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .commitment-pillars__heading {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+  }
+
+  .commitment-pillars__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .commitment-pillars__header {
+      margin-bottom: 4rem;
+    }
+    .commitment-pillars__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .commitment-pillar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+  }
+
+  .commitment-pillar__media {
+    width: 100%;
+    position: relative;
+    padding-bottom: 60%;
+    background-color: #f4f4f4;
+  }
+
+  .commitment-pillar__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .commitment-pillar__media .placeholder-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .commitment-pillar__content {
+    padding: 2rem;
+  }
+
+  .commitment-pillar__title {
+    margin: 0 0 1rem 0;
+    font-family: var(--font-heading-family);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgb(var(--color-foreground));
+  }
+
+  .commitment-pillar__text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.8);
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .commitment-pillar__content {
+      padding: 2.5rem;
+    }
+    .commitment-pillar__title {
+      font-size: 1.8rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="commitment-pillars section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="commitment-pillars__header">
+        <h2 class="commitment-pillars__heading {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    <div class="commitment-pillars__grid">
+      {%- for block in section.blocks -%}
+        <div class="commitment-pillar" {{ block.shopify_attributes }}>
+          <div class="commitment-pillar__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', class: 'commitment-pillar__image' }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="commitment-pillar__content">
+            {%- if block.settings.title != blank -%}
+              <h3 class="commitment-pillar__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="commitment-pillar__text rte">
+                {{ block.settings.text }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Commitment Pillars",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "OUR COMMITMENTS",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "Pillar title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Describe this commitment.</p>",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Commitment Pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Ethically-Sourced Ingredients", "text": "<p>We work directly with growers to source Ayurvedic botanicals responsibly, season after season.</p>" } },
+        { "type": "pillar", "settings": { "title": "Cruelty-Free Always", "text": "<p>Every formula is developed and finished without animal testing, at any stage.</p>" } },
+        { "type": "pillar", "settings": { "title": "Sustainable Packaging", "text": "<p>We choose recyclable and refillable materials wherever we can, and keep working to do better.</p>" } },
+        { "type": "pillar", "settings": { "title": "Community & Craft", "text": "<p>Small batches, made by hand, in partnership with the artisans who bring each ritual to life.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
