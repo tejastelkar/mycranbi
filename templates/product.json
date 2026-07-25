@@ -54,6 +54,14 @@
             "content": "<p>Placeholder description. Connect this to the Description metafield in the Theme Editor!</p>"
           }
         },
+        "accordion_claims": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Claims",
+            "icon": "none",
+            "content": "<p>Placeholder claims. Connect this to the Claims metafield in the Theme Editor!</p>"
+          }
+        },
         "accordion_how_to_use": {
           "type": "collapsible_tab",
           "settings": {
@@ -87,6 +95,7 @@
         "quantity_selector",
         "buy_buttons",
         "accordion_description",
+        "accordion_claims",
         "accordion_how_to_use",
         "accordion_ingredients",
         "accordion_what_to_expect",
@@ -97,7 +106,7 @@
         "color_scheme": "scheme-1",
         "media_size": "medium",
         "constrain_to_viewport": true,
-        "media_fit": "cover",
+        "media_fit": "contain",
         "gallery_layout": "thumbnail",
         "mobile_thumbnails": "show",
         "media_position": "left",

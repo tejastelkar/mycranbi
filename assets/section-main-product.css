@@ -270,6 +270,153 @@ a.product__text {
   padding: 0 1rem;
 }
 
+/* Structured accordion content: description lede, ritual steps, ingredient panel, benefit list */
+/* NOTE: this theme sets html { font-size: 10px }, so 1rem here = 10px, not 16px.
+   Body copy is set at 1.6rem (16px) — all sizes below are scaled to match that base. */
+.product-lede {
+  margin: 0;
+  padding-left: 2rem;
+  border-left: 2px solid rgba(102, 0, 51, 0.35);
+  line-height: 1.65;
+  color: rgb(var(--color-foreground));
+}
+
+.product-ritual-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-ritual-steps__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.6rem;
+  padding-bottom: 2.4rem;
+}
+
+.product-ritual-steps__item:last-child {
+  padding-bottom: 0;
+}
+
+.product-ritual-steps__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 1.6rem;
+  top: 3.6rem;
+  bottom: 0;
+  width: 1px;
+  background: rgba(102, 0, 51, 0.25);
+}
+
+.product-ritual-steps__index {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(102, 0, 51, 0.45);
+  font-family: var(--font-heading-family);
+  font-size: 1.6rem;
+  color: rgb(102, 0, 51);
+  background: rgb(var(--color-background));
+}
+
+.product-ritual-steps__text {
+  padding-top: 0.6rem;
+  line-height: 1.5;
+  color: rgb(var(--color-foreground));
+}
+
+.product-benefit-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.product-benefit-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  line-height: 1.5;
+  color: rgb(var(--color-foreground));
+}
+
+.product-benefit-list__icon {
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-top: 0.3rem;
+  color: #4b5c43;
+}
+
+.product-benefit-list__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.product-ingredient-panel__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.product-ingredient-chip {
+  font-size: 1.28rem;
+  letter-spacing: 0.03em;
+  padding: 0.48rem 1.12rem;
+  border-radius: 999px;
+  border: 1px solid rgba(102, 0, 51, 0.25);
+  background: #fff9f2;
+  white-space: nowrap;
+  color: rgb(var(--color-foreground));
+}
+
+.product-ingredient-panel__note {
+  margin: 1.6rem 0 0;
+  font-size: 1.36rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(var(--color-foreground));
+}
+
+.product-claims-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.product-claims-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  line-height: 1.5;
+  color: rgb(var(--color-foreground));
+}
+
+.product-claims-list__icon {
+  flex-shrink: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-top: 0.3rem;
+  color: rgb(102, 0, 51);
+}
+
+.product-claims-list__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
 .product .price .badge {
   margin-bottom: 0.5rem;
 }
@@ -557,7 +704,7 @@ a.product__text {
 }
 
 .product__media-item img {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 100%;
 }
@@ -1118,7 +1265,7 @@ a.product__text {
 }
 
 .thumbnail img {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -1617,11 +1764,11 @@ a.product__text {
     padding: 0 !important;
   }
 
-  /* Thumbnail image: cover fill */
+  /* Thumbnail image: contain, not clipped */
   .product--thumbnail .thumbnail-list__item img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
     border-radius: 4px;
     display: block;
   }
@@ -1643,7 +1790,7 @@ a.product__text {
   }
 
   .product--thumbnail .product__media-item img {
-    object-fit: cover;
+    object-fit: contain;
     width: 100% !important;
     height: 100% !important;
     display: block;
@@ -1691,7 +1838,7 @@ a.product__text {
   .product--thumbnail .thumbnail-list__item img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
     border-radius: 4px;
   }
 
@@ -1703,11 +1850,11 @@ a.product__text {
   }
 }
 
-/* Make image rounded and crop nicely */
+/* Rounded image, contained so nothing is cropped */
 .product__media img {
   border-radius: 16px;
   aspect-ratio: 1 / 1.1;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
 }
 
@@ -1782,14 +1929,14 @@ product-form .product-form__buttons .button {
   width: 100%;
   margin-top: 20px;
 }
-/* Make image rounded and crop nicely - target the global media container */
+/* Rounded image, contained so nothing is cropped - target the global media container */
 .product__media-item .global-media-settings {
   border-radius: 16px !important;
   overflow: hidden !important;
 }
 .product__media-item img {
   border-radius: 16px !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   aspect-ratio: 1 / 1 !important;
   width: 100% !important;
   height: 100% !important;
