@@ -74,7 +74,7 @@
           "type": "mega_menu",
           "settings": {
             "menu_handle": "Skincare",
-            "style": "gallery",
+            "style": "columns",
             "button_label": "Discover all skincare",
             "button_link": "shopify://collections/the-skincare-routine",
             "image_1": "shopify://shop_images/my_cranbi-1_14296c3d-fe35-4068-b203-3272400a207c.jpg",
