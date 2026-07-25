@@ -1,0 +1,283 @@
+{
+  "sections": {
+    "hero": {
+      "type": "image-banner",
+      "settings": {
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-2",
+        "image_overlay_opacity": 0
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Beauty, Rooted in Ayurveda",
+            "heading_size": "hxl"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Time-honored rituals, thoughtfully reformulated for modern skin.",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": ["heading", "text"]
+    },
+    "story-intro": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 52,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Story",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Cranbi began with a simple idea: that skincare should feel like a ritual, not a routine. We blend traditional Ayurvedic botanicals with modern formulation, so every step of your day can be a small act of care.</p>"
+          }
+        }
+      },
+      "block_order": ["heading", "text"]
+    },
+    "stats": {
+      "type": "impact-stats",
+      "settings": {
+        "heading": "By The Numbers",
+        "background_color": "#FFF9F2",
+        "text_color": "#660033",
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": { "number": "15+", "label": "Years of Ayurvedic Tradition" }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": { "number": "100%", "label": "Cruelty-Free" }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": { "number": "30+", "label": "Farming Partners" }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": { "number": "0", "label": "Synthetic Fragrances" }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
+    },
+    "ingredients": {
+      "type": "image-with-text",
+      "settings": {
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": { "heading": "Our Ingredients", "heading_size": "h1" }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We source Ayurvedic botanicals directly from growers who share our respect for the land, choosing potency and purity over shortcuts. Every ingredient earns its place in the formula.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["heading", "text"]
+    },
+    "craft": {
+      "type": "image-with-text",
+      "settings": {
+        "height": "medium",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 52,
+        "padding_bottom": 52
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": { "heading": "Our Craft", "heading_size": "h1" }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every batch is made small and by hand, so nothing is rushed. It takes longer, but it means the ritual you receive is the one we set out to make.</p>",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": ["heading", "text"]
+    },
+    "commitments": {
+      "type": "commitment-pillars",
+      "settings": {
+        "title": "OUR COMMITMENTS",
+        "heading_size": "h1",
+        "background_color": "#FFFFFF",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "pillar-1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Ethically-Sourced Ingredients",
+            "text": "<p>We work directly with growers to source Ayurvedic botanicals responsibly, season after season.</p>"
+          }
+        },
+        "pillar-2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Cruelty-Free Always",
+            "text": "<p>Every formula is developed and finished without animal testing, at any stage.</p>"
+          }
+        },
+        "pillar-3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Sustainable Packaging",
+            "text": "<p>We choose recyclable and refillable materials wherever we can, and keep working to do better.</p>"
+          }
+        },
+        "pillar-4": {
+          "type": "pillar",
+          "settings": {
+            "title": "Community & Craft",
+            "text": "<p>Small batches, made by hand, in partnership with the artisans who bring each ritual to life.</p>"
+          }
+        }
+      },
+      "block_order": ["pillar-1", "pillar-2", "pillar-3", "pillar-4"]
+    },
+    "values": {
+      "type": "brand-story",
+      "settings": {
+        "title": "OUR VALUES",
+        "heading_size": "h1",
+        "background_color": "#FFF9F2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "value-1": {
+          "type": "column",
+          "settings": {
+            "title": "Purity",
+            "text": "<p>No fillers, no shortcuts — just ingredients that earn their place.</p>"
+          }
+        },
+        "value-2": {
+          "type": "column",
+          "settings": {
+            "title": "Tradition",
+            "text": "<p>Ayurvedic wisdom, carried forward and adapted for modern life.</p>"
+          }
+        },
+        "value-3": {
+          "type": "column",
+          "settings": {
+            "title": "Sustainability",
+            "text": "<p>Choices made with the next season, not just the next sale, in mind.</p>"
+          }
+        }
+      },
+      "block_order": ["value-1", "value-2", "value-3"]
+    },
+    "closing-statement": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 40
+      },
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>\"We believe skincare should slow you down, even for five minutes a day.\"</em></p>"
+          }
+        }
+      },
+      "block_order": ["text"]
+    },
+    "cta": {
+      "type": "image-banner",
+      "settings": {
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-3",
+        "image_overlay_opacity": 0
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Discover the Collection",
+            "heading_size": "h1"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Now",
+            "button_link_1": "/collections/all",
+            "button_style_secondary_1": false
+          }
+        }
+      },
+      "block_order": ["heading", "buttons"]
+    }
+  },
+  "order": [
+    "hero",
+    "story-intro",
+    "stats",
+    "ingredients",
+    "craft",
+    "commitments",
+    "values",
+    "closing-statement",
+    "cta"
+  ]
+}
