@@ -16,6 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/banner1_5bb2eefc-2a2d-4fa8-bc94-bbd1eb374587.png",
+            "mobile_image": "shopify://shop_images/banner-mobile_fa83b8f5-268d-48f6-9769-7f27836abb2f.png",
             "link": ""
           }
         },
@@ -216,42 +217,42 @@
           "type": "concern",
           "settings": {
             "title": "Dandruff",
-            "collection": ""
+            "collection": "dandruff"
           }
         },
         "concern_2": {
           "type": "concern",
           "settings": {
             "title": "Acne-prone skin",
-            "collection": ""
+            "collection": "acne-prone-skin"
           }
         },
         "concern_3": {
           "type": "concern",
           "settings": {
             "title": "Dark circles",
-            "collection": ""
+            "collection": "dark-circles"
           }
         },
         "concern_4": {
           "type": "concern",
           "settings": {
             "title": "Dull, dry skin",
-            "collection": ""
+            "collection": "dull-dry-skin"
           }
         },
         "concern_5": {
           "type": "concern",
           "settings": {
             "title": "Sun protection",
-            "collection": ""
+            "collection": "sun-protection"
           }
         },
         "concern_6": {
           "type": "concern",
           "settings": {
             "title": "Anti-ageing",
-            "collection": ""
+            "collection": "anti-ageing"
           }
         }
       },
