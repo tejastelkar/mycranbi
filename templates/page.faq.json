@@ -1,0 +1,273 @@
+{
+  "sections": {
+    "hero": {
+      "type": "image-banner",
+      "settings": {
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-2",
+        "image_overlay_opacity": 0
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "heading_size": "hxl"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Everything you need to know about MY CRANBI, your order, and our ingredients.",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": ["heading", "text"]
+    },
+    "faq": {
+      "type": "product-faq",
+      "settings": {
+        "heading": "",
+        "bg_color": "#FFFFFF",
+        "text_color": "#3D3935",
+        "border_color": "#EBEBEB",
+        "accent_color": "#660033",
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": {
+        "faq_c18613d8": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "WHAT IS MYCRANBI?",
+            "answer": "<p>MyCranbi is a premium personal care brand focused on clean, effective, and sustainable skincare and haircare solutions.</p>"
+          }
+        },
+        "faq_c39bddfb": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "ARE YOUR PRODUCTS CRUELTY-FREE?",
+            "answer": "<p>Yes! We absolutely love animals. None of our products or raw ingredients are ever tested on animals.</p>"
+          }
+        },
+        "faq_82517578": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "WHERE ARE YOUR PRODUCTS MADE?",
+            "answer": "<p>All our products are thoughtfully formulated and proudly manufactured locally with strict quality control.</p>"
+          }
+        },
+        "faq_659339ae": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "ARE YOUR PRODUCTS SUITABLE FOR SENSITIVE SKIN?",
+            "answer": "<p>Yes, our formulations are designed to be extremely gentle, toxin-free, and effective for most skin and hair types, including sensitive profiles.</p>"
+          }
+        },
+        "faq_69ed05cf": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "DO YOU OFFER SAMPLES?",
+            "answer": "<p>While we don't currently sell sample sizes, we occasionally include complimentary minis with larger orders!</p>"
+          }
+        },
+        "faq_18ed0fd5": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "HOW CAN I CONTACT CUSTOMER SUPPORT?",
+            "answer": "<p>You can reach out to us via the Contact page or directly email us at service@mycranbi.com.</p>"
+          }
+        },
+        "faq_2bb09516": {
+          "type": "faq_item",
+          "settings": {
+            "category": "ABOUT MYCRANBI",
+            "question": "CAN I FIND MYCRANBI IN STORES?",
+            "answer": "<p>Currently, we are exclusively direct-to-consumer online to ensure the best prices and freshest products for you.</p>"
+          }
+        },
+        "faq_240c4d3c": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "HOW LONG DOES SHIPPING TAKE?",
+            "answer": "<p>Orders are typically processed within 1-2 business days. Delivery usually takes 3-5 business days depending on your location.</p>"
+          }
+        },
+        "faq_df12f87a": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "DO YOU OFFER FREE SHIPPING?",
+            "answer": "<p>Yes, we offer free shipping on all orders over ₹999.</p>"
+          }
+        },
+        "faq_52bd2707": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "HOW CAN I TRACK MY ORDER?",
+            "answer": "<p>Once your order ships, you will receive a tracking link via email and SMS to follow its journey.</p>"
+          }
+        },
+        "faq_cb397c49": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "WHAT IS YOUR RETURN POLICY?",
+            "answer": "<p>We accept returns on unused, unopened products within 7 days of delivery. Please contact support to initiate a return.</p>"
+          }
+        },
+        "faq_61d7cac1": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "MY PRODUCT ARRIVED DAMAGED. WHAT DO I DO?",
+            "answer": "<p>We apologize for the inconvenience! Please email us a photo of the damaged item within 48 hours, and we will send a replacement immediately.</p>"
+          }
+        },
+        "faq_514315ce": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "CAN I CANCEL OR CHANGE MY ORDER?",
+            "answer": "<p>If your order hasn't shipped yet, we can usually accommodate changes or cancellations. Reach out to us ASAP!</p>"
+          }
+        },
+        "faq_d82ab1de": {
+          "type": "faq_item",
+          "settings": {
+            "category": "SHIPPING & RETURNS",
+            "question": "DO YOU SHIP INTERNATIONALLY?",
+            "answer": "<p>Currently, we ship exclusively within India, but we hope to expand internationally soon!</p>"
+          }
+        },
+        "faq_45779aed": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "ARE YOUR PRODUCTS TOXIN-FREE?",
+            "answer": "<p>Absolutely. We say no to parabens, sulfates, phthalates, and other harsh chemicals.</p>"
+          }
+        },
+        "faq_1515fe71": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "WHAT DOES 'CLEAN & EFFECTIVE' MEAN?",
+            "answer": "<p>It means we use safe, non-toxic ingredients (both natural and scientifically proven synthetic ones) that deliver visible results without harming your body.</p>"
+          }
+        },
+        "faq_10c041c9": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "IS YOUR PACKAGING ECO-FRIENDLY?",
+            "answer": "<p>Sustainability is at our core. We strive to use recyclable materials and minimize plastic across our entire product line.</p>"
+          }
+        },
+        "faq_97b41a51": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "ARE YOUR FORMULAS VEGAN?",
+            "answer": "<p>The majority of our products are 100% vegan. Please check individual product pages for specific ingredient lists.</p>"
+          }
+        },
+        "faq_83c47d79": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "DO YOUR PRODUCTS HAVE ARTIFICIAL FRAGRANCES?",
+            "answer": "<p>We use minimal, allergen-free fragrances or natural essential oils to create a pleasant experience without irritating sensitive skin.</p>"
+          }
+        },
+        "faq_71a6e0ea": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "WHAT IS YOUR STAND ON PALM OIL?",
+            "answer": "<p>We avoid palm oil wherever possible. If used, we strictly ensure it is RSPO-certified sustainable.</p>"
+          }
+        },
+        "faq_dbf04f32": {
+          "type": "faq_item",
+          "settings": {
+            "category": "INGREDIENTS & SUSTAINABILITY",
+            "question": "HOW LONG DO YOUR PRODUCTS LAST AFTER OPENING?",
+            "answer": "<p>Most of our products have a shelf life of 12-24 months unopened, and 6-12 months after opening. Look for the open-jar symbol on the packaging!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_c18613d8",
+        "faq_c39bddfb",
+        "faq_82517578",
+        "faq_659339ae",
+        "faq_69ed05cf",
+        "faq_18ed0fd5",
+        "faq_2bb09516",
+        "faq_240c4d3c",
+        "faq_df12f87a",
+        "faq_52bd2707",
+        "faq_cb397c49",
+        "faq_61d7cac1",
+        "faq_514315ce",
+        "faq_d82ab1de",
+        "faq_45779aed",
+        "faq_1515fe71",
+        "faq_10c041c9",
+        "faq_97b41a51",
+        "faq_83c47d79",
+        "faq_71a6e0ea",
+        "faq_dbf04f32"
+      ]
+    },
+    "still-have-questions": {
+      "type": "rich-text",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Still Have Questions?",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our team is happy to help with anything not covered here.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact Us",
+            "button_link": "/pages/contact",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"]
+    }
+  },
+  "order": ["hero", "faq", "still-have-questions"]
+}
