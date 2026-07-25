@@ -128,22 +128,22 @@
         "column_1": {
           "type": "column",
           "settings": {
-            "title": "ROOTED IN AYURVEDA",
-            "text": "<p>A pioneer in the beauty industry, we combine traditional Ayurvedic practices with modern aesthetics for a luxurious experience.</p>"
+            "title": "HERITAGE OF VELVET TOUCH",
+            "text": "<p>Guided by our family's philosophy, we blend the richness of saffron and India's timeless botanical heritage with modern science, crafting care you can truly trust.</p>"
           }
         },
         "column_2": {
           "type": "column",
           "settings": {
-            "title": "A MULTI-SENSORIAL JOURNEY",
-            "text": "<p>Authentic in its roots and sophisticated in its presentation, My Cranbi takes you on an immersive, multi-sensorial journey.</p>"
+            "title": "ROOTED IN SAFFRON",
+            "text": "<p>From our family's own MAA KESAR saffron venture in Srinagar to every MY CRANBI formula, pure Kashmir saffron is at the heart of what we create.</p>"
           }
         },
         "column_3": {
           "type": "column",
           "settings": {
-            "title": "FRESH. PURE. POTENT.",
-            "text": "<p>Our products are handcrafted using 100% natural ingredients, sourced from the vast Indian landscape, to ensure the highest standards.</p>"
+            "title": "FREE FROM, NEVER COMPROMISED",
+            "text": "<p>Every product is crafted without sulphates, parabens, silicones, or formaldehyde — honest care, made with love in India.</p>"
           }
         }
       },
@@ -439,13 +439,21 @@
             "title": "Lavender",
             "purpose": "<p>Calms the mind and gently soothes irritated skin.</p>"
           }
+        },
+        "ingredient_5": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Kashmir Saffron",
+            "purpose": "<p>Sourced from our family's own MAA KESAR venture in Srinagar, saffron brightens skin and helps reduce dark spots and uneven tone.</p>"
+          }
         }
       },
       "block_order": [
         "ingredient_1",
         "ingredient_2",
         "ingredient_3",
-        "ingredient_4"
+        "ingredient_4",
+        "ingredient_5"
       ],
       "settings": {
         "title": "Hero Ingredients",

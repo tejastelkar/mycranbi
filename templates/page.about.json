@@ -14,14 +14,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Beauty, Rooted in Ayurveda",
+            "heading": "Skincare Crafted with Integrity, Formulated with Purpose",
             "heading_size": "hxl"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "Time-honored rituals, thoughtfully reformulated for modern skin.",
+            "text": "Heritage of Velvet Touch",
             "text_style": "subtitle"
           }
         }
@@ -49,7 +49,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Cranbi began with a simple idea: that skincare should feel like a ritual, not a routine. We blend traditional Ayurvedic botanicals with modern formulation, so every step of your day can be a small act of care.</p>"
+            "text": "<p>At MY CRANBI, we believe that true beauty is nurtured through honesty, thoughtful innovation and the finest gifts of nature. Inspired by the richness of saffron and India's timeless botanical heritage, we create premium skincare and personal care products that blend nature with modern science to deliver care you can truly trust.</p>"
           }
         }
       },
@@ -58,7 +58,7 @@
     "stats": {
       "type": "impact-stats",
       "settings": {
-        "heading": "By The Numbers",
+        "heading": "Our Heritage",
         "background_color": "#FFF9F2",
         "text_color": "#660033",
         "padding_top": 60,
@@ -67,19 +67,19 @@
       "blocks": {
         "stat-1": {
           "type": "stat",
-          "settings": { "number": "15+", "label": "Years of Ayurvedic Tradition" }
+          "settings": { "number": "1985", "label": "Our Family's Entrepreneurial Journey Began" }
         },
         "stat-2": {
           "type": "stat",
-          "settings": { "number": "100%", "label": "Cruelty-Free" }
+          "settings": { "number": "2011", "label": "We Ventured into the World of Saffron" }
         },
         "stat-3": {
           "type": "stat",
-          "settings": { "number": "30+", "label": "Farming Partners" }
+          "settings": { "number": "2019", "label": "MAA KESAR Saffron Cultivation Founded in Srinagar" }
         },
         "stat-4": {
           "type": "stat",
-          "settings": { "number": "0", "label": "Synthetic Fragrances" }
+          "settings": { "number": "2025", "label": "MY CRANBI Was Born" }
         }
       },
       "block_order": ["stat-1", "stat-2", "stat-3", "stat-4"]
@@ -107,7 +107,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>We source Ayurvedic botanicals directly from growers who share our respect for the land, choosing potency and purity over shortcuts. Every ingredient earns its place in the formula.</p>",
+            "text": "<p>Every MY CRANBI formulation begins with nature's finest gifts — pure Kashmir saffron, cultivated and processed through our family's own MAA KESAR venture in Srinagar, alongside time-honoured Ayurvedic botanicals like amla, shikakai, and brahmi.</p>",
             "text_style": "body"
           }
         }
@@ -137,7 +137,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Every batch is made small and by hand, so nothing is rushed. It takes longer, but it means the ritual you receive is the one we set out to make.</p>",
+            "text": "<p>Every MY CRANBI product is thoughtfully created using carefully selected ingredients, inspired by the timeless wisdom of Ayurveda and designed for modern lifestyles. Free from sulphates, parabens, silicones, and formaldehyde — made with care, made in India.</p>",
             "text_style": "body"
           }
         }
@@ -157,29 +157,29 @@
         "pillar-1": {
           "type": "pillar",
           "settings": {
-            "title": "Ethically-Sourced Ingredients",
-            "text": "<p>We work directly with growers to source Ayurvedic botanicals responsibly, season after season.</p>"
+            "title": "Free From Harsh Chemicals",
+            "text": "<p>Our formulas are made without sulphates, parabens, silicones, or formaldehyde and artificial colours — many are vegan too, so you know exactly what's going on your skin and hair.</p>"
           }
         },
         "pillar-2": {
           "type": "pillar",
           "settings": {
-            "title": "Cruelty-Free Always",
-            "text": "<p>Every formula is developed and finished without animal testing, at any stage.</p>"
+            "title": "Rooted in Real Saffron",
+            "text": "<p>Sourced through our family's own MAA KESAR saffron venture in Srinagar, pure Kashmir saffron is at the heart of many MY CRANBI formulas.</p>"
           }
         },
         "pillar-3": {
           "type": "pillar",
           "settings": {
-            "title": "Sustainable Packaging",
-            "text": "<p>We choose recyclable and refillable materials wherever we can, and keep working to do better.</p>"
+            "title": "Ayurvedic Ingredients, Modern Science",
+            "text": "<p>From amla and shikakai to brahmi and hyaluronic acid, we blend traditional botanicals with proven actives for results you can feel.</p>"
           }
         },
         "pillar-4": {
           "type": "pillar",
           "settings": {
-            "title": "Community & Craft",
-            "text": "<p>Small batches, made by hand, in partnership with the artisans who bring each ritual to life.</p>"
+            "title": "Made with Care in India",
+            "text": "<p>Every MY CRANBI product is thoughtfully created and crafted in India, turning everyday routines into moments of luxurious self-care.</p>"
           }
         }
       },
@@ -199,21 +199,21 @@
           "type": "column",
           "settings": {
             "title": "Purity",
-            "text": "<p>No fillers, no shortcuts — just ingredients that earn their place.</p>"
+            "text": "<p>Honest formulations, free from sulphates, parabens, silicones, and formaldehyde — so every product is exactly what it claims to be.</p>"
           }
         },
         "value-2": {
           "type": "column",
           "settings": {
-            "title": "Tradition",
-            "text": "<p>Ayurvedic wisdom, carried forward and adapted for modern life.</p>"
+            "title": "Compassion",
+            "text": "<p>A family business built on trust, integrity, and service since 1985 — carried forward with the same care in every bottle.</p>"
           }
         },
         "value-3": {
           "type": "column",
           "settings": {
-            "title": "Sustainability",
-            "text": "<p>Choices made with the next season, not just the next sale, in mind.</p>"
+            "title": "Conscious Care",
+            "text": "<p>From our own saffron fields in Srinagar to your daily ritual, every product is thoughtfully crafted to enrich everyday life.</p>"
           }
         }
       },
@@ -233,7 +233,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p><em>“We believe skincare should slow you down, even for five minutes a day.”</em></p>"
+            "text": "<p><em>“MY CRANBI is more than a brand; it is our family's promise to deliver purity, compassion, and conscious care in every product.”</em></p><p>— Unnati Birla, Co-Founder, MY CRANBI</p>"
           }
         }
       },
@@ -253,7 +253,7 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Discover the Collection",
+            "heading": "Experience the Heritage of Velvet Touch",
             "heading_size": "h1"
           }
         },
