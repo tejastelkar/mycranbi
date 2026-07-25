@@ -153,7 +153,7 @@
 .mega-menu__gallery-image-wrapper img {
   display: block;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
 }
