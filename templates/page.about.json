@@ -21,12 +21,12 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "Heritage of Velvet Touch",
+            "text": "",
             "text_style": "subtitle"
           }
         }
       },
-      "block_order": ["heading", "text"]
+      "block_order": ["heading"]
     },
     "story-intro": {
       "type": "rich-text",

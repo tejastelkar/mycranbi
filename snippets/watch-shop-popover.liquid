@@ -1,0 +1,112 @@
+{%- assign ws_popover_product = settings.watch_shop_popover_product -%}
+{%- assign ws_popover_video = settings.watch_shop_popover_video -%}
+{%- assign ws_popover_poster = settings.watch_shop_popover_poster -%}
+{%- assign ws_popover_title = settings.watch_shop_popover_title | default: 'Watch & Shop' -%}
+{%- assign ws_popover_label = settings.watch_shop_popover_label | default: 'Watch & Shop' -%}
+{%- assign ws_popover_enabled = settings.watch_shop_popover_enable -%}
+{%- assign ws_popover_has_media = false -%}
+
+{%- if ws_popover_video != blank or ws_popover_poster != blank or ws_popover_product.featured_image != blank -%}
+  {%- assign ws_popover_has_media = true -%}
+{%- endif -%}
+
+{%- if ws_popover_enabled and ws_popover_has_media -%}
+  <div
+    id="WatchShopPopover"
+    class="watch-shop-popover"
+    data-popover-root
+    data-storage-key="cranbi-watch-shop-popover-dismissed"
+  >
+    <button
+      type="button"
+      class="watch-shop-popover__teaser"
+      data-popover-open
+      aria-label="{{ ws_popover_label | escape }}"
+    >
+      <span class="watch-shop-popover__teaser-media">
+        {%- if ws_popover_video != blank -%}
+          {{ ws_popover_video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'watch-shop-popover__teaser-video' }}
+        {%- elsif ws_popover_poster != blank -%}
+          {{ ws_popover_poster | image_url: width: 480 | image_tag: class: 'watch-shop-popover__teaser-image', loading: 'lazy', alt: ws_popover_title }}
+        {%- elsif ws_popover_product.featured_image != blank -%}
+          {{ ws_popover_product.featured_image | image_url: width: 480 | image_tag: class: 'watch-shop-popover__teaser-image', loading: 'lazy', alt: ws_popover_product.title }}
+        {%- endif -%}
+      </span>
+    </button>
+
+    <button type="button" class="watch-shop-popover__dismiss" data-popover-dismiss aria-label="Dismiss watch and shop">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <div class="watch-shop-popover__modal" data-popover-modal aria-hidden="true">
+      <div class="watch-shop-popover__backdrop" data-popover-close></div>
+      <div class="watch-shop-popover__dialog" role="dialog" aria-modal="true" aria-label="{{ ws_popover_title | escape }}">
+        <button type="button" class="watch-shop-popover__modal-close" data-popover-close aria-label="Close watch and shop">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <div class="watch-shop-popover__dialog-media">
+          <div class="watch-shop-popover__dialog-reel">
+            {%- if ws_popover_video != blank -%}
+              {%- assign ws_popover_modal_src = ws_popover_video.sources[1].url -%}
+              {%- if ws_popover_modal_src == blank -%}
+                {%- assign ws_popover_modal_src = ws_popover_video.sources[0].url -%}
+              {%- endif -%}
+              <video
+                class="watch-shop-popover__dialog-video"
+                data-popover-video
+                src="{{ ws_popover_modal_src }}"
+                playsinline
+                loop
+                controls
+                {% if ws_popover_poster != blank %}poster="{{ ws_popover_poster | image_url: width: 900 }}"{% endif %}
+              ></video>
+            {%- elsif ws_popover_poster != blank -%}
+              {{ ws_popover_poster | image_url: width: 900 | image_tag: class: 'watch-shop-popover__dialog-image', loading: 'lazy', alt: ws_popover_title }}
+            {%- elsif ws_popover_product.featured_image != blank -%}
+              {{ ws_popover_product.featured_image | image_url: width: 900 | image_tag: class: 'watch-shop-popover__dialog-image', loading: 'lazy', alt: ws_popover_product.title }}
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="watch-shop-popover__dialog-info">
+          <div class="watch-shop-popover__dialog-header">
+            <h3 class="watch-shop-popover__dialog-title">
+              {%- if ws_popover_product != blank -%}
+                {{ ws_popover_product.title }}
+              {%- else -%}
+                {{ ws_popover_title }}
+              {%- endif -%}
+            </h3>
+
+            {%- if ws_popover_product != blank -%}
+              <div class="watch-shop-popover__dialog-price">{{ ws_popover_product.price | money }}</div>
+            {%- endif -%}
+          </div>
+
+          <div class="watch-shop-popover__dialog-copy-wrap">
+            <div class="watch-shop-popover__dialog-copy">
+              {%- if ws_popover_product != blank and ws_popover_product.description != blank -%}
+                {{ ws_popover_product.description | strip_html | truncatewords: 24 }}
+              {%- else -%}
+                Tap into a vertical reel-style story and shop the featured ritual without leaving the page.
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class="watch-shop-popover__dialog-actions">
+            {%- if ws_popover_product != blank -%}
+              <a href="{{ ws_popover_product.url }}" class="watch-shop-popover__secondary">View product</a>
+            {%- else -%}
+              <button type="button" class="watch-shop-popover__secondary" data-popover-close>Continue browsing</button>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,151 @@
+<div class="cranbi-gifting-hero">
+  <div class="cranbi-gifting-hero__media">
+    {%- if section.settings.desktop_image != blank -%}
+      {{
+        section.settings.desktop_image
+        | image_url: width: 2200
+        | image_tag:
+          class: 'cranbi-gifting-hero__image cranbi-gifting-hero__image--desktop',
+          loading: 'eager',
+          widths: '750, 1100, 1500, 2000, 2200'
+      }}
+    {%- endif -%}
+    {%- if section.settings.mobile_image != blank -%}
+      {{
+        section.settings.mobile_image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'cranbi-gifting-hero__image cranbi-gifting-hero__image--mobile',
+          loading: 'eager',
+          widths: '375, 550, 750, 900, 1200'
+      }}
+    {%- elsif section.settings.desktop_image != blank -%}
+      {{
+        section.settings.desktop_image
+        | image_url: width: 1200
+        | image_tag:
+          class: 'cranbi-gifting-hero__image cranbi-gifting-hero__image--mobile',
+          loading: 'eager',
+          widths: '375, 550, 750, 900, 1200'
+      }}
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .cranbi-gifting-hero {
+    position: relative;
+    min-height: 50vh;
+    background: #faf7f2;
+    overflow: hidden;
+  }
+
+  .cranbi-gifting-hero__media {
+    position: relative;
+    min-height: 50vh;
+  }
+
+  .cranbi-gifting-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cranbi-gifting-hero__image--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .cranbi-gifting-hero {
+      min-height: 28rem;
+    }
+
+    .cranbi-gifting-hero__media {
+      min-height: 28rem;
+    }
+
+    .cranbi-gifting-hero__image--desktop {
+      display: none;
+    }
+
+    .cranbi-gifting-hero__image--mobile {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cranbi-gifting-hero {
+      min-height: 20rem;
+    }
+
+    .cranbi-gifting-hero__media {
+      min-height: 20rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Gifting Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "GIFTING RITUALS"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Thoughtful gifts for every self-care ritual"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Choose a beautifully giftable MY CRANBI favourite or build a custom box with the rituals you know they will love.</p>"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop premade gifts"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Build a custom box"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gifting Hero"
+    }
+  ]
+}
+{% endschema %}

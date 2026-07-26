@@ -1486,5 +1486,43 @@
         "default": "Failed to load wishlist items."
       }
     ]
+  },
+  {
+    "name": "Watch & Shop Popover",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "watch_shop_popover_enable",
+        "label": "Enable watch and shop popover",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "watch_shop_popover_label",
+        "label": "Popover badge",
+        "default": "Watch & Shop"
+      },
+      {
+        "type": "text",
+        "id": "watch_shop_popover_title",
+        "label": "Popover title",
+        "default": "Shop the ritual"
+      },
+      {
+        "type": "video",
+        "id": "watch_shop_popover_video",
+        "label": "Popover reel video"
+      },
+      {
+        "type": "image_picker",
+        "id": "watch_shop_popover_poster",
+        "label": "Popover poster image"
+      },
+      {
+        "type": "product",
+        "id": "watch_shop_popover_product",
+        "label": "Featured product"
+      }
+    ]
   }
 ]

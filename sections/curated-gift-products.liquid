@@ -1,0 +1,479 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{%- assign featured_block = section.blocks.first -%}
+{%- assign gift_product = featured_block.settings.product -%}
+{%- assign current_variant = gift_product.selected_or_first_available_variant -%}
+{%- assign normalized_section_heading = section.settings.heading | strip_html | strip | downcase -%}
+{%- assign normalized_product_title = gift_product.title | strip_html | strip | downcase -%}
+
+<section class="cranbi-premade-product section-{{ section.id }}-padding" id="PremadeGifts">
+  <div class="page-width cranbi-premade-product__page-width">
+    <div class="cranbi-premade-product__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="cranbi-premade-product__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank and normalized_section_heading != normalized_product_title -%}
+        <h2 class="cranbi-premade-product__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="cranbi-premade-product__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if gift_product != blank -%}
+      <product-info
+        id="PremadeGift-{{ section.id }}"
+        class="cranbi-premade-product__shell"
+        data-section="{{ section.id }}"
+        data-product-id="{{ gift_product.id }}"
+        data-update-url="false"
+        data-url="{{ gift_product.url }}"
+      >
+        <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+        <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+        <div class="cranbi-premade-product__grid">
+          <div class="cranbi-premade-product__media">
+            {%- if gift_product.media.size > 1 -%}
+              <ul class="cranbi-premade-product__thumbs list-unstyled" role="list">
+                {%- for media in gift_product.media -%}
+                  <li class="cranbi-premade-product__thumb-item">
+                    <button
+                      type="button"
+                      class="cranbi-premade-product__thumb{% if forloop.first %} is-active{% endif %}"
+                      data-media-target="{{ media.id }}"
+                      aria-label="Show {{ gift_product.title }} image {{ forloop.index }}"
+                    >
+                      {{
+                        media.preview_image
+                        | image_url: width: 160
+                        | image_tag:
+                          loading: 'lazy',
+                          widths: '80, 120, 160',
+                          class: 'cranbi-premade-product__thumb-image'
+                      }}
+                    </button>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            <div class="cranbi-premade-product__stage">
+              {%- for media in gift_product.media -%}
+                <div
+                  class="cranbi-premade-product__pane{% if forloop.first %} is-active{% endif %}"
+                  data-media-pane="{{ media.id }}"
+                >
+                  {{
+                    media.preview_image
+                    | image_url: width: 1400
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '550, 750, 1100, 1400',
+                      class: 'cranbi-premade-product__image'
+                  }}
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+
+          <div class="cranbi-premade-product__info">
+            <div class="cranbi-premade-product__info-inner">
+              <p class="cranbi-premade-product__vendor">{{ gift_product.vendor }}</p>
+              <h3 class="cranbi-premade-product__title">{{ gift_product.title }}</h3>
+
+              <div class="cranbi-premade-product__price">
+                {% render 'price', product: gift_product, use_variant: true, show_badges: false %}
+              </div>
+
+              {%- if featured_block.settings.badge != blank -%}
+                <p class="cranbi-premade-product__badge">{{ featured_block.settings.badge }}</p>
+              {%- endif -%}
+
+              {%- if gift_product.description != blank -%}
+                <div class="cranbi-premade-product__description rte">
+                  {{ gift_product.description }}
+                </div>
+              {%- endif -%}
+
+              {%- assign product_form_id = 'premade-product-form-' | append: section.id -%}
+              <div class="cranbi-premade-product__buy">
+                {% render 'buy-buttons',
+                  block: featured_block,
+                  product: gift_product,
+                  product_form_id: product_form_id,
+                  section_id: section.id,
+                  show_pickup_availability: false
+                %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </product-info>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .cranbi-premade-product {
+    background: #ffffff;
+  }
+
+  .cranbi-premade-product__page-width {
+    max-width: 100% !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+
+  .cranbi-premade-product__intro {
+    max-width: 72rem;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .cranbi-premade-product__eyebrow {
+    margin: 0 0 1.4rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: #660033;
+  }
+
+  .cranbi-premade-product__heading {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.2rem, 4.6vw, 4.8rem);
+    line-height: 1;
+    color: #3d3935;
+  }
+
+  .cranbi-premade-product__text {
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: rgba(61, 57, 53, 0.76);
+  }
+
+  .cranbi-premade-product__shell {
+    display: block;
+  }
+
+  .cranbi-premade-product__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .cranbi-premade-product__media {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.8rem;
+    align-items: start;
+  }
+
+  .cranbi-premade-product__thumbs {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .cranbi-premade-product__thumb {
+    width: 9rem;
+    height: 9rem;
+    padding: 0;
+    border: 1px solid rgba(61, 57, 53, 0.12);
+    background: #ffffff;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .cranbi-premade-product__thumb.is-active {
+    border-color: #5c0f2b;
+  }
+
+  .cranbi-premade-product__thumb-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+  }
+
+  .cranbi-premade-product__stage {
+    position: relative;
+    min-height: 66rem;
+    border: 1px solid rgba(61, 57, 53, 0.08);
+    border-radius: 2rem;
+    overflow: hidden;
+    background: #ffffff;
+  }
+
+  .cranbi-premade-product__pane {
+    display: none;
+    width: 100%;
+    height: 100%;
+    min-height: 66rem;
+  }
+
+  .cranbi-premade-product__pane.is-active {
+    display: block;
+  }
+
+  .cranbi-premade-product__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 66rem;
+    object-fit: contain;
+    background: #ffffff;
+  }
+
+  .cranbi-premade-product__info {
+    padding-top: 0.4rem;
+  }
+
+  .cranbi-premade-product__info-inner {
+    max-width: 100%;
+  }
+
+  .cranbi-premade-product__vendor {
+    margin: 0 0 1.6rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(61, 57, 53, 0.62);
+  }
+
+  .cranbi-premade-product__title {
+    margin: 0 0 2rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.4rem, 4vw, 5.2rem);
+    line-height: 0.98;
+    color: #3d3935;
+    font-weight: 500;
+  }
+
+  .cranbi-premade-product__price {
+    margin-bottom: 1.6rem;
+    color: #3d3935;
+  }
+
+  .cranbi-premade-product__price .price {
+    font-size: 2rem;
+  }
+
+  .cranbi-premade-product__badge {
+    display: inline-flex;
+    margin: 0 0 2rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    background: rgba(255, 249, 242, 0.92);
+    color: #660033;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .cranbi-premade-product__description {
+    margin-bottom: 3rem;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: rgba(61, 57, 53, 0.78);
+  }
+
+  .cranbi-premade-product__buy .product-form {
+    margin: 0;
+  }
+
+  .cranbi-premade-product__buy .cranbi-buy-wrap,
+  .cranbi-premade-product__buy product-form,
+  .cranbi-premade-product__buy .product-form__buttons,
+  .cranbi-premade-product__buy .cranbi-buynow-wrap,
+  .cranbi-premade-product__buy .shopify-payment-button,
+  .cranbi-premade-product__buy .shopify-payment-button__button,
+  .cranbi-premade-product__buy .shopify-payment-button__button--unbranded,
+  .cranbi-premade-product__buy .cranbi-buy-now-btn {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .cranbi-premade-product__buy .cranbi-atc-row {
+    display: grid;
+    grid-template-columns: minmax(15.8rem, 16rem) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 1.6rem;
+  }
+
+  .cranbi-premade-product__buy .cranbi-atc-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cranbi-premade-product__buy .cranbi-secure-checkout {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .cranbi-premade-product__grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .cranbi-premade-product__media {
+      grid-template-columns: 1fr;
+    }
+
+    .cranbi-premade-product__thumbs {
+      order: 2;
+      flex-direction: row;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+    }
+
+    .cranbi-premade-product__buy .cranbi-atc-row {
+      grid-template-columns: 1fr;
+    }
+
+    .cranbi-premade-product__stage,
+    .cranbi-premade-product__pane,
+    .cranbi-premade-product__image {
+      min-height: 46rem;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cranbi-premade-product__intro {
+      margin-bottom: 3rem;
+    }
+
+    .cranbi-premade-product__heading {
+      font-size: 2.8rem;
+    }
+
+    .cranbi-premade-product__thumb {
+      width: 7.2rem;
+      height: 7.2rem;
+      flex: 0 0 7.2rem;
+    }
+
+    .cranbi-premade-product__stage,
+    .cranbi-premade-product__pane,
+    .cranbi-premade-product__image {
+      min-height: 34rem;
+    }
+
+    .cranbi-premade-product__title {
+      font-size: 2.8rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.getElementById('PremadeGift-{{ section.id }}');
+    if (!root) return;
+
+    const thumbs = root.querySelectorAll('[data-media-target]');
+    const panes = root.querySelectorAll('[data-media-pane]');
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        const target = thumb.dataset.mediaTarget;
+
+        thumbs.forEach((node) => node.classList.toggle('is-active', node === thumb));
+        panes.forEach((pane) => pane.classList.toggle('is-active', pane.dataset.mediaPane === target));
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Curated Gift Products",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "PREMADE GIFTING"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Premade Gift Box"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Discover your ready-to-gift ritual in a more detailed product layout.</p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Premade gift"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curated Gift Products"
+    }
+  ]
+}
+{% endschema %}

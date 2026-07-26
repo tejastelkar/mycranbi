@@ -1,0 +1,4 @@
+[    1587ms] [INFO] [HotReload] Connected @ http://127.0.0.1:9292/cdn/shopifycloud/theme-hot-reload/theme-hot-reload.js:299
+[    1890ms] [ERROR] Framing 'https://shop.app/' violates the following Content Security Policy directive: "frame-ancestors https://6imbm9-et.myshopify.com https://6imbm9-et.account.myshopify.com https://shopify.com". The request has been blocked.
+ @ :0
+[  212569ms] [INFO] [HotReload] Updated theme CSS: assets/watch-shop-popover.css @ http://127.0.0.1:9292/cdn/shopifycloud/theme-hot-reload/theme-hot-reload.js:162

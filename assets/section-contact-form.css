@@ -10,30 +10,327 @@
   margin-top: 0.2rem;
 }
 
-.contact .field {
-  margin-bottom: 1.5rem;
+.cranbi-contact {
+  max-width: 140rem;
 }
 
-@media screen and (min-width: 750px) {
-  .contact .field {
-    margin-bottom: 2rem;
-  }
+.cranbi-contact__grid {
+  display: grid;
+  gap: 4rem;
+  padding: 4rem 0;
 }
 
-.contact__button {
+.cranbi-contact__details {
+  background: transparent;
+  padding: 0;
+}
+
+.cranbi-contact__eyebrow,
+.cranbi-contact__label,
+.cranbi-contact__card-label {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.cranbi-contact__eyebrow {
+  color: #7a183f;
+  font-size: 1.2rem;
+  margin: 0 0 0.8rem;
+  font-weight: 500;
+}
+
+.cranbi-contact__title,
+.cranbi-contact__form-title {
+  font-family: var(--font-heading-family);
+  color: rgb(var(--color-foreground));
+  line-height: 1;
+  margin: 0;
+  font-weight: 400;
+}
+
+.cranbi-contact__title {
+  font-size: clamp(3rem, 3.5vw, 4rem);
+  line-height: 1.1;
+  max-width: none;
+}
+
+.cranbi-contact__form-intro,
+.cranbi-contact__card-value,
+.cranbi-contact__meta-item span {
+  color: rgba(var(--color-foreground), 0.7);
+  line-height: 1.7;
+}
+
+.cranbi-contact__details-head {
+  margin-bottom: 3.6rem; /* Aligned with right column */
+  text-align: center;
+}
+
+.cranbi-contact__cards {
+  display: grid;
+  gap: 2rem;
+  margin-top: 0;
+}
+
+.cranbi-contact__card {
+  align-items: flex-start;
+  background: transparent;
+  border: none;
+  color: inherit;
+  display: flex;
+  gap: 1.8rem;
+  padding: 1rem 0;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.cranbi-contact__card:hover {
+  opacity: 0.7;
+}
+
+.cranbi-contact__icon {
+  align-items: center;
+  background: transparent;
+  color: #660033;
+  display: inline-flex;
+  flex: 0 0 3.2rem;
+  height: 3.2rem;
+  justify-content: flex-start;
+}
+
+.cranbi-contact__icon svg {
+  height: 2.4rem;
+  stroke-width: 1.2;
+  width: 2.4rem;
+}
+
+.cranbi-contact__card-copy {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.cranbi-contact__card-label {
+  color: #7a183f;
+  font-size: 1.1rem;
+}
+
+.cranbi-contact__card-value {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.cranbi-contact__meta {
+  display: grid;
+  gap: 1.4rem;
   margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(102, 0, 51, 0.1);
 }
 
-@media screen and (min-width: 750px) {
-  .contact__button {
-    margin-top: 4rem;
+.cranbi-contact__meta-item {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.cranbi-contact__meta-item strong {
+  color: #660033;
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cranbi-contact__form-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
+  padding: 0;
+  margin-top: 0;
+}
+
+.cranbi-contact__form-title {
+  font-size: clamp(3rem, 3.5vw, 4rem);
+  line-height: 1.1;
+  text-align: center;
+}
+
+.cranbi-contact__form-intro {
+  margin: 1.2rem auto 3rem;
+  max-width: 50rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.cranbi-contact__status {
+  background: transparent;
+  border: 1px solid #660033;
+  border-radius: 0;
+  margin: 0 0 2rem;
+  padding: 1.4rem 1.6rem;
+  color: #660033;
+}
+
+.cranbi-contact__form .field {
+  margin-bottom: 2.4rem;
+  display: block;
+  position: static;
+}
+
+.cranbi-contact .field:before,
+.cranbi-contact .field:after {
+  content: none;
+}
+
+.cranbi-contact__label {
+  color: #660033;
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.8rem;
+  position: static;
+  pointer-events: auto;
+  text-transform: uppercase;
+}
+
+.cranbi-contact .field__input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(102, 0, 51, 0.3);
+  border-radius: 0;
+  box-shadow: none;
+  height: auto;
+  margin: 0;
+  min-height: 4.4rem;
+  padding: 0.8rem 0;
+  font-size: 1.6rem;
+  color: rgb(var(--color-foreground));
+  transition: border-bottom-color 0.3s ease, border-width 0.3s ease;
+}
+
+.cranbi-contact .field__input:focus {
+  border-color: #660033;
+  border-bottom: 2px solid #660033;
+  box-shadow: none;
+  margin: 0;
+  padding: 0.8rem 0 0.7rem; /* adjust padding to prevent jump when border is 2px */
+  outline: none;
+}
+
+.cranbi-contact .field__input:not(:placeholder-shown),
+.cranbi-contact .field__input:-webkit-autofill {
+  margin: 0;
+  padding: 0.8rem 0;
+}
+
+.cranbi-contact .field__input::placeholder {
+  color: rgba(var(--color-foreground), 0.3);
+  opacity: 1;
+  font-size: 1.4rem;
+}
+
+.cranbi-contact textarea.field__input {
+  min-height: 12rem;
+  padding-top: 0.8rem;
+  resize: vertical;
+}
+
+.cranbi-contact__button {
+  margin-top: 4rem;
+}
+
+.cranbi-contact__button .button {
+  min-height: 5.4rem;
+  width: 100%;
+  background-color: #660033;
+  color: #ffffff;
+  border: 1px solid #660033;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.cranbi-contact__button .button:hover {
+  background-color: #ffffff;
+  color: #660033;
+}
+
+@media screen and (min-width: 990px) {
+  .cranbi-contact__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 7rem;
+    align-items: start;
+    padding: 8rem 2rem;
+  }
+
+  .cranbi-contact__details-head {
+    text-align: left;
+    margin-bottom: 4rem;
+  }
+
+  .cranbi-contact__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .cranbi-contact__card--wide {
+    grid-column: span 1;
+  }
+
+  .cranbi-contact__meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cranbi-contact__form-card {
+    padding-top: 0;
+  }
+
+  .cranbi-contact__form-title {
+    text-align: left;
+    margin-top: 2.6rem; /* perfectly aligns with left heading pushed down by eyebrow */
+  }
+
+  .cranbi-contact__form-intro {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cranbi-contact__fields {
+    display: grid;
+    gap: 2.4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media screen and (min-width: 750px) {
-  .contact__fields {
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .cranbi-contact__grid {
+    padding: 6rem 2rem;
+    gap: 6rem;
+  }
+
+  .cranbi-contact__cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cranbi-contact__card--wide {
+    grid-column: span 2;
+  }
+
+  .cranbi-contact__meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cranbi-contact__fields {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 2rem;
+    gap: 3rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

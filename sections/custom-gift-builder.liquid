@@ -1,0 +1,790 @@
+<section class="cranbi-gift-builder section-{{ section.id }}-padding" id="GiftBuilder">
+  <div class="page-width cranbi-gift-builder__page-width">
+    <div class="cranbi-gift-builder__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="cranbi-gift-builder__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="cranbi-gift-builder__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="cranbi-gift-builder__text rte">{{ section.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+    <div
+      class="cranbi-gift-builder__layout"
+      id="GiftBuilder-{{ section.id }}"
+      data-gift-label="{{ section.settings.gift_label | escape }}"
+      data-submit-label="{{ section.settings.submit_label | escape }}"
+      data-empty-text="{{ section.settings.empty_text | escape }}"
+      data-success-text="{{ section.settings.success_text | escape }}"
+      data-error-text="{{ section.settings.error_text | escape }}"
+      data-currency-code="{{ cart.currency.iso_code | default: shop.currency }}"
+    >
+      <div class="cranbi-gift-builder__visual-panel">
+        <div class="cranbi-gift-builder__visual-frame">
+          {%- if section.settings.box_image != blank -%}
+            <div class="cranbi-gift-builder__media">
+              {{
+                section.settings.box_image
+                | image_url: width: 1200
+                | image_tag:
+                  class: 'cranbi-gift-builder__box-image',
+                  loading: 'lazy',
+                  widths: '375, 550, 750, 900, 1200'
+              }}
+            </div>
+          {%- else -%}
+            <div class="cranbi-gift-builder__media cranbi-gift-builder__media--placeholder" aria-label="Gift box placeholder">
+              <div class="cranbi-gift-builder__placeholder-scene">
+                <div class="cranbi-gift-builder__placeholder-box">
+                  <span class="cranbi-gift-builder__placeholder-ribbon cranbi-gift-builder__placeholder-ribbon--vertical"></span>
+                  <span class="cranbi-gift-builder__placeholder-ribbon cranbi-gift-builder__placeholder-ribbon--horizontal"></span>
+                  <span class="cranbi-gift-builder__placeholder-tag">MY CRANBI</span>
+                </div>
+                <div class="cranbi-gift-builder__placeholder-shadow"></div>
+              </div>
+            </div>
+          {%- endif -%}
+
+        </div>
+      </div>
+
+      <aside class="cranbi-gift-builder__control-panel">
+        <div class="cranbi-gift-builder__summary-card">
+          <p class="cranbi-gift-builder__summary-eyebrow">{{ section.settings.summary_eyebrow }}</p>
+          <h3 class="cranbi-gift-builder__summary-heading">{{ section.settings.summary_heading }}</h3>
+          <p class="cranbi-gift-builder__summary-note">
+            Every product added here will be packed together as one {{ section.settings.gift_label | downcase }}.
+          </p>
+
+          <div class="cranbi-gift-builder__picker">
+            <label class="cranbi-gift-builder__label" for="GiftBuilderSelect-{{ section.id }}">
+              {{ section.settings.dropdown_label }}
+            </label>
+            <div class="cranbi-gift-builder__picker-row">
+              <div class="cranbi-gift-builder__select-wrap">
+                <select id="GiftBuilderSelect-{{ section.id }}" class="cranbi-gift-builder__select" data-role="product-select">
+                  <option value="">{{ section.settings.dropdown_placeholder }}</option>
+                  {%- for block in section.blocks -%}
+                    {%- assign gift_product = block.settings.product -%}
+                    {%- assign gift_variant = gift_product.selected_or_first_available_variant -%}
+                    {%- if gift_product != blank and gift_variant != blank -%}
+                      <option value="{{ gift_product.handle }}">
+                        {{ gift_product.title }} - {{ gift_variant.price | money }}
+                      </option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </div>
+
+              <button type="button" class="button cranbi-gift-builder__add-button" data-role="add-product">
+                {{ section.settings.add_product_label }}
+              </button>
+            </div>
+          </div>
+
+          <ul class="cranbi-gift-builder__summary-list" data-role="summary-list">
+            <li class="cranbi-gift-builder__summary-empty" data-role="summary-empty">{{ section.settings.empty_text }}</li>
+          </ul>
+
+          <div class="cranbi-gift-builder__summary-total">
+            <span>Total</span>
+            <strong data-role="summary-total">{{ 0 | money }}</strong>
+          </div>
+
+          <button type="button" class="button cranbi-gift-builder__submit" data-role="submit" disabled>
+            {{ section.settings.submit_label }}
+          </button>
+          <p class="cranbi-gift-builder__status" data-role="status" aria-live="polite"></p>
+        </div>
+      </aside>
+
+      <div class="cranbi-gift-builder__products" hidden>
+        {%- for block in section.blocks -%}
+          {%- assign gift_product = block.settings.product -%}
+          {%- assign gift_variant = gift_product.selected_or_first_available_variant -%}
+          {%- if gift_product != blank and gift_variant != blank -%}
+            <div
+              data-product-key="{{ gift_product.handle }}"
+              data-variant-id="{{ gift_variant.id }}"
+              data-title="{{ gift_product.title | escape }}"
+              data-price="{{ gift_variant.price }}"
+              data-image="{% if gift_product.featured_media != blank %}{{ gift_product.featured_media | image_url: width: 180 }}{% endif %}"
+              {{ block.shopify_attributes }}
+            ></div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .cranbi-gift-builder {
+    background: #ffffff;
+  }
+
+  .cranbi-gift-builder__page-width {
+    max-width: 100% !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+
+  .cranbi-gift-builder__intro {
+    max-width: 76rem;
+    margin: 0 auto 5rem;
+    text-align: center;
+  }
+
+  .cranbi-gift-builder__eyebrow,
+  .cranbi-gift-builder__summary-eyebrow {
+    margin: 0 0 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: var(--font-body-family);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #660033;
+  }
+
+  .cranbi-gift-builder__heading,
+  .cranbi-gift-builder__summary-heading {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    color: #3d3935;
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  .cranbi-gift-builder__heading {
+    font-size: clamp(3rem, 3.5vw, 4rem);
+    margin-bottom: 1.8rem;
+  }
+
+  .cranbi-gift-builder__summary-heading {
+    font-size: clamp(3rem, 3.5vw, 4rem);
+    margin-bottom: 1.4rem;
+  }
+
+  .cranbi-gift-builder__text {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    color: rgba(61, 57, 53, 0.78);
+  }
+
+  .cranbi-gift-builder__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8rem;
+    align-items: stretch;
+    border: none;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  .cranbi-gift-builder__visual-frame,
+  .cranbi-gift-builder__summary-card {
+    height: 100%;
+  }
+
+  .cranbi-gift-builder__visual-frame {
+    padding: 0;
+    background: transparent;
+  }
+
+  .cranbi-gift-builder__media {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-height: 68rem;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  .cranbi-gift-builder__media--placeholder {
+    background: #ffffff;
+  }
+
+  .cranbi-gift-builder__box-image {
+    display: block;
+    width: 100%;
+    min-height: 68rem;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cranbi-gift-builder__placeholder-scene {
+    width: 100%;
+    min-height: 68rem;
+    display: grid;
+    place-items: center;
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.34) 100%);
+  }
+
+  .cranbi-gift-builder__placeholder-box {
+    position: relative;
+    width: min(58rem, 72%);
+    aspect-ratio: 0.92 / 1;
+    border: 1px solid rgba(61, 57, 53, 0.08);
+    background:
+      linear-gradient(145deg, #f8e7d7 0%, #f4dcc5 42%, #ead1bd 100%);
+    box-shadow: 0 2.2rem 4rem rgba(61, 57, 53, 0.12);
+  }
+
+  .cranbi-gift-builder__placeholder-ribbon {
+    position: absolute;
+    background: linear-gradient(180deg, #7c0a42 0%, #660033 100%);
+  }
+
+  .cranbi-gift-builder__placeholder-ribbon--vertical {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 12%;
+    transform: translateX(-50%);
+  }
+
+  .cranbi-gift-builder__placeholder-ribbon--horizontal {
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 12%;
+    transform: translateY(-50%);
+  }
+
+  .cranbi-gift-builder__placeholder-tag {
+    position: absolute;
+    right: 1.8rem;
+    bottom: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 3rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 1.2rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #3d3935;
+  }
+
+  .cranbi-gift-builder__placeholder-shadow {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: 11%;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(61, 57, 53, 0.12);
+    filter: blur(18px);
+  }
+
+  .cranbi-gift-builder__summary-card {
+    padding: 4rem 0;
+    background: transparent;
+  }
+
+  .cranbi-gift-builder__summary-note {
+    margin: 2.4rem 0 0;
+    max-width: 44rem;
+    font-size: 1.8rem;
+    line-height: 1.65;
+    color: rgba(61, 57, 53, 0.7);
+  }
+
+  .cranbi-gift-builder__picker {
+    margin-top: 4rem;
+    margin-bottom: 3.2rem;
+  }
+
+  .cranbi-gift-builder__label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #660033;
+  }
+
+  .cranbi-gift-builder__picker-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.2rem;
+    align-items: stretch;
+  }
+
+  .cranbi-gift-builder__select-wrap {
+    position: relative;
+  }
+
+  .cranbi-gift-builder__select-wrap::after {
+    content: '';
+    position: absolute;
+    right: 1.8rem;
+    top: 50%;
+    width: 1rem;
+    height: 1rem;
+    border-right: 1px solid #660033;
+    border-bottom: 1px solid #660033;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  .cranbi-gift-builder__select {
+    width: 100%;
+    min-height: 4.4rem;
+    padding: 0.8rem 4.8rem 0.8rem 0;
+    border: none;
+    border-bottom: 1px solid rgba(102, 0, 51, 0.3);
+    border-radius: 0;
+    background: transparent;
+    font-size: 1.6rem;
+    font-family: var(--font-body-family);
+    color: #3d3935;
+    appearance: none;
+    transition: border-bottom-color 0.3s ease, border-width 0.3s ease;
+    box-shadow: none !important;
+  }
+
+  .cranbi-gift-builder__select:focus,
+  .cranbi-gift-builder__select:focus-visible {
+    border-bottom: 2px solid #660033;
+    padding-bottom: 0.7rem;
+    outline: none;
+    box-shadow: none !important;
+  }
+
+  .cranbi-gift-builder__add-button,
+  .cranbi-gift-builder__submit {
+    min-height: 4.4rem;
+    padding-inline: 2rem;
+    background-color: #660033;
+    color: #ffffff;
+    border: 1px solid #660033;
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .cranbi-gift-builder__add-button:hover,
+  .cranbi-gift-builder__submit:hover {
+    background-color: #ffffff;
+    color: #660033;
+  }
+
+  .cranbi-gift-builder__add-button:disabled,
+  .cranbi-gift-builder__submit:disabled {
+    background-color: #f1f1f1;
+    color: #a0a0a0;
+    border-color: #f1f1f1;
+    cursor: not-allowed;
+  }
+
+  .cranbi-gift-builder__add-button:disabled:hover,
+  .cranbi-gift-builder__submit:disabled:hover {
+    background-color: #f1f1f1;
+    color: #a0a0a0;
+  }
+
+  .cranbi-gift-builder__summary-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .cranbi-gift-builder__summary-item,
+  .cranbi-gift-builder__summary-empty {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(61, 57, 53, 0.08);
+  }
+
+  .cranbi-gift-builder__summary-empty {
+    font-size: 1.45rem;
+    color: rgba(61, 57, 53, 0.62);
+  }
+
+  .cranbi-gift-builder__summary-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+  }
+
+  .cranbi-gift-builder__summary-copy {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    min-width: 0;
+  }
+
+  .cranbi-gift-builder__summary-thumb {
+    display: block;
+    width: 6.8rem;
+    height: 6.8rem;
+    flex: 0 0 6.8rem;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(61, 57, 53, 0.08);
+    border-radius: 0.8rem;
+  }
+
+  .cranbi-gift-builder__summary-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    object-position: center;
+    background: #ffffff;
+  }
+
+  .cranbi-gift-builder__summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .cranbi-gift-builder__summary-name {
+    font-size: 1.55rem;
+    font-family: var(--font-body-family);
+    font-weight: 500;
+    color: #3d3935;
+  }
+
+  .cranbi-gift-builder__summary-meta {
+    font-size: 1.25rem;
+    font-family: var(--font-body-family);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(61, 57, 53, 0.56);
+  }
+
+  .cranbi-gift-builder__summary-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .cranbi-gift-builder__summary-btn {
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(61, 57, 53, 0.18);
+    background: #ffffff;
+    color: #660033;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .cranbi-gift-builder__summary-qty {
+    min-width: 1.4rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: var(--font-body-family);
+    font-weight: 600;
+    color: #3d3935;
+  }
+
+  .cranbi-gift-builder__summary-line-total {
+    margin-left: 0.6rem;
+    font-size: 1.5rem;
+    font-family: var(--font-body-family);
+    font-weight: 600;
+    color: #3d3935;
+  }
+
+  .cranbi-gift-builder__summary-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid rgba(61, 57, 53, 0.12);
+    font-size: 1.7rem;
+    color: #3d3935;
+  }
+
+  .cranbi-gift-builder__summary-total strong {
+    font-size: 2.4rem;
+    font-family: var(--font-body-family);
+    font-weight: 700;
+  }
+
+  .cranbi-gift-builder__submit {
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .cranbi-gift-builder__status {
+    min-height: 2.2rem;
+    margin: 1.4rem 0 0;
+    font-size: 1.35rem;
+    color: #660033;
+  }
+
+  @media screen and (max-width: 989px) {
+    .cranbi-gift-builder__layout {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    .cranbi-gift-builder__summary-card {
+      padding: 0;
+    }
+
+    .cranbi-gift-builder__intro {
+      margin-bottom: 3rem;
+    }
+
+    .cranbi-gift-builder__media,
+    .cranbi-gift-builder__box-image,
+    .cranbi-gift-builder__placeholder-scene {
+      min-height: 42rem;
+    }
+
+    .cranbi-gift-builder__summary-card {
+      padding: 4rem 3rem;
+    }
+
+    .cranbi-gift-builder__picker-row {
+      grid-template-columns: 1fr;
+    }
+
+    .cranbi-gift-builder__summary-item {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .cranbi-gift-builder__summary-controls {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cranbi-gift-builder__heading {
+      font-size: 2.8rem;
+    }
+
+    .cranbi-gift-builder__summary-heading {
+      font-size: 2.3rem;
+      line-height: 1.04;
+    }
+
+    .cranbi-gift-builder__summary-note {
+      font-size: 1.6rem;
+    }
+
+    .cranbi-gift-builder__media,
+    .cranbi-gift-builder__box-image,
+    .cranbi-gift-builder__placeholder-scene {
+      min-height: 34rem;
+    }
+
+    .cranbi-gift-builder__placeholder-box {
+      width: 72%;
+    }
+
+    .cranbi-gift-builder__placeholder-tag {
+      right: 1.2rem;
+      bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .cranbi-gift-builder__summary-card {
+      padding: 3rem 1.8rem;
+    }
+
+    .cranbi-gift-builder__summary-total {
+      font-size: 1.5rem;
+    }
+
+    .cranbi-gift-builder__summary-total strong {
+      font-size: 2rem;
+    }
+
+    .cranbi-gift-builder__add-button,
+    .cranbi-gift-builder__submit {
+      width: 100%;
+    }
+
+    .cranbi-gift-builder__summary-copy {
+      width: 100%;
+    }
+  }
+</style>
+
+<script src="{{ 'gifting-builder-runtime.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Custom Gift Builder",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "CUSTOM GIFT BOX"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Build a gift box with your chosen rituals"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Select one product at a time, add it into the box, and create a gifting combination that feels personal and beautifully considered.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "box_image",
+      "label": "Box image"
+    },
+    {
+      "type": "text",
+      "id": "visual_eyebrow",
+      "label": "Visual eyebrow",
+      "default": "GIFT BOX PREVIEW"
+    },
+    {
+      "type": "text",
+      "id": "visual_heading",
+      "label": "Visual heading",
+      "default": "A softer, more thoughtful gifting ritual"
+    },
+    {
+      "type": "text",
+      "id": "visual_text",
+      "label": "Visual text",
+      "default": "Use this placeholder visual for now, then swap in your final gift box photography once it is ready."
+    },
+    {
+      "type": "text",
+      "id": "summary_eyebrow",
+      "label": "Summary eyebrow",
+      "default": "YOUR BOX"
+    },
+    {
+      "type": "text",
+      "id": "summary_heading",
+      "label": "Summary heading",
+      "default": "Custom Gift Box"
+    },
+    {
+      "type": "text",
+      "id": "dropdown_label",
+      "label": "Dropdown label",
+      "default": "Choose a product to add"
+    },
+    {
+      "type": "text",
+      "id": "dropdown_placeholder",
+      "label": "Dropdown placeholder",
+      "default": "Select a product"
+    },
+    {
+      "type": "text",
+      "id": "add_product_label",
+      "label": "Add product button label",
+      "default": "Add to box"
+    },
+    {
+      "type": "text",
+      "id": "gift_label",
+      "label": "Gift label",
+      "default": "Custom Gift Box"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Add custom gift box to cart"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Empty state text",
+      "default": "Choose your first product to begin building the box."
+    },
+    {
+      "type": "text",
+      "id": "success_text",
+      "label": "Success message",
+      "default": "Your custom gift box has been added to cart."
+    },
+    {
+      "type": "text",
+      "id": "error_text",
+      "label": "Error message",
+      "default": "We could not add your gift box right now. Please try again."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Gift Builder"
+    }
+  ]
+}
+{% endschema %}

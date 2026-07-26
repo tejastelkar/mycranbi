@@ -1,44 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "image-banner",
       "settings": {
+        "make_page_width": false,
+        "banner_link": "",
+        "image_overlay_opacity": 0,
         "image_height": "small",
+        "image_behavior": "none",
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
         "color_scheme": "scheme-2",
-        "image_overlay_opacity": 0
-      },
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Frequently Asked Questions",
-            "heading_size": "hxl"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Everything you need to know about MY CRANBI, your order, and our ingredients.",
-            "text_style": "subtitle"
-          }
-        }
-      },
-      "block_order": ["heading", "text"]
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     },
     "faq": {
       "type": "product-faq",
-      "settings": {
-        "heading": "",
-        "bg_color": "#FFFFFF",
-        "text_color": "#3D3935",
-        "border_color": "#EBEBEB",
-        "accent_color": "#660033",
-        "padding_top": 60,
-        "padding_bottom": 60
-      },
       "blocks": {
         "faq_c18613d8": {
           "type": "faq_item",
@@ -231,18 +220,19 @@
         "faq_83c47d79",
         "faq_71a6e0ea",
         "faq_dbf04f32"
-      ]
+      ],
+      "settings": {
+        "heading": "",
+        "bg_color": "#ffffff",
+        "text_color": "#3d3935",
+        "border_color": "#ebebeb",
+        "accent_color": "#660033",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     },
     "still-have-questions": {
       "type": "rich-text",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "scheme-2",
-        "full_width": true,
-        "padding_top": 60,
-        "padding_bottom": 60
-      },
       "blocks": {
         "heading": {
           "type": "heading",
@@ -262,12 +252,31 @@
           "settings": {
             "button_label": "Contact Us",
             "button_link": "/pages/contact",
-            "button_style_secondary": false
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
-      "block_order": ["heading", "text", "button"]
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
-  "order": ["hero", "faq", "still-have-questions"]
+  "order": [
+    "hero",
+    "faq",
+    "still-have-questions"
+  ]
 }

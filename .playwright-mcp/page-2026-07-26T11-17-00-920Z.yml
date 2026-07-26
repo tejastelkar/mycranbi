@@ -1,0 +1,547 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#MainContent"
+  - region "Announcement bar" [ref=e6]:
+    - group [ref=e7]:
+      - paragraph [ref=e8]: Welcome to our store
+    - group:
+      - paragraph: Free shipping on orders over ₹999
+  - banner [ref=e11]:
+    - generic [ref=e12]:
+      - group [ref=e14]:
+        - button "Menu" [ref=e15] [cursor=pointer]
+      - group [ref=e20]:
+        - button "Search" [ref=e21] [cursor=pointer]
+    - heading [level=1] [ref=e26]:
+      - link [ref=e27] [cursor=pointer]:
+        - /url: /
+        - img "MY CRANBI logo" [ref=e29]
+    - text: • • • • • • •
+    - generic [ref=e30]:
+      - link "Wishlist" [ref=e31] [cursor=pointer]:
+        - /url: "#"
+      - button "Cart" [ref=e36] [cursor=pointer]
+  - main [ref=e41]:
+    - generic [ref=e50]:
+      - button "Go to slide 1" [ref=e51] [cursor=pointer]
+      - button "Go to slide 2" [ref=e52] [cursor=pointer]
+    - generic [ref=e56]:
+      - link [disabled] [ref=e57]:
+        - img "SKINCARE" [ref=e59]
+        - heading "SKINCARE" [level=3] [ref=e61]
+      - link [disabled] [ref=e62]:
+        - img "HAIRCARE" [ref=e64]
+        - heading "HAIRCARE" [level=3] [ref=e66]
+      - link [disabled] [ref=e67]:
+        - img "SANDANYA COLLECTION" [ref=e69]
+        - heading "SANDANYA COLLECTION" [level=3] [ref=e71]
+      - link [disabled] [ref=e72]:
+        - img "BRINGARAS COLLECTION" [ref=e74]
+        - heading "BRINGARAS COLLECTION" [level=3] [ref=e76]
+      - link [disabled] [ref=e77]:
+        - img "ELADHI COLLECTION" [ref=e79]
+        - heading "ELADHI COLLECTION" [level=3] [ref=e81]
+      - link [disabled] [ref=e82]:
+        - heading "Collection" [level=3] [ref=e92]
+      - link [disabled] [ref=e93]:
+        - heading "Collection" [level=3] [ref=e103]
+      - link [disabled] [ref=e104]:
+        - heading "Collection" [level=3] [ref=e114]
+    - generic [ref=e117]:
+      - heading "OUR STORY" [level=2] [ref=e119]
+      - generic [ref=e120]:
+        - generic [ref=e127]:
+          - heading "HERITAGE OF VELVET TOUCH" [level=3] [ref=e128]
+          - paragraph [ref=e130]: Guided by our family's philosophy, we blend the richness of saffron and India's timeless botanical heritage with modern science, crafting care you can truly trust.
+        - generic [ref=e137]:
+          - heading "ROOTED IN SAFFRON" [level=3] [ref=e138]
+          - paragraph [ref=e140]: From our family's own MAA KESAR saffron venture in Srinagar to every MY CRANBI formula, pure Kashmir saffron is at the heart of what we create.
+        - generic [ref=e147]:
+          - heading "FREE FROM, NEVER COMPROMISED" [level=3] [ref=e148]
+          - paragraph [ref=e150]: Every product is crafted without sulphates, parabens, silicones, or formaldehyde — honest care, made with love in India.
+    - generic [ref=e153]:
+      - generic [ref=e154]:
+        - heading "Our Bestsellers" [level=2] [ref=e155]
+        - link "View all products in the Products collection" [ref=e156] [cursor=pointer]:
+          - /url: /collections/all
+          - text: View all
+      - list "Slider" [ref=e158]:
+        - listitem [ref=e159]:
+          - generic [ref=e162]:
+            - generic [ref=e163]:
+              - generic [ref=e165]:
+                - img "My Cranbi Amla & Shikakai Shampoo - front" [ref=e166]
+                - img "My Cranbi Amla & Shikakai Shampoo - angle" [ref=e167]
+              - button [ref=e168] [cursor=pointer]
+            - generic [ref=e173]:
+              - heading [level=3] [ref=e174]:
+                - link "Amla & Shikakai Shampoo" [ref=e175] [cursor=pointer]:
+                  - /url: /products/amla-shikakai-shampoo
+              - paragraph [ref=e176]: Ayurvedic hair care crafted with authentic Amla & Shikakai extracts, enriched with...
+              - generic [ref=e180]:
+                - generic [ref=e181]: Regular price
+                - generic [ref=e182]: Rs. 599.00 INR
+        - listitem [ref=e183]:
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e189]:
+                - img "My Cranbi Ceramide Lotion - front" [ref=e190]
+                - img "My Cranbi Ceramide Lotion - ingredients" [ref=e191]
+              - button [ref=e192] [cursor=pointer]
+            - generic [ref=e197]:
+              - heading [level=3] [ref=e198]:
+                - link "Ceramide Lotion" [ref=e199] [cursor=pointer]:
+                  - /url: /products/ceramide-lotion
+              - paragraph [ref=e200]: A light gel-cream lotion powered by a 5-Molecule Ceramide Complex and Hyaluronic...
+              - generic [ref=e204]:
+                - generic [ref=e205]: Regular price
+                - generic [ref=e206]: Rs. 350.00 INR
+        - listitem [ref=e207]:
+          - generic [ref=e210]:
+            - generic [ref=e211]:
+              - generic [ref=e213]:
+                - img "My Cranbi Creamy Hair Serum - front" [ref=e214]
+                - img "My Cranbi Creamy Hair Serum - angle" [ref=e215]
+              - button [ref=e216] [cursor=pointer]
+            - generic [ref=e221]:
+              - heading [level=3] [ref=e222]:
+                - link "Creamy Hair Serum" [ref=e223] [cursor=pointer]:
+                  - /url: /products/creamy-hair-serum
+              - paragraph [ref=e224]: A weightless, no-rinse leave-in serum infused with plant-based Keratin, Shea Butter, Castor...
+              - generic [ref=e228]:
+                - generic [ref=e229]: Regular price
+                - generic [ref=e230]: Rs. 299.00 INR
+        - listitem [ref=e231]:
+          - generic [ref=e234]:
+            - generic [ref=e235]:
+              - generic [ref=e237]:
+                - img "My Cranbi Hair Conditioner - front" [ref=e238]
+                - img "My Cranbi Hair Conditioner - angle" [ref=e239]
+              - button [ref=e240] [cursor=pointer]
+            - generic [ref=e245]:
+              - heading [level=3] [ref=e246]:
+                - link "Hair Conditioner" [ref=e247] [cursor=pointer]:
+                  - /url: /products/hair-conditioner
+              - paragraph [ref=e248]: A deeply moisturising conditioner with Wheat Protein, Olive Oil, Shea Butter and...
+              - generic [ref=e252]:
+                - generic [ref=e253]: Regular price
+                - generic [ref=e254]: Rs. 570.00 INR
+        - listitem [ref=e255]:
+          - generic [ref=e258]:
+            - generic [ref=e259]:
+              - generic [ref=e261]:
+                - img "My Cranbi Lavender Shower Gel - front" [ref=e262]
+                - img "My Cranbi Lavender Shower Gel - ingredients" [ref=e263]
+              - button [ref=e264] [cursor=pointer]
+            - generic [ref=e269]:
+              - heading [level=3] [ref=e270]:
+                - link "Lavender Shower Gel" [ref=e271] [cursor=pointer]:
+                  - /url: /products/lavender-shower-gel
+              - paragraph [ref=e272]: A gentle shower gel infused with Lavender & Chamomile extract for an...
+              - generic [ref=e276]:
+                - generic [ref=e277]: Regular price
+                - generic [ref=e278]: Rs. 535.00 INR
+        - listitem [ref=e279]:
+          - generic [ref=e282]:
+            - generic [ref=e283]:
+              - generic [ref=e285]:
+                - img "My Cranbi Orange Facewash - front" [ref=e286]
+                - img "My Cranbi Orange Facewash - ingredients" [ref=e287]
+              - button [ref=e288] [cursor=pointer]
+            - generic [ref=e293]:
+              - heading [level=3] [ref=e294]:
+                - link "Orange Facewash" [ref=e295] [cursor=pointer]:
+                  - /url: /products/orange-facewash
+              - paragraph [ref=e296]: A refreshing facewash enriched with Orange extract, Hyaluronic Acid, Panthenol and Glycerin....
+              - generic [ref=e300]:
+                - generic [ref=e301]: Regular price
+                - generic [ref=e302]: Rs. 430.00 INR
+        - listitem [ref=e303]:
+          - generic [ref=e306]:
+            - generic [ref=e307]:
+              - button [ref=e308] [cursor=pointer]
+              - heading [level=3] [ref=e313]:
+                - link "Premade Gift Box" [ref=e314] [cursor=pointer]:
+                  - /url: /products/premade-gift-box
+            - generic [ref=e316]:
+              - paragraph [ref=e317]: A ready-to-gift MY CRANBI ritual box with placeholder details for now. This...
+              - generic [ref=e321]:
+                - generic [ref=e322]: Regular price
+                - generic [ref=e323]: Rs. 2,490.00 INR
+        - listitem [ref=e324]:
+          - generic [ref=e327]:
+            - generic [ref=e328]:
+              - generic [ref=e330]:
+                - img "My Cranbi Saffron Face Gel - front" [ref=e331]
+                - img "My Cranbi Saffron Face Gel - ingredients" [ref=e332]
+              - button [ref=e333] [cursor=pointer]
+            - generic [ref=e338]:
+              - heading [level=3] [ref=e339]:
+                - link "Saffron Face Gel" [ref=e340] [cursor=pointer]:
+                  - /url: /products/saffron-face-gel
+              - paragraph [ref=e341]: A lightweight, non-tacky gel infused with real Saffron strands and rich natural...
+              - generic [ref=e345]:
+                - generic [ref=e346]: Regular price
+                - generic [ref=e347]: Rs. 299.00 INR
+    - generic [ref=e351]:
+      - img "Gift Sets Placeholder" [ref=e354]
+      - generic [ref=e356]:
+        - paragraph [ref=e357]: THE ART OF GIFTING
+        - heading "Gift a complete ritual" [level=2] [ref=e358]
+        - paragraph [ref=e360]: Discover travel-friendly favourites and beautifully boxed self-care bundles. Perfect for care on the go or gifting a loved one.
+        - link "Shop Gift Sets" [ref=e361] [cursor=pointer]:
+          - /url: /collections/all
+    - generic [ref=e364]:
+      - heading "Shop by concern" [level=2] [ref=e366]
+      - generic [ref=e367]:
+        - link [ref=e369] [cursor=pointer]:
+          - /url: /collections/dandruff
+          - img "Dandruff" [ref=e371]
+          - heading "Dandruff" [level=3] [ref=e375]
+        - link [ref=e377] [cursor=pointer]:
+          - /url: /collections/acne-prone-skin
+          - img "Acne-prone skin" [ref=e379]
+          - heading "Acne-prone skin" [level=3] [ref=e383]
+        - link [ref=e385] [cursor=pointer]:
+          - /url: /collections/dark-circles
+          - img "Dark circles" [ref=e387]
+          - heading "Dark circles" [level=3] [ref=e391]
+        - link [ref=e393] [cursor=pointer]:
+          - /url: /collections/dull-dry-skin
+          - img "Dull, dry skin" [ref=e395]
+          - heading "Dull, dry skin" [level=3] [ref=e399]
+        - link [ref=e401] [cursor=pointer]:
+          - /url: /collections/sun-protection
+          - img "Sun protection" [ref=e403]
+          - heading "Sun protection" [level=3] [ref=e407]
+        - link [ref=e409] [cursor=pointer]:
+          - /url: /collections/anti-ageing
+          - img "Anti-ageing" [ref=e411]
+          - heading "Anti-ageing" [level=3] [ref=e415]
+    - generic [ref=e417]:
+      - heading "Into the Spotlight" [level=2] [ref=e420]
+      - generic [ref=e422]:
+        - generic [ref=e423]:
+          - group "8 / 12" [ref=e424] [cursor=pointer]:
+            - img "Placeholder" [ref=e426]
+          - group "9 / 12" [ref=e427] [cursor=pointer]:
+            - img "Placeholder" [ref=e429]
+          - group "10 / 12" [ref=e430] [cursor=pointer]:
+            - img "Placeholder" [ref=e432]
+          - group "11 / 12" [ref=e433] [cursor=pointer]:
+            - img "Placeholder" [ref=e435]
+          - group "12 / 12" [ref=e436] [cursor=pointer]:
+            - img "Placeholder" [ref=e438]
+          - group "1 / 12" [ref=e439] [cursor=pointer]:
+            - img "Placeholder" [ref=e441]
+          - group "2 / 12" [ref=e442] [cursor=pointer]:
+            - img "Placeholder" [ref=e444]
+          - group "3 / 12" [ref=e445] [cursor=pointer]:
+            - img "Placeholder" [ref=e447]
+          - group "4 / 12" [ref=e448] [cursor=pointer]:
+            - img "Placeholder" [ref=e450]
+          - group "5 / 12" [ref=e451] [cursor=pointer]:
+            - img "Placeholder" [ref=e453]
+          - group "6 / 12" [ref=e454] [cursor=pointer]:
+            - img "Placeholder" [ref=e456]
+          - group "7 / 12" [ref=e457] [cursor=pointer]:
+            - img "Placeholder" [ref=e459]
+        - button "Next slide" [ref=e460] [cursor=pointer]: next
+        - button "Previous slide" [ref=e461] [cursor=pointer]: prev
+    - generic [ref=e465]:
+      - img "Travel Edit" [ref=e468]
+      - generic [ref=e470]:
+        - generic [ref=e471]:
+          - heading "Rituals for every journey" [level=2] [ref=e472]
+          - paragraph [ref=e474]: Discover travel-friendly favourites for care on the go.
+        - generic [ref=e475]:
+          - generic [ref=e476]:
+            - link "Placeholder Ayurvedic Travel Mini Restorative and deeply hydrating Rs. 1,500.00" [ref=e477] [cursor=pointer]:
+              - /url: "#"
+              - img "Placeholder" [ref=e479]
+              - generic [ref=e480]:
+                - heading "Ayurvedic Travel Mini" [level=3] [ref=e481]
+                - paragraph [ref=e482]: Restorative and deeply hydrating
+                - generic [ref=e483]: Rs. 1,500.00
+            - button "Add to cart" [ref=e485] [cursor=pointer]
+          - generic [ref=e489]:
+            - link "Placeholder Ayurvedic Travel Mini Restorative and deeply hydrating Rs. 1,500.00" [ref=e490] [cursor=pointer]:
+              - /url: "#"
+              - img "Placeholder" [ref=e492]
+              - generic [ref=e493]:
+                - heading "Ayurvedic Travel Mini" [level=3] [ref=e494]
+                - paragraph [ref=e495]: Restorative and deeply hydrating
+                - generic [ref=e496]: Rs. 1,500.00
+            - button "Add to cart" [ref=e498] [cursor=pointer]
+          - generic [ref=e502]:
+            - link "Placeholder Ayurvedic Travel Mini Restorative and deeply hydrating Rs. 1,500.00" [ref=e503] [cursor=pointer]:
+              - /url: "#"
+              - img "Placeholder" [ref=e505]
+              - generic [ref=e506]:
+                - heading "Ayurvedic Travel Mini" [level=3] [ref=e507]
+                - paragraph [ref=e508]: Restorative and deeply hydrating
+                - generic [ref=e509]: Rs. 1,500.00
+            - button "Add to cart" [ref=e511] [cursor=pointer]
+    - generic [ref=e517]:
+      - heading "Hero Ingredients" [level=2] [ref=e519]
+      - list [ref=e521]:
+        - listitem [ref=e522]:
+          - generic [ref=e523]:
+            - img "Ingredient 1" [ref=e525]
+            - heading "Orange" [level=3] [ref=e526]
+            - paragraph [ref=e528]: Refreshes and brightens tired-looking skin.
+        - listitem [ref=e529]:
+          - generic [ref=e530]:
+            - img "Ingredient 2" [ref=e532]
+            - heading "Amla" [level=3] [ref=e533]
+            - paragraph [ref=e535]: Rich in Vitamin C for a natural, healthy glow.
+        - listitem [ref=e536]:
+          - generic [ref=e537]:
+            - img "Ingredient 3" [ref=e539]
+            - heading "Shikakai" [level=3] [ref=e540]
+            - paragraph [ref=e542]: Strengthens and nourishes hair from the roots.
+        - listitem [ref=e543]:
+          - generic [ref=e544]:
+            - img "Ingredient 4" [ref=e546]
+            - heading "Lavender" [level=3] [ref=e547]
+            - paragraph [ref=e549]: Calms the mind and gently soothes irritated skin.
+        - listitem [ref=e550]:
+          - generic [ref=e551]:
+            - img "Ingredient 5" [ref=e553]
+            - heading "Kashmir Saffron" [level=3] [ref=e554]
+            - paragraph [ref=e556]: Sourced from our family's own MAA KESAR venture in Srinagar, saffron brightens skin and helps reduce dark spots and uneven tone.
+    - generic [ref=e560]:
+      - generic [ref=e562]:
+        - generic [ref=e563]: Discover our rituals
+        - heading "\"Powered by Ayurveda. Time-tested, highly effective, natural botanical formulas.\"" [level=2] [ref=e564]
+        - link "Shop now" [ref=e565] [cursor=pointer]:
+          - /url: /collections/all
+      - generic [ref=e567]:
+        - img "Slide 1" [ref=e570]
+        - img "Slide 2" [ref=e573]
+        - img "Slide 3" [ref=e576]
+        - img "Slide 4" [ref=e579]
+    - generic [ref=e581]:
+      - heading "Shop the Look" [level=2] [ref=e583]
+      - generic [ref=e584]:
+        - button "Sample Product Title From Rs. 999" [ref=e585] [cursor=pointer]:
+          - generic:
+            - generic: Sample Product Title
+            - generic: From Rs. 999
+        - generic:
+          - generic:
+            - button
+            - generic: Video Placeholder
+            - generic:
+              - heading [level=3]: Personalised Vintage Retro Gramophone Antique Bluetooth Speaker
+              - generic: Rs. 1,899.00
+              - generic:
+                - generic: HOT PICK
+                - generic: BESTSELLER
+              - generic: This beautifully crafted personalized product is perfect for gifting or adding a personal touch to your daily routine. Designed for quality and everyday durability.
+              - generic:
+                - button: View product
+        - button "Sample Product Title From Rs. 999" [ref=e591] [cursor=pointer]:
+          - generic:
+            - generic: Sample Product Title
+            - generic: From Rs. 999
+        - generic:
+          - generic:
+            - button
+            - generic: Video Placeholder
+            - generic:
+              - heading [level=3]: Personalised Vintage Retro Gramophone Antique Bluetooth Speaker
+              - generic: Rs. 1,899.00
+              - generic:
+                - generic: HOT PICK
+                - generic: BESTSELLER
+              - generic: This beautifully crafted personalized product is perfect for gifting or adding a personal touch to your daily routine. Designed for quality and everyday durability.
+              - generic:
+                - button: View product
+        - button "Sample Product Title From Rs. 999" [ref=e597] [cursor=pointer]:
+          - generic:
+            - generic: Sample Product Title
+            - generic: From Rs. 999
+        - generic:
+          - generic:
+            - button
+            - generic: Video Placeholder
+            - generic:
+              - heading [level=3]: Personalised Vintage Retro Gramophone Antique Bluetooth Speaker
+              - generic: Rs. 1,899.00
+              - generic:
+                - generic: HOT PICK
+                - generic: BESTSELLER
+              - generic: This beautifully crafted personalized product is perfect for gifting or adding a personal touch to your daily routine. Designed for quality and everyday durability.
+              - generic:
+                - button: View product
+        - button "Sample Product Title From Rs. 999" [ref=e603] [cursor=pointer]:
+          - generic:
+            - generic: Sample Product Title
+            - generic: From Rs. 999
+        - generic:
+          - generic:
+            - button
+            - generic: Video Placeholder
+            - generic:
+              - heading [level=3]: Personalised Vintage Retro Gramophone Antique Bluetooth Speaker
+              - generic: Rs. 1,899.00
+              - generic:
+                - generic: HOT PICK
+                - generic: BESTSELLER
+              - generic: This beautifully crafted personalized product is perfect for gifting or adding a personal touch to your daily routine. Designed for quality and everyday durability.
+              - generic:
+                - button: View product
+    - generic [ref=e676]:
+      - heading "Loved by our Community" [level=2] [ref=e678]
+      - generic [ref=e680]:
+        - group "1 / 6" [ref=e681]:
+          - paragraph [ref=e693]: "\"This has completely transformed my daily ritual. The scent is grounding and the results are visible instantly.\""
+          - paragraph [ref=e694]: Aisha K.
+          - paragraph [ref=e695]: Lumière Botanique Serum
+        - group "2 / 6" [ref=e696]:
+          - paragraph [ref=e708]: "\"A truly beautiful product. The texture and scent are wonderfully luxurious and it absorbs perfectly into the skin.\""
+          - paragraph [ref=e709]: Meera S.
+          - paragraph [ref=e710]: Radiance Face Wash
+        - group "3 / 6" [ref=e711]:
+          - paragraph [ref=e723]: "\"I’ve been using this for two weeks and my skin feels deeply nourished. The botanical blend is exceptional.\""
+          - paragraph [ref=e724]: Priya R.
+          - paragraph [ref=e725]: Nourishing Night Cream
+        - group "4 / 6" [ref=e726]:
+          - paragraph [ref=e738]: "\"Such an elegant experience. The packaging is stunning and the product inside is pure magic for my hair.\""
+          - paragraph [ref=e739]: Neha M.
+          - paragraph [ref=e740]: Revitalizing Shampoo
+        - group "5 / 6" [ref=e741]:
+          - paragraph [ref=e753]: "\"The travel minis are perfect! I took them on my weekend getaway and my skin has never felt better.\""
+          - paragraph [ref=e754]: Sarah J.
+          - paragraph [ref=e755]: Discovery Kit
+        - group "6 / 6" [ref=e756]:
+          - paragraph [ref=e768]: "\"A beautiful blend of modern luxury and ancient wisdom. Every product I've tried has exceeded expectations.\""
+          - paragraph [ref=e769]: Tara B.
+          - paragraph [ref=e770]: Gift of Glow Set
+    - generic [ref=e773]:
+      - heading "Your permanent benefits" [level=2] [ref=e774]
+      - generic [ref=e775]:
+        - generic [ref=e781]:
+          - heading "FREE SHIPPING" [level=3] [ref=e782]
+          - paragraph [ref=e784]: on all orders over ₹999
+        - generic [ref=e790]:
+          - heading "FREE DELUXE SAMPLE" [level=3] [ref=e791]
+          - paragraph [ref=e793]: on orders over ₹1999
+        - generic [ref=e798]:
+          - heading "100% CRUELTY FREE" [level=3] [ref=e799]
+          - paragraph [ref=e801]: Never tested on animals
+        - generic [ref=e808]:
+          - heading "AYURVEDIC ROOTS" [level=3] [ref=e809]
+          - paragraph [ref=e811]: 100% natural, vegan ingredients
+  - generic [ref=e812]:
+    - button "Watch & Shop" [ref=e813] [cursor=pointer]
+    - button "Dismiss watch and shop" [ref=e816] [cursor=pointer]
+    - generic:
+      - dialog:
+        - button
+        - generic:
+          - generic:
+            - heading [level=3]: Saffron Face Gel
+            - generic: Rs. 299.00
+          - generic: A lightweight, non-tacky gel infused with real Saffron strands and rich natural humectants. Paraben free and silicone free, with anti-pigmentation action — light enough...
+          - generic:
+            - link:
+              - /url: /products/saffron-face-gel
+              - text: View product
+  - contentinfo [ref=e820]:
+    - generic [ref=e822]:
+      - generic [ref=e823]:
+        - generic [ref=e824]:
+          - link "My Cranbi" [ref=e825] [cursor=pointer]:
+            - /url: /
+            - img "My Cranbi" [ref=e826]
+          - paragraph [ref=e827]: Luxury Ayurvedic Rituals
+          - paragraph [ref=e828]: Thoughtful skincare, haircare, body care, and gifting rituals rooted in saffron, botanicals, and everyday self-care.
+        - generic [ref=e829]:
+          - generic [ref=e830]:
+            - heading "SHOP" [level=2] [ref=e831]
+            - list [ref=e832]:
+              - listitem [ref=e833]:
+                - link "Home" [ref=e834] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e835]:
+                - link "About Us" [ref=e836] [cursor=pointer]:
+                  - /url: /pages/about-us
+              - listitem [ref=e837]:
+                - link "Shop All" [ref=e838] [cursor=pointer]:
+                  - /url: /collections/all
+              - listitem [ref=e839]:
+                - link "Haircare" [ref=e840] [cursor=pointer]:
+                  - /url: /collections/pure-haircare
+              - listitem [ref=e841]:
+                - link "Skincare" [ref=e842] [cursor=pointer]:
+                  - /url: /collections/the-skincare-routine
+              - listitem [ref=e843]:
+                - link "Best Sellers" [ref=e844] [cursor=pointer]:
+                  - /url: /collections/mycranbi-best-sellers
+              - listitem [ref=e845]:
+                - link "Gifting" [ref=e846] [cursor=pointer]:
+                  - /url: /pages/gifting
+              - listitem [ref=e847]:
+                - link "Contact" [ref=e848] [cursor=pointer]:
+                  - /url: /pages/contact
+          - generic [ref=e849]:
+            - heading "ABOUT" [level=2] [ref=e850]
+            - list [ref=e851]:
+              - listitem [ref=e852]:
+                - link "Search" [ref=e853] [cursor=pointer]:
+                  - /url: /search
+              - listitem [ref=e854]:
+                - link "Gifting" [ref=e855] [cursor=pointer]:
+                  - /url: /pages/gifting
+              - listitem [ref=e856]:
+                - link "FAQ" [ref=e857] [cursor=pointer]:
+                  - /url: /pages/faq
+          - generic [ref=e858]:
+            - heading "QUICK LINKS" [level=2] [ref=e859]
+            - list [ref=e860]:
+              - listitem [ref=e861]:
+                - link "Search" [ref=e862] [cursor=pointer]:
+                  - /url: /search
+              - listitem [ref=e863]:
+                - link "Gifting" [ref=e864] [cursor=pointer]:
+                  - /url: /pages/gifting
+              - listitem [ref=e865]:
+                - link "FAQ" [ref=e866] [cursor=pointer]:
+                  - /url: /pages/faq
+          - generic [ref=e867]:
+            - heading "CONTACT" [level=2] [ref=e868]
+            - generic [ref=e869]:
+              - generic [ref=e875]:
+                - generic [ref=e876]: Email
+                - link "service@mycranbi.com" [ref=e877] [cursor=pointer]:
+                  - /url: mailto:service@mycranbi.com
+              - generic [ref=e882]:
+                - generic [ref=e883]: Phone
+                - link "+91-8010200666" [ref=e884] [cursor=pointer]:
+                  - /url: tel:+918010200666
+              - generic [ref=e890]:
+                - generic [ref=e891]: Support
+                - link "Contact Us" [ref=e892] [cursor=pointer]:
+                  - /url: /pages/contact
+      - generic [ref=e893]:
+        - generic [ref=e895]:
+          - generic [ref=e896]: © 2026 MyCranbi
+          - list [ref=e897]:
+            - listitem [ref=e898]:
+              - text: ·
+              - link "Privacy policy" [ref=e900] [cursor=pointer]:
+                - /url: /policies/privacy-policy
+        - generic [ref=e901]:
+          - generic [ref=e902]: Payment methods
+          - list [ref=e903]:
+            - listitem [ref=e904]:
+              - img "Visa" [ref=e905]
+            - listitem [ref=e910]:
+              - img "Mastercard" [ref=e911]
+            - listitem [ref=e918]:
+              - img "RuPay" [ref=e919]
+            - listitem [ref=e925]:
+              - img "UPI" [ref=e926]
+            - listitem [ref=e932]

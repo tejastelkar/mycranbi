@@ -1,0 +1,207 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "gifting-hero",
+      "settings": {
+        "eyebrow": "GIFTING RITUALS",
+        "heading": "Thoughtful gifts for every self-care ritual",
+        "text": "<p>Choose a beautifully giftable MY CRANBI favourite or build a custom box with the rituals you know they will love.</p>",
+        "primary_label": "Shop premade gifts",
+        "primary_link": "#PremadeGifts",
+        "secondary_label": "Build a custom box",
+        "secondary_link": "#GiftBuilder"
+      }
+    },
+    "premade_gifts": {
+      "type": "curated-gift-products",
+      "blocks": {
+        "gift_pick_1": {
+          "type": "product",
+          "settings": {
+            "product": "premade-gift-box",
+            "badge": "Premade gift"
+          }
+        }
+      },
+      "block_order": [
+        "gift_pick_1"
+      ],
+      "settings": {
+        "eyebrow": "PREMADE GIFTING",
+        "heading": "Premade Gift Box",
+        "text": "<p>A single ready-to-gift MY CRANBI box for now, using placeholder bundle details until the final curated gifting set is fully prepared.</p>",
+        "padding_top": 72,
+        "padding_bottom": 64
+      }
+    },
+    "custom_builder": {
+      "type": "custom-gift-builder",
+      "blocks": {
+        "builder_product_1": {
+          "type": "product",
+          "settings": {
+            "product": "amla-shikakai-shampoo"
+          }
+        },
+        "builder_product_2": {
+          "type": "product",
+          "settings": {
+            "product": "wheat-protein-shampoo"
+          }
+        },
+        "builder_product_3": {
+          "type": "product",
+          "settings": {
+            "product": "hair-conditioner"
+          }
+        },
+        "builder_product_4": {
+          "type": "product",
+          "settings": {
+            "product": "creamy-hair-serum"
+          }
+        },
+        "builder_product_5": {
+          "type": "product",
+          "settings": {
+            "product": "saffron-facewash"
+          }
+        },
+        "builder_product_6": {
+          "type": "product",
+          "settings": {
+            "product": "orange-facewash"
+          }
+        },
+        "builder_product_7": {
+          "type": "product",
+          "settings": {
+            "product": "saffron-face-gel"
+          }
+        },
+        "builder_product_8": {
+          "type": "product",
+          "settings": {
+            "product": "saffron-moisturising-cream"
+          }
+        },
+        "builder_product_9": {
+          "type": "product",
+          "settings": {
+            "product": "ceramide-lotion"
+          }
+        },
+        "builder_product_10": {
+          "type": "product",
+          "settings": {
+            "product": "lavender-shower-gel"
+          }
+        },
+        "builder_product_11": {
+          "type": "product",
+          "settings": {
+            "product": "saffron-sandalwood-incense-sticks"
+          }
+        }
+      },
+      "block_order": [
+        "builder_product_1",
+        "builder_product_2",
+        "builder_product_3",
+        "builder_product_4",
+        "builder_product_5",
+        "builder_product_6",
+        "builder_product_7",
+        "builder_product_8",
+        "builder_product_9",
+        "builder_product_10",
+        "builder_product_11"
+      ],
+      "settings": {
+        "eyebrow": "CUSTOM GIFT BOX",
+        "heading": "Build a gift box with your chosen rituals",
+        "text": "<p>Choose one product at a time, add it into the box, and create a softer, more thoughtful gifting combination.</p>",
+        "visual_eyebrow": "GIFT BOX PREVIEW",
+        "visual_heading": "A softer, more thoughtful gifting ritual",
+        "visual_text": "Use this placeholder visual for now, then swap in your final gift box photography once it is ready.",
+        "summary_eyebrow": "YOUR BOX",
+        "summary_heading": "Custom Gift Box",
+        "dropdown_label": "Choose a product to add",
+        "dropdown_placeholder": "Select a product",
+        "add_product_label": "Add to box",
+        "gift_label": "Custom Gift Box",
+        "submit_label": "Add custom gift box to cart",
+        "empty_text": "Choose your first product to begin building the box.",
+        "success_text": "Your custom gift box has been added to cart.",
+        "error_text": "We could not add your gift box right now. Please try again.",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "reassurance": {
+      "type": "benefits-strip",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "custom_svg": "",
+            "title": "Gift-ready rituals",
+            "text": "<p>Thoughtful skincare and haircare picks for elegant gifting.</p>"
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "custom_svg": "",
+            "title": "Premium self-care",
+            "text": "<p>Luxurious rituals rooted in saffron and botanical care.</p>"
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "custom_svg": "",
+            "title": "Mix your own box",
+            "text": "<p>Build a personal combination with the products you choose.</p>"
+          }
+        },
+        "benefit_4": {
+          "type": "benefit",
+          "settings": {
+            "custom_svg": "",
+            "title": "Made to delight",
+            "text": "<p>A gifting destination designed to feel polished and easy.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3",
+        "benefit_4"
+      ],
+      "settings": {
+        "heading": "Why gift with MY CRANBI",
+        "background_color": "#660033",
+        "text_color": "#ffffff",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "premade_gifts",
+    "custom_builder",
+    "reassurance"
+  ]
+}

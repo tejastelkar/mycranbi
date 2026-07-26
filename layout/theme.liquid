@@ -57,6 +57,7 @@
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'watch-shop-popover.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-disclosure-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-disclosure-tooltip.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
@@ -69,6 +70,8 @@
     {%- endif -%}
 
     {{ content_for_header }}
+
+    {{ 'watch-shop-popover.css' | asset_url | stylesheet_tag }}
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -350,6 +353,8 @@
     >
       {{ content_for_layout }}
     </main>
+
+    {% render 'watch-shop-popover' %}
 
     {% sections 'footer-group' %}
 

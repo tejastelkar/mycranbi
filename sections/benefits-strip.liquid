@@ -20,10 +20,11 @@
     text-align: center;
     color: {{ section.settings.text_color }};
     margin-top: 0;
-    margin-bottom: 4rem;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    font-size: 2.2rem;
+    margin-bottom: 5rem;
+    font-family: var(--font-heading-family);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    font-size: clamp(2.6rem, 3.2vw, 3.6rem);
   }
 
   .benefits-strip__grid {
@@ -35,7 +36,7 @@
   @media screen and (min-width: 750px) {
     .benefits-strip__grid {
       grid-template-columns: repeat({{ section.blocks.size }}, 1fr);
-      gap: 2rem;
+      gap: 4rem;
     }
   }
 
@@ -49,8 +50,8 @@
   }
 
   .benefit-item__icon {
-    width: 54px;
-    height: 54px;
+    width: 64px;
+    height: 64px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -62,26 +63,30 @@
     height: 100%;
     fill: none;
     stroke: currentColor;
-    stroke-width: 1.2px;
+    stroke-width: 1px;
   }
 
   .benefit-item__content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.2rem;
   }
 
   .benefit-item__title {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
+    font-family: var(--font-body-family);
     font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     margin: 0;
     color: {{ section.settings.text_color }};
   }
 
   .benefit-item__text {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    line-height: 1.6;
     margin: 0;
-    opacity: 0.9;
+    opacity: 0.85;
   }
 
   .benefit-item__text p {
@@ -102,7 +107,33 @@
             {%- if block.settings.custom_svg != blank -%}
               {{ block.settings.custom_svg }}
             {%- else -%}
-              {%- render 'icon-accordion', icon: 'check_mark' -%}
+              {%- assign benefit_title = block.settings.title | downcase -%}
+              {%- if benefit_title contains 'gift-ready' or benefit_title contains 'gift ready' -%}
+                <svg viewBox="0 0 48 48" aria-hidden="true">
+                  <rect x="8" y="18" width="32" height="20" rx="1"></rect>
+                  <path d="M24 18v20"></path>
+                  <path d="M8 26h32"></path>
+                  <path d="M18 18c-3 0-5-2-5-4.5S14.8 9 18 9c3.9 0 6 5.2 6 9"></path>
+                  <path d="M30 18c3 0 5-2 5-4.5S33.2 9 30 9c-3.9 0-6 5.2-6 9"></path>
+                </svg>
+              {%- elsif benefit_title contains 'premium' or benefit_title contains 'self-care' or benefit_title contains 'self care' -%}
+                <svg viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M24 39s-10-6.6-10-17a6 6 0 0 1 10-4.3A6 6 0 0 1 34 22c0 10.4-10 17-10 17Z"></path>
+                  <path d="M19 24c1.8-1.4 3.4-2.1 5-2.1 1.8 0 3.3.7 5 2.1"></path>
+                </svg>
+              {%- elsif benefit_title contains 'mix your own box' or benefit_title contains 'mix' -%}
+                <svg viewBox="0 0 48 48" aria-hidden="true">
+                  <rect x="9" y="10" width="30" height="28" rx="1"></rect>
+                  <path d="M24 10v28"></path>
+                  <path d="M9 24h30"></path>
+                  <path d="M17 17h0"></path>
+                  <path d="M31 31h0"></path>
+                </svg>
+              {%- else -%}
+                <svg viewBox="0 0 48 48" aria-hidden="true">
+                  <path d="M24 9l4.6 9.4 10.4 1.5-7.5 7.3 1.8 10.3L24 32.8l-9.3 4.9 1.8-10.3-7.5-7.3 10.4-1.5Z"></path>
+                </svg>
+              {%- endif -%}
             {%- endif -%}
           </div>
           

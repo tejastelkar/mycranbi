@@ -15,125 +15,207 @@
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {{ section.settings.heading }}
-      </h2>
-    {%- else -%}
-      <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
-    {%- endif -%}
-    {%- liquid
-      assign contact_form_class = 'isolate'
-      if settings.animations_reveal_on_scroll
-        assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
-      endif
-    -%}
-    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
-      {%- if form.posted_successfully? -%}
-        <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
-          {{- 'icon-success.svg' | inline_asset_content -}}
-          {{ 'templates.contact.form.post_success' | t }}
-        </h2>
-      {%- elsif form.errors -%}
-        <div class="form__message">
-          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
-            {{- 'icon-error.svg' | inline_asset_content -}}
-            {{ 'templates.contact.form.error_heading' | t }}
-          </h2>
+  <div class="contact cranbi-contact page-width section-{{ section.id }}-padding">
+    <div class="cranbi-contact__grid">
+      <div class="cranbi-contact__details">
+        <div class="cranbi-contact__details-head">
+          <p class="cranbi-contact__eyebrow">Reach Us</p>
+          <h2 class="cranbi-contact__title">Contact MY CRANBI</h2>
         </div>
-        <ul class="form-status-list caption-large" role="list">
-          <li>
-            <a href="#ContactForm-email" class="link">
-              {{ form.errors.translated_fields.email | capitalize }}
-              {{ form.errors.messages.email }}
-            </a>
-          </li>
-        </ul>
-      {%- endif -%}
-      <div class="contact__fields">
-        <div class="field">
-          <input
-            class="field__input"
-            autocomplete="name"
-            type="text"
-            id="ContactForm-name"
-            name="contact[{{ 'templates.contact.form.name' | t }}]"
-            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-            placeholder="{{ 'templates.contact.form.name' | t }}"
-          >
-          <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
-        </div>
-        <div class="field field--with-error">
-          <input
-            autocomplete="email"
-            type="email"
-            id="ContactForm-email"
-            class="field__input"
-            name="contact[email]"
-            spellcheck="false"
-            autocapitalize="off"
-            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-            aria-required="true"
-            {% if form.errors contains 'email' %}
-              aria-invalid="true"
-              aria-describedby="ContactForm-email-error"
-            {% endif %}
-            placeholder="{{ 'templates.contact.form.email' | t }}"
-          >
-          <label class="field__label" for="ContactForm-email">
-            {{- 'templates.contact.form.email' | t }}
-            <span aria-hidden="true">*</span></label
-          >
-          {%- if form.errors contains 'email' -%}
-            <small class="contact__field-error" id="ContactForm-email-error">
-              <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
-              <span class="form__message">
-                <span class="svg-wrapper">
-                  {{- 'icon-error.svg' | inline_asset_content -}}
-                </span>
-                {{- form.errors.translated_fields.email | capitalize }}
-                {{ form.errors.messages.email -}}
+
+        <div class="cranbi-contact__cards" role="list">
+          <a class="cranbi-contact__card" href="mailto:service@mycranbi.com" role="listitem">
+            <span class="cranbi-contact__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="M3 7l9 6 9-6"></path>
+              </svg>
+            </span>
+            <span class="cranbi-contact__card-copy">
+              <span class="cranbi-contact__card-label">Email</span>
+              <span class="cranbi-contact__card-value">service@mycranbi.com</span>
+            </span>
+          </a>
+
+          <a class="cranbi-contact__card" href="tel:+918010200666" role="listitem">
+            <span class="cranbi-contact__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"></path>
+              </svg>
+            </span>
+            <span class="cranbi-contact__card-copy">
+              <span class="cranbi-contact__card-label">Phone</span>
+              <span class="cranbi-contact__card-value">+91-8010200666</span>
+            </span>
+          </a>
+
+          <div class="cranbi-contact__card cranbi-contact__card--wide" role="listitem">
+            <span class="cranbi-contact__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M12 22s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"></path>
+                <circle cx="12" cy="10" r="2.5"></circle>
+              </svg>
+            </span>
+            <span class="cranbi-contact__card-copy">
+              <span class="cranbi-contact__card-label">Corporate Office</span>
+              <span class="cranbi-contact__card-value">
+                2nd Floor, Deccan Square, Bhandarkar Rd, next to Veena World, Deccan Gymkhana,
+                Pune-411004, Maharashtra, India
               </span>
-            </small>
-          {%- endif -%}
+            </span>
+          </div>
+
+          <a class="cranbi-contact__card" href="https://www.mycranbi.com" target="_blank" rel="noopener" role="listitem">
+            <span class="cranbi-contact__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"></path>
+              </svg>
+            </span>
+            <span class="cranbi-contact__card-copy">
+              <span class="cranbi-contact__card-label">Website</span>
+              <span class="cranbi-contact__card-value">www.mycranbi.com</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="cranbi-contact__meta">
+          <div class="cranbi-contact__meta-item">
+            <strong>Response time</strong>
+            <span>Usually within 24 business hours</span>
+          </div>
+          <div class="cranbi-contact__meta-item">
+            <strong>Best for</strong>
+            <span>Orders, gifting help, product guidance, and collaborations</span>
+          </div>
         </div>
       </div>
-      <div class="field">
-        <input
-          type="tel"
-          id="ContactForm-phone"
-          class="field__input"
-          autocomplete="tel"
-          name="contact[{{ 'templates.contact.form.phone' | t }}]"
-          pattern="[0-9\-]*"
-          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-          placeholder="{{ 'templates.contact.form.phone' | t }}"
-        >
-        <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+
+      <div class="cranbi-contact__form-card">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="cranbi-contact__form-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- else -%}
+        <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+      {%- endif -%}
+      <p class="cranbi-contact__form-intro">Tell us what you need and we’ll point you in the right direction.</p>
+
+      {%- liquid
+        assign contact_form_class = 'isolate cranbi-contact__form'
+        if settings.animations_reveal_on_scroll
+          assign contact_form_class = 'isolate cranbi-contact__form scroll-trigger animate--slide-in'
+        endif
+      -%}
+      {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+        {%- if form.posted_successfully? -%}
+          <h3 class="form-status form-status-list form__message cranbi-contact__status" tabindex="-1" autofocus>
+            {{- 'icon-success.svg' | inline_asset_content -}}
+            {{ 'templates.contact.form.post_success' | t }}
+          </h3>
+        {%- elsif form.errors -%}
+          <div class="form__message cranbi-contact__status">
+            <h3 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+              {{- 'icon-error.svg' | inline_asset_content -}}
+              {{ 'templates.contact.form.error_heading' | t }}
+            </h3>
+          </div>
+          <ul class="form-status-list caption-large" role="list">
+            <li>
+              <a href="#ContactForm-email" class="link">
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </a>
+            </li>
+          </ul>
+        {%- endif -%}
+
+        <div class="contact__fields cranbi-contact__fields">
+          <div class="field">
+            <label class="cranbi-contact__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+            <input
+              class="field__input"
+              autocomplete="name"
+              type="text"
+              id="ContactForm-name"
+              name="contact[{{ 'templates.contact.form.name' | t }}]"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              placeholder="Your full name"
+            >
+          </div>
+
+          <div class="field field--with-error">
+            <label class="cranbi-contact__label" for="ContactForm-email">
+              {{- 'templates.contact.form.email' | t -}}
+              <span aria-hidden="true">*</span>
+            </label>
+            <input
+              autocomplete="email"
+              type="email"
+              id="ContactForm-email"
+              class="field__input"
+              name="contact[email]"
+              spellcheck="false"
+              autocapitalize="off"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              {% if form.errors contains 'email' %}
+                aria-invalid="true"
+                aria-describedby="ContactForm-email-error"
+              {% endif %}
+              placeholder="name@example.com"
+            >
+            {%- if form.errors contains 'email' -%}
+              <small class="contact__field-error" id="ContactForm-email-error">
+                <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                <span class="form__message">
+                  <span class="svg-wrapper">
+                    {{- 'icon-error.svg' | inline_asset_content -}}
+                  </span>
+                  {{- form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email -}}
+                </span>
+              </small>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="cranbi-contact__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+          <input
+            type="tel"
+            id="ContactForm-phone"
+            class="field__input"
+            autocomplete="tel"
+            name="contact[{{ 'templates.contact.form.phone' | t }}]"
+            pattern="[0-9\\-\\+\\s]*"
+            value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+            placeholder="+91 98765 43210"
+          >
+        </div>
+
+        <div class="field">
+          <label class="cranbi-contact__label" for="ContactForm-body">{{- 'templates.contact.form.comment' | t -}}</label>
+          <textarea
+            rows="8"
+            id="ContactForm-body"
+            class="text-area field__input"
+            name="contact[{{ 'templates.contact.form.comment' | t }}]"
+            placeholder="Tell us how we can help."
+          >{{- form.body -}}</textarea>
+        </div>
+
+        <div class="contact__button cranbi-contact__button">
+          <button type="submit" class="button button--primary">
+            {{ 'templates.contact.form.send' | t }}
+          </button>
+        </div>
+      {%- endform -%}
       </div>
-      <div class="field">
-        <textarea
-          rows="10"
-          id="ContactForm-body"
-          class="text-area field__input"
-          name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
-        >
-          {{- form.body -}}
-        </textarea>
-        <label class="form__label field__label" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
-        </label>
-      </div>
-      <div class="contact__button">
-        <button type="submit" class="button">
-          {{ 'templates.contact.form.send' | t }}
-        </button>
-      </div>
-    {%- endform -%}
+    </div>
   </div>
 </div>
+
 
 {% schema %}
 {

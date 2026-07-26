@@ -1,0 +1,2 @@
+[    1548ms] [ERROR] Framing 'https://shop.app/' violates the following Content Security Policy directive: "frame-ancestors https://6imbm9-et.myshopify.com https://6imbm9-et.account.myshopify.com https://shopify.com". The request has been blocked.
+ @ :0

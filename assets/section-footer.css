@@ -508,3 +508,355 @@
     }
   }
 }
+
+.cranbi-footer {
+  background: #fff;
+  border-top: 0.1rem solid rgba(102, 0, 51, 0.08);
+  margin-top: 0;
+  overflow: hidden;
+}
+
+.cranbi-footer .page-width {
+  max-width: 100%;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+}
+
+.cranbi-footer__inner {
+  padding-bottom: 4rem;
+  padding-top: 5rem;
+}
+
+.cranbi-footer__top {
+  display: grid;
+  gap: 3rem;
+}
+
+.cranbi-footer__brand {
+  display: grid;
+  gap: 1.6rem;
+}
+
+.cranbi-footer__logo-link {
+  display: inline-flex;
+  max-width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.cranbi-footer__logo {
+  display: block;
+  height: auto !important;
+  max-width: min(18rem, 58vw);
+  width: 100%;
+  object-fit: contain;
+}
+
+.cranbi-footer__wordmark {
+  color: #d7b25a;
+  font-family: var(--font-heading-family);
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.cranbi-footer__eyebrow,
+.cranbi-footer__heading {
+  color: #660033;
+  font-family: var(--font-body-family);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.cranbi-footer__eyebrow {
+  font-size: 1.3rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.cranbi-footer__intro {
+  color: rgba(var(--color-foreground), 0.78);
+  font-family: var(--font-body-family);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 38rem;
+}
+
+.cranbi-footer__social .list-social {
+  gap: 1rem;
+  justify-content: flex-start !important;
+}
+
+.cranbi-footer__social .list-social__link {
+  align-items: center;
+  border-radius: 999px;
+  color: #fff;
+  display: inline-flex;
+  height: 4rem;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  width: 4rem;
+}
+
+.cranbi-footer__social .list-social__link:hover {
+  transform: translateY(-0.2rem);
+  filter: brightness(1.1);
+}
+
+.cranbi-social-fb {
+  background: #1877F2;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.2);
+}
+
+.cranbi-social-ig {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  box-shadow: 0 4px 12px rgba(214, 36, 159, 0.2);
+}
+
+.cranbi-social-wa {
+  background: #25D366;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+.cranbi-footer__menus {
+  display: grid;
+  gap: 2.4rem;
+}
+
+.cranbi-footer__column {
+  min-width: 0;
+}
+
+.cranbi-footer__heading {
+  font-family: var(--font-heading-family);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin: 0 0 2rem;
+}
+
+.cranbi-footer__links {
+  display: grid;
+  gap: 1.2rem;
+  margin: 0;
+}
+
+.cranbi-footer__link {
+  color: rgba(var(--color-foreground), 0.7);
+  display: inline-block;
+  font-family: var(--font-body-family);
+  text-decoration: none;
+  font-size: 1.45rem;
+  position: relative;
+  transition: color 0.3s ease;
+  padding-bottom: 0.2rem;
+}
+
+.cranbi-footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.1rem;
+  background-color: #660033;
+  transition: width 0.3s ease;
+}
+
+.cranbi-footer__link:hover {
+  color: #660033;
+}
+
+.cranbi-footer__link:hover::after,
+.cranbi-footer__link.is-active::after {
+  width: 100%;
+}
+
+.cranbi-footer__link.is-active {
+  color: #660033;
+}
+
+.cranbi-footer__contact {
+  color: rgba(var(--color-foreground), 0.7);
+  font-family: var(--font-body-family);
+  display: grid;
+  gap: 2rem;
+  font-size: 1.45rem;
+}
+
+.cranbi-footer__contact-item {
+  align-items: flex-start;
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: 3.8rem minmax(0, 1fr);
+}
+
+.cranbi-footer__contact-icon {
+  align-items: center;
+  background: transparent;
+  border: 0.1rem solid rgba(102, 0, 51, 0.2);
+  border-radius: 999px;
+  color: #660033;
+  display: inline-flex;
+  height: 3.8rem;
+  justify-content: center;
+  width: 3.8rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.cranbi-footer__contact-icon svg {
+  height: 1.6rem;
+  stroke-width: 1.5;
+  width: 1.6rem;
+}
+
+.cranbi-footer__contact-item:hover .cranbi-footer__contact-icon {
+  background: rgba(102, 0, 51, 0.04);
+  border-color: rgba(102, 0, 51, 0.4);
+}
+
+.cranbi-footer__contact-copy {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.cranbi-footer__contact-label {
+  color: #660033;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+.cranbi-footer__contact a {
+  color: #660033;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.cranbi-footer__contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
+  color: #7a183f;
+}
+
+.cranbi-footer__bottom {
+  border-top: 0.1rem solid rgba(102, 0, 51, 0.05);
+  display: grid;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+}
+
+.cranbi-footer__bottom-meta {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.cranbi-footer__copyright {
+  color: rgba(var(--color-foreground), 0.74);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  text-align: left;
+  align-items: center;
+}
+
+.cranbi-footer__copyright small {
+  font-size: 1.25rem;
+}
+
+.cranbi-footer__copyright .policies {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.cranbi-footer__copyright .policies li {
+  display: flex;
+  align-items: center;
+}
+
+.cranbi-footer__payments .list-payment {
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cranbi-footer__payments .list-payment__item {
+  align-items: center;
+  background: #fff;
+  border: 0.1rem solid rgba(102, 0, 51, 0.12);
+  border-radius: 0.6rem;
+  display: inline-flex;
+  justify-content: center;
+  height: 3.4rem;
+  padding: 0 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.cranbi-footer__payments .list-payment__item:hover {
+  border-color: rgba(102, 0, 51, 0.4);
+}
+
+.cranbi-footer__payments .list-payment__item .icon {
+  height: 1.8rem;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.cranbi-footer__payments .list-payment__item--razorpay .icon {
+  height: 1.6rem;
+}
+
+.cranbi-footer .footer__localization {
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.cranbi-footer .footer__localization h2 {
+  color: rgba(var(--color-foreground), 0.68);
+  font-size: 1.1rem;
+  margin: 0 0 0.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .cranbi-footer .page-width {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  .cranbi-footer__inner {
+    padding-bottom: 4rem;
+    padding-top: 6rem;
+  }
+
+  .cranbi-footer__top {
+    gap: 6rem;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.8fr);
+  }
+
+  .cranbi-footer__menus {
+    gap: 4rem;
+    grid-template-columns: 1fr 1fr 1fr 1.25fr;
+  }
+
+  .cranbi-footer__bottom {
+    align-items: end;
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .cranbi-footer__bottom-meta {
+    align-items: end;
+    grid-template-columns: auto 1fr;
+  }
+
+  .cranbi-footer__copyright {
+    justify-content: flex-start;
+  }
+
+  .cranbi-footer__payments .list-payment {
+    justify-content: flex-end;
+  }
+}

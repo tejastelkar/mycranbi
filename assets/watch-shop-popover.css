@@ -1,0 +1,338 @@
+.watch-shop-popover {
+  position: fixed;
+  right: 1.4rem;
+  bottom: 1.4rem;
+  z-index: 45;
+  width: min(12.4rem, calc(100vw - 2.8rem));
+}
+
+.watch-shop-popover__teaser {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.watch-shop-popover__teaser-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 1.4rem;
+  background: #efe7de;
+  box-shadow: 0 16px 34px rgba(70, 35, 48, 0.16);
+}
+
+.watch-shop-popover__teaser-video,
+.watch-shop-popover__teaser-image,
+.watch-shop-popover__dialog-video,
+.watch-shop-popover__dialog-image,
+.watch-shop-popover__dialog-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.watch-shop-popover__dismiss {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 3;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #4b3a40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 12px 25px rgba(70, 35, 48, 0.15);
+}
+
+.watch-shop-popover__dismiss svg,
+.watch-shop-popover__modal-close svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.watch-shop-popover__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  overscroll-behavior: contain;
+}
+
+.watch-shop-popover__modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.watch-shop-popover__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(33, 26, 28, 0.58);
+  backdrop-filter: blur(8px);
+}
+
+.watch-shop-popover__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(78rem, calc(100vw - 4rem));
+  margin: 0 auto;
+  min-height: min(58rem, calc(100vh - 10rem));
+  max-height: calc(100vh - 8rem);
+  display: grid;
+  grid-template-columns: minmax(28rem, 34rem) minmax(28rem, 1fr);
+  gap: 0;
+  overflow: hidden;
+  border-radius: 1.6rem;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(20, 10, 15, 0.24);
+  transform: translateY(2rem) scale(0.98);
+  transition: transform 0.25s ease;
+  touch-action: pan-y;
+}
+
+.watch-shop-popover__modal.is-open .watch-shop-popover__dialog {
+  transform: translateY(0) scale(1);
+}
+
+.watch-shop-popover__dialog-media {
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.watch-shop-popover__dialog-reel {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  aspect-ratio: auto;
+  overflow: hidden;
+  border-radius: 0;
+  background: transparent;
+}
+
+.watch-shop-popover__dialog-video,
+.watch-shop-popover__dialog-image {
+  object-fit: cover;
+  background: transparent;
+}
+
+.watch-shop-popover__dialog-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  min-height: 0;
+  padding: clamp(3rem, 3.4vw, 4.2rem) clamp(3.2rem, 3.6vw, 4rem);
+  color: #3b3436;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.watch-shop-popover__modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: #453338;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.watch-shop-popover__dialog-header {
+  display: grid;
+  gap: 1.2rem;
+  padding-right: 4.8rem;
+  margin-bottom: 2rem;
+}
+
+.watch-shop-popover__dialog-title {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-size: clamp(2.8rem, 3.2vw, 4rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #342d2f;
+  max-width: 42rem;
+}
+
+.watch-shop-popover__dialog-price {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #1d1619;
+}
+
+.watch-shop-popover__dialog-copy-wrap {
+  padding: 1.8rem 0 0;
+  border-top: 0;
+  margin-top: 0;
+}
+
+.watch-shop-popover__dialog-copy {
+  font-size: 1.5rem;
+  line-height: 1.68;
+  color: rgba(52, 45, 47, 0.74);
+  max-width: 40rem;
+}
+
+.watch-shop-popover__dialog-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: stretch;
+  margin-top: auto;
+  padding-top: 2.2rem;
+}
+
+.watch-shop-popover__button,
+.watch-shop-popover__secondary {
+  min-height: 4.4rem;
+  border-radius: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.watch-shop-popover__dialog-actions > * {
+  flex: 1 1 auto;
+}
+
+.watch-shop-popover__button {
+  width: 100%;
+  border: 0;
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  cursor: pointer;
+}
+
+.watch-shop-popover__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  border: 0;
+  color: #fff;
+  background: rgb(var(--color-button));
+  letter-spacing: 0.03em;
+  width: 100%;
+  box-shadow: none;
+}
+
+@media screen and (max-width: 989px) {
+  .watch-shop-popover {
+    right: 1rem;
+    bottom: 1rem;
+    width: min(10.8rem, calc(100vw - 2rem));
+  }
+
+  .watch-shop-popover__dialog {
+    width: min(66rem, calc(100vw - 2.4rem));
+    min-height: 0;
+    max-height: calc(100vh - 2.4rem);
+    margin: 0 auto;
+    grid-template-columns: minmax(24rem, 27rem) minmax(22rem, 1fr);
+  }
+
+  .watch-shop-popover__dialog-media {
+    padding: 0;
+  }
+
+  .watch-shop-popover__dialog-reel {
+    width: 100%;
+  }
+
+  .watch-shop-popover__dialog-info {
+    gap: 0;
+    padding: 2.2rem 1.8rem 2.2rem;
+  }
+
+  .watch-shop-popover__dialog-title {
+    font-size: clamp(2.3rem, 3.5vw, 3.1rem);
+  }
+
+  .watch-shop-popover__dialog-price {
+    font-size: 1.5rem;
+  }
+
+  .watch-shop-popover__dialog-copy {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .watch-shop-popover__dismiss {
+    top: 0.7rem;
+    right: 0.7rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .watch-shop-popover__dialog {
+    width: calc(100vw - 1.6rem);
+    grid-template-columns: 1fr;
+    grid-template-rows: 42vh 1fr;
+    border-radius: 1.6rem;
+    max-height: calc(100dvh - 1.6rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .watch-shop-popover__dialog-media {
+    height: 42vh;
+    padding: 1.3rem 1.3rem 0;
+  }
+
+  .watch-shop-popover__dialog-reel {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .watch-shop-popover__dialog-info {
+    gap: 0;
+    padding: 1.8rem 1.4rem 1.8rem;
+    max-height: 42dvh;
+  }
+
+  .watch-shop-popover__dialog-title {
+    font-size: clamp(2.2rem, 7vw, 2.8rem);
+  }
+
+  .watch-shop-popover__dialog-actions {
+    flex-direction: column;
+    padding-top: 2.4rem;
+  }
+
+  .watch-shop-popover__dialog-actions form,
+  .watch-shop-popover__secondary {
+    width: 100%;
+  }
+}
