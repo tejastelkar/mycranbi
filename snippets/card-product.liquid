@@ -16,6 +16,7 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
+  - card_layout: {String} Optional explicit layout context, e.g. 'collection-grid'
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
@@ -31,10 +32,19 @@
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
+    assign is_collection_grid_card = false
+    if card_layout == 'collection-grid'
+      assign is_collection_grid_card = true
+    endif
+
+    assign discount_percentage = 0
+    if card_product.compare_at_price > card_product.price
+      assign discount_percentage = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round
+    endif
   -%}
 
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
-    <div class="card-wrapper product-card-wrapper underline-links-hover">
+    <div class="card-wrapper product-card-wrapper underline-links-hover{% if is_collection_grid_card %} product-card-wrapper--collection{% endif %}">
       <div
         class="
           card card--{{ settings.card_style }}
@@ -100,30 +110,68 @@
               </div>
             </div>
           {%- endif -%}
-          <button class="wishlist-btn" data-product-handle="{{ card_product.handle }}" style="position:absolute; top:1rem; right:1rem; background:transparent; border:none; padding:0; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; transition: transform 0.2s ease;">
+          <button
+            class="wishlist-btn card__wishlist-toggle"
+            data-product-handle="{{ card_product.handle }}"
+            aria-label="Add {{ card_product.title | escape }} to wishlist"
+          >
             <svg class="icon-heart-solid hidden" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #000;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             <svg class="icon-heart-empty" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #000;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
           </button>
-          <div class="card__content">
-            <div class="card__information">
-              <h3
-                class="card__heading"
-                {% if card_product.featured_media == null and settings.card_style == 'standard' %}
-                  id="title-{{ section_id }}-{{ card_product.id }}"
-                {% endif %}
-              >
-                <a
-                  href="{{ card_product.url }}"
-                  id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
-                  class="full-unstyled-link"
-                  aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
+          {%- unless is_collection_grid_card -%}
+            <div class="card__content">
+              <div class="card__information">
+                <h3
+                  class="card__heading"
+                  {% if card_product.featured_media == null and settings.card_style == 'standard' %}
+                    id="title-{{ section_id }}-{{ card_product.id }}"
+                  {% endif %}
                 >
-                  {{ card_product.title | escape }}
-                </a>
-              </h3>
+                  <a
+                    href="{{ card_product.url }}"
+                    id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
+                    class="full-unstyled-link"
+                    aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
+                  >
+                    {{ card_product.title | escape }}
+                  </a>
+                </h3>
+              </div>
+              <div class="card__badge {{ settings.badge_position }}">
+                {%- if custom_badge_text != blank -%}
+                  <span
+                    id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                    class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                  >
+                    {{- custom_badge_text -}}
+                  </span>
+                {%- elsif card_product.available == false -%}
+                  <span
+                    id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                    class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
+                  >
+                    {{- 'products.product.sold_out' | t -}}
+                  </span>
+                {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+                  <span
+                    id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                    class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                  >
+                    {{- 'products.product.on_sale_percentage' | t: percentage: discount_percentage -}}
+                  </span>
+                {%- endif -%}
+              </div>
             </div>
+          {%- else -%}
             <div class="card__badge {{ settings.badge_position }}">
-              {%- if card_product.available == false -%}
+              {%- if custom_badge_text != blank -%}
+                <span
+                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                >
+                  {{- custom_badge_text -}}
+                </span>
+              {%- elsif card_product.available == false -%}
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
@@ -135,28 +183,16 @@
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
                 >
-                  {{- 'products.product.on_sale' | t -}}
+                  {{- 'products.product.on_sale_percentage' | t: percentage: discount_percentage -}}
                 </span>
               {%- endif -%}
             </div>
-          </div>
+          {%- endunless -%}
         </div>
-        <div class="card__content">
-          <div class="card__information" style="padding: 24px 8px 12px 8px; background-color: transparent;">
-            <!-- Tag and Rating Row -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 10px; font-weight: 500; color: #777; text-transform: uppercase; letter-spacing: 1px;">
-              <!-- Removed hardcoded tag -->
-              {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
-                <span style="display: flex; align-items: center; gap: 4px; font-weight: 600; color: #333;">
-                  {{ card_product.metafields.reviews.rating.value | round: 1 }} ★({{ card_product.metafields.reviews.rating_count }})
-                </span>
-              {%- endif -%}
-            </div>
-
-            <!-- Title -->
+        <div class="card__content card__content--clinical">
+          <div class="card__information card__information--clinical">
             <h3
-              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-              style="font-family: var(--font-heading-family); font-size: 20px; margin: 0 0 14px 0; color: #333; line-height: 1.3; font-weight: 400;"
+              class="card__heading card__heading--clinical{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
               {% if card_product.featured_media or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
@@ -170,17 +206,9 @@
                 {{ card_product.title | escape }}
               </a>
             </h3>
-
-            <!-- Description -->
-            <p style="font-size: 13px; color: #555; margin: 0 0 16px 0; line-height: 1.6; font-family: sans-serif;">
-              {{ card_product.description | strip_html | truncatewords: 12 }}
-            </p>
-
-            <!-- Price -->
-            <div style="font-size: 16px; font-weight: 600; color: #333; font-family: var(--font-body-family); margin-bottom: 8px;">
+            <div class="card__price-row">
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
             </div>
-            
             <div class="card-information" style="display: none;">
               {%- if show_vendor -%}
                 <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>

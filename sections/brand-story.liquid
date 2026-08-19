@@ -87,11 +87,11 @@
   .brand-story__media {
     width: 100%;
     position: relative;
-    padding-bottom: 66.66%; /* 3:2 aspect ratio */
-    border-radius: 12px;
+    padding-bottom: 125%; /* 4:5 elegant portrait aspect ratio */
+    border-radius: 0;
     overflow: hidden;
-    margin-bottom: 2.5rem;
-    background-color: #f4f4f4;
+    margin-bottom: 3.5rem;
+    background-color: transparent;
   }
 
   .brand-story__image {
@@ -100,7 +100,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .placeholder-svg {
@@ -109,35 +109,35 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     background-color: #f4f4f4;
   }
 
   .brand-story__column-title {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.5rem 0;
     font-family: var(--font-heading-family);
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgb(var(--color-foreground));
+    color: #660033;
   }
 
   .brand-story__column-text {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    color: rgba(var(--color-foreground), 0.8);
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(var(--color-foreground), 0.85);
     margin: 0;
   }
 
   @media screen and (min-width: 750px) {
     .brand-story__column-title {
-      font-size: 1.8rem;
-      margin: 0 0 1.5rem 0;
+      font-size: 2.2rem;
+      margin: 0 0 2rem 0;
     }
     .brand-story__column-text {
-      font-size: 1.4rem;
-      line-height: 1.6;
+      font-size: 1.6rem;
+      line-height: 1.8;
     }
   }
 </style>

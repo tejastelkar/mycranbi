@@ -1942,6 +1942,90 @@ product-form .product-form__buttons .button {
   height: 100% !important;
 }
 
+@media screen and (max-width: 749px) {
+  .product--thumbnail .product__media-item .product-media-container.media-type-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-image::after {
+    content: none !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-image .product__modal-opener,
+  .product--thumbnail .product__media-item .product-media-container.media-type-image .product__media,
+  .product--thumbnail .product__media-item .product-media-container.media-type-image .media {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-image .media {
+    padding-top: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-image .media > img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-video,
+  .product--thumbnail .product__media-item .product-media-container.media-type-external_video {
+    --aspect-ratio: 0.5625;
+    --ratio-percent: 177.7778%;
+    width: 56.25% !important;
+    max-width: 56.25% !important;
+    aspect-ratio: 9 / 16 !important;
+    margin-inline: auto !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-video::after,
+  .product--thumbnail .product__media-item .product-media-container.media-type-external_video::after {
+    content: none !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-video .media,
+  .product--thumbnail .product__media-item .product-media-container.media-type-external_video .media {
+    width: 100% !important;
+    height: 100% !important;
+    padding-top: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
+  .product--thumbnail .product__media-item .product-media-container.media-type-video img,
+  .product--thumbnail .product__media-item .product-media-container.media-type-external_video img,
+  .product--thumbnail .product__media-item .product-media-container.media-type-video video,
+  .product--thumbnail .product__media-item .product-media-container.media-type-external_video iframe {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    border-radius: 0 !important;
+  }
+}
+
 /* Remove spacing around installment/spacer empty divs on product page */
 .product__tax + div:empty,
 .product__tax ~ div:not([class]) {

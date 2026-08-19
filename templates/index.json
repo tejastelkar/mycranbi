@@ -166,7 +166,7 @@
       "settings": {
         "collection": "all",
         "products_to_show": 8,
-        "custom_badge_text": "NEW & IMPROVED",
+        "custom_badge_text": "",
         "placeholder_title": "Kumkumadi Youth-Revitalising Facial Oil",
         "placeholder_description": "The Botanical Alternative To Retinol For Youthful, Radiant Skin",
         "placeholder_price": "Rs. 19.99 INR",
@@ -278,72 +278,35 @@
         "video_1": {
           "type": "video_card",
           "settings": {
+            "video": "shopify://files/videos/my cranbi saffron facewash.mp4",
             "title": ""
           }
         },
         "video_2": {
           "type": "video_card",
           "settings": {
+            "video": "shopify://files/videos/orange facewash.mp4",
             "title": ""
           }
         },
         "video_3": {
           "type": "video_card",
           "settings": {
+            "video": "shopify://files/videos/saffron face gel.mp4",
             "title": ""
           }
         },
         "video_4": {
           "type": "video_card",
           "settings": {
+            "video": "shopify://files/videos/ceramide light lotion.mp4",
             "title": ""
           }
         },
         "video_5": {
           "type": "video_card",
           "settings": {
-            "title": ""
-          }
-        },
-        "video_6": {
-          "type": "video_card",
-          "settings": {
-            "title": ""
-          }
-        },
-        "video_7": {
-          "type": "video_card",
-          "settings": {
-            "title": ""
-          }
-        },
-        "video_8": {
-          "type": "video_card",
-          "settings": {
-            "title": ""
-          }
-        },
-        "video_9": {
-          "type": "video_card",
-          "settings": {
-            "title": ""
-          }
-        },
-        "video_10": {
-          "type": "video_card",
-          "settings": {
-            "title": ""
-          }
-        },
-        "video_11": {
-          "type": "video_card",
-          "settings": {
-            "title": ""
-          }
-        },
-        "video_12": {
-          "type": "video_card",
-          "settings": {
+            "video": "shopify://files/videos/lavender shower gel.mp4",
             "title": ""
           }
         }
@@ -353,14 +316,7 @@
         "video_2",
         "video_3",
         "video_4",
-        "video_5",
-        "video_6",
-        "video_7",
-        "video_8",
-        "video_9",
-        "video_10",
-        "video_11",
-        "video_12"
+        "video_5"
       ],
       "settings": {
         "title": "Into the Spotlight",
@@ -376,19 +332,19 @@
         "product_1": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "saffron-facewash"
           }
         },
         "product_2": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "orange-facewash"
           }
         },
         "product_3": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "saffron-face-gel"
           }
         }
       },
@@ -398,6 +354,7 @@
         "product_3"
       ],
       "settings": {
+        "featured_image_product": "saffron-facewash",
         "image_position": "left",
         "title": "Rituals for every journey",
         "heading_size": "h2",
@@ -470,24 +427,28 @@
         "slide_1": {
           "type": "slide",
           "settings": {
+            "product": "saffron-facewash",
             "link": ""
           }
         },
         "slide_2": {
           "type": "slide",
           "settings": {
+            "product": "orange-facewash",
             "link": ""
           }
         },
         "slide_3": {
           "type": "slide",
           "settings": {
+            "product": "saffron-face-gel",
             "link": ""
           }
         },
         "slide_4": {
           "type": "slide",
           "settings": {
+            "product": "ceramide-lotion",
             "link": ""
           }
         }
@@ -515,24 +476,28 @@
         "video_1": {
           "type": "video_item",
           "settings": {
+            "video": "shopify://files/videos/Captions_71E211.mp4",
             "product": ""
           }
         },
         "video_2": {
           "type": "video_item",
           "settings": {
+            "video": "shopify://files/videos/Captions_C1BC16.mp4",
             "product": ""
           }
         },
         "video_3": {
           "type": "video_item",
           "settings": {
+            "video": "shopify://files/videos/Captions_DE26ED.mp4",
             "product": ""
           }
         },
         "video_4": {
           "type": "video_item",
           "settings": {
+            "video": "shopify://files/videos/57556DD0-C849-4DD0-A493-A92D2FE6A1A5.mp4",
             "product": ""
           }
         }

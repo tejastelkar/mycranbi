@@ -46,30 +46,6 @@
     "header": {
       "type": "header",
       "blocks": {
-        "mega_menu_jJJfkC": {
-          "type": "mega_menu",
-          "settings": {
-            "menu_handle": "Haircare",
-            "style": "gallery",
-            "button_label": "Discover all haircare",
-            "button_link": "shopify://collections/pure-haircare",
-            "image_1": "shopify://shop_images/my_cranbi-22.jpg",
-            "image_1_caption": "Amla & Shikakai Shampoo",
-            "image_1_link": "shopify://products/amla-shikakai-shampoo",
-            "image_2": "shopify://shop_images/my_cranbi-9.jpg",
-            "image_2_caption": "Wheat Protein Shampoo",
-            "image_2_link": "shopify://products/wheat-protein-shampoo",
-            "image_3": "shopify://shop_images/my_cranbi-13.jpg",
-            "image_3_caption": "Hair Conditioner",
-            "image_3_link": "shopify://products/hair-conditioner",
-            "image_4": "shopify://shop_images/my_cranbi-31.jpg",
-            "image_4_caption": "Creamy Hair Serum",
-            "image_4_link": "shopify://products/creamy-hair-serum",
-            "image_5": "",
-            "image_5_caption": "",
-            "image_5_link": ""
-          }
-        },
         "mega_menu_YFQyez": {
           "type": "mega_menu",
           "settings": {
@@ -77,31 +53,35 @@
             "style": "columns",
             "button_label": "Discover all skincare",
             "button_link": "shopify://collections/the-skincare-routine",
-            "image_1": "shopify://shop_images/my_cranbi-1_14296c3d-fe35-4068-b203-3272400a207c.jpg",
-            "image_1_caption": "Saffron Facewash",
-            "image_1_link": "shopify://products/saffron-facewash",
-            "image_2": "shopify://shop_images/my_cranbi-4.jpg",
-            "image_2_caption": "Orange Facewash",
-            "image_2_link": "shopify://products/orange-facewash",
-            "image_3": "shopify://shop_images/my_cranbi-38.jpg",
-            "image_3_caption": "Saffron Face Gel",
-            "image_3_link": "shopify://products/saffron-face-gel",
-            "image_4": "shopify://shop_images/my_cranbi-35.jpg",
-            "image_4_caption": "Saffron Moisturising Cream",
-            "image_4_link": "shopify://products/saffron-moisturising-cream",
-            "image_5": "shopify://shop_images/my_cranbi-27.jpg",
-            "image_5_caption": "Ceramide Lotion",
-            "image_5_link": "shopify://products/ceramide-lotion"
+            "product_1": "saffron-facewash",
+            "product_2": "orange-facewash",
+            "product_3": "saffron-face-gel",
+            "product_4": "saffron-moisturising-cream",
+            "product_5": "ceramide-lotion"
+          }
+        },
+        "mega_menu_essential_ritual": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_handle": "The Essential Ritual",
+            "style": "gallery",
+            "button_label": "Shop all rituals",
+            "button_link": "shopify://collections/the-essential-ritual",
+            "product_1": "saffron-glow-ritual",
+            "product_2": "hydration-ritual",
+            "product_3": "everyday-natural-aromatherapy",
+            "product_4": "the-ancient-hair-ritual",
+            "product_5": "protein-power-trio"
           }
         }
       },
       "block_order": [
-        "mega_menu_jJJfkC",
-        "mega_menu_YFQyez"
+        "mega_menu_YFQyez",
+        "mega_menu_essential_ritual"
       ],
       "settings": {
-        "logo_position": "top-center",
-        "mobile_logo_position": "center",
+        "logo_position": "middle-left",
+        "mobile_logo_position": "left",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
         "sticky_header_type": "always",
@@ -112,8 +92,8 @@
         "enable_language_selector": true,
         "enable_customer_avatar": true,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 4,
+        "padding_bottom": 4
       }
     }
   },

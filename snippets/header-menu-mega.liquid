@@ -44,36 +44,28 @@
         <div class="mega-menu__gallery page-width">
           {%- for i in (1..5) -%}
             {%- liquid
-              assign image_key = 'image_' | append: i
-              assign caption_key = image_key | append: '_caption'
-              assign link_key = image_key | append: '_link'
-              assign card_image = block.settings[image_key]
-              assign card_caption = block.settings[caption_key]
-              assign card_link = block.settings[link_key]
-              assign card_tag = 'div'
-              if card_link != blank
-                assign card_tag = 'a'
-              endif
+              assign product_key = 'product_' | append: i
+              assign card_product = block.settings[product_key]
             -%}
-            {%- if card_image != blank -%}
-              <{{ card_tag }}
-                {% if card_tag == 'a' %}
-                  href="{{ card_link }}"
-                {% endif %}
+            {%- if card_product != blank -%}
+              <a
+                href="{{ card_product.url }}"
                 class="mega-menu__gallery-card"
                 style="--mega-menu-card-index: {{ forloop.index0 }};"
               >
                 <span class="mega-menu__gallery-image-wrapper">
-                  {{
-                    card_image
-                    | image_url: width: 400
-                    | image_tag: loading: 'lazy', widths: '200, 300, 400', alt: card_caption
-                  }}
+                  {%- if card_product.featured_image != blank -%}
+                    {{
+                      card_product.featured_image
+                      | image_url: width: 400
+                      | image_tag: loading: 'lazy', widths: '200, 300, 400', alt: card_product.title
+                    }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'mega-menu__gallery-placeholder placeholder-svg' }}
+                  {%- endif -%}
                 </span>
-                {%- if card_caption != blank -%}
-                  <span class="mega-menu__gallery-caption">{{ card_caption | escape }}</span>
-                {%- endif -%}
-              </{{ card_tag }}>
+                <span class="mega-menu__gallery-caption">{{ card_product.title | escape }}</span>
+              </a>
             {%- endif -%}
           {%- endfor -%}
         </div>
@@ -107,6 +99,24 @@
                         {% endif %}
                       >
                         {{ grandchildlink.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- elsif childlink.type == 'collection_link' and childlink.object != blank and childlink.object.products_count > 0 -%}
+                {%- assign menu_products = childlink.object.products | sort_natural: 'title' -%}
+                <ul class="list-unstyled" role="list">
+                  {%- for product in menu_products limit: 6 -%}
+                    <li>
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ product.handle }}"
+                        href="{{ product.url }}"
+                        class="mega-menu__link link{% if product.url == request.path %} mega-menu__link--active{% endif %}"
+                        {% if product.url == request.path %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ product.title | escape }}
                       </a>
                     </li>
                   {%- endfor -%}

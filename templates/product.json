@@ -51,7 +51,8 @@
           "settings": {
             "heading": "Description",
             "icon": "none",
-            "content": "<p>Placeholder description. Connect this to the Description metafield in the Theme Editor!</p>"
+            "content": "<p>Placeholder description. Connect this to the Description metafield in the Theme Editor!</p>",
+            "content_source": "description"
           }
         },
         "accordion_claims": {
@@ -59,7 +60,8 @@
           "settings": {
             "heading": "Claims",
             "icon": "none",
-            "content": "<p>Placeholder claims. Connect this to the Claims metafield in the Theme Editor!</p>"
+            "content": "<p>Placeholder claims. Connect this to the Claims metafield in the Theme Editor!</p>",
+            "content_source": "claims"
           }
         },
         "accordion_how_to_use": {
@@ -67,7 +69,8 @@
           "settings": {
             "heading": "How to use",
             "icon": "none",
-            "content": "<p>Placeholder how to use. Connect this to the How to Use metafield in the Theme Editor!</p>"
+            "content": "<p>Placeholder how to use. Connect this to the How to Use metafield in the Theme Editor!</p>",
+            "content_source": "how_to_use"
           }
         },
         "accordion_ingredients": {
@@ -75,7 +78,8 @@
           "settings": {
             "heading": "Ingredients",
             "icon": "none",
-            "content": "<p>Placeholder ingredients. Connect this to the Ingredients metafield in the Theme Editor!</p>"
+            "content": "<p>Placeholder ingredients. Connect this to the Ingredients metafield in the Theme Editor!</p>",
+            "content_source": "ingredients"
           }
         },
         "accordion_what_to_expect": {
@@ -83,7 +87,8 @@
           "settings": {
             "heading": "What to expect",
             "icon": "none",
-            "content": "<p>Placeholder what to expect. Connect this to the What to Expect metafield in the Theme Editor!</p>"
+            "content": "<p>Placeholder what to expect. Connect this to the What to Expect metafield in the Theme Editor!</p>",
+            "content_source": "what_to_expect"
           }
         }
       },

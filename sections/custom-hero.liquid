@@ -16,7 +16,7 @@
                    width="{{ block.settings.image.width }}"
                    height="{{ block.settings.image.height }}">
             {%- else -%}
-              <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image desktop-only" loading="lazy">
+              <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image desktop-only" loading="lazy" width="1600" height="900">
             {%- endif -%}
 
             {%- if block.settings.mobile_image != blank -%}
@@ -27,7 +27,7 @@
                    width="{{ block.settings.mobile_image.width }}"
                    height="{{ block.settings.mobile_image.height }}">
             {%- else -%}
-              <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image mobile-only" loading="lazy">
+              <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image mobile-only" loading="lazy" width="900" height="1200">
             {%- endif -%}
           </div>
 

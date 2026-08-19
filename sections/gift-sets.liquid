@@ -7,7 +7,7 @@
           {%- if section.settings.image != blank -%}
             {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', class: 'gift-sets__image' }}
           {%- else -%}
-            <img src="{{ 'slide-3.png' | asset_url }}" alt="Gift Sets Placeholder" class="gift-sets__image" loading="lazy">
+            <img src="{{ 'slide-3.png' | asset_url }}" alt="Gift Sets Placeholder" class="gift-sets__image" loading="lazy" width="1000" height="1000">
           {%- endif -%}
         </div>
       </div>

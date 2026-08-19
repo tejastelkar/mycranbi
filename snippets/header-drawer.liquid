@@ -52,7 +52,15 @@
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
                               <li>
-                                {%- if childlink.links == blank -%}
+                                {%- liquid
+                                  assign childlink_has_submenu = false
+                                  if childlink.links != blank
+                                    assign childlink_has_submenu = true
+                                  elsif childlink.type == 'collection_link' and childlink.object != blank and childlink.object.products_count > 0
+                                    assign childlink_has_submenu = true
+                                  endif
+                                -%}
+                                {%- unless childlink_has_submenu -%}
                                   <a
                                     id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                     href="{{ childlink.url }}"
@@ -95,24 +103,42 @@
                                         role="list"
                                         tabindex="-1"
                                       >
-                                        {%- for grandchildlink in childlink.links -%}
-                                          <li>
-                                            <a
-                                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                              href="{{ grandchildlink.url }}"
-                                              class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
-                                              {% if grandchildlink.current %}
-                                                aria-current="page"
-                                              {% endif %}
-                                            >
-                                              {{ grandchildlink.title | escape }}
-                                            </a>
-                                          </li>
-                                        {%- endfor -%}
+                                        {%- if childlink.links != blank -%}
+                                          {%- for grandchildlink in childlink.links -%}
+                                            <li>
+                                              <a
+                                                id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                                href="{{ grandchildlink.url }}"
+                                                class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                                {% if grandchildlink.current %}
+                                                  aria-current="page"
+                                                {% endif %}
+                                              >
+                                                {{ grandchildlink.title | escape }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        {%- else -%}
+                                          {%- assign drawer_menu_products = childlink.object.products | sort_natural: 'title' -%}
+                                          {%- for product in drawer_menu_products limit: 6 -%}
+                                            <li>
+                                              <a
+                                                id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ product.handle }}"
+                                                href="{{ product.url }}"
+                                                class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if product.url == request.path %} menu-drawer__menu-item--active{% endif %}"
+                                                {% if product.url == request.path %}
+                                                  aria-current="page"
+                                                {% endif %}
+                                              >
+                                                {{ product.title | escape }}
+                                              </a>
+                                            </li>
+                                          {%- endfor -%}
+                                        {%- endif -%}
                                       </ul>
                                     </div>
                                   </details>
-                                {%- endif -%}
+                                {%- endunless -%}
                               </li>
                             {%- endfor -%}
                           </ul>

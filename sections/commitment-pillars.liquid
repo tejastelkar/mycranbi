@@ -47,17 +47,17 @@
   .commitment-pillar {
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(var(--color-foreground), 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: #FFFFFF;
+    align-items: center;
+    text-align: center;
+    border: none;
+    background-color: transparent;
   }
 
   .commitment-pillar__media {
     width: 100%;
     position: relative;
-    padding-bottom: 60%;
-    background-color: #f4f4f4;
+    padding-bottom: 66%;
+    background-color: transparent;
   }
 
   .commitment-pillar__image {
@@ -66,7 +66,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .commitment-pillar__media .placeholder-svg {
@@ -75,35 +75,37 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    background-color: #f4f4f4;
   }
 
   .commitment-pillar__content {
-    padding: 2rem;
+    padding: 3rem 1rem 1rem 1rem;
   }
 
   .commitment-pillar__title {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.5rem 0;
     font-family: var(--font-heading-family);
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     font-weight: 400;
-    letter-spacing: 0.04em;
-    color: rgb(var(--color-foreground));
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #660033;
   }
 
   .commitment-pillar__text {
-    font-size: 1.4rem;
-    line-height: 1.6;
-    color: rgba(var(--color-foreground), 0.8);
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: rgba(var(--color-foreground), 0.85);
     margin: 0;
   }
 
   @media screen and (min-width: 750px) {
     .commitment-pillar__content {
-      padding: 2.5rem;
+      padding: 4rem 2rem 1rem 2rem;
     }
     .commitment-pillar__title {
-      font-size: 1.8rem;
+      font-size: 2.4rem;
     }
   }
 {%- endstyle -%}

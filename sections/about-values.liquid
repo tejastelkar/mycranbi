@@ -1,0 +1,258 @@
+<section class="about-values section-{{ section.id }}-padding" style="--about-values-bg: {{ section.settings.background_color }}; --about-values-accent: {{ section.settings.accent_color }};">
+  <div class="about-full-width">
+    <div class="about-values__layout">
+      <div class="about-values__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="about-values__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="about-values__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+
+      <div class="about-values__list">
+        {%- for block in section.blocks -%}
+          <article class="about-values__item scroll-trigger animate--slide-in" {{ block.shopify_attributes }}>
+            <div class="about-values__item-number">0{{ forloop.index }}</div>
+            <div class="about-values__item-content">
+              <h3 class="about-values__title">{{ block.settings.title }}</h3>
+              <div class="about-values__text rte">
+                {{ block.settings.text }}
+              </div>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .about-full-width {
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  #shopify-section-{{ section.id }} .about-values {
+    background: var(--about-values-bg);
+  }
+  
+  #shopify-section-{{ section.id }} .about-values__layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .about-values__layout {
+      grid-template-columns: 1fr 1fr;
+      gap: 12rem;
+    }
+
+    #shopify-section-{{ section.id }} .about-values__header {
+      position: sticky;
+      top: 12rem;
+      align-self: start;
+      max-width: 600px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .about-values__eyebrow {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--about-values-accent);
+  }
+
+  #shopify-section-{{ section.id }} .about-values__heading {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.4rem, 4.5vw, 6rem);
+    line-height: 1.05;
+    color: rgb(var(--color-foreground));
+  }
+
+  #shopify-section-{{ section.id }} .about-values__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .about-values__item {
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 0;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  #shopify-section-{{ section.id }} .about-values__item:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+  
+  #shopify-section-{{ section.id }} .about-values__item-number {
+    font-family: var(--font-heading-family);
+    font-size: 8rem;
+    line-height: 0.8;
+    color: var(--about-values-accent);
+    opacity: 0.15;
+    margin-bottom: 3rem;
+  }
+
+  #shopify-section-{{ section.id }} .about-values__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.4rem, 3vw, 3.2rem);
+    margin: 0 0 2rem;
+    color: rgb(var(--color-foreground));
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .about-values__text {
+    font-family: var(--font-body-family);
+    font-size: 1.65rem;
+    line-height: 1.8;
+    color: rgba(var(--color-foreground), 0.78);
+  }
+
+  #shopify-section-{{ section.id }} .about-values__text p:first-child { margin-top: 0; }
+  #shopify-section-{{ section.id }} .about-values__text p:last-child { margin-bottom: 0; }
+
+  @media screen and (max-width: 989px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.55 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.55 | round: 0 }}px;
+    }
+
+    #shopify-section-{{ section.id }} .about-values__heading {
+      font-size: clamp(3rem, 8.8vw, 4.4rem);
+    }
+
+    #shopify-section-{{ section.id }} .about-values__item {
+      padding: 4rem 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Values",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "What guides every ritual"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heritage, saffron, and honest formulation remain at the center of MY CRANBI."
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "card_color",
+      "label": "Card color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#660033"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#E9DDD1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Purity without compromise"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Copy",
+          "default": "<p>Use this space to describe the value.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Values",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "title": "Heritage of Velvet Touch",
+            "text": "<p>Our formulations are guided by a family philosophy that blends the richness of saffron and India's botanical heritage with research-led care for modern routines.</p>"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Rooted in real saffron",
+            "text": "<p>Through our family's MAA KESAR venture in Srinagar, pure Kashmir saffron remains central to the identity, authenticity, and sensorial richness of MY CRANBI.</p>"
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Free from, never compromised",
+            "text": "<p>Every ritual is crafted without sulphates, parabens, silicones, or formaldehyde so the care feels as honest as it is indulgent, and proudly made in India.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

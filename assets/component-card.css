@@ -289,6 +289,28 @@
   margin: 1.3rem;
 }
 
+/* Collection-grid cards render the badge as a sibling of .card__media rather
+   than inside .card__content's grid, so the grid-based align-self/justify-self
+   rules above are no-ops and it's left position:static — painted underneath
+   the absolutely-positioned product image. Position it explicitly instead. */
+.card__inner > .card__badge {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  bottom: 1.2rem;
+  left: 1.2rem;
+}
+
+.card__inner > .card__badge.top {
+  top: 1.2rem;
+  bottom: auto;
+}
+
+.card__inner > .card__badge.right {
+  left: auto;
+  right: 1.2rem;
+}
+
 .card__media .media img {
   height: 100%;
   object-fit: contain;

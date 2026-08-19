@@ -128,7 +128,8 @@
                   section_id: section.id,
                   quick_add: section.settings.quick_add,
                   product_view_context: 'collection',
-                  custom_badge_text: section.settings.custom_badge_text
+                  custom_badge_text: section.settings.custom_badge_text,
+                  card_layout: 'collection-grid'
                 %}
               </li>
               {%- assign skip_card_product_styles = true -%}
@@ -153,6 +154,7 @@
                 lazy_load: false,
                 placeholder_image: placeholder_image,
                 custom_badge_text: section.settings.custom_badge_text,
+                card_layout: 'collection-grid',
                 placeholder_title: section.settings.placeholder_title,
                 placeholder_description: section.settings.placeholder_description,
                 placeholder_price: section.settings.placeholder_price,

@@ -75,6 +75,10 @@
 </style>
 
 {%- style -%}
+  .header.page-width {
+    max-width: 100%;
+  }
+
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
   }
@@ -243,7 +247,7 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% comment %} Removed search icon on the right for Kama Ayurveda layout {% endcomment %}
+      {%- render 'header-search', input_id: 'Search-In-Modal-1' -%}
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -700,86 +704,36 @@
         },
         {
           "type": "header",
-          "content": "Gallery images"
+          "content": "Gallery products"
         },
         {
           "type": "paragraph",
-          "content": "Used only when Style is set to Gallery. Shows up to 5 images side by side; leave an image blank to skip that slot."
+          "content": "Used only when Style is set to Gallery. Shows up to 5 products side by side, using each product's own current image, title, and link — leave a slot blank to skip it."
         },
         {
-          "type": "image_picker",
-          "id": "image_1",
-          "label": "Image 1"
+          "type": "product",
+          "id": "product_1",
+          "label": "Product 1"
         },
         {
-          "type": "text",
-          "id": "image_1_caption",
-          "label": "Image 1 caption"
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2"
         },
         {
-          "type": "url",
-          "id": "image_1_link",
-          "label": "Image 1 link"
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3"
         },
         {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image 2"
+          "type": "product",
+          "id": "product_4",
+          "label": "Product 4"
         },
         {
-          "type": "text",
-          "id": "image_2_caption",
-          "label": "Image 2 caption"
-        },
-        {
-          "type": "url",
-          "id": "image_2_link",
-          "label": "Image 2 link"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_3",
-          "label": "Image 3"
-        },
-        {
-          "type": "text",
-          "id": "image_3_caption",
-          "label": "Image 3 caption"
-        },
-        {
-          "type": "url",
-          "id": "image_3_link",
-          "label": "Image 3 link"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_4",
-          "label": "Image 4"
-        },
-        {
-          "type": "text",
-          "id": "image_4_caption",
-          "label": "Image 4 caption"
-        },
-        {
-          "type": "url",
-          "id": "image_4_link",
-          "label": "Image 4 link"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_5",
-          "label": "Image 5"
-        },
-        {
-          "type": "text",
-          "id": "image_5_caption",
-          "label": "Image 5 caption"
-        },
-        {
-          "type": "url",
-          "id": "image_5_link",
-          "label": "Image 5 link"
+          "type": "product",
+          "id": "product_5",
+          "label": "Product 5"
         }
       ]
     }

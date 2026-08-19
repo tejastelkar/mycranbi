@@ -1,0 +1,652 @@
+<section class="about-journey section-{{ section.id }}-padding" style="--about-journey-bg: {{ section.settings.background_color }}; --about-journey-surface: {{ section.settings.surface_color }}; --about-journey-accent: {{ section.settings.accent_color }}; --about-journey-border: {{ section.settings.border_color }};">
+  <div class="about-full-width">
+    <div class="about-journey__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="about-journey__eyebrow scroll-trigger animate--slide-in">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <div class="about-journey__heading-wrapper scroll-trigger animate--slide-in" data-cascade style="--animation-order: 1;">
+          <div class="about-journey__heading-accent">
+            <span class="about-journey__accent-dot"></span>
+            <span class="about-journey__accent-line"></span>
+          </div>
+          <h2 class="about-journey__heading">{{ section.settings.heading }}</h2>
+          <div class="about-journey__heading-accent">
+            <span class="about-journey__accent-line"></span>
+            <span class="about-journey__accent-dot"></span>
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <div class="about-journey__lead rte scroll-trigger animate--slide-in" data-cascade style="--animation-order: 2;">
+          {{ section.settings.intro }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="about-journey__timeline-wrapper">
+      <div class="about-journey__timeline">
+        {%- for block in section.blocks -%}
+          <div class="about-journey__milestone-row scroll-trigger animate--slide-in" data-cascade style="--animation-order: {{ forloop.index }};" {{ block.shopify_attributes }}>
+            <div class="about-journey__milestone-content">
+              <p class="about-journey__year">{{ block.settings.year }}</p>
+              <h3 class="about-journey__milestone-title">{{ block.settings.title }}</h3>
+              <div class="about-journey__milestone-text rte">
+                {{ block.settings.text }}
+              </div>
+            </div>
+            <div class="about-journey__timeline-point"></div>
+            <div class="about-journey__milestone-spacer"></div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    </div> <!-- End of about-full-width -->
+
+    <div class="about-journey__philosophy-fullwidth scroll-trigger animate--slide-in">
+      <div class="about-journey__philosophy-grid">
+        <div class="about-journey__philosophy-header">
+          {%- if section.settings.quote_label != blank -%}
+            <p class="about-journey__centered-eyebrow">{{ section.settings.quote_label | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.quote_heading != blank -%}
+            <h2 class="about-journey__centered-heading">{{ section.settings.quote_heading | escape }}</h2>
+          {%- endif -%}
+        </div>
+        
+        <div class="about-journey__philosophy-content">
+          <div class="about-journey__centered-quote-wrapper">
+            <span class="about-journey__centered-quote-mark">“</span>
+            {%- if section.settings.quote_text != blank -%}
+              <div class="about-journey__centered-quote rte">
+                {{ section.settings.quote_text }}
+              </div>
+            {%- endif -%}
+          </div>
+
+          <div class="about-journey__centered-divider"></div>
+
+          {%- if section.settings.closing_text != blank -%}
+            <div class="about-journey__centered-closing rte">
+              {{ section.settings.closing_text }}
+            </div>
+          {%- endif -%}
+          
+          {%- if section.settings.signature != blank -%}
+            <p class="about-journey__centered-signature">{{ section.settings.signature | escape }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+</section>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .about-full-width {
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey {
+    background: var(--about-journey-bg);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__intro {
+    max-width: 92rem;
+    margin: 0 auto 7rem;
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__eyebrow,
+  #shopify-section-{{ section.id }} .about-journey__quote-label {
+    margin: 0 0 1.4rem;
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--about-journey-accent);
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__heading-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__heading {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    color: rgb(var(--color-foreground));
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__heading-accent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeAndScale 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.6s;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__accent-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background-color: var(--about-journey-accent);
+    animation: expandLine 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 0.8s;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__accent-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--about-journey-accent);
+    transform: scale(0);
+    animation: popDot 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1.2s;
+  }
+
+  @keyframes expandLine {
+    to { width: clamp(30px, 8vw, 80px); }
+  }
+
+  @keyframes popDot {
+    to { transform: scale(1); }
+  }
+
+  @keyframes fadeAndScale {
+    from { opacity: 0; transform: scaleX(0.9); }
+    to { opacity: 0.6; transform: scaleX(1); }
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__lead,
+  #shopify-section-{{ section.id }} .about-journey__milestone-text,
+  #shopify-section-{{ section.id }} .about-journey__quote-text,
+  #shopify-section-{{ section.id }} .about-journey__closing-text {
+    font-family: var(--font-body-family);
+    font-size: 1.7rem;
+    line-height: 1.85;
+    color: rgba(var(--color-foreground), 0.8);
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__lead {
+    max-width: 76rem;
+    margin: 2rem auto 0;
+  }
+
+  /* Timeline Styles */
+  #shopify-section-{{ section.id }} .about-journey__timeline-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto 8rem;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__timeline {
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--about-journey-accent);
+    opacity: 0.2;
+    transform: translateX(-50%);
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__milestone-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 6rem;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__milestone-row:last-child {
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__milestone-content,
+  #shopify-section-{{ section.id }} .about-journey__milestone-spacer {
+    flex: 1;
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__timeline-point {
+    display: block !important;
+    width: 20px;
+    height: 20px;
+    background: var(--about-journey-bg);
+    border: 2px solid var(--about-journey-accent);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 0 6px var(--about-journey-bg);
+  }
+
+  /* Desktop Alternating Pattern */
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .about-journey__milestone-spacer {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-row:nth-child(odd) .about-journey__milestone-content {
+      padding-right: 5rem;
+      text-align: right;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-row:nth-child(even) .about-journey__milestone-content {
+      padding-left: 5rem;
+      text-align: left;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__year {
+    margin: 0 0 1rem;
+    font-family: var(--font-heading-family);
+    font-size: 6.4rem;
+    line-height: 0.9;
+    color: var(--about-journey-accent);
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__milestone-title {
+    margin: 0 0 1.6rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.6rem, 2.3vw, 3.6rem);
+    line-height: 1;
+    color: rgb(var(--color-foreground));
+  }
+  
+  #shopify-section-{{ section.id }} .about-journey__milestone-text p:first-child { margin-top: 0; }
+  #shopify-section-{{ section.id }} .about-journey__milestone-text p:last-child { margin-bottom: 0; }
+
+  /* Fullwidth Philosophy Block */
+  #shopify-section-{{ section.id }} .about-journey__philosophy-fullwidth {
+    margin-top: 6rem;
+    background-color: var(--about-journey-accent);
+    color: var(--about-journey-surface);
+    padding: 10rem 5%;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__philosophy-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  @media screen and (min-width: 990px) {
+    #shopify-section-{{ section.id }} .about-journey__philosophy-grid {
+      grid-template-columns: 1fr 1.2fr;
+      gap: 8rem;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__philosophy-header {
+      position: sticky;
+      top: 10rem;
+      align-self: start;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--about-journey-surface);
+    margin: 0 0 2rem;
+    opacity: 0.8;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-heading {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.6rem, 4.5vw, 5.6rem);
+    line-height: 1.15;
+    color: var(--about-journey-surface);
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-quote-wrapper {
+    position: relative;
+    padding-top: 4rem;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-quote-mark {
+    position: absolute;
+    top: -4rem;
+    left: -1rem;
+    font-family: var(--font-heading-family);
+    font-size: 14rem;
+    line-height: 1;
+    color: var(--about-journey-surface);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-quote {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.2rem, 2.5vw, 3.2rem);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--about-journey-surface);
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--about-journey-surface);
+    margin: 4rem 0;
+    opacity: 0.3;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-closing {
+    font-family: var(--font-body-family);
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: rgba(251, 246, 240, 0.9); /* surface color with opacity */
+    margin-bottom: 4rem;
+  }
+
+  #shopify-section-{{ section.id }} .about-journey__centered-signature {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--about-journey-surface);
+    margin: 0;
+  }
+  @media screen and (max-width: 989px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.55 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.55 | round: 0 }}px;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__intro {
+      margin-bottom: 5rem;
+      text-align: left;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__lead {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    /* Timeline Mobile */
+    #shopify-section-{{ section.id }} .about-journey__timeline::before {
+      left: 16px;
+      transform: none;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-row,
+    #shopify-section-{{ section.id }} .about-journey__milestone-row:nth-child(even) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 5rem;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-content,
+    #shopify-section-{{ section.id }} .about-journey__milestone-spacer {
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-spacer {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__timeline-point {
+      left: 16px;
+      transform: translateX(-50%);
+      top: 0;
+      box-shadow: 0 0 0 6px var(--about-journey-bg);
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__milestone-row:nth-child(odd) .about-journey__milestone-content,
+    #shopify-section-{{ section.id }} .about-journey__milestone-row:nth-child(even) .about-journey__milestone-content {
+      padding-left: 5rem;
+      padding-right: 0;
+      text-align: left;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__year {
+      font-size: 4.2rem;
+      margin-top: -6px; /* align with point */
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__heading {
+      font-size: clamp(2.2rem, 6vw, 2.6rem);
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__lead,
+    #shopify-section-{{ section.id }} .about-journey__milestone-text,
+    #shopify-section-{{ section.id }} .about-journey__quote-text,
+    #shopify-section-{{ section.id }} .about-journey__closing-text {
+      font-size: 1.55rem;
+      line-height: 1.8;
+    }
+
+    /* Philosophy Editorial Mobile */
+    #shopify-section-{{ section.id }} .about-journey__philosophy-editorial {
+      padding: 4rem 0;
+      margin-top: 6rem;
+    }
+
+    /* Philosophy Fullwidth Mobile */
+    #shopify-section-{{ section.id }} .about-journey__philosophy-fullwidth {
+      padding: 6rem 5%;
+      margin-top: 4rem;
+    }
+
+    #shopify-section-{{ section.id }} .about-journey__centered-heading {
+      font-size: clamp(3.2rem, 8vw, 4rem);
+      margin: 0 0 2rem;
+    }
+    
+    #shopify-section-{{ section.id }} .about-journey__centered-quote {
+      font-size: 2rem;
+    }
+    
+    #shopify-section-{{ section.id }} .about-journey__centered-divider {
+      margin: 4rem 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Journey",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Heart Behind MY CRANBI"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A family story rooted in saffron, trust, and thoughtful care."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro copy",
+      "default": "<p>At MY CRANBI, we believe that true beauty is nurtured through honesty, thoughtful innovation and the finest gifts of nature. Inspired by the richness of saffron and India's timeless botanical heritage, we create premium skincare and personal care products that blend nature with modern science to deliver care you can truly trust.</p>"
+    },
+    {
+      "type": "text",
+      "id": "quote_label",
+      "label": "Quote label",
+      "default": "Our Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "quote_heading",
+      "label": "Quote heading",
+      "default": "The Heritage of Velvet Touch"
+    },
+    {
+      "type": "richtext",
+      "id": "quote_text",
+      "label": "Quote text",
+      "default": "<p>In 2025, my mother-in-law and I founded MY CRANBI with a simple belief that premium personal care should be honest, effective, and thoughtfully crafted. Guided by our philosophy, every formulation reflects our commitment to authenticity, research, and uncompromising quality.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "closing_text",
+      "label": "Closing copy",
+      "default": "<p>MY CRANBI is more than a brand; it is our family's promise to deliver purity, compassion, and conscious care in every product. As we continue to grow, our vision remains unchanged: to build a trusted Indian brand that brings together heritage, nature, science, and innovation to enrich everyday lives.</p><p>Thank you for placing your trust in MY CRANBI and becoming a part of our journey. We look forward to being a part of yours.</p>"
+    },
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Signature",
+      "default": "With gratitude, CA Unnati Birla, Co-Founder, MY CRANBI"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "surface_color",
+      "label": "Surface color",
+      "default": "#FBF6F0"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#660033"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#E9DDD1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 88
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 140,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 88
+    }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "1985"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "A legacy begins"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Copy",
+          "default": "<p>Share the key milestone for this year.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Journey",
+      "blocks": [
+        {
+          "type": "milestone",
+          "settings": {
+            "year": "1985",
+            "title": "A legacy built on trust",
+            "text": "<p>Our family's entrepreneurial journey began when Shri Manikji Birla founded Abhay Travels, laying the foundation of a legacy rooted in trust, integrity, and service.</p>"
+          }
+        },
+        {
+          "type": "milestone",
+          "settings": {
+            "year": "2011",
+            "title": "A turn toward saffron",
+            "text": "<p>Carrying that legacy forward, Shri Abhayji Birla and Aditya Birla ventured into the world of saffron with a passion for authenticity and quality.</p>"
+          }
+        },
+        {
+          "type": "milestone",
+          "settings": {
+            "year": "2019",
+            "title": "MAA KESAR takes root",
+            "text": "<p>Through MAA KESAR, we began cultivating and processing premium saffron in Srinagar, deepening our connection with one of nature's most treasured ingredients.</p>"
+          }
+        },
+        {
+          "type": "milestone",
+          "settings": {
+            "year": "2025",
+            "title": "MY CRANBI is born",
+            "text": "<p>Inspired by that journey, MY CRANBI was founded to create premium personal care that feels honest, effective, and thoughtfully crafted for modern rituals.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

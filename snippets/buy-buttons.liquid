@@ -431,7 +431,7 @@
           {%- else -%}
             <!-- Fallback Buy Now button that goes to checkout -->
             <a
-              href="/cart/add?id={{ product.selected_or_first_available_variant.id }}&quantity=1&return_to=/checkout"
+              href="{{ routes.cart_add_url }}?id={{ product.selected_or_first_available_variant.id }}&quantity=1&return_to=/checkout"
               class="cranbi-buy-now-btn"
               {% if product.selected_or_first_available_variant.available == false %}style="opacity:0.5;pointer-events:none;"{% endif %}
             >
@@ -453,11 +453,11 @@
           <!-- Mastercard -->
           <span class="cranbi-logo-item">{{ 'master' | payment_type_svg_tag }}</span>
           <!-- Google Pay -->
-          <img src="{{ 'gpay_logo.svg' | asset_url }}" alt="Google Pay" loading="lazy">
+          <img src="{{ 'gpay_logo.svg' | asset_url }}" alt="Google Pay" loading="lazy" width="38" height="24">
           <!-- Paytm -->
-          <img src="{{ 'paytm_logo.svg' | asset_url }}" alt="Paytm" loading="lazy">
+          <img src="{{ 'paytm_logo.svg' | asset_url }}" alt="Paytm" loading="lazy" width="38" height="24">
           <!-- PhonePe -->
-          <img src="{{ 'phonepe_logo.svg' | asset_url }}" alt="PhonePe" loading="lazy">
+          <img src="{{ 'phonepe_logo.svg' | asset_url }}" alt="PhonePe" loading="lazy" width="38" height="24">
           <!-- RuPay / UPI -->
           <span class="cranbi-logo-item cranbi-logo-rupay">{{ 'rupay' | payment_type_svg_tag }}</span>
         </div>

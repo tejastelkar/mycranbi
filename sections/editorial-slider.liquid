@@ -28,23 +28,39 @@
       <div class="editorial-slider__media-side">
         <div class="editorial-slider__scroller">
           {%- for block in section.blocks -%}
+            {%- assign slide_product = block.settings.product -%}
+            {%- assign slide_link = block.settings.link -%}
+            {%- if slide_product != blank -%}
+              {%- assign slide_link = slide_product.url -%}
+            {%- endif -%}
             <div class="editorial-slider__slide" {{ block.shopify_attributes }}>
-              {%- if block.settings.link != blank -%}
-                <a href="{{ block.settings.link }}" class="editorial-slider__link">
+              {%- if slide_link != blank -%}
+                <a href="{{ slide_link }}" class="editorial-slider__link">
               {%- endif -%}
               
               <div class="editorial-slider__image-wrapper">
-                {%- if block.settings.image != blank -%}
+                {%- if slide_product != blank and slide_product.featured_image != blank -%}
+                  {{
+                    slide_product.featured_image
+                    | image_url: width: 800
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'editorial-slider__image',
+                      alt: slide_product.featured_image.alt | default: slide_product.title,
+                      width: slide_product.featured_image.width,
+                      height: slide_product.featured_image.height
+                  }}
+                {%- elsif block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'editorial-slider__image' }}
                 {%- else -%}
                   {%- assign slide_idx = forloop.index | modulo: 4 -%}
                   {%- if slide_idx == 0 -%}{%- assign slide_idx = 4 -%}{%- endif -%}
                   {%- capture placeholder_image -%}slide-{{ slide_idx }}.png{%- endcapture -%}
-                  <img src="{{ placeholder_image | asset_url }}" alt="Slide {{ forloop.index }}" class="editorial-slider__image" loading="lazy">
+                  <img src="{{ placeholder_image | asset_url }}" alt="Slide {{ forloop.index }}" class="editorial-slider__image" loading="lazy" width="800" height="960">
                 {%- endif -%}
               </div>
               
-              {%- if block.settings.link != blank -%}
+              {%- if slide_link != blank -%}
                 </a>
               {%- endif -%}
             </div>
@@ -296,6 +312,11 @@
       "type": "slide",
       "name": "Image Slide",
       "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product image source"
+        },
         {
           "type": "image_picker",
           "id": "image",

@@ -9,6 +9,16 @@
     data-zoom-on-hover
   {% endif %}
 >
+  {%- liquid
+    assign has_cranbi_buy_buttons = false
+    for block in section.blocks
+      if block.type == 'buy_buttons'
+        assign has_cranbi_buy_buttons = true
+        break
+      endif
+    endfor
+  -%}
+
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -54,12 +64,14 @@
     }
 
     /* Global fixes for both desktop and mobile */
-    /* Hide old Shopify quantity block — our new buy-buttons snippet has its own */
-    #MainProduct-{{ section.id }} .product-form__input.product-form__quantity,
-    #MainProduct-{{ section.id }} [id^="Quantity-Form-"],
-    #MainProduct-{{ section.id }} .price-per-item__container {
-      display: none !important;
-    }
+    {% if has_cranbi_buy_buttons %}
+      /* Hide old Shopify quantity block only when Cranbi buy-buttons are active */
+      #MainProduct-{{ section.id }} .product-form__input.product-form__quantity,
+      #MainProduct-{{ section.id }} [id^="Quantity-Form-"],
+      #MainProduct-{{ section.id }} .price-per-item__container {
+        display: none !important;
+      }
+    {% endif %}
     
     /* product-form-wrapper fills the info column */
     #MainProduct-{{ section.id }} .product-form-wrapper {
@@ -74,10 +86,12 @@
       padding-bottom: 0 !important;
     }
     
-    /* Hide installment payment form */
-    #MainProduct-{{ section.id }} .installment {
-      display: none !important;
-    }
+    {% if has_cranbi_buy_buttons %}
+      /* Hide installment payment form only when custom buttons replace it */
+      #MainProduct-{{ section.id }} .installment {
+        display: none !important;
+      }
+    {% endif %}
     
     /* Remove empty spacer divs (only truly empty ones) */
     #MainProduct-{{ section.id }} .product__info-container > div:empty {
@@ -291,16 +305,16 @@
                 {%- when 'collapsible_tab' -%}
                   {%- liquid
                     assign tab_metafield = blank
-                    case block.id
-                      when 'accordion_description'
+                    case block.settings.content_source
+                      when 'description'
                         assign tab_metafield = product.metafields.custom.description
-                      when 'accordion_claims'
+                      when 'claims'
                         assign tab_metafield = product.metafields.custom.claims
-                      when 'accordion_how_to_use'
+                      when 'how_to_use'
                         assign tab_metafield = product.metafields.custom.how_to_use
-                      when 'accordion_ingredients'
+                      when 'ingredients'
                         assign tab_metafield = product.metafields.custom.ingredients
-                      when 'accordion_what_to_expect'
+                      when 'what_to_expect'
                         assign tab_metafield = product.metafields.custom.what_to_expect
                     endcase
                   -%}
@@ -317,8 +331,8 @@
                       </summary>
                       <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
                         {%- if tab_metafield.value != blank -%}
-                          {%- case block.id -%}
-                            {%- when 'accordion_claims' -%}
+                          {%- case block.settings.content_source -%}
+                            {%- when 'claims' -%}
                               <ul class="product-claims-list">
                                 {%- assign claims = tab_metafield.value | split: '•' -%}
                                 {%- for claim in claims -%}
@@ -328,7 +342,7 @@
                                   </li>
                                 {%- endfor -%}
                               </ul>
-                            {%- when 'accordion_how_to_use' -%}
+                            {%- when 'how_to_use' -%}
                               <ol class="product-ritual-steps">
                                 {%- assign steps = tab_metafield.value | split: '•' -%}
                                 {%- for step in steps -%}
@@ -338,7 +352,7 @@
                                   </li>
                                 {%- endfor -%}
                               </ol>
-                            {%- when 'accordion_what_to_expect' -%}
+                            {%- when 'what_to_expect' -%}
                               <ul class="product-benefit-list">
                                 {%- assign perks = tab_metafield.value | split: '•' -%}
                                 {%- for perk in perks -%}
@@ -348,7 +362,7 @@
                                   </li>
                                 {%- endfor -%}
                               </ul>
-                            {%- when 'accordion_ingredients' -%}
+                            {%- when 'ingredients' -%}
                               {%- assign ingredient_parts = tab_metafield.value | split: '•' -%}
                               {%- assign ingredient_blob = ingredient_parts | first -%}
                               <div class="product-ingredient-panel">
@@ -1363,6 +1377,38 @@
           "type": "richtext",
           "id": "content",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.content.label"
+        },
+        {
+          "type": "select",
+          "id": "content_source",
+          "label": "Content source",
+          "default": "custom",
+          "options": [
+            {
+              "value": "custom",
+              "label": "Theme editor content"
+            },
+            {
+              "value": "description",
+              "label": "Product metafield: Description"
+            },
+            {
+              "value": "claims",
+              "label": "Product metafield: Claims"
+            },
+            {
+              "value": "how_to_use",
+              "label": "Product metafield: How to use"
+            },
+            {
+              "value": "ingredients",
+              "label": "Product metafield: Ingredients"
+            },
+            {
+              "value": "what_to_expect",
+              "label": "Product metafield: What to expect"
+            }
+          ]
         },
         {
           "type": "page",
