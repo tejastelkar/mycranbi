@@ -167,6 +167,39 @@ test('Shop by Concern supports explicit theme assets and mobile-safe focus behav
   assert.match(source, /prefers-reduced-motion/);
 });
 
+test('homepage ingredient blocks map every ingredient to a local theme asset', () => {
+  const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
+  const ingredientSection = homepage.sections.hero_ingredients;
+  const expected = {
+    ingredient_1: ['Saffron', 'ingredient_saffron.png'],
+    ingredient_2: ['Orange', 'ingredient_orange.png'],
+    ingredient_3: ['Amla', 'ingredient_amla.png'],
+    ingredient_4: ['Shikakai', 'ingredient_shikakai.png'],
+    ingredient_5: ['Wheat', 'ingredient_wheat.png'],
+    ingredient_6: ['Lavender', 'ingredient_lavender.png'],
+    ingredient_7: ['Tulsi', 'ingredient_tulsi.png'],
+    ingredient_8: ['Neem', 'ingredient_neem.png'],
+    ingredient_9: ['Ashwagandha', 'ingredient_ashwagandha.png'],
+  };
+
+  for (const [blockId, [title, asset]] of Object.entries(expected)) {
+    assert.equal(ingredientSection.blocks[blockId].settings.title, title);
+    assert.equal(ingredientSection.blocks[blockId].settings.asset_file, asset);
+    assert.ok(readFileSync(resolve(root, `assets/${asset}`)).byteLength > 0, `${asset} must exist`);
+  }
+});
+
+test('Hero Ingredients prioritizes explicit theme assets and keeps image-picker fallback', () => {
+  const source = read('sections/hero-ingredients.liquid');
+
+  assert.match(source, /"id":\s*"asset_file"/);
+  assert.match(source, /"id":\s*"asset_file"[\s\S]*?"default":\s*"auto"/);
+  assert.match(source, /block\.settings\.asset_file\s*!=\s*blank/);
+  assert.match(source, /asset_file\s*\|\s*asset_url/);
+  assert.match(source, /block\.settings\.image/);
+  assert.match(source, /width="900" height="900"/);
+});
+
 test('shared theme CSS prevents page-level overflow and constrains media', () => {
   const source = read('assets/base.css');
 

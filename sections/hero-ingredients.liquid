@@ -14,7 +14,9 @@
           <li class="hero-ingredients__item center" {{ block.shopify_attributes }}>
             <div class="hero-ingredients__card">
               <div class="hero-ingredients__media-wrapper">
-                {%- if block.settings.image != blank -%}
+                {%- if block.settings.asset_file != blank and block.settings.asset_file != 'auto' -%}
+                  <img src="{{ block.settings.asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="hero-ingredients__image" loading="lazy" decoding="async" width="900" height="900">
+                {%- elsif block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'hero-ingredients__image' }}
                 {%- else -%}
                   {%- assign slide_idx = forloop.index | modulo: 4 -%}
@@ -269,6 +271,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image (Transparent PNG recommended)"
+        },
+        {
+          "type": "text",
+          "id": "asset_file",
+          "default": "auto",
+          "label": "Theme asset filename (or auto)"
         },
         {
           "type": "text",

@@ -430,6 +430,7 @@
           "settings": {
             "title": "Saffron",
             "sanskrit_name": "Kumkuma",
+            "asset_file": "ingredient_saffron.png",
             "purpose": "<p>Sourced directly from saffron growers in Srinagar, it brightens skin and helps reduce dark spots and uneven tone.</p>"
           }
         },
@@ -438,6 +439,7 @@
           "settings": {
             "title": "Orange",
             "sanskrit_name": "Naranga",
+            "asset_file": "ingredient_orange.png",
             "purpose": "<p>Refreshes and brightens tired-looking skin.</p>"
           }
         },
@@ -446,6 +448,7 @@
           "settings": {
             "title": "Amla",
             "sanskrit_name": "Amalaki",
+            "asset_file": "ingredient_amla.png",
             "purpose": "<p>Rich in Vitamin C for a natural, healthy glow.</p>"
           }
         },
@@ -454,6 +457,7 @@
           "settings": {
             "title": "Shikakai",
             "sanskrit_name": "Shikakai",
+            "asset_file": "ingredient_shikakai.png",
             "purpose": "<p>Strengthens and nourishes hair from the roots.</p>"
           }
         },
@@ -462,6 +466,7 @@
           "settings": {
             "title": "Wheat",
             "sanskrit_name": "Godhuma",
+            "asset_file": "ingredient_wheat.png",
             "purpose": "<p>Wheat protein fortifies strands and adds lasting shine.</p>"
           }
         },
@@ -470,30 +475,35 @@
           "settings": {
             "title": "Lavender",
             "sanskrit_name": "Sugandharaja",
+            "asset_file": "ingredient_lavender.png",
             "purpose": "<p>Calms the mind and gently soothes irritated skin.</p>"
           }
         },
         "ingredient_7": {
           "type": "ingredient",
           "settings": {
-            "title": "Shea Butter",
-            "purpose": "<p>Deeply moisturises and restores softness to dry skin.</p>"
+            "title": "Tulsi",
+            "sanskrit_name": "Tulasi",
+            "asset_file": "ingredient_tulsi.png",
+            "purpose": "<p>Soothes and refreshes skin with its naturally calming leaves.</p>"
           }
         },
         "ingredient_8": {
           "type": "ingredient",
           "settings": {
-            "title": "Olive Oil",
-            "sanskrit_name": "Jaituna",
-            "purpose": "<p>Nourishes deeply and locks in long-lasting hydration.</p>"
+            "title": "Neem",
+            "sanskrit_name": "Nimba",
+            "asset_file": "ingredient_neem.png",
+            "purpose": "<p>Helps clarify blemish-prone skin and soothe the scalp.</p>"
           }
         },
         "ingredient_9": {
           "type": "ingredient",
           "settings": {
-            "title": "Castor Oil",
-            "sanskrit_name": "Eranda",
-            "purpose": "<p>Strengthens strands and promotes healthier hair growth.</p>"
+            "title": "Ashwagandha",
+            "sanskrit_name": "Ashwagandha",
+            "asset_file": "ingredient_ashwagandha.png",
+            "purpose": "<p>Nourishes skin and scalp for a calm, resilient daily ritual.</p>"
           }
         }
       },
