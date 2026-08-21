@@ -68,6 +68,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
+    min-width: 0;
   }
 
   @media screen and (min-width: 750px) {
@@ -82,6 +83,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    min-width: 0;
   }
 
   .brand-story__media {
@@ -128,6 +130,32 @@
     line-height: 1.8;
     color: rgba(var(--color-foreground), 0.85);
     margin: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  @media screen and (max-width: 749px) {
+    .brand-story__header {
+      margin-bottom: 2rem;
+    }
+
+    .brand-story__grid {
+      gap: 2.4rem;
+    }
+
+    .brand-story__media {
+      margin-bottom: 2rem;
+    }
+
+    .brand-story__column-title {
+      font-size: clamp(1.6rem, 5vw, 2rem);
+      line-height: 1.2;
+    }
+
+    .brand-story__column-text {
+      font-size: 1.35rem;
+      line-height: 1.65;
+    }
   }
 
   @media screen and (min-width: 750px) {

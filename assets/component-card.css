@@ -289,11 +289,13 @@
   margin: 1.3rem;
 }
 
-/* Collection-grid cards render the badge as a sibling of .card__media rather
-   than inside .card__content's grid, so the grid-based align-self/justify-self
-   rules above are no-ops and it's left position:static — painted underneath
-   the absolutely-positioned product image. Position it explicitly instead. */
-.card__inner > .card__badge {
+/* Collection-grid cards render the badge as a sibling of .card__media, and
+   non-collection-grid cards (related products, recommendations) render it
+   nested inside .card__content — either way the grid-based align-self/
+   justify-self rules above are no-ops and it's left in normal flow, landing
+   at an inconsistent spot relative to the image instead of pinned to it.
+   Position it explicitly instead, wherever it lives inside the card. */
+.card__inner .card__badge {
   position: absolute;
   z-index: 2;
   margin: 0;
@@ -301,19 +303,19 @@
   left: 1.2rem;
 }
 
-.card__inner > .card__badge.top {
+.card__inner .card__badge.top {
   top: 1.2rem;
   bottom: auto;
 }
 
-.card__inner > .card__badge.right {
+.card__inner .card__badge.right {
   left: auto;
   right: 1.2rem;
 }
 
 .card__media .media img {
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center center;
   width: 100%;
 }
@@ -613,5 +615,23 @@
 
   .grid__item:nth-child(8n) .product-card-wrapper:hover .shape--blob {
     clip-path: polygon(var(--shape--blob-5));
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .card__content,
+  .card__information,
+  .card__heading,
+  .card__caption,
+  .card-information,
+  .price {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .card__heading,
+  .card__caption,
+  .card-information {
+    overflow-wrap: anywhere;
   }
 }

@@ -89,6 +89,7 @@
   .spotlight-carousel__wrapper {
     position: relative;
     width: 100%;
+    min-width: 0;
     max-width: 1080px;
     margin: 0 auto;
     padding: 2rem 0 4rem 0;
@@ -96,6 +97,7 @@
 
   .spotlightSwiper {
     width: 100%;
+    min-width: 0;
     padding-top: 40px;
     padding-bottom: 40px;
     overflow: hidden; /* Ensure it doesn't spill out if CSS loads late */
@@ -122,8 +124,9 @@
     background-position: center;
     background-size: cover;
     /* Aspect ratio for reels (9:16) roughly */
-    width: 280px;
-    height: 500px;
+    width: min(280px, 72vw);
+    height: auto;
+    aspect-ratio: 9 / 16;
     border-radius: 12px;
     overflow: hidden;
     transition-property: transform, filter, opacity;
@@ -136,7 +139,7 @@
   @media screen and (min-width: 768px) {
     .spotlight-slide {
       width: 320px;
-      height: 570px;
+      height: auto;
     }
   }
 
@@ -205,6 +208,7 @@
     font-family: var(--font-body-family);
     font-weight: 500;
     color: #fff;
+    overflow-wrap: anywhere;
   }
 
   /* Navigation styling */
@@ -249,8 +253,8 @@
 
   @media screen and (max-width: 480px) {
     .spotlight-slide {
-      width: 190px;
-      height: 340px;
+      width: min(220px, 70vw);
+      height: auto;
     }
 
     .spotlight-nav-btn {
@@ -260,6 +264,13 @@
 
     .spotlight-nav-btn:after {
       font-size: 1.1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spotlight-slide,
+    .spotlightSwiper .spotlight-nav-btn {
+      transition: none;
     }
   }
 </style>

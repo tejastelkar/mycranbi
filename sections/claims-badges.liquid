@@ -1,0 +1,306 @@
+<div class="claims-badges section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="claims-badges__header">
+        <h2 class="claims-badges__title {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    <div class="claims-badges__scroller">
+      <ul class="claims-badges__list" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign claim_label_downcase = block.settings.label | downcase
+          -%}
+          <li class="claims-badges__item" {{ block.shopify_attributes }}>
+            <div class="claims-badges__icon-wrapper">
+              {%- if block.settings.icon != blank -%}
+                {{ block.settings.icon | image_url: width: 120 | image_tag: loading: 'lazy', class: 'claims-badges__icon' }}
+              {%- else -%}
+                <span class="svg-wrapper claims-badges__icon claims-badges__icon--default">
+                  {%- if claim_label_downcase contains 'sulphate' or claim_label_downcase contains 'sulfate' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2.5c3.5 4 6 7.6 6 10.8a6 6 0 1 1-12 0c0-3.2 2.5-6.8 6-10.8z"></path>
+                      <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"></line>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'paraben' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 2h6"></path>
+                      <path d="M10 2v6.3L5.6 17a2 2 0 0 0 1.8 3h9.2a2 2 0 0 0 1.8-3L14 8.3V2"></path>
+                      <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"></line>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'silicone' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="7" cy="8" r="2.4"></circle>
+                      <circle cx="17" cy="8" r="2.4"></circle>
+                      <circle cx="12" cy="16" r="2.4"></circle>
+                      <line x1="3.5" y1="20.5" x2="20.5" y2="3.5"></line>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'natural' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 4c-8 0-15 5-15 13 0 1.5.3 2.5.6 3 5-1 13-6 14.4-13C20.3 5.5 20 4 20 4z"></path>
+                      <path d="M5 20c2-4 5-7 9-9"></path>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'colour' or claim_label_downcase contains 'color' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-.5-1.5-1-2 .3-2 1.8-2H16a5 5 0 0 0 5-5c0-4-4-7-9-7z"></path>
+                      <circle cx="7.5" cy="10.5" r="1"></circle>
+                      <circle cx="10.5" cy="7" r="1"></circle>
+                      <circle cx="15" cy="7.5" r="1"></circle>
+                      <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"></line>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'fragrance' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10 2h4v3l2 2v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V7l2-2V2z"></path>
+                      <path d="M15 6h3"></path>
+                      <path d="M16 4h2"></path>
+                      <line x1="4.5" y1="19.5" x2="19.5" y2="4.5"></line>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'vegan' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 21v-8"></path>
+                      <path d="M12 13c0-4 3-7 7-7 0 4-3 7-7 7z"></path>
+                      <path d="M12 13c0-4-3-7-7-7 0 4 3 7 7 7z"></path>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'india' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"></path>
+                      <circle cx="12" cy="9" r="2.6"></circle>
+                    </svg>
+                  {%- elsif claim_label_downcase contains 'recycl' -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path>
+                      <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path>
+                      <path d="m14 16-3 3 3 3"></path>
+                      <path d="M8.293 13.596 7.196 9.5 3.1 10.598"></path>
+                      <path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"></path>
+                      <path d="m13.378 9.633 4.096 1.098 1.097-4.096"></path>
+                    </svg>
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M8 12.5l2.7 2.7L16 9.5"></path>
+                    </svg>
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.label != blank -%}
+              <p class="claims-badges__label">{{ block.settings.label }}</p>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .claims-badges__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .claims-badges__title {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+  }
+
+  .claims-badges__scroller {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .claims-badges__scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .claims-badges__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2.4rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .claims-badges__list {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3.2rem;
+    }
+  }
+
+  .claims-badges__item {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .claims-badges__icon-wrapper {
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 50%;
+    background-color: rgba(102, 0, 51, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .claims-badges__icon {
+    width: 3.2rem;
+    height: 3.2rem;
+    object-fit: contain;
+  }
+
+  .claims-badges__icon--default {
+    color: rgb(var(--color-button));
+  }
+
+  .claims-badges__icon--default svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .claims-badges__label {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: rgba(var(--color-foreground), 0.85);
+    overflow-wrap: anywhere;
+  }
+
+  @media screen and (max-width: 749px) {
+    .claims-badges__header {
+      margin-bottom: 2rem;
+    }
+
+    .claims-badges__list {
+      gap: 1.6rem;
+      min-width: max-content;
+    }
+
+    .claims-badges__item {
+      width: 8rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Claims Badges",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Our Claims",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h2",
+      "label": "Heading size"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "claim",
+      "name": "Claim",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (optional, defaults to a checkmark)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "default": "Sulphate Free",
+          "label": "Claim label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Claims Badges",
+      "blocks": [
+        { "type": "claim", "settings": { "label": "Sulphate Free" } },
+        { "type": "claim", "settings": { "label": "Paraben Free" } },
+        { "type": "claim", "settings": { "label": "Silicone Free" } },
+        { "type": "claim", "settings": { "label": "Natural Extracts" } },
+        { "type": "claim", "settings": { "label": "No Artificial Colours" } },
+        { "type": "claim", "settings": { "label": "No Artificial Fragrance" } },
+        { "type": "claim", "settings": { "label": "Vegan" } },
+        { "type": "claim", "settings": { "label": "Made in India" } },
+        { "type": "claim", "settings": { "label": "Recyclable Packaging" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -2825,7 +2825,11 @@ details[open] > .header__submenu {
   padding: 1.2rem;
   text-decoration: none;
   color: rgb(var(--color-foreground));
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
   font-weight: 500;
+  font-size: 1.7rem;
+  letter-spacing: 0.03em;
 }
 
 .header__menu-item:hover {
@@ -2837,16 +2841,11 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item:hover span {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  text-decoration: none;
 }
 
 details[open] > .header__menu-item {
-  text-decoration: underline;
-}
-
-details[open]:hover > .header__menu-item {
-  text-decoration-thickness: 0.2rem;
+  text-decoration: none;
 }
 
 details[open] > .header__menu-item .icon-caret {
@@ -3632,9 +3631,56 @@ details-disclosure > details {
   }
 }
 
-/* Mobile Horizontal Scroll Fix */
-html, body {
+/* Mobile layout safety */
+html,
+body {
   overflow-x: clip;
+}
+
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 749px) {
+  .page-width,
+  .page-width--narrow {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  .grid__item,
+  .card,
+  .card__inner,
+  .card__content {
+    min-width: 0;
+  }
+
+  .button,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  .rte table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 /* Custom Primary Button Brand Color */

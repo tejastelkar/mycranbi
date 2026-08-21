@@ -14,11 +14,13 @@
           <a href="{{ block.settings.collection.url | default: block.settings.link }}" class="shop-by-concern__link">
             <div class="shop-by-concern__image-wrapper">
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'shop-by-concern__image' }}
+                {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'shop-by-concern__image' }}
               {%- else -%}
-                {%- assign handleized_title = block.settings.title | handleize -%}
-                {%- assign asset_name = 'concern_' | append: handleized_title | append: '.png' -%}
-                <img src="{{ asset_name | asset_url }}" alt="{{ block.settings.title }}" class="shop-by-concern__image" loading="lazy" width="600" height="600">
+                {%- assign asset_file = block.settings.asset_file -%}
+        {%- if asset_file == blank or asset_file == 'auto' -%}
+                  {%- assign asset_file = 'concern_' | append: block.settings.title | handleize | append: '.png' -%}
+                {%- endif -%}
+        <img src="{{ asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="shop-by-concern__image" loading="lazy" decoding="async" width="900" height="900">
               {%- endif -%}
               
               <div class="shop-by-concern__arrow">
@@ -55,11 +57,12 @@
 
   .shop-by-concern__header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
   }
 
   .shop-by-concern__title {
     margin: 0;
+    font-size: clamp(1.9rem, 3vw, 2.4rem);
     font-weight: 300;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -67,10 +70,12 @@
 
   .shop-by-concern__scroller {
     display: flex;
+    gap: clamp(1rem, 2vw, 1.8rem);
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 1.5rem;
+    scroll-padding-inline: 1.6rem;
     scroll-snap-type: x mandatory;
-    gap: 1.5rem;
-    padding-bottom: 2rem;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
   }
@@ -80,28 +85,35 @@
   }
 
   .shop-by-concern__item {
-    flex: 0 0 70%;
+    flex: 0 0 min(72vw, 28rem);
+    min-width: 0;
     scroll-snap-align: start;
     position: relative;
   }
 
   @media screen and (min-width: 750px) {
     .shop-by-concern__item {
-      flex: 0 0 calc(33.333% - 1rem);
+      flex: 0 0 calc(33.333% - 1.2rem);
     }
   }
   
   @media screen and (min-width: 990px) {
     .shop-by-concern__item {
-      flex: 0 0 calc(20% - 1.2rem);
+      flex: 0 0 calc(20% - 1.45rem);
     }
   }
 
   .shop-by-concern__link {
     display: block;
+    min-width: 0;
     text-decoration: none;
     color: inherit;
     transition: transform 0.3s ease;
+  }
+
+  .shop-by-concern__link:focus-visible {
+    outline: 0.2rem solid rgb(var(--color-button));
+    outline-offset: 0.5rem;
   }
 
   .shop-by-concern__link:hover .shop-by-concern__arrow {
@@ -123,7 +135,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    background: #f4f2ef;
     transition: transform 0.5s ease;
   }
   
@@ -138,10 +151,10 @@
 
   .shop-by-concern__arrow {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 32px;
-    height: 32px;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    width: 3.2rem;
+    height: 3.2rem;
     background-color: #FFFFFF;
     border-radius: 50%;
     display: flex;
@@ -159,12 +172,23 @@
 
   .shop-by-concern__item-title {
     margin: 0;
-    font-size: 1.1rem;
+    min-height: 2.8em;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
     font-family: 'Manrope', sans-serif;
     letter-spacing: 0.1em;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
     text-transform: uppercase;
     text-align: center;
     font-weight: 500;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shop-by-concern__link,
+    .shop-by-concern__image,
+    .shop-by-concern__arrow {
+      transition: none;
+    }
   }
 </style>
 
@@ -242,6 +266,12 @@
           "id": "title",
           "default": "Acne-prone skin",
           "label": "Concern Name"
+        },
+        {
+          "type": "text",
+          "id": "asset_file",
+        "default": "auto",
+        "label": "Theme asset filename (or auto)"
         },
         {
           "type": "collection",

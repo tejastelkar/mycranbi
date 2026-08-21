@@ -274,6 +274,7 @@
     --grid-mobile-vertical-spacing: 32px;
     --grid-desktop-horizontal-spacing: 32px;
     --grid-desktop-vertical-spacing: 48px;
+    min-width: 0;
   }
 
   /* Full Width Overrides */
@@ -301,6 +302,26 @@
     }
     .collection .product-card-wrapper--collection .card__heading--clinical {
       font-size: 1.55rem !important;
+      overflow-wrap: anywhere;
+    }
+
+    .collection #product-grid,
+    .collection #product-grid .grid__item,
+    .collection .product-card-wrapper--collection,
+    .collection .product-card-wrapper--collection .card__content--clinical,
+    .collection .product-card-wrapper--collection .card__information--clinical {
+      min-width: 0;
+    }
+
+    .collection .product-card-wrapper--collection .card__meta-row {
+      align-items: flex-start;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .collection .product-card-wrapper--collection .card__rating-chip {
+      font-size: 1rem;
+      padding: 0.45rem 0.65rem;
     }
     .collection .product-card-wrapper--collection .price-item--sale,
     .collection .product-card-wrapper--collection .price-item--regular:last-child {

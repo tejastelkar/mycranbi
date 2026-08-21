@@ -23,7 +23,12 @@
                   <img src="{{ placeholder_image | asset_url }}" alt="Ingredient {{ forloop.index }}" class="hero-ingredients__image" loading="lazy" width="600" height="720">
                 {%- endif -%}
               </div>
-              <h3 class="hero-ingredients__name">{{ block.settings.title }}</h3>
+              <h3 class="hero-ingredients__name">
+                {{ block.settings.title }}
+                {%- if block.settings.sanskrit_name != blank -%}
+                  <span class="hero-ingredients__sanskrit-name">{{ block.settings.sanskrit_name }}</span>
+                {%- endif -%}
+              </h3>
               <div class="hero-ingredients__purpose rte">{{ block.settings.purpose }}</div>
             </div>
           </li>
@@ -67,7 +72,9 @@
 
   .hero-ingredients__scroller {
     width: 100%;
+    min-width: 0;
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
@@ -83,6 +90,7 @@
     padding: 0;
     list-style: none;
     display: grid;
+    min-width: 0;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
@@ -90,6 +98,7 @@
   .hero-ingredients__item {
     scroll-snap-align: start;
     width: 100%;
+    min-width: 0;
   }
   
   @media screen and (min-width: 750px) {
@@ -142,6 +151,16 @@
     letter-spacing: 0.02em;
   }
 
+  .hero-ingredients__sanskrit-name {
+    display: block;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: rgba(var(--color-foreground), 0.55);
+    margin-top: 0.3rem;
+  }
+
   .hero-ingredients__purpose {
     font-size: 1.4rem;
     line-height: 1.6;
@@ -149,6 +168,36 @@
     max-width: 90%;
     margin: 0 auto;
     font-weight: 300;
+    overflow-wrap: anywhere;
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-ingredients__title-wrapper {
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ingredients__subtitle {
+      font-size: 1.35rem;
+    }
+
+    .hero-ingredients__list {
+      gap: 1.2rem;
+    }
+
+    .hero-ingredients__media-wrapper {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-ingredients__name {
+      font-size: clamp(1.6rem, 6vw, 2.2rem);
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-ingredients__purpose {
+      max-width: 100%;
+      font-size: 1.25rem;
+    }
   }
 </style>
 
@@ -226,6 +275,11 @@
           "id": "title",
           "default": "Ingredient Name",
           "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "sanskrit_name",
+          "label": "Sanskrit name (optional)"
         },
         {
           "type": "richtext",

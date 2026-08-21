@@ -52,6 +52,8 @@
 .custom-hero-section {
   position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: 50vh;
   background-color: #2D4C3A; /* Fallback Kama green */
 }
@@ -66,6 +68,7 @@
 .custom-hero-slides {
   display: flex;
   width: 100%;
+  min-width: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
@@ -80,6 +83,7 @@
 .custom-hero-slide {
   flex: 0 0 100%;
   width: 100%;
+  min-width: 0;
   position: relative;
   scroll-snap-align: start;
   min-height: 50vh;
@@ -156,6 +160,30 @@
     position: relative;
     height: 60vh;
     min-height: 400px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .custom-hero-section,
+  .custom-hero-slide {
+    min-height: 0;
+  }
+
+  .custom-hero__image-wrapper {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 3 / 4;
+  }
+
+  .custom-hero-dot {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-hero-slides {
+    scroll-behavior: auto;
   }
 }
 </style>

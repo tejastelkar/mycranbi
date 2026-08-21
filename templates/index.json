@@ -137,7 +137,7 @@
           "type": "column",
           "settings": {
             "title": "ROOTED IN SAFFRON",
-            "text": "<p>From our family's own MAA KESAR saffron venture in Srinagar to every MY CRANBI formula, pure Kashmir saffron is at the heart of what we create.</p>"
+            "text": "<p>From our family's own saffron venture in Srinagar to every MY CRANBI formula, pure Kashmir saffron is at the heart of what we create.</p>"
           }
         },
         "column_3": {
@@ -159,6 +159,28 @@
         "background_color": "#ffffff",
         "padding_top": 80,
         "padding_bottom": 80
+      }
+    },
+    "claims_badges": {
+      "type": "claims-badges",
+      "blocks": {
+        "claim_1": { "type": "claim", "settings": { "label": "Sulphate Free" } },
+        "claim_2": { "type": "claim", "settings": { "label": "Paraben Free" } },
+        "claim_3": { "type": "claim", "settings": { "label": "Silicone Free" } },
+        "claim_4": { "type": "claim", "settings": { "label": "Natural Extracts" } },
+        "claim_5": { "type": "claim", "settings": { "label": "No Artificial Colours" } },
+        "claim_6": { "type": "claim", "settings": { "label": "No Artificial Fragrance" } },
+        "claim_7": { "type": "claim", "settings": { "label": "Vegan" } },
+        "claim_8": { "type": "claim", "settings": { "label": "Made in India" } },
+        "claim_9": { "type": "claim", "settings": { "label": "Recyclable Packaging" } }
+      },
+      "block_order": ["claim_1", "claim_2", "claim_3", "claim_4", "claim_5", "claim_6", "claim_7", "claim_8", "claim_9"],
+      "settings": {
+        "title": "Our Claims",
+        "heading_size": "h2",
+        "background_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "featured_collection": {
@@ -216,43 +238,73 @@
         "concern_1": {
           "type": "concern",
           "settings": {
-            "title": "Dandruff",
-            "collection": "dandruff"
+            "title": "Dry and Dehydrated Skin",
+            "asset_file": "concern_dry-and-dehydrated-skin.png",
+            "collection": "dry-dehydrated-skin"
           }
         },
         "concern_2": {
           "type": "concern",
           "settings": {
-            "title": "Acne-prone skin",
-            "collection": "acne-prone-skin"
+            "title": "Dull and Tired Skin",
+            "asset_file": "concern_dull-and-tired-skin.png",
+            "collection": "dull-tired-skin"
           }
         },
         "concern_3": {
           "type": "concern",
           "settings": {
-            "title": "Dark circles",
-            "collection": "dark-circles"
+            "title": "Dark Spots and Uneven Skintone",
+            "asset_file": "concern_dark-spots-and-uneven-skintone.png",
+            "collection": "dark-spots-uneven-skintone"
           }
         },
         "concern_4": {
           "type": "concern",
           "settings": {
-            "title": "Dull, dry skin",
-            "collection": "dull-dry-skin"
+            "title": "Sensitive and Irritated Skin",
+            "asset_file": "concern_sensitive-and-irritated-skin.png",
+            "collection": "sensitive-irritated-skin"
           }
         },
         "concern_5": {
           "type": "concern",
           "settings": {
-            "title": "Sun protection",
-            "collection": "sun-protection"
+            "title": "Damaged Skin Barrier",
+            "asset_file": "concern_damaged-skin-barrier.png",
+            "collection": "damaged-skin-barrier"
           }
         },
         "concern_6": {
           "type": "concern",
           "settings": {
-            "title": "Anti-ageing",
-            "collection": "anti-ageing"
+            "title": "Weak and Damaged Hair",
+            "asset_file": "concern_weak-and-damaged-hair.png",
+            "collection": "weak-damaged-hair"
+          }
+        },
+        "concern_7": {
+          "type": "concern",
+          "settings": {
+            "title": "Frizz and Unmanageable Hair",
+            "asset_file": "concern_frizz-and-unmanageable-hair.png",
+            "collection": "frizz-unmanageable-hair"
+          }
+        },
+        "concern_8": {
+          "type": "concern",
+          "settings": {
+            "title": "Oily and Dandruff-Prone Scalp",
+            "asset_file": "concern_oily-and-dandruff-prone-scalp.png",
+            "collection": "oily-dandruff-scalp"
+          }
+        },
+        "concern_9": {
+          "type": "concern",
+          "settings": {
+            "title": "Dry Scalp and Hairfall",
+            "asset_file": "concern_dry-scalp-and-hairfall.png",
+            "collection": "dry-scalp-hairfall"
           }
         }
       },
@@ -262,7 +314,10 @@
         "concern_3",
         "concern_4",
         "concern_5",
-        "concern_6"
+        "concern_6",
+        "concern_7",
+        "concern_8",
+        "concern_9"
       ],
       "settings": {
         "title": "Shop by concern",
@@ -373,36 +428,72 @@
         "ingredient_1": {
           "type": "ingredient",
           "settings": {
-            "title": "Orange",
-            "purpose": "<p>Refreshes and brightens tired-looking skin.</p>"
+            "title": "Saffron",
+            "sanskrit_name": "Kumkuma",
+            "purpose": "<p>Sourced directly from saffron growers in Srinagar, it brightens skin and helps reduce dark spots and uneven tone.</p>"
           }
         },
         "ingredient_2": {
           "type": "ingredient",
           "settings": {
-            "title": "Amla",
-            "purpose": "<p>Rich in Vitamin C for a natural, healthy glow.</p>"
+            "title": "Orange",
+            "sanskrit_name": "Naranga",
+            "purpose": "<p>Refreshes and brightens tired-looking skin.</p>"
           }
         },
         "ingredient_3": {
           "type": "ingredient",
           "settings": {
-            "title": "Shikakai",
-            "purpose": "<p>Strengthens and nourishes hair from the roots.</p>"
+            "title": "Amla",
+            "sanskrit_name": "Amalaki",
+            "purpose": "<p>Rich in Vitamin C for a natural, healthy glow.</p>"
           }
         },
         "ingredient_4": {
           "type": "ingredient",
           "settings": {
-            "title": "Lavender",
-            "purpose": "<p>Calms the mind and gently soothes irritated skin.</p>"
+            "title": "Shikakai",
+            "sanskrit_name": "Shikakai",
+            "purpose": "<p>Strengthens and nourishes hair from the roots.</p>"
           }
         },
         "ingredient_5": {
           "type": "ingredient",
           "settings": {
-            "title": "Kashmir Saffron",
-            "purpose": "<p>Sourced from our family's own MAA KESAR venture in Srinagar, saffron brightens skin and helps reduce dark spots and uneven tone.</p>"
+            "title": "Wheat",
+            "sanskrit_name": "Godhuma",
+            "purpose": "<p>Wheat protein fortifies strands and adds lasting shine.</p>"
+          }
+        },
+        "ingredient_6": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Lavender",
+            "sanskrit_name": "Sugandharaja",
+            "purpose": "<p>Calms the mind and gently soothes irritated skin.</p>"
+          }
+        },
+        "ingredient_7": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Shea Butter",
+            "purpose": "<p>Deeply moisturises and restores softness to dry skin.</p>"
+          }
+        },
+        "ingredient_8": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Olive Oil",
+            "sanskrit_name": "Jaituna",
+            "purpose": "<p>Nourishes deeply and locks in long-lasting hydration.</p>"
+          }
+        },
+        "ingredient_9": {
+          "type": "ingredient",
+          "settings": {
+            "title": "Castor Oil",
+            "sanskrit_name": "Eranda",
+            "purpose": "<p>Strengthens strands and promotes healthier hair growth.</p>"
           }
         }
       },
@@ -411,7 +502,11 @@
         "ingredient_2",
         "ingredient_3",
         "ingredient_4",
-        "ingredient_5"
+        "ingredient_5",
+        "ingredient_6",
+        "ingredient_7",
+        "ingredient_8",
+        "ingredient_9"
       ],
       "settings": {
         "title": "Hero Ingredients",
@@ -657,6 +752,7 @@
     "custom_hero",
     "custom_collection_list",
     "brand_story",
+    "claims_badges",
     "featured_collection",
     "gift_sets",
     "shop_by_concern",

@@ -81,7 +81,7 @@
   color: rgb(var(--color-foreground));
   display: block;
   font-family: var(--font-body-family);
-  font-size: 1.4rem;
+  font-size: 1.55rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1.6;
@@ -95,12 +95,7 @@
 .mega-menu__link:hover,
 .mega-menu__link--active {
   color: rgb(var(--color-button));
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.mega-menu__link--active:hover {
-  text-decoration-thickness: 0.12rem;
+  text-decoration: none;
 }
 
 /* Center layout variant */
@@ -161,8 +156,29 @@
 }
 
 @media screen and (max-width: 989px) {
+  .mega-menu__content {
+    max-width: 100%;
+  }
+
+  .mega-menu__list,
+  .mega-menu__gallery {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .mega-menu__gallery-card {
     flex-basis: calc(50% - 1rem);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .mega-menu__link,
+  .mega-menu__gallery-caption {
+    overflow-wrap: anywhere;
+  }
+
+  .header--top-center .mega-menu__list > li {
+    min-width: 0;
   }
 }
 

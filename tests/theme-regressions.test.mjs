@@ -160,6 +160,7 @@ test('Shop by Concern supports explicit theme assets and mobile-safe focus behav
   const source = read('sections/shop-by-concern.liquid');
 
   assert.match(source, /"id":\s*"asset_file"/);
+  assert.match(source, /"id":\s*"asset_file"[\s\S]*?"default":\s*"auto"/);
   assert.match(source, /block\.settings\.asset_file/);
   assert.match(source, /asset_file\s*\|\s*asset_url/);
   assert.match(source, /:focus-visible/);

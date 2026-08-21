@@ -63,6 +63,36 @@
       }
     }
 
+    @media screen and (max-width: 749px) {
+      #MainProduct-{{ section.id }} .product__media-wrapper,
+      #MainProduct-{{ section.id }} .product__media-list,
+      #MainProduct-{{ section.id }} .product__media-item,
+      #MainProduct-{{ section.id }} .product__info-wrapper,
+      #MainProduct-{{ section.id }} .product__info-container {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      #MainProduct-{{ section.id }} .product__title-wrapper > div:first-child {
+        min-width: 0;
+      }
+
+      #MainProduct-{{ section.id }} .product__title {
+        font-size: clamp(2.4rem, 8vw, 3.2rem) !important;
+        overflow-wrap: anywhere;
+      }
+
+      #MainProduct-{{ section.id }} .product__info-container {
+        overflow-wrap: anywhere;
+      }
+
+      #MainProduct-{{ section.id }} .product-form__buttons,
+      #MainProduct-{{ section.id }} .product-form__submit,
+      #MainProduct-{{ section.id }} .shopify-payment-button {
+        max-width: 100%;
+      }
+    }
+
     /* Global fixes for both desktop and mobile */
     {% if has_cranbi_buy_buttons %}
       /* Hide old Shopify quantity block only when Cranbi buy-buttons are active */

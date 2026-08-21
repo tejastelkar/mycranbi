@@ -240,4 +240,16 @@ details[open].menu-opening > .menu-drawer__submenu {
     filter: none !important;
     transition: none !important;
   }
+
+  .menu-drawer,
+  .menu-drawer__inner-container,
+  .menu-drawer__navigation-container,
+  .menu-drawer__menu-item {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .menu-drawer__menu-item {
+    overflow-wrap: anywhere;
+  }
 }
