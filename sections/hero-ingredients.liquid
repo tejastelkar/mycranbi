@@ -14,8 +14,12 @@
           <li class="hero-ingredients__item center" {{ block.shopify_attributes }}>
             <div class="hero-ingredients__card">
               <div class="hero-ingredients__media-wrapper">
-                {%- if block.settings.asset_file != blank and block.settings.asset_file != 'auto' -%}
-                  <img src="{{ block.settings.asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="hero-ingredients__image" loading="lazy" decoding="async" width="900" height="900">
+                {%- assign asset_file = block.settings.asset_file -%}
+                {%- if asset_file == blank or asset_file == 'auto' -%}
+                  {%- assign asset_file = 'ingredient_' | append: block.settings.title | handleize | append: '.png' -%}
+                {%- endif -%}
+                {%- if asset_file != blank -%}
+                  <img src="{{ asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="hero-ingredients__image" loading="lazy" decoding="async" width="900" height="900">
                 {%- elsif block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'hero-ingredients__image' }}
                 {%- else -%}

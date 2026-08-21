@@ -194,7 +194,7 @@ test('Hero Ingredients prioritizes explicit theme assets and keeps image-picker 
 
   assert.match(source, /"id":\s*"asset_file"/);
   assert.match(source, /"id":\s*"asset_file"[\s\S]*?"default":\s*"auto"/);
-  assert.match(source, /block\.settings\.asset_file\s*!=\s*blank/);
+  assert.match(source, /asset_file\s*!=\s*blank/);
   assert.match(source, /asset_file\s*\|\s*asset_url/);
   assert.match(source, /block\.settings\.image/);
   assert.match(source, /width="900" height="900"/);
