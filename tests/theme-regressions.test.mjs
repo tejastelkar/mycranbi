@@ -134,6 +134,63 @@ test('homepage editorial slides select Cranbi products', () => {
   }
 });
 
+test('homepage concern blocks map every collection to a local theme asset', () => {
+  const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
+  const concernSection = homepage.sections.shop_by_concern;
+  const expected = {
+    concern_1: ['dry-dehydrated-skin', 'concern_dry-and-dehydrated-skin.png'],
+    concern_2: ['dull-tired-skin', 'concern_dull-and-tired-skin.png'],
+    concern_3: ['dark-spots-uneven-skintone', 'concern_dark-spots-and-uneven-skintone.png'],
+    concern_4: ['sensitive-irritated-skin', 'concern_sensitive-and-irritated-skin.png'],
+    concern_5: ['damaged-skin-barrier', 'concern_damaged-skin-barrier.png'],
+    concern_6: ['weak-damaged-hair', 'concern_weak-and-damaged-hair.png'],
+    concern_7: ['frizz-unmanageable-hair', 'concern_frizz-and-unmanageable-hair.png'],
+    concern_8: ['oily-dandruff-scalp', 'concern_oily-and-dandruff-prone-scalp.png'],
+    concern_9: ['dry-scalp-hairfall', 'concern_dry-scalp-and-hairfall.png'],
+  };
+
+  for (const [blockId, [collection, asset]] of Object.entries(expected)) {
+    assert.equal(concernSection.blocks[blockId].settings.collection, collection);
+    assert.equal(concernSection.blocks[blockId].settings.asset_file, asset);
+    assert.ok(readFileSync(resolve(root, `assets/${asset}`)).byteLength > 0, `${asset} must exist`);
+  }
+});
+
+test('Shop by Concern supports explicit theme assets and mobile-safe focus behavior', () => {
+  const source = read('sections/shop-by-concern.liquid');
+
+  assert.match(source, /"id":\s*"asset_file"/);
+  assert.match(source, /block\.settings\.asset_file/);
+  assert.match(source, /asset_file\s*\|\s*asset_url/);
+  assert.match(source, /:focus-visible/);
+  assert.match(source, /prefers-reduced-motion/);
+});
+
+test('shared theme CSS prevents page-level overflow and constrains media', () => {
+  const source = read('assets/base.css');
+
+  assert.match(source, /overflow-x:\s*(clip|hidden)/);
+  assert.match(source, /img,\s*video,\s*iframe/);
+  assert.match(source, /max-width:\s*100%/);
+});
+
+test('mobile custom sections use viewport-safe grid or carousel rules', () => {
+  const sources = [
+    read('sections/custom-hero.liquid'),
+    read('sections/custom-collection-list.liquid'),
+    read('sections/brand-story.liquid'),
+    read('sections/claims-badges.liquid'),
+    read('sections/gift-sets.liquid'),
+    read('sections/spotlight-carousel.liquid'),
+    read('sections/travel-minis.liquid'),
+    read('sections/hero-ingredients.liquid'),
+  ].join('\n');
+
+  assert.match(sources, /@media screen and \(max-width: 749px\)/);
+  assert.match(sources, /min-width:\s*0/);
+  assert.match(sources, /max-width:\s*100%/);
+});
+
 test('Shop the Look uses the four selected Shopify videos', () => {
   const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
   const watchShop = homepage.sections.watch_shop;
