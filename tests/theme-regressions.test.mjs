@@ -138,15 +138,15 @@ test('homepage concern blocks map every collection to a local theme asset', () =
   const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
   const concernSection = homepage.sections.shop_by_concern;
   const expected = {
-    concern_1: ['dry-dehydrated-skin', 'concern_dry-and-dehydrated-skin.png'],
-    concern_2: ['dull-tired-skin', 'concern_dull-and-tired-skin.png'],
-    concern_3: ['dark-spots-uneven-skintone', 'concern_dark-spots-and-uneven-skintone.png'],
-    concern_4: ['sensitive-irritated-skin', 'concern_sensitive-and-irritated-skin.png'],
-    concern_5: ['damaged-skin-barrier', 'concern_damaged-skin-barrier.png'],
-    concern_6: ['weak-damaged-hair', 'concern_weak-and-damaged-hair.png'],
-    concern_7: ['frizz-unmanageable-hair', 'concern_frizz-and-unmanageable-hair.png'],
-    concern_8: ['oily-dandruff-scalp', 'concern_oily-and-dandruff-prone-scalp.png'],
-    concern_9: ['dry-scalp-hairfall', 'concern_dry-scalp-and-hairfall.png'],
+    concern_1: ['dry-dehydrated-skin', 'concern_dry-and-dehydrated-skin.webp'],
+    concern_2: ['dull-tired-skin', 'concern_dull-and-tired-skin.webp'],
+    concern_3: ['dark-spots-uneven-skintone', 'concern_dark-spots-and-uneven-skintone.webp'],
+    concern_4: ['sensitive-irritated-skin', 'concern_sensitive-and-irritated-skin.webp'],
+    concern_5: ['damaged-skin-barrier', 'concern_damaged-skin-barrier.webp'],
+    concern_6: ['weak-damaged-hair', 'concern_weak-and-damaged-hair.webp'],
+    concern_7: ['frizz-unmanageable-hair', 'concern_frizz-and-unmanageable-hair.webp'],
+    concern_8: ['oily-dandruff-scalp', 'concern_oily-and-dandruff-prone-scalp.webp'],
+    concern_9: ['dry-scalp-hairfall', 'concern_dry-scalp-and-hairfall.webp'],
   };
 
   for (const [blockId, [collection, asset]] of Object.entries(expected)) {
@@ -163,6 +163,7 @@ test('Shop by Concern supports explicit theme assets and mobile-safe focus behav
   assert.match(source, /"id":\s*"asset_file"[\s\S]*?"default":\s*"auto"/);
   assert.match(source, /block\.settings\.asset_file/);
   assert.match(source, /asset_file\s*\|\s*asset_url/);
+  assert.match(source, /asset_file\s*!=\s*blank[\s\S]*?elsif block\.settings\.image\s*!=\s*blank/);
   assert.match(source, /:focus-visible/);
   assert.match(source, /prefers-reduced-motion/);
 });
@@ -171,15 +172,15 @@ test('homepage ingredient blocks map every ingredient to a local theme asset', (
   const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
   const ingredientSection = homepage.sections.hero_ingredients;
   const expected = {
-    ingredient_1: ['Saffron', 'ingredient_saffron.png'],
-    ingredient_2: ['Orange', 'ingredient_orange.png'],
-    ingredient_3: ['Amla', 'ingredient_amla.png'],
-    ingredient_4: ['Shikakai', 'ingredient_shikakai.png'],
-    ingredient_5: ['Wheat', 'ingredient_wheat.png'],
-    ingredient_6: ['Lavender', 'ingredient_lavender.png'],
-    ingredient_7: ['Tulsi', 'ingredient_tulsi.png'],
-    ingredient_8: ['Neem', 'ingredient_neem.png'],
-    ingredient_9: ['Ashwagandha', 'ingredient_ashwagandha.png'],
+    ingredient_1: ['Saffron', 'ingredient_saffron.webp'],
+    ingredient_2: ['Orange', 'ingredient_orange.webp'],
+    ingredient_3: ['Amla', 'ingredient_amla.webp'],
+    ingredient_4: ['Shikakai', 'ingredient_shikakai.webp'],
+    ingredient_5: ['Wheat', 'ingredient_wheat.webp'],
+    ingredient_6: ['Lavender', 'ingredient_lavender.webp'],
+    ingredient_7: ['Tulsi', 'ingredient_tulsi.webp'],
+    ingredient_8: ['Neem', 'ingredient_neem.webp'],
+    ingredient_9: ['Ashwagandha', 'ingredient_ashwagandha.webp'],
   };
 
   for (const [blockId, [title, asset]] of Object.entries(expected)) {
@@ -198,6 +199,53 @@ test('Hero Ingredients prioritizes explicit theme assets and keeps image-picker 
   assert.match(source, /asset_file\s*\|\s*asset_url/);
   assert.match(source, /block\.settings\.image/);
   assert.match(source, /width="900" height="900"/);
+});
+
+test('homepage media assets use compressed WebP files', () => {
+  const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
+  const mediaAssets = [
+    ...homepage.sections.shop_by_concern.block_order.map((blockId) => homepage.sections.shop_by_concern.blocks[blockId].settings.asset_file),
+    ...homepage.sections.hero_ingredients.block_order.map((blockId) => homepage.sections.hero_ingredients.blocks[blockId].settings.asset_file),
+  ];
+
+  assert.equal(mediaAssets.every((asset) => asset.endsWith('.webp')), true);
+  for (const asset of mediaAssets) {
+    assert.ok(readFileSync(resolve(root, `assets/${asset}`)).byteLength > 0, `${asset} must exist`);
+  }
+});
+
+test('global layout does not load homepage-only Swiper assets', () => {
+  const source = read('layout/theme.liquid');
+
+  assert.equal(source.includes('swiper-bundle.min.js'), false);
+  assert.equal(source.includes('swiper-bundle.min.css'), false);
+  assert.match(source, /fonts\.googleapis\.com\/css2[^>]+media="print"/);
+});
+
+test('spotlight videos are deferred and load their Swiper assets locally', () => {
+  const source = read('sections/spotlight-carousel.liquid');
+
+  assert.match(source, /swiper-bundle\.min\.css/);
+  assert.match(source, /swiper-bundle\.min\.js/);
+  assert.match(source, /preload:\s*'none'/);
+});
+
+test('Watch & Shop videos defer loading until they are near the viewport', () => {
+  const source = read('sections/watch-shop.liquid');
+
+  assert.match(source, /autoplay:\s*false/);
+  assert.match(source, /preload:\s*'none'/);
+  assert.match(source, /IntersectionObserver/);
+  assert.match(source, /data-src/);
+});
+
+test('custom hero chooses one responsive image source per slide', () => {
+  const source = read('sections/custom-hero.liquid');
+
+  assert.match(source, /<picture>/);
+  assert.match(source, /<source[^>]+media="\(max-width: 989px\)"/);
+  assert.match(source, /image_url: width: 1600/);
+  assert.match(source, /image_url: width: 900/);
 });
 
 test('shared theme CSS prevents page-level overflow and constrains media', () => {

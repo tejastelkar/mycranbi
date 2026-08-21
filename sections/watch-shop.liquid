@@ -254,7 +254,10 @@
       <!-- Grid Card -->
       <div role="button" tabindex="0" class="watch-shop__card js-open-video-modal" data-modal="modal-{{ block.id }}" {{ block.shopify_attributes }}>
         {%- if block.settings.video != blank -%}
-          {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'watch-shop__card__video' }}
+          {%- capture watch_card_video -%}
+            {{ block.settings.video | video_tag: autoplay: false, loop: true, muted: true, playsinline: true, preload: 'none', class: 'watch-shop__card__video', image_size: '800x' }}
+          {%- endcapture -%}
+          {{ watch_card_video | replace_first: '<video', '<video data-watch-video' }}
         {%- elsif block.settings.image != blank -%}
           {{ block.settings.image | image_url: width: 800 | image_tag: class: 'watch-shop__card__img', loading: 'lazy' }}
         {%- elsif ws_product != blank and ws_product.featured_image != blank -%}
@@ -304,7 +307,7 @@
               {%- if video_src == blank -%}
                 {%- assign video_src = block.settings.video.sources[0].url -%}
               {%- endif -%}
-              <video src="{{ video_src }}" loop controls playsinline></video>
+              <video data-src="{{ video_src | escape }}" preload="none" loop controls playsinline></video>
             {%- else -%}
               <div style="width:100%; height:100%; background:#111; display:flex; align-items:center; justify-content:center; color:#555;">Video Placeholder</div>
             {%- endif -%}
@@ -373,7 +376,32 @@
     const openBtns = section.querySelectorAll('.js-open-video-modal');
     const closeBtns = section.querySelectorAll('.js-close-modal');
     const modals = section.querySelectorAll('.watch-shop-modal');
+    const cardVideos = section.querySelectorAll('[data-watch-video]');
     let previousScrollY = 0;
+
+    const hydrateAndPlay = (video) => {
+      if (!video.dataset.loaded) {
+        video.dataset.loaded = 'true';
+        video.load();
+      }
+      video.play().catch(() => {});
+    };
+
+    if ('IntersectionObserver' in window) {
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            hydrateAndPlay(entry.target);
+          } else {
+            entry.target.pause();
+          }
+        });
+      }, { rootMargin: '320px 0px', threshold: 0.01 });
+
+      cardVideos.forEach((video) => videoObserver.observe(video));
+    } else {
+      cardVideos.forEach(hydrateAndPlay);
+    }
 
     // Function to pause all modal videos
     const pauseAllVideos = () => {
@@ -415,6 +443,10 @@
           // Play video inside this modal
           const vid = modal.querySelector('video');
           if (vid) {
+            if (vid.dataset.src && vid.getAttribute('src') !== vid.dataset.src) {
+              vid.setAttribute('src', vid.dataset.src);
+              vid.load();
+            }
             vid.muted = false;
             vid.currentTime = 0;
             vid.play();

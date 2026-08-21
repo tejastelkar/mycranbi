@@ -239,7 +239,7 @@
           "type": "concern",
           "settings": {
             "title": "Dry and Dehydrated Skin",
-            "asset_file": "concern_dry-and-dehydrated-skin.png",
+            "asset_file": "concern_dry-and-dehydrated-skin.webp",
             "collection": "dry-dehydrated-skin"
           }
         },
@@ -247,7 +247,7 @@
           "type": "concern",
           "settings": {
             "title": "Dull and Tired Skin",
-            "asset_file": "concern_dull-and-tired-skin.png",
+            "asset_file": "concern_dull-and-tired-skin.webp",
             "collection": "dull-tired-skin"
           }
         },
@@ -255,7 +255,7 @@
           "type": "concern",
           "settings": {
             "title": "Dark Spots and Uneven Skintone",
-            "asset_file": "concern_dark-spots-and-uneven-skintone.png",
+            "asset_file": "concern_dark-spots-and-uneven-skintone.webp",
             "collection": "dark-spots-uneven-skintone"
           }
         },
@@ -263,7 +263,7 @@
           "type": "concern",
           "settings": {
             "title": "Sensitive and Irritated Skin",
-            "asset_file": "concern_sensitive-and-irritated-skin.png",
+            "asset_file": "concern_sensitive-and-irritated-skin.webp",
             "collection": "sensitive-irritated-skin"
           }
         },
@@ -271,7 +271,7 @@
           "type": "concern",
           "settings": {
             "title": "Damaged Skin Barrier",
-            "asset_file": "concern_damaged-skin-barrier.png",
+            "asset_file": "concern_damaged-skin-barrier.webp",
             "collection": "damaged-skin-barrier"
           }
         },
@@ -279,7 +279,7 @@
           "type": "concern",
           "settings": {
             "title": "Weak and Damaged Hair",
-            "asset_file": "concern_weak-and-damaged-hair.png",
+            "asset_file": "concern_weak-and-damaged-hair.webp",
             "collection": "weak-damaged-hair"
           }
         },
@@ -287,7 +287,7 @@
           "type": "concern",
           "settings": {
             "title": "Frizz and Unmanageable Hair",
-            "asset_file": "concern_frizz-and-unmanageable-hair.png",
+            "asset_file": "concern_frizz-and-unmanageable-hair.webp",
             "collection": "frizz-unmanageable-hair"
           }
         },
@@ -295,7 +295,7 @@
           "type": "concern",
           "settings": {
             "title": "Oily and Dandruff-Prone Scalp",
-            "asset_file": "concern_oily-and-dandruff-prone-scalp.png",
+            "asset_file": "concern_oily-and-dandruff-prone-scalp.webp",
             "collection": "oily-dandruff-scalp"
           }
         },
@@ -303,7 +303,7 @@
           "type": "concern",
           "settings": {
             "title": "Dry Scalp and Hairfall",
-            "asset_file": "concern_dry-scalp-and-hairfall.png",
+            "asset_file": "concern_dry-scalp-and-hairfall.webp",
             "collection": "dry-scalp-hairfall"
           }
         }
@@ -430,7 +430,7 @@
           "settings": {
             "title": "Saffron",
             "sanskrit_name": "Kumkuma",
-            "asset_file": "ingredient_saffron.png",
+            "asset_file": "ingredient_saffron.webp",
             "purpose": "<p>Sourced directly from saffron growers in Srinagar, it brightens skin and helps reduce dark spots and uneven tone.</p>"
           }
         },
@@ -439,7 +439,7 @@
           "settings": {
             "title": "Orange",
             "sanskrit_name": "Naranga",
-            "asset_file": "ingredient_orange.png",
+            "asset_file": "ingredient_orange.webp",
             "purpose": "<p>Refreshes and brightens tired-looking skin.</p>"
           }
         },
@@ -448,7 +448,7 @@
           "settings": {
             "title": "Amla",
             "sanskrit_name": "Amalaki",
-            "asset_file": "ingredient_amla.png",
+            "asset_file": "ingredient_amla.webp",
             "purpose": "<p>Rich in Vitamin C for a natural, healthy glow.</p>"
           }
         },
@@ -457,7 +457,7 @@
           "settings": {
             "title": "Shikakai",
             "sanskrit_name": "Shikakai",
-            "asset_file": "ingredient_shikakai.png",
+            "asset_file": "ingredient_shikakai.webp",
             "purpose": "<p>Strengthens and nourishes hair from the roots.</p>"
           }
         },
@@ -466,7 +466,7 @@
           "settings": {
             "title": "Wheat",
             "sanskrit_name": "Godhuma",
-            "asset_file": "ingredient_wheat.png",
+            "asset_file": "ingredient_wheat.webp",
             "purpose": "<p>Wheat protein fortifies strands and adds lasting shine.</p>"
           }
         },
@@ -475,7 +475,7 @@
           "settings": {
             "title": "Lavender",
             "sanskrit_name": "Sugandharaja",
-            "asset_file": "ingredient_lavender.png",
+            "asset_file": "ingredient_lavender.webp",
             "purpose": "<p>Calms the mind and gently soothes irritated skin.</p>"
           }
         },
@@ -484,7 +484,7 @@
           "settings": {
             "title": "Tulsi",
             "sanskrit_name": "Tulasi",
-            "asset_file": "ingredient_tulsi.png",
+            "asset_file": "ingredient_tulsi.webp",
             "purpose": "<p>Soothes and refreshes skin with its naturally calming leaves.</p>"
           }
         },
@@ -493,7 +493,7 @@
           "settings": {
             "title": "Neem",
             "sanskrit_name": "Nimba",
-            "asset_file": "ingredient_neem.png",
+            "asset_file": "ingredient_neem.webp",
             "purpose": "<p>Helps clarify blemish-prone skin and soothe the scalp.</p>"
           }
         },
@@ -502,7 +502,7 @@
           "settings": {
             "title": "Ashwagandha",
             "sanskrit_name": "Ashwagandha",
-            "asset_file": "ingredient_ashwagandha.png",
+            "asset_file": "ingredient_ashwagandha.webp",
             "purpose": "<p>Nourishes skin and scalp for a calm, resilient daily ritual.</p>"
           }
         }

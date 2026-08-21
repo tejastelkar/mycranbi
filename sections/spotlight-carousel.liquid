@@ -1,3 +1,6 @@
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+
 <div class="spotlight-carousel section-{{ section.id }}-padding" style="background-color: {{ section.settings.background_color }};">
   <div class="page-width">
     <div class="spotlight-carousel__header">
@@ -21,7 +24,7 @@
               >
                 <div class="spotlight-slide__inner">
                   {%- if block.settings.video != blank -%}
-                    {{ block.settings.video | video_tag: autoplay: false, loop: true, muted: true, controls: false, preload: 'metadata', class: 'spotlight-slide__video', image_size: '600x' }}
+                    {{ block.settings.video | video_tag: autoplay: false, loop: true, muted: true, controls: false, preload: 'none', class: 'spotlight-slide__video', image_size: '600x' }}
                   {%- elsif block.settings.image != blank -%}
                     {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'spotlight-slide__image' }}
                   {%- else -%}

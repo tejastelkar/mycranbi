@@ -16,7 +16,7 @@
               <div class="hero-ingredients__media-wrapper">
                 {%- assign asset_file = block.settings.asset_file -%}
                 {%- if asset_file == blank or asset_file == 'auto' -%}
-                  {%- assign asset_file = 'ingredient_' | append: block.settings.title | handleize | append: '.png' -%}
+                  {%- assign asset_file = 'ingredient_' | append: block.settings.title | handleize | append: '.webp' -%}
                 {%- endif -%}
                 {%- if asset_file != blank -%}
                   <img src="{{ asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="hero-ingredients__image" loading="lazy" decoding="async" width="900" height="900">

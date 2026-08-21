@@ -8,27 +8,24 @@
           {%- endif -%}
           
           <div class="custom-hero__image-wrapper">
-            {%- if block.settings.image != blank -%}
-              <img src="{{ block.settings.image | image_url: width: 2000 }}" 
-                   alt="{{ block.settings.image.alt | escape }}" 
-                   class="custom-hero__image desktop-only"
-                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                   width="{{ block.settings.image.width }}"
-                   height="{{ block.settings.image.height }}">
-            {%- else -%}
-              <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image desktop-only" loading="lazy" width="1600" height="900">
-            {%- endif -%}
+            <picture>
+              {%- if block.settings.mobile_image != blank -%}
+                <source media="(max-width: 989px)" srcset="{{ block.settings.mobile_image | image_url: width: 900 }}">
+              {%- endif -%}
 
-            {%- if block.settings.mobile_image != blank -%}
-              <img src="{{ block.settings.mobile_image | image_url: width: 1000 }}" 
-                   alt="{{ block.settings.mobile_image.alt | escape }}" 
-                   class="custom-hero__image mobile-only"
-                   loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                   width="{{ block.settings.mobile_image.width }}"
-                   height="{{ block.settings.mobile_image.height }}">
-            {%- else -%}
-              <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image mobile-only" loading="lazy" width="900" height="1200">
-            {%- endif -%}
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1600 }}"
+                     alt="{{ block.settings.image.alt | escape }}"
+                     class="custom-hero__image"
+                     loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                     {% if forloop.first %}fetchpriority="high"{% endif %}
+                     sizes="100vw"
+                     width="{{ block.settings.image.width }}"
+                     height="{{ block.settings.image.height }}">
+              {%- else -%}
+                <img src="{{ 'hero-banner.png' | asset_url }}" alt="Hero Placeholder" class="custom-hero__image" loading="lazy" width="1600" height="900">
+              {%- endif -%}
+            </picture>
           </div>
 
           {%- if block.settings.link != blank -%}
@@ -116,9 +113,6 @@
   object-position: center;
 }
 
-.desktop-only { display: block; }
-.mobile-only { display: none; }
-
 .custom-hero-dots {
   position: absolute;
   bottom: 20px;
@@ -153,9 +147,6 @@
     background-color: #2D4C3A;
   }
 
-  .desktop-only { display: none; }
-  .mobile-only { display: block; }
-  
   .custom-hero__image-wrapper {
     position: relative;
     height: 60vh;

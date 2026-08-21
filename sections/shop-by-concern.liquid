@@ -13,14 +13,14 @@
         <div class="shop-by-concern__item" {{ block.shopify_attributes }}>
           <a href="{{ block.settings.collection.url | default: block.settings.link }}" class="shop-by-concern__link">
             <div class="shop-by-concern__image-wrapper">
-              {%- if block.settings.image != blank -%}
+              {%- assign asset_file = block.settings.asset_file -%}
+              {%- if asset_file == blank or asset_file == 'auto' -%}
+                {%- assign asset_file = 'concern_' | append: block.settings.title | handleize | append: '.webp' -%}
+              {%- endif -%}
+              {%- if asset_file != blank -%}
+                <img src="{{ asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="shop-by-concern__image" loading="lazy" decoding="async" width="900" height="900">
+              {%- elsif block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'shop-by-concern__image' }}
-              {%- else -%}
-                {%- assign asset_file = block.settings.asset_file -%}
-        {%- if asset_file == blank or asset_file == 'auto' -%}
-                  {%- assign asset_file = 'concern_' | append: block.settings.title | handleize | append: '.png' -%}
-                {%- endif -%}
-        <img src="{{ asset_file | asset_url }}" alt="{{ block.settings.title | escape }}" class="shop-by-concern__image" loading="lazy" decoding="async" width="900" height="900">
               {%- endif -%}
               
               <div class="shop-by-concern__arrow">
