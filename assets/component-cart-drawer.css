@@ -541,3 +541,10 @@ cart-drawer-items.is-loading .cart-item__remove {
     transition: none;
   }
 }
+
+.cart-drawer .cart__checkout-button:hover,
+.cart-drawer .cart__checkout-button:focus-visible {
+  background: var(--cart-plum-deep) !important;
+  border-color: var(--cart-plum-deep) !important;
+  color: #fff !important;
+}

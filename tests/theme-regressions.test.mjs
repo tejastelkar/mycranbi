@@ -363,3 +363,13 @@ test('cart exposes a visible update state while Shopify refreshes quantities', (
   assert.match(styles, /cart-drawer-items\.is-loading quantity-input/);
   assert.match(styles, /pointer-events:\s*none/);
 });
+
+test('cart checkout hover keeps white copy on the deep maroon surface', () => {
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(
+    styles,
+    /\.cart-drawer \.cart__checkout-button:hover,\s*\n\.cart-drawer \.cart__checkout-button:focus-visible\s*\{[^}]*background:\s*var\(--cart-plum-deep\)\s*!important;[^}]*color:\s*#fff\s*!important;/s,
+    'cart checkout hover and focus-visible states should retain white text on the deep maroon surface'
+  );
+});
