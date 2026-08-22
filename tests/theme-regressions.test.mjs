@@ -673,3 +673,23 @@ test('brand story cards ship editorial fallbacks for all three homepage blocks',
   assert.match(source, /block\.settings\.image != blank[\s\S]*?story_asset != blank/s);
   assert.match(source, /story_asset \| asset_url/);
 });
+
+test('Shop by Concern resolves collection handles into working homepage links', () => {
+  const source = read('sections/shop-by-concern.liquid');
+
+  assert.match(
+    source,
+    /assign concern_collection_handle = block\.settings\.collection\.handle \| default: block\.settings\.collection/,
+    'the section should support collection settings stored as either objects or handles'
+  );
+  assert.match(
+    source,
+    /assign concern_collection_url = routes\.collections_url \| append: '\/' \| append: concern_collection_handle/,
+    'handle-based collection settings should resolve to a storefront collection URL'
+  );
+  assert.match(
+    source,
+    /href="\{\{ concern_collection_url \| default: block\.settings\.link \| default: routes\.all_products_collection_url \}\}"/,
+    'concern cards should use the resolved collection URL before a manual fallback link'
+  );
+});

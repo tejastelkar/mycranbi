@@ -10,8 +10,15 @@
 
     <div class="shop-by-concern__scroller">
       {%- for block in section.blocks -%}
+        {%- liquid
+          assign concern_collection_handle = block.settings.collection.handle | default: block.settings.collection
+          assign concern_collection_url = block.settings.collection.url
+          if concern_collection_url == blank and concern_collection_handle != blank
+            assign concern_collection_url = routes.collections_url | append: '/' | append: concern_collection_handle
+          endif
+        -%}
         <div class="shop-by-concern__item" {{ block.shopify_attributes }}>
-          <a href="{{ block.settings.collection.url | default: block.settings.link }}" class="shop-by-concern__link">
+          <a href="{{ concern_collection_url | default: block.settings.link | default: routes.all_products_collection_url }}" class="shop-by-concern__link">
             <div class="shop-by-concern__image-wrapper">
               {%- assign asset_file = block.settings.asset_file -%}
               {%- if asset_file == blank or asset_file == 'auto' -%}
