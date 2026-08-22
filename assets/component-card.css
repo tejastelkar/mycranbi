@@ -253,6 +253,224 @@
   margin-top: 0;
 }
 
+/* Shared storefront product-card treatment for collection and recommendations. */
+.product-card-wrapper .card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: visible;
+  padding: 0;
+  transition: transform 0.24s ease;
+}
+
+.product-card-wrapper:hover .card {
+  transform: translateY(-3px);
+}
+
+.product-card-wrapper .card__inner {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.product-card-wrapper .card__media {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.product-card-wrapper .media {
+  background: transparent !important;
+  border-radius: 0.8rem;
+}
+
+.product-card-wrapper .media img {
+  mix-blend-mode: normal;
+  object-fit: cover;
+  padding: 0;
+  transition: transform 0.35s ease;
+}
+
+.product-card-wrapper:hover .media img {
+  transform: scale(1.02);
+}
+
+.product-card-wrapper .card__wishlist-toggle {
+  position: absolute;
+  z-index: 3;
+  top: 1.6rem;
+  right: 1.6rem;
+  display: grid;
+  place-items: center;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+  padding: 0;
+  border: 0.1rem solid rgba(102, 0, 51, 0.14);
+  border-radius: 50%;
+  background: rgba(251, 250, 247, 0.92);
+  color: #660033;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.product-card-wrapper .card__wishlist-toggle:hover {
+  transform: scale(1.04);
+}
+
+.product-card-wrapper .card__wishlist-toggle[aria-pressed='true'] {
+  color: #fff;
+  background: #660033;
+}
+
+.product-card-wrapper .card__wishlist-toggle:focus-visible {
+  outline: 0.2rem solid #660033;
+  outline-offset: 0.3rem;
+}
+
+.product-card-wrapper .card__content--clinical {
+  display: flex !important;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 1.6rem 0 0 !important;
+}
+
+.product-card-wrapper .card__information--clinical {
+  background: transparent;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.product-card-wrapper .card__heading--clinical {
+  color: rgb(var(--color-foreground)) !important;
+  font-family: var(--font-heading-family);
+  font-size: clamp(1.5rem, 1.4vw, 1.9rem) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em;
+  line-height: 1.2 !important;
+  margin: 0 0 0.6rem !important;
+  min-height: calc(1.2em * 2);
+  text-wrap: balance;
+}
+
+.product-card-wrapper .card__heading--clinical a {
+  color: inherit;
+}
+
+.product-card-wrapper .card__price-row {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.product-card-wrapper .price {
+  color: rgb(var(--color-foreground)) !important;
+  font-family: var(--font-body-family);
+  font-size: 1.55rem !important;
+  letter-spacing: 0.01em !important;
+  text-align: left !important;
+}
+
+.product-card-wrapper .price__sale,
+.product-card-wrapper .price__regular,
+.product-card-wrapper .price__container {
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: flex-start !important;
+}
+
+.product-card-wrapper .price__container,
+.product-card-wrapper .price:not(.price--on-sale) .price__regular,
+.product-card-wrapper .price--on-sale .price__sale {
+  display: flex !important;
+}
+
+.product-card-wrapper .price--on-sale .price__regular {
+  display: none !important;
+}
+
+.product-card-wrapper .price-item {
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.product-card-wrapper .price-item--sale,
+.product-card-wrapper .price-item--regular:last-child {
+  color: rgb(var(--color-foreground));
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.product-card-wrapper .price--on-sale .price-item--regular {
+  color: rgba(61, 57, 53, 0.45) !important;
+  font-size: 1.3rem !important;
+  font-weight: 500;
+  text-decoration-thickness: 1px;
+}
+
+.product-card-wrapper .card__badge--percentage {
+  position: absolute;
+  z-index: 2;
+  left: 1.6rem;
+  bottom: 1.6rem;
+  margin: 0;
+  background: #660033;
+}
+
+.product-card-wrapper .badge {
+  background: #660033 !important;
+  border-radius: 999px;
+  box-shadow: none;
+  color: #fffaf6 !important;
+  font-family: var(--font-body-family);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 0.9rem 1.2rem;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 749px) {
+  .product-card-wrapper .card__heading--clinical {
+    font-size: 1.55rem !important;
+    overflow-wrap: anywhere;
+  }
+
+  .product-card-wrapper,
+  .product-card-wrapper .card__content--clinical,
+  .product-card-wrapper .card__information--clinical {
+    min-width: 0;
+  }
+
+  .product-card-wrapper .price-item--sale,
+  .product-card-wrapper .price-item--regular:last-child {
+    font-size: 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card-wrapper .card,
+  .product-card-wrapper .media img,
+  .product-card-wrapper .card__wishlist-toggle {
+    transition: none;
+  }
+
+  .product-card-wrapper:hover .card,
+  .product-card-wrapper:hover .media img,
+  .product-card-wrapper .card__wishlist-toggle:hover {
+    transform: none;
+  }
+}
+
 @media screen and (max-width: 989px) {
   .card-information quantity-popover .quantity__rules ~ volume-pricing {
     margin-top: 0;

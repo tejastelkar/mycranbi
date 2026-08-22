@@ -311,18 +311,18 @@ test('travel products use Dawn quick-add hooks and compact left-aligned rows', (
 });
 
 test('collection product details sit directly below images and align left', () => {
-  const section = read('sections/main-collection-product-grid.liquid');
+  const styles = read('assets/component-card.css');
   const card = read('snippets/card-product.liquid');
 
   assert.match(
-    section,
-    /\.card__content--clinical\s*\{[^}]*padding:\s*1\.6rem 0 0 !important;/s,
-    'collection card content should use a balanced image-to-title gap'
+    styles,
+    /\.product-card-wrapper \.card__content--clinical\s*\{[^}]*padding:\s*1\.6rem 0 0 !important;/s,
+    'shared card content should use a balanced image-to-title gap'
   );
   assert.match(
-    section,
-    /\.card__price-row\s*\{[^}]*margin-top:\s*0;/s,
-    'collection prices should follow titles without an automatic spacer'
+    styles,
+    /\.product-card-wrapper \.card__price-row\s*\{[^}]*margin-top:\s*0;/s,
+    'shared card prices should follow titles without an automatic spacer'
   );
   assert.equal(
     card.includes('<div class="card__meta-row">'),
@@ -330,10 +330,32 @@ test('collection product details sit directly below images and align left', () =
     'collection cards should not insert metadata between the image and title'
   );
   assert.match(
-    section,
-    /\.price--on-sale \.price__regular\s*\{\s*display:\s*none !important;\s*\}/,
-    'sale cards should hide the duplicate regular-price container'
+    styles,
+    /\.product-card-wrapper \.price--on-sale \.price__regular\s*\{\s*display:\s*none !important;\s*\}/,
+    'sale cards should hide the duplicate regular-price container in every shared-card context'
   );
+});
+
+test('shared product cards expose one accessible wishlist control', () => {
+  const card = read('snippets/card-product.liquid');
+  assert.match(card, /class="wishlist-btn card__wishlist-toggle"/);
+  assert.match(card, /aria-pressed="false"/);
+  assert.match(card, /data-wishlist-add-label=/);
+  assert.match(card, /data-wishlist-remove-label=/);
+  assert.equal((card.match(/class="wishlist-btn card__wishlist-toggle"/g) || []).length, 1);
+});
+
+test('shared card stylesheet owns wishlist and percentage badge placement', () => {
+  const styles = read('assets/component-card.css');
+  assert.match(styles, /\.product-card-wrapper \.card__wishlist-toggle\s*\{[^}]*position:\s*absolute;[^}]*min-width:\s*4\.4rem;[^}]*min-height:\s*4\.4rem;/s);
+  assert.match(styles, /\.product-card-wrapper \.card__badge--percentage\s*\{[^}]*left:\s*1\.6rem;[^}]*bottom:\s*1\.6rem;/s);
+  assert.match(styles, /\.product-card-wrapper \.card__wishlist-toggle\[aria-pressed='true'\]/);
+});
+
+test('collection stylesheet leaves card fundamentals to the shared component', () => {
+  const collection = read('sections/main-collection-product-grid.liquid');
+  assert.doesNotMatch(collection, /product-card-wrapper--collection \.card__wishlist-toggle/);
+  assert.doesNotMatch(collection, /product-card-wrapper--collection \.card__badge/);
 });
 
 test('cart free-delivery progress is clamped against exactly ₹1,999', () => {
