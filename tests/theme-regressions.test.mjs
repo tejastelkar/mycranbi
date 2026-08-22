@@ -433,6 +433,129 @@ test('wishlist product title provides an aligned 44px interaction target', () =>
   );
 });
 
+test('storefront free-delivery copy consistently uses the ₹1,999 threshold', () => {
+  const files = [
+    'sections/header-group.json',
+    'templates/index.json',
+    'templates/product.json',
+    'templates/page.faq.json',
+  ];
+
+  for (const file of files) {
+    const source = read(file).replaceAll('\\u20b9', '₹');
+    assert.match(source, /₹1,999/, `${file} should mention the ₹1,999 free-delivery threshold`);
+    assert.equal(source.includes('₹999'), false, `${file} should not retain the old ₹999 threshold`);
+  }
+});
+
+test('cart drawer includes the progressive free-delivery treatment and responsive card layout', () => {
+  const markup = read('snippets/cart-drawer.liquid');
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(markup, /cart-drawer__shipping/);
+  assert.match(markup, /free_delivery_threshold/);
+  assert.match(markup, /cart-drawer__count/);
+  assert.match(styles, /\.cart-drawer__shipping/);
+  assert.match(styles, /grid-template-areas:/);
+  assert.match(styles, /@media screen and \(max-width: 749px\)/);
+});
+
+test('cart drawer owns its sizing so items scroll independently from the footer', () => {
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(
+    styles,
+    /\.cart-drawer \.drawer__inner\s*\{[\s\S]*?display:\s*grid;[\s\S]*?grid-template-rows:\s*auto auto minmax\(0, 1fr\) auto;/s,
+    'the open cart should reserve separate rows for header, shipping, items, and footer'
+  );
+  assert.match(
+    styles,
+    /cart-drawer:not\(\.is-empty\) cart-drawer-items\s*\{[^}]*min-height:\s*0;[^}]*overflow-y:\s*auto;/s,
+    'cart items should be the only scrolling region'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer \.drawer__contents,\s*\.cart-drawer \.cart-drawer__form\s*\{[^}]*min-height:\s*0;/s,
+    'nested cart wrappers should be allowed to shrink inside the drawer'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer \.cart__ctas\s*\{[^}]*width:\s*100%;/s,
+    'checkout should occupy the footer content width without inherited sizing conflicts'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer \.cart-items \.cart-item__quantity\s*\{[\s\S]*?grid-column:\s*2;[\s\S]*?grid-row:\s*2;/s,
+    'quantity controls should sit below the product details instead of under the image'
+  );
+});
+
+test('cart drawer controls use a consistent Cranbi component treatment', () => {
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(
+    styles,
+    /\.cart-drawer quantity-input\s*\{[\s\S]*?height:\s*4\.2rem;[\s\S]*?border-radius:\s*1\.1rem(?:\s*!important)?;/s,
+    'quantity selector should use a compact soft-corner control'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer quantity-input \.quantity__button\s*\{[\s\S]*?font-family:\s*var\(--font-body-family\);[\s\S]*?font-weight:\s*600;/s,
+    'quantity buttons should use the theme type system instead of browser Arial'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer \.cart__checkout-button\s*\{[\s\S]*?border-radius:\s*0\.9rem;[\s\S]*?box-shadow:/s,
+    'checkout should use the refined soft-corner CTA treatment'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer__shipping\s*\{[\s\S]*?border-left:\s*0\.3rem solid var\(--cart-plum\);[\s\S]*?border-radius:\s*0\.8rem;/s,
+    'free-delivery card should use the branded accent edge and balanced radius'
+  );
+});
+
+test('cart drawer header omits the ritual eyebrow copy', () => {
+  const markup = read('snippets/cart-drawer.liquid');
+
+  assert.doesNotMatch(markup, /MYCRANBI RITUAL/);
+});
+
+test('cart drawer quantity control suppresses Dawn segmented overlays', () => {
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(
+    styles,
+    /\.cart-drawer \.quantity\.cart-quantity::before,\s*\n\.cart-drawer \.quantity\.cart-quantity::after\s*\{[\s\S]*?content:\s*none;/s,
+    'the cart selector should use its own single-shell treatment'
+  );
+  assert.match(
+    styles,
+    /\.cart-drawer \.quantity\.cart-quantity \.quantity__button:not\(:focus-visible\):not\(\.focused\),\s*\n\.cart-drawer \.quantity\.cart-quantity \.quantity__input:not\(:focus-visible\):not\(\.focused\)\s*\{[\s\S]*?box-shadow:\s*none;/s,
+    'quantity children should not inherit the shell shadow as internal dividers'
+  );
+});
+
+test('cart drawer checkout action has breathing room below the totals copy', () => {
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(
+    styles,
+    /\.cart-drawer \.cart__ctas\s*\{[^}]*margin-top:\s*1\.6rem;/s,
+    'checkout should be separated from the tax note'
+  );
+});
+
+test('cart drawer checkout button does not retain Dawn pseudo-element framing', () => {
+  const styles = read('assets/component-cart-drawer.css');
+
+  assert.match(
+    styles,
+    /\.cart-drawer \.cart__checkout-button::before,\s*\n\.cart-drawer \.cart__checkout-button::after\s*\{[\s\S]*?content:\s*none;/s,
+    'checkout should render as one clean rounded surface'
+  );
+});
+
 test('cart free-delivery progress is clamped against exactly ₹1,999', () => {
   const markup = read('snippets/cart-drawer.liquid');
   assert.match(markup, /assign free_delivery_threshold = 199900/);

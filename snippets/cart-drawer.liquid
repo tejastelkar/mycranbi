@@ -68,6 +68,9 @@
                   <span aria-hidden="true"></span>
                 </div>
               </div>
+              <p class="cart-drawer__empty-copy">
+                Your considered ritual is waiting. Start with something made to feel good every day.
+              </p>
               <button
                 class="drawer__close"
                 type="button"
@@ -98,7 +101,16 @@
         </div>
       {%- endif -%}
       <div class="drawer__header">
-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+        <div class="drawer__title-group">
+          <div class="drawer__title-row">
+            <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+            {%- unless cart == empty -%}
+              <span class="cart-drawer__count">
+                {{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %}
+              </span>
+            {%- endunless -%}
+          </div>
+        </div>
         <button
           class="drawer__close"
           type="button"
@@ -111,10 +123,20 @@
         </button>
       </div>
       {%- unless cart == empty -%}
-        <div class="cart-drawer__shipping">
+        <div
+          class="cart-drawer__shipping{% if cart.total_price >= free_delivery_threshold %} is-complete{% endif %}"
+          role="status"
+          aria-live="polite"
+        >
           <div class="cart-drawer__shipping-copy">
             <div>
-              <p class="cart-drawer__shipping-title">Free delivery from ₹1,999</p>
+              <p class="cart-drawer__shipping-title">
+                {%- if cart.total_price >= free_delivery_threshold -%}
+                  Free delivery unlocked.
+                {%- else -%}
+                  Free delivery from ₹1,999
+                {%- endif -%}
+              </p>
               <p class="cart-drawer__shipping-note">
                 {%- if cart.total_price >= free_delivery_threshold -%}
                   Free delivery unlocked.
@@ -123,6 +145,7 @@
                 {%- endif -%}
               </p>
             </div>
+            <span class="cart-drawer__shipping-mark" aria-hidden="true">✦</span>
           </div>
           <div
             class="cart-drawer__shipping-progress"
