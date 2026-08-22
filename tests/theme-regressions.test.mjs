@@ -347,8 +347,21 @@ test('shared product cards expose one accessible wishlist control', () => {
 
 test('shared card stylesheet owns wishlist and percentage badge placement', () => {
   const styles = read('assets/component-card.css');
+  const card = read('snippets/card-product.liquid');
+
   assert.match(styles, /\.product-card-wrapper \.card__wishlist-toggle\s*\{[^}]*position:\s*absolute;[^}]*min-width:\s*4\.4rem;[^}]*min-height:\s*4\.4rem;/s);
-  assert.match(styles, /\.product-card-wrapper \.card__badge--percentage\s*\{[^}]*left:\s*1\.6rem;[^}]*bottom:\s*1\.6rem;/s);
+  assert.match(styles, /\.product-card-wrapper \.card__inner \.card__badge--percentage\s*\{[^}]*left:\s*1\.6rem;[^}]*bottom:\s*1\.6rem;/s);
+  assert.doesNotMatch(
+    styles,
+    /\.product-card-wrapper \.card__inner \.card__badge--percentage\s*\{[^}]*1\.2rem;/s,
+    'percentage badges must not inherit the later generic 1.2rem offsets'
+  );
+  assert.match(card, /<div class="card__badge card__badge--percentage">/);
+  assert.doesNotMatch(
+    card,
+    /card__badge--percentage \{\{ settings\.badge_position \}\}/,
+    'percentage badges must not accept configurable top or right positioning classes'
+  );
   assert.match(styles, /\.product-card-wrapper \.card__wishlist-toggle\[aria-pressed='true'\]/);
 });
 

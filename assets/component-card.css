@@ -417,7 +417,7 @@
   text-decoration-thickness: 1px;
 }
 
-.product-card-wrapper .card__badge--percentage {
+.product-card-wrapper .card__inner .card__badge--percentage {
   position: absolute;
   z-index: 2;
   left: 1.6rem;
