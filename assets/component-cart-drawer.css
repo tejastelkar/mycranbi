@@ -474,6 +474,11 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   border-radius: 0.8rem;
 }
 
+.cart-drawer__shipping--empty {
+  margin: 1.8rem 0 2.4rem;
+  text-align: left;
+}
+
 .cart-drawer__shipping-progress {
   height: 0.6rem;
   overflow: hidden;
@@ -513,8 +518,8 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   content: none;
 }
 
-cart-drawer-items.is-loading quantity-input,
-cart-drawer-items.is-loading .cart-item__remove {
+#CartDrawer-CartItems.cart__items--disabled quantity-input,
+#CartDrawer-CartItems.cart__items--disabled cart-remove-button {
   pointer-events: none;
   opacity: 0.55;
 }

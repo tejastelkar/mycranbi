@@ -81,14 +81,21 @@ class Wishlist {
   observeCards() {
     this.observer = new MutationObserver((records) => {
       records.forEach((record) => record.addedNodes.forEach((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) this.syncButtons(node);
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          this.upgradeHeaderTriggers(node);
+          this.syncButtons(node);
+          this.updateHeaderBadge(node);
+        }
       }));
     });
     this.observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  upgradeHeaderTriggers() {
-    document.querySelectorAll('[onclick*="wishlistManager.openDrawer"]').forEach((trigger) => {
+  upgradeHeaderTriggers(root = document) {
+    const triggers = [];
+    if (root.matches?.('[onclick*="wishlistManager.openDrawer"]')) triggers.push(root);
+    root.querySelectorAll?.('[onclick*="wishlistManager.openDrawer"]').forEach((trigger) => triggers.push(trigger));
+    triggers.forEach((trigger) => {
       trigger.removeAttribute('onclick');
       trigger.setAttribute('data-wishlist-open', '');
     });
@@ -126,10 +133,13 @@ class Wishlist {
     }
   }
 
-  updateHeaderBadge() {
+  updateHeaderBadge(root = document) {
     const count = this.items.length;
+    const badges = [];
+    if (root.matches?.('.wishlist-count-bubble')) badges.push(root);
+    root.querySelectorAll?.('.wishlist-count-bubble').forEach((badge) => badges.push(badge));
 
-    document.querySelectorAll('.wishlist-count-bubble').forEach((badge) => {
+    badges.forEach((badge) => {
       const value = badge.querySelector('[aria-hidden="true"]') || badge;
       value.textContent = String(count);
       badge.hidden = count === 0;

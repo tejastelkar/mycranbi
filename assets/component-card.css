@@ -254,7 +254,7 @@
 }
 
 /* Shared storefront product-card treatment for collection and recommendations. */
-.product-card-wrapper .card {
+.product-card-wrapper .card:not(.card--horizontal) {
   background: transparent !important;
   border: none !important;
   border-radius: 0 !important;
@@ -330,6 +330,12 @@
 .product-card-wrapper .card__wishlist-toggle:focus-visible {
   outline: 0.2rem solid #660033;
   outline-offset: 0.3rem;
+}
+
+.product-card-wrapper .card--horizontal .card__wishlist-toggle {
+  display: grid;
+  top: 0.8rem;
+  right: 0.8rem;
 }
 
 .product-card-wrapper .card__content--clinical {
@@ -424,6 +430,19 @@
   bottom: 1.6rem;
   margin: 0;
   background: #660033;
+}
+
+.product-card-wrapper .card--horizontal .card__inner .card__badge--percentage {
+  display: block;
+  left: 0.8rem;
+  bottom: 0.8rem;
+}
+
+.product-card-wrapper .card--horizontal .card__badge--percentage .badge {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 0.7rem;
+  white-space: nowrap;
 }
 
 .product-card-wrapper .badge {

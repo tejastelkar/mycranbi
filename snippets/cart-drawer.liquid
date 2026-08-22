@@ -47,6 +47,27 @@
           <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
             <div class="cart-drawer__empty-content">
               <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
+              <div class="cart-drawer__shipping cart-drawer__shipping--empty" role="status" aria-live="polite">
+                <div class="cart-drawer__shipping-copy">
+                  <div>
+                    <p class="cart-drawer__shipping-title">Free delivery from ₹1,999</p>
+                    <p class="cart-drawer__shipping-note">
+                      Add Rs. {{ free_delivery_threshold | money_without_currency }} more to unlock free delivery.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="cart-drawer__shipping-progress"
+                  role="progressbar"
+                  aria-label="Free delivery progress"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0"
+                  style="--cart-shipping-progress: 0%;"
+                >
+                  <span aria-hidden="true"></span>
+                </div>
+              </div>
               <button
                 class="drawer__close"
                 type="button"
@@ -98,7 +119,7 @@
                 {%- if cart.total_price >= free_delivery_threshold -%}
                   Free delivery unlocked.
                 {%- else -%}
-                  Add {{ free_delivery_remaining | money_without_currency }} more to unlock free delivery.
+                  Add Rs. {{ free_delivery_remaining | money_without_currency }} more to unlock free delivery.
                 {%- endif -%}
               </p>
             </div>

@@ -41,6 +41,16 @@
     if card_product.compare_at_price > card_product.price
       assign discount_percentage = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round
     endif
+
+    assign show_percentage_badge = false
+    if card_product.compare_at_price > card_product.price and card_product.available
+      assign show_percentage_badge = true
+    endif
+
+    assign show_custom_badge = false
+    if custom_badge_text != blank and show_percentage_badge == false and card_product.available
+      assign show_custom_badge = true
+    endif
   -%}
 
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
@@ -123,7 +133,7 @@
             <svg class="icon-heart-solid hidden" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
             <svg class="icon-heart-empty" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
           </button>
-          {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
+          {%- if show_percentage_badge -%}
             <div class="card__badge card__badge--percentage">
               <span
                 id="Badge-{{ section_id }}-{{ card_product.id }}"
@@ -146,14 +156,14 @@
                     href="{{ card_product.url }}"
                     id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
                     class="full-unstyled-link"
-                    aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
+                    aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or show_custom_badge %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
                   >
                     {{ card_product.title | escape }}
                   </a>
                 </h3>
               </div>
               <div class="card__badge {{ settings.badge_position }}">
-                {%- if custom_badge_text != blank -%}
+                {%- if show_custom_badge -%}
                   <span
                     id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                     class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -172,7 +182,7 @@
             </div>
           {%- else -%}
             <div class="card__badge {{ settings.badge_position }}">
-              {%- if custom_badge_text != blank -%}
+              {%- if show_custom_badge -%}
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -202,7 +212,7 @@
                 href="{{ card_product.url }}"
                 id="CardLink-{{ section_id }}-{{ card_product.id }}"
                 class="full-unstyled-link"
-                aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or card_product.compare_at_price > card_product.price %} Badge-{{ section_id }}-{{ card_product.id }}{% endif %}"
+                aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }}{% if card_product.available == false or show_percentage_badge %} Badge-{{ section_id }}-{{ card_product.id }}{% elsif show_custom_badge %} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}{% endif %}"
               >
                 {{ card_product.title | escape }}
               </a>
@@ -567,13 +577,6 @@
                 class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
               >
                 {{- 'products.product.sold_out' | t -}}
-              </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <span
-                id="Badge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-              >
-                {{- 'products.product.on_sale' | t -}}
               </span>
             {%- endif -%}
           </div>

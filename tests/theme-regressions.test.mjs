@@ -454,13 +454,6 @@ test('cart progress and checkout use solid Cranbi maroon with balanced spacing',
   assert.match(styles, /\.cart-drawer \.cart__checkout-button\s*\{[^}]*background:\s*var\(--cart-plum\);/s);
 });
 
-test('cart exposes a visible update state while Shopify refreshes quantities', () => {
-  const styles = read('assets/component-cart-drawer.css');
-  assert.match(styles, /cart-drawer-items\.is-loading/);
-  assert.match(styles, /cart-drawer-items\.is-loading quantity-input/);
-  assert.match(styles, /pointer-events:\s*none/);
-});
-
 test('cart checkout hover keeps white copy on the deep maroon surface', () => {
   const styles = read('assets/component-cart-drawer.css');
 
@@ -469,4 +462,80 @@ test('cart checkout hover keeps white copy on the deep maroon surface', () => {
     /\.cart-drawer \.cart__checkout-button:hover,\s*\n\.cart-drawer \.cart__checkout-button:focus-visible\s*\{[^}]*background:\s*var\(--cart-plum-deep\)\s*!important;[^}]*color:\s*#fff\s*!important;/s,
     'cart checkout hover and focus-visible states should retain white text on the deep maroon surface'
   );
+});
+
+test('cart loading controls consume the class produced by Dawn cart updates', () => {
+  const producer = read('assets/cart.js');
+  const styles = read('assets/component-cart-drawer.css');
+  const producedClass = producer.match(/mainCartItems\.classList\.add\('([^']+)'\)/)?.[1];
+
+  assert.equal(producedClass, 'cart__items--disabled');
+  assert.match(
+    styles,
+    /#CartDrawer-CartItems\.cart__items--disabled quantity-input,\s*\n#CartDrawer-CartItems\.cart__items--disabled cart-remove-button\s*\{[^}]*pointer-events:\s*none;[^}]*opacity:\s*0\.55;/s,
+    'quantity and remove controls should consume Dawn\'s real loading class on the drawer items container'
+  );
+  assert.doesNotMatch(styles, /cart-drawer-items\.is-loading/);
+});
+
+test('shared vertical card rules preserve complementary horizontal cards', () => {
+  const card = read('snippets/card-product.liquid');
+  const styles = read('assets/component-card.css');
+  const mainProduct = read('sections/main-product.liquid');
+
+  assert.match(mainProduct, /render 'card-product',[\s\S]*?horizontal_class:\s*true,[\s\S]*?horizontal_quick_add:\s*true/s);
+  assert.match(styles, /\.product-card-wrapper \.card:not\(\.card--horizontal\)\s*\{[^}]*flex-direction:\s*column;[^}]*padding:\s*0;/s);
+  assert.match(styles, /\.card\.card--horizontal\s*\{[^}]*flex-direction:\s*row;/s);
+  assert.match(styles, /\.card--card\.card--horizontal\s*\{[^}]*padding:\s*1\.2rem;/s);
+  assert.match(card, /\{% if horizontal_class %\} card--horizontal\{% endif %\}[\s\S]*class="wishlist-btn card__wishlist-toggle"/s);
+  assert.match(styles, /\.product-card-wrapper \.card--horizontal \.card__wishlist-toggle\s*\{[^}]*display:\s*grid;[^}]*top:\s*0\.8rem;[^}]*right:\s*0\.8rem;/s);
+  assert.match(
+    styles,
+    /\.product-card-wrapper \.card--horizontal \.card__inner \.card__badge--percentage\s*\{[^}]*display:\s*block;[^}]*left:\s*0\.8rem;[^}]*bottom:\s*0\.8rem;/s,
+    'horizontal percentage badges should stay on the media and away from card content'
+  );
+  assert.match(styles, /\.product-card-wrapper \.card--horizontal \.card__badge--percentage \.badge\s*\{[^}]*font-size:\s*0\.85rem;[^}]*padding:\s*0\.5rem 0\.7rem;/s);
+});
+
+test('discounted cards render one percentage badge with explicit custom-badge precedence', () => {
+  const card = read('snippets/card-product.liquid');
+
+  assert.match(card, /assign show_percentage_badge = false[\s\S]*assign show_percentage_badge = true/s);
+  assert.match(card, /assign show_custom_badge = false[\s\S]*custom_badge_text != blank and show_percentage_badge == false[\s\S]*assign show_custom_badge = true/s);
+  assert.match(card, /if show_percentage_badge[\s\S]*products\.product\.on_sale_percentage/s);
+  assert.doesNotMatch(
+    card,
+    /elsif card_product\.compare_at_price > card_product\.price and card_product\.available[\s\S]*products\.product\.on_sale' \| t/s,
+    'the outer generic sale branch must not duplicate the percentage Badge id'
+  );
+  assert.equal((card.match(/products\.product\.on_sale' \| t/g) || []).length, 0);
+});
+
+test('cart drawer renders a semantic zero state and exact partial free-delivery copy', () => {
+  const markup = read('snippets/cart-drawer.liquid');
+
+  assert.match(
+    markup,
+    /\{%- if cart == empty -%\}[\s\S]*cart-drawer__shipping--empty[\s\S]*aria-valuenow="0"[\s\S]*--cart-shipping-progress:\s*0%;/s,
+    'empty carts should expose the same progress semantics at zero percent'
+  );
+  assert.match(markup, /Add Rs\. \{\{ free_delivery_threshold \| money_without_currency \}\} more to unlock free delivery\./);
+  assert.match(markup, /Add Rs\. \{\{ free_delivery_remaining \| money_without_currency \}\} more to unlock free delivery\./);
+  assert.doesNotMatch(markup, /Add \{\{ free_delivery_remaining \| money_without_currency \}\} more to unlock free delivery\./);
+});
+
+test('dynamic headers ship the delegated wishlist hook and receive synchronized badge state', () => {
+  const header = read('sections/header.liquid');
+  const source = read('assets/wishlist.js');
+
+  assert.match(header, /<a[^>]*data-wishlist-open[^>]*class="header__icon link focus-inset"/s);
+  assert.doesNotMatch(header, /onclick="[^"]*wishlistManager\.openDrawer/);
+  assert.match(source, /upgradeHeaderTriggers\(root = document\)/);
+  assert.match(source, /updateHeaderBadge\(root = document\)/);
+  assert.match(
+    source,
+    /if \(node\.nodeType === Node\.ELEMENT_NODE\) \{[\s\S]*this\.upgradeHeaderTriggers\(node\);[\s\S]*this\.syncButtons\(node\);[\s\S]*this\.updateHeaderBadge\(node\);[\s\S]*\}/s,
+    'the observer should upgrade and synchronize every newly rendered header subtree'
+  );
+  assert.match(source, /root\.matches\?\.\('\.wishlist-count-bubble'\)/);
 });
