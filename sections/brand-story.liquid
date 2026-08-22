@@ -10,10 +10,31 @@
 
     <div class="brand-story__grid">
       {%- for block in section.blocks -%}
+        {%- liquid
+          assign story_asset = blank
+          case forloop.index
+            when 1
+              assign story_asset = 'brand-story-heritage.webp'
+            when 2
+              assign story_asset = 'brand-story-saffron.webp'
+            when 3
+              assign story_asset = 'brand-story-free-from.webp'
+          endcase
+        -%}
         <div class="brand-story__column" {{ block.shopify_attributes }}>
           <div class="brand-story__media">
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'brand-story__image' }}
+            {%- elsif story_asset != blank -%}
+              <img
+                src="{{ story_asset | asset_url }}"
+                alt="{{ block.settings.title | escape }}"
+                class="brand-story__image"
+                loading="lazy"
+                decoding="async"
+                width="1122"
+                height="1402"
+              >
             {%- else -%}
               {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}

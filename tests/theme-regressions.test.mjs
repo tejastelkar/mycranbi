@@ -662,3 +662,14 @@ test('dynamic headers ship the delegated wishlist hook and receive synchronized 
   );
   assert.match(source, /root\.matches\?\.\('\.wishlist-count-bubble'\)/);
 });
+
+test('brand story cards ship editorial fallbacks for all three homepage blocks', () => {
+  const source = read('sections/brand-story.liquid');
+
+  assert.match(source, /brand-story-heritage\.webp/);
+  assert.match(source, /brand-story-saffron\.webp/);
+  assert.match(source, /brand-story-free-from\.webp/);
+  assert.match(source, /case forloop\.index/);
+  assert.match(source, /block\.settings\.image != blank[\s\S]*?story_asset != blank/s);
+  assert.match(source, /story_asset \| asset_url/);
+});
