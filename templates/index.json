@@ -240,7 +240,8 @@
           "settings": {
             "title": "Dry and Dehydrated Skin",
             "asset_file": "concern_dry-and-dehydrated-skin.webp",
-            "collection": "dry-dehydrated-skin"
+            "collection": "dry-dehydrated-skin",
+            "link": "shopify://collections/dry-dehydrated-skin"
           }
         },
         "concern_2": {
@@ -248,7 +249,8 @@
           "settings": {
             "title": "Dull and Tired Skin",
             "asset_file": "concern_dull-and-tired-skin.webp",
-            "collection": "dull-tired-skin"
+            "collection": "dull-tired-skin",
+            "link": "shopify://collections/dull-tired-skin"
           }
         },
         "concern_3": {
@@ -256,7 +258,8 @@
           "settings": {
             "title": "Dark Spots and Uneven Skintone",
             "asset_file": "concern_dark-spots-and-uneven-skintone.webp",
-            "collection": "dark-spots-uneven-skintone"
+            "collection": "dark-spots-uneven-skintone",
+            "link": "shopify://collections/dark-spots-uneven-skintone"
           }
         },
         "concern_4": {
@@ -264,7 +267,8 @@
           "settings": {
             "title": "Sensitive and Irritated Skin",
             "asset_file": "concern_sensitive-and-irritated-skin.webp",
-            "collection": "sensitive-irritated-skin"
+            "collection": "sensitive-irritated-skin",
+            "link": "shopify://collections/sensitive-irritated-skin"
           }
         },
         "concern_5": {
@@ -272,7 +276,8 @@
           "settings": {
             "title": "Damaged Skin Barrier",
             "asset_file": "concern_damaged-skin-barrier.webp",
-            "collection": "damaged-skin-barrier"
+            "collection": "damaged-skin-barrier",
+            "link": "shopify://collections/damaged-skin-barrier"
           }
         },
         "concern_6": {
@@ -280,7 +285,8 @@
           "settings": {
             "title": "Weak and Damaged Hair",
             "asset_file": "concern_weak-and-damaged-hair.webp",
-            "collection": "weak-damaged-hair"
+            "collection": "weak-damaged-hair",
+            "link": "shopify://collections/weak-damaged-hair"
           }
         },
         "concern_7": {
@@ -288,7 +294,8 @@
           "settings": {
             "title": "Frizz and Unmanageable Hair",
             "asset_file": "concern_frizz-and-unmanageable-hair.webp",
-            "collection": "frizz-unmanageable-hair"
+            "collection": "frizz-unmanageable-hair",
+            "link": "shopify://collections/frizz-unmanageable-hair"
           }
         },
         "concern_8": {
@@ -296,7 +303,8 @@
           "settings": {
             "title": "Oily and Dandruff-Prone Scalp",
             "asset_file": "concern_oily-and-dandruff-prone-scalp.webp",
-            "collection": "oily-dandruff-scalp"
+            "collection": "oily-dandruff-scalp",
+            "link": "shopify://collections/oily-dandruff-scalp"
           }
         },
         "concern_9": {
@@ -304,7 +312,8 @@
           "settings": {
             "title": "Dry Scalp and Hairfall",
             "asset_file": "concern_dry-scalp-and-hairfall.webp",
-            "collection": "dry-scalp-hairfall"
+            "collection": "dry-scalp-hairfall",
+            "link": "shopify://collections/dry-scalp-hairfall"
           }
         }
       },

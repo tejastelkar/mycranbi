@@ -676,6 +676,18 @@ test('brand story cards ship editorial fallbacks for all three homepage blocks',
 
 test('Shop by Concern resolves collection handles into working homepage links', () => {
   const source = read('sections/shop-by-concern.liquid');
+  const homepage = JSON.parse(read('templates/index.json').replace(/^\/\*[\s\S]*?\*\//, ''));
+  const expectedLinks = {
+    concern_1: 'dry-dehydrated-skin',
+    concern_2: 'dull-tired-skin',
+    concern_3: 'dark-spots-uneven-skintone',
+    concern_4: 'sensitive-irritated-skin',
+    concern_5: 'damaged-skin-barrier',
+    concern_6: 'weak-damaged-hair',
+    concern_7: 'frizz-unmanageable-hair',
+    concern_8: 'oily-dandruff-scalp',
+    concern_9: 'dry-scalp-hairfall',
+  };
 
   assert.match(
     source,
@@ -692,4 +704,17 @@ test('Shop by Concern resolves collection handles into working homepage links', 
     /href="\{\{ concern_collection_url \| default: block\.settings\.link \| default: routes\.all_products_collection_url \}\}"/,
     'concern cards should use the resolved collection URL before a manual fallback link'
   );
+  assert.match(
+    source,
+    /"type":\s*"url"[\s\S]*?"id":\s*"link"/,
+    'concern blocks should expose an explicit URL fallback for theme JSON'
+  );
+
+  for (const [blockId, handle] of Object.entries(expectedLinks)) {
+    assert.equal(
+      homepage.sections.shop_by_concern.blocks[blockId].settings.link,
+      `shopify://collections/${handle}`,
+      `${blockId} should point to its matching collection URL`
+    );
+  }
 });
