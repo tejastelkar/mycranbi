@@ -335,3 +335,31 @@ test('collection product details sit directly below images and align left', () =
     'sale cards should hide the duplicate regular-price container'
   );
 });
+
+test('cart free-delivery progress is clamped against exactly ₹1,999', () => {
+  const markup = read('snippets/cart-drawer.liquid');
+  assert.match(markup, /assign free_delivery_threshold = 199900/);
+  assert.match(markup, /if free_delivery_progress > 100[\s\S]*assign free_delivery_progress = 100/);
+  assert.match(markup, /if free_delivery_progress < 0[\s\S]*assign free_delivery_progress = 0/);
+  assert.match(markup, /role="progressbar"/);
+  assert.match(markup, /aria-valuenow="\{\{ free_delivery_progress \}\}"/);
+  assert.match(markup, /--cart-shipping-progress: \{\{ free_delivery_progress \}\}%/);
+  assert.match(markup, /Free delivery unlocked/);
+});
+
+test('cart progress and checkout use solid Cranbi maroon with balanced spacing', () => {
+  const styles = read('assets/component-cart-drawer.css');
+  assert.match(styles, /--cart-plum:\s*#660033/);
+  assert.match(styles, /\.cart-drawer__shipping-progress > span\s*\{[^}]*background:\s*var\(--cart-plum\);/s);
+  assert.doesNotMatch(styles, /\.cart-drawer__shipping-progress > span\s*\{[^}]*linear-gradient/s);
+  assert.match(styles, /\.cart-drawer \.cart__ctas\s*\{[^}]*margin-top:\s*1\.6rem;/s);
+  assert.match(styles, /\.cart-drawer \.drawer__footer\s*\{[^}]*padding-bottom:\s*max\(2\.4rem, env\(safe-area-inset-bottom\)\);/s);
+  assert.match(styles, /\.cart-drawer \.cart__checkout-button\s*\{[^}]*background:\s*var\(--cart-plum\);/s);
+});
+
+test('cart exposes a visible update state while Shopify refreshes quantities', () => {
+  const styles = read('assets/component-cart-drawer.css');
+  assert.match(styles, /cart-drawer-items\.is-loading/);
+  assert.match(styles, /cart-drawer-items\.is-loading quantity-input/);
+  assert.match(styles, /pointer-events:\s*none/);
+});

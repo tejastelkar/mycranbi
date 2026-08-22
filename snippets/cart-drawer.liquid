@@ -17,6 +17,21 @@
   }
 </style>
 
+{%- liquid
+  assign free_delivery_threshold = 199900
+  assign free_delivery_progress = cart.total_price | times: 100 | divided_by: free_delivery_threshold
+  if free_delivery_progress > 100
+    assign free_delivery_progress = 100
+  endif
+  if free_delivery_progress < 0
+    assign free_delivery_progress = 0
+  endif
+  assign free_delivery_remaining = free_delivery_threshold | minus: cart.total_price
+  if free_delivery_remaining < 0
+    assign free_delivery_remaining = 0
+  endif
+-%}
+
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
@@ -74,6 +89,33 @@
           </span>
         </button>
       </div>
+      {%- unless cart == empty -%}
+        <div class="cart-drawer__shipping">
+          <div class="cart-drawer__shipping-copy">
+            <div>
+              <p class="cart-drawer__shipping-title">Free delivery from ₹1,999</p>
+              <p class="cart-drawer__shipping-note">
+                {%- if cart.total_price >= free_delivery_threshold -%}
+                  Free delivery unlocked.
+                {%- else -%}
+                  Add {{ free_delivery_remaining | money_without_currency }} more to unlock free delivery.
+                {%- endif -%}
+              </p>
+            </div>
+          </div>
+          <div
+            class="cart-drawer__shipping-progress"
+            role="progressbar"
+            aria-label="Free delivery progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="{{ free_delivery_progress }}"
+            style="--cart-shipping-progress: {{ free_delivery_progress }}%;"
+          >
+            <span aria-hidden="true"></span>
+          </div>
+        </div>
+      {%- endunless -%}
       <cart-drawer-items
         view-event-payload="{{ cart | standard_event_data: 'view', context: 'dialog' | escape }}"
         view-event-trigger="manual"
