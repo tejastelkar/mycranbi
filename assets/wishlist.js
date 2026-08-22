@@ -167,12 +167,16 @@ class Wishlist {
       return;
     }
     if (event.key !== 'Tab') return;
-    const focusable = [...this.panel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')];
+    const focusable = [...this.panel.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+      .filter((element) => !element.closest('[hidden]'));
     const first = focusable[0];
     const last = focusable.at(-1);
     if (!first || !last) {
       event.preventDefault();
       this.panel?.focus();
+    } else if (!this.panel.contains(document.activeElement)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first)?.focus();
     } else if (event.shiftKey && (document.activeElement === first || document.activeElement === this.panel)) {
       event.preventDefault();
       last?.focus();
@@ -214,24 +218,29 @@ class Wishlist {
       const products = await Promise.all(this.items.map(async (handle) => {
         try {
           const response = await fetch(`/products/${encodeURIComponent(handle)}.js`);
-          if (!response.ok) return null;
+          if (!response.ok) return { status: 'rejected' };
           const product = await response.json();
-          return product && typeof product === 'object' ? { handle, product } : null;
+          return product && typeof product === 'object'
+            ? { status: 'fulfilled', handle, product }
+            : { status: 'rejected' };
         } catch (error) {
-          return null;
+          return { status: 'rejected' };
         }
       }));
 
       if (requestId !== this.renderRequestId) return;
 
-      const validProducts = products.filter((entry) => entry !== null);
-      this.status.textContent = '';
-      this.status.removeAttribute('data-state');
+      const validProducts = products.filter((entry) => entry.status === 'fulfilled');
+      const failedProducts = products.filter((entry) => entry.status === 'rejected');
 
-      if (validProducts.length === 0) {
-        this.emptyState.hidden = false;
+      if (validProducts.length === 0 && failedProducts.length === products.length) {
+        this.status.dataset.state = 'error';
+        this.status.textContent = strings.failedToLoad;
         return;
       }
+
+      this.status.textContent = '';
+      this.status.removeAttribute('data-state');
 
       validProducts.forEach(({ handle, product }) => {
         const fragment = this.itemTemplate.content.cloneNode(true);

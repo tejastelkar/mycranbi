@@ -400,6 +400,39 @@ test('wishlist drawer supports focus restoration and Escape', () => {
   assert.match(source, /this\.lastTrigger\?\.focus\(\)/);
 });
 
+test('wishlist focus trap recovers after the focused item is removed', () => {
+  const source = read('assets/wishlist.js');
+  assert.match(
+    source,
+    /!this\.panel\.contains\(document\.activeElement\)[\s\S]*?event\.preventDefault\(\);[\s\S]*?\(event\.shiftKey \? last : first\)\?\.focus\(\);/s,
+    'Tab should move focus back inside the panel when a rerender detaches the focused remove button'
+  );
+});
+
+test('wishlist drawer distinguishes empty storage from complete product-fetch failure', () => {
+  const source = read('assets/wishlist.js');
+  assert.match(
+    source,
+    /if \(this\.items\.length === 0\)[\s\S]*?this\.emptyState\.hidden = false;[\s\S]*?return;/s,
+    'zero stored handles should show the empty state'
+  );
+  assert.match(source, /const failedProducts = products\.filter\(\(entry\) => entry\.status === 'rejected'\);/);
+  assert.match(
+    source,
+    /validProducts\.length === 0 && failedProducts\.length === products\.length[\s\S]*?this\.status\.dataset\.state = 'error';[\s\S]*?this\.status\.textContent = strings\.failedToLoad;/s,
+    'an all-failed fetch must surface the configured failure string instead of the empty state'
+  );
+});
+
+test('wishlist product title provides an aligned 44px interaction target', () => {
+  const styles = read('assets/component-wishlist-drawer.css');
+  assert.match(
+    styles,
+    /\.wishlist-item__title\s*\{[^}]*display:\s*flex;[^}]*align-items:\s*center;[^}]*min-height:\s*4\.4rem;/s,
+    'the separate title link should meet the minimum touch target without misaligning its copy'
+  );
+});
+
 test('cart free-delivery progress is clamped against exactly ₹1,999', () => {
   const markup = read('snippets/cart-drawer.liquid');
   assert.match(markup, /assign free_delivery_threshold = 199900/);

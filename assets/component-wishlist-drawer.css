@@ -207,7 +207,9 @@
 }
 
 .wishlist-item__title {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 4.4rem;
   color: rgb(var(--color-foreground));
   font-size: 1.5rem;
   font-weight: 600;
