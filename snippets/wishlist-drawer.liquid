@@ -5,74 +5,38 @@
   {% render 'wishlist-drawer' %}
 {% endcomment %}
 
-<style>
-  .drawer {
-    visibility: hidden;
-  }
-</style>
-
-<div id="WishlistDrawer" class="drawer">
-  <div id="WishlistDrawer-Overlay" class="cart-drawer__overlay" onclick="window.wishlistManager.closeDrawer()"></div>
-  <div
-    class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Wishlist"
-    tabindex="-1"
-  >
-    <div class="drawer__header">
-      <h2 class="drawer__heading">
-        {%- if settings.wishlist_drawer_heading != blank -%}
-          {{ settings.wishlist_drawer_heading }}
-        {%- else -%}
-          Your Wishlist
-        {%- endif -%}
-      </h2>
-      <button
-        class="drawer__close"
-        type="button"
-        onclick="window.wishlistManager.closeDrawer()"
-        aria-label="{{ 'accessibility.close' | t }}"
-      >
-        <span class="svg-wrapper">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </span>
+<div id="WishlistDrawer" class="wishlist-drawer" aria-hidden="true">
+  <button id="WishlistDrawer-Overlay" class="wishlist-drawer__overlay" type="button" aria-label="Close wishlist"></button>
+  <section class="wishlist-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="WishlistDrawer-Title" tabindex="-1">
+    <header class="wishlist-drawer__header">
+      <h2 id="WishlistDrawer-Title" class="wishlist-drawer__title">Your Wishlist</h2>
+      <span class="wishlist-drawer__count" aria-live="polite"></span>
+      <button class="wishlist-drawer__close" type="button" data-wishlist-close aria-label="Close wishlist">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
+    </header>
+    <div id="WishlistDrawer-Status" class="wishlist-drawer__status" role="status" aria-live="polite"></div>
+    <div id="WishlistDrawer-Empty" class="wishlist-drawer__empty" hidden>
+      <svg class="wishlist-drawer__empty-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <p class="wishlist-drawer__empty-text">Your Wishlist is Empty</p>
+      <button class="button" type="button" data-wishlist-close>Continue shopping</button>
     </div>
-
-    <div class="drawer__inner-empty" id="WishlistDrawer-Empty" style="display: none;">
-      <div class="cart-drawer__warnings center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-        <div class="cart-drawer__empty-content" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-          <svg class="icon-heart-empty" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: rgba(var(--color-foreground), 0.8); margin-bottom: 2rem;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          <h2 class="wishlist__empty-text" style="font-size: 1.8rem; margin-bottom: 3rem; font-weight: 400; color: rgba(var(--color-foreground), 1); display: block;">
-            {%- if settings.wishlist_drawer_empty_text != blank -%}
-              {{ settings.wishlist_drawer_empty_text }}
-            {%- else -%}
-              Your Wishlist is Empty
-            {%- endif -%}
-          </h2>
-          <button
-            class="button"
-            type="button"
-            onclick="window.wishlistManager.closeDrawer()"
-          >
-            {{ 'general.continue_shopping' | t }}
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="cart__contents cart-drawer__form" id="WishlistDrawer-Content">
-      <div class="drawer__contents js-contents">
-        <div class="drawer__cart-items-wrapper">
-          <div class="cart-items wishlist-items" id="WishlistDrawer-Items" style="display: flex; flex-direction: column;">
-            <!-- Wishlist items will be injected here by wishlist.js -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div id="WishlistDrawer-Items" class="wishlist-drawer__items"></div>
+  </section>
 </div>
+
+<template id="WishlistDrawer-ItemTemplate">
+  <article class="wishlist-item">
+    <a class="wishlist-item__media"><img class="wishlist-item__image" width="96" height="96" loading="lazy"></a>
+    <div class="wishlist-item__details">
+      <a class="wishlist-item__title"></a>
+      <p class="wishlist-item__price"></p>
+    </div>
+    <button class="wishlist-item__remove" type="button" aria-label="Remove from wishlist">
+      <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 3l14 14M17 3L3 17" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </article>
+</template>
 
 <script>
   window.wishlistStrings = {

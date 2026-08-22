@@ -371,6 +371,35 @@ test('collection stylesheet leaves card fundamentals to the shared component', (
   assert.doesNotMatch(collection, /product-card-wrapper--collection \.card__badge/);
 });
 
+test('wishlist drawer uses dedicated opaque responsive structure', () => {
+  const markup = read('snippets/wishlist-drawer.liquid');
+  const styles = read('assets/component-wishlist-drawer.css');
+  assert.match(markup, /class="wishlist-drawer"/);
+  assert.match(markup, /id="WishlistDrawer-ItemTemplate"/);
+  assert.doesNotMatch(markup, /style="/);
+  assert.doesNotMatch(markup, /onclick=/);
+  assert.match(styles, /\.wishlist-drawer__panel\s*\{[^}]*background:\s*#fbfaf7;[^}]*overflow-x:\s*hidden;/s);
+  assert.match(styles, /@media screen and \(max-width: 749px\)[\s\S]*width:\s*100vw;/s);
+});
+
+test('wishlist controller normalizes storage and synchronizes dynamic cards', () => {
+  const source = read('assets/wishlist.js');
+  assert.match(source, /normalizeItems\(value\)/);
+  assert.match(source, /new Set\(/);
+  assert.match(source, /MutationObserver/);
+  assert.match(source, /syncButtons\(root = document\)/);
+  assert.match(source, /setAttribute\('aria-pressed'/);
+  assert.doesNotMatch(source, /\.style\.display/);
+  assert.doesNotMatch(source, /onmouseover=/);
+});
+
+test('wishlist drawer supports focus restoration and Escape', () => {
+  const source = read('assets/wishlist.js');
+  assert.match(source, /this\.lastTrigger/);
+  assert.match(source, /event\.key === 'Escape'/);
+  assert.match(source, /this\.lastTrigger\?\.focus\(\)/);
+});
+
 test('cart free-delivery progress is clamped against exactly ₹1,999', () => {
   const markup = read('snippets/cart-drawer.liquid');
   assert.match(markup, /assign free_delivery_threshold = 199900/);
